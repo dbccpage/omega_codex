@@ -2,6 +2,10 @@
 
 Genesis to Cosmos studies: one home for the developing account of marks, questions, judgment, witnessing, difference, and persistence.
 
+## Setup and review
+
+[CONTRIBUTING.md](CONTRIBUTING.md) gives the local Lean/Python commands and our user–Codex–friend review loop. We preserve existing files, agree one bounded reconstruction slice before implementing it, and review its result before moving on. The first reconstruction slice is proposed there for discussion; this setup step imports no legacy files.
+
 ## Start here
 
 Our current focus is **whether difference can be primary while the identities of its participants remain secondary**.
