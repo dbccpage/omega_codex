@@ -16,6 +16,8 @@ The [seed experiment and audit](evidence/seed_audit_2026-11-01/README.md) preser
 
 The [migration record](docs/migration.md) describes source custody, the frozen archive, and the supported offline verification command.
 
+The [PR 1 review response](docs/pr1_review_response.md) records the verification repairs and the limit of the first-publication provenance anchor.
+
 ## Research discipline
 
 - Record what is supplied, what is admitted, and what follows under those admissions.

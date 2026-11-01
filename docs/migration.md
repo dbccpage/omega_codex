@@ -21,3 +21,9 @@ The verifier checks the imported inventory, both preserved manifests, exact prom
 The [latest discussion transcript](genesis_discussion.md) contains the two exchanges after the audit. The source-development conversation remains in the evidence package. Its retrieved four turns supply motivation and preliminary prompts; the exact final run sheet is separately preserved in the source protocol.
 
 The current entry point is the repository README. We will continue by examining the internal structure of a question and what would count as a performed, witnessed judgment before treating any Regime field as foundational.
+
+## Publication anchor and provenance limit
+
+The PFP source directory was untracked, so no original PFP source commit exists. The verifier now anchors the archive to first-publication commit `1864f8671706b0aa82db2dff8feeec29d440c2fc`, reconstructs the full report for exact prompt/answer association, and checks unchanged archive bytes. This verifies equality to the first published omega_codex record, not independent proof of the earlier PFP origin. Full Git history is needed (`git fetch --unshallow` for a shallow clone). See [the review response](pr1_review_response.md) for the reconstruction and corruption tests.
+
+The workflow runs the verifier and `python -m unittest discover -s tests -v`. It makes no model calls.

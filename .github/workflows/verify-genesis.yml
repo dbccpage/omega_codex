@@ -1,0 +1,23 @@
+name: Verify Genesis archive
+
+on:
+  push:
+    branches: [main, codex/genesis-study-home]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-verification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out full history for the publication anchor
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+      - name: Verify preserved record
+        run: python3 scripts/verify_genesis_record.py
+      - name: Test corruption and answer misassociation
+        run: python3 -m unittest discover -s tests -v
