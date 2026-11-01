@@ -4,11 +4,13 @@ Genesis to Cosmos studies: one home for the developing account of marks, questio
 
 ## Start here
 
-Our current question is **what makes an answer witnessed within a proposed system**. Before using judgment as a foundation, we must distinguish an admitted expression or record from a performed act that determines or registers an outcome. The latter may already assume the witnessing capability we are investigating.
+Our current focus is **whether difference can be primary while the identities of its participants remain secondary**.
 
-The candidate with two admitted items and one unary question is a conditional example. Its asymmetric record makes the items distinguishable under the declared query. This establishes formal separability under that framework; whether it supplies a witnessed act remains open. Its three populated Regime fields do not establish a necessary three-part foundation.
+The [symmetric primitive difference investigation](docs/symmetric_primitive_difference.md) now proves that a symmetric two-position relation has a nonconstant, swap-invariant binary distinction while lacking an invariant unary side-labeling into a trivially acted-on Boolean output. Its unique counterpart operation does not privilege either participant. The generic equivalence between irreflexivity and universal relational soundness is checked directly.
 
-[Read the latest discussion](docs/genesis_discussion.md). That transcript preserves both the construction and the user's subsequent challenge, so the challenge governs our next investigation rather than being lost behind a polished summary.
+The [Lean module](lean/PrimitiveDifference.lean) contains 26 checked theorems and uses Lean core only. A separately admitted transition records a refusal bit; the static relation does not force that behavior. Whether structural obstruction itself deserves the name witnessing remains open.
+
+The earlier [discussion of questions and judgment](docs/genesis_discussion.md) preserves the candidate with two admitted items and one unary question, followed by the user's challenge that a performed judgment may already assume witnessing. Its formal separability result does not by itself establish an executing or registering subsystem.
 
 ## Existing evidence
 
