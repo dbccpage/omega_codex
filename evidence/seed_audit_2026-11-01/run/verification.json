@@ -1,0 +1,30 @@
+{
+  "verified": true,
+  "answers": 25,
+  "rounds": 7,
+  "conversations": 9,
+  "source_sha256": "2ff9f0dad8ea04edf07d4cba35cd6a881c08993b9f3ef1442b42e90b0b1bf6ce",
+  "checks": [
+    "source snapshot byte equality",
+    "exact prompt text and order",
+    "isolated complete conversation histories",
+    "uniform settings without added system messages",
+    "sequential request timestamps",
+    "request and response hashes",
+    "all responses completed normally",
+    "all answers included verbatim in report"
+  ],
+  "response_models": [
+    "openai/gpt-6.1-sol"
+  ],
+  "response_providers": [
+    "OpenAI"
+  ],
+  "finish_reasons": [
+    "stop"
+  ],
+  "reported_cost_usd": 0.2083217,
+  "prompt_tokens": 18481,
+  "completion_tokens": 17577,
+  "scope": "Execution fidelity verified; this does not certify correctness of model answers."
+}

@@ -1,0 +1,91 @@
+{
+  "passed": true,
+  "preserved_run_files_checked": 68,
+  "binary_receipt_cases": [
+    {
+      "a": 0,
+      "b": 0,
+      "difference": 0,
+      "swapped_difference": 0,
+      "reset_complete_state_without_R": [
+        "RESUME",
+        0,
+        0,
+        0
+      ],
+      "protected_R": 0
+    },
+    {
+      "a": 0,
+      "b": 1,
+      "difference": 1,
+      "swapped_difference": 1,
+      "reset_complete_state_without_R": [
+        "RESUME",
+        0,
+        0,
+        0
+      ],
+      "protected_R": 1
+    },
+    {
+      "a": 1,
+      "b": 0,
+      "difference": 1,
+      "swapped_difference": 1,
+      "reset_complete_state_without_R": [
+        "RESUME",
+        0,
+        0,
+        0
+      ],
+      "protected_R": 1
+    },
+    {
+      "a": 1,
+      "b": 1,
+      "difference": 0,
+      "swapped_difference": 0,
+      "reset_complete_state_without_R": [
+        "RESUME",
+        0,
+        0,
+        0
+      ],
+      "protected_R": 0
+    }
+  ],
+  "axiom_deletion_countermodels": [
+    {
+      "deleted": "d(a)=0",
+      "a": 0,
+      "p": 0,
+      "zero": 0,
+      "one": 1,
+      "d": [
+        1
+      ]
+    },
+    {
+      "deleted": "d(p)=1",
+      "a": 0,
+      "p": 0,
+      "zero": 0,
+      "one": 1,
+      "d": [
+        0
+      ]
+    },
+    {
+      "deleted": "0!=1",
+      "a": 0,
+      "p": 0,
+      "zero": 0,
+      "one": 0,
+      "d": [
+        0
+      ]
+    }
+  ],
+  "scope": "Finite example and archive-integrity checks only. No new LLM calls, physical experiment, global minimality search, or Lean build."
+}
