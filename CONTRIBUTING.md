@@ -78,3 +78,7 @@ Before implementation, the discussion should settle whether this is the right ne
 The user approved the two-model mirror proposal: identical accessible observations, an exact non-identification theorem, and an extra-observation completion criterion. See [the implementation report](docs/mirror_non_identification.md). The four-step lift and the older one-position reconstruction remain deferred. This approval covers that slice only; review its result before choosing the next one.
 
 After `lake build`, run the existing census and also `python scripts/check_primitive_difference.py --module MirrorNonIdentification`. The finite example is `python scripts/mirror_models.py`; the full test command includes its five tests alongside the five archive tests.
+
+## Current comparison proposal
+
+The [research map](docs/research_map.md#proposed-next-slice-for-discussion-not-implementation) records the next proposed comparison: identity-only, one-object C2 operations, reciprocal S2, and a two-position C2 torsor bridge. The follow-up review specifies singleton-action, automorphism/action, displacement, and assumption-comparison targets. These remain proposals for the next three-way discussion; committing or merging this record does not authorize their implementation. The ten-stick and lifted-state investigations remain deferred.

@@ -6,6 +6,10 @@ Genesis to Cosmos studies: one home for the developing account of marks, questio
 
 [CONTRIBUTING.md](CONTRIBUTING.md) gives the local Lean/Python commands and our user–Codex–friend review loop. We preserve existing files, agree one bounded reconstruction slice before implementing it, and review its result before moving on. The approved mirror slice and the deferred earlier proposal are recorded there; further reconstruction awaits our next review.
 
+## Current research map
+
+The [research map and adversarial review](docs/research_map.md) collects the current repository inventory, the idea DAG rooted at `<>`, legacy source links, and proposed paths. It distinguishes checked results from additional admissions and open witnessing obligations. The follow-up review adds a proposed two-position C2 torsor bridge between operations and reciprocal positions; implementation awaits the next agreed slice.
+
 ## Approved mirror investigation
 
 The [mirror non-identification slice](docs/mirror_non_identification.md) now constructs two models with identical accessible presentation relations and different referent assignments. It proves that an observation-only decoder cannot answer both identity targets correctly, and characterizes when a supplied additional observation suffices. Its 19 Lean theorems and finite code example keep the availability of that extra observation explicit. The result is ready for our next review; it does not authorize a further reconstruction slice.
