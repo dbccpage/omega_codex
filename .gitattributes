@@ -1,0 +1,8 @@
+# Preserve historical evidence bytes and its original formatting.
+evidence/seed_audit_2026-11-01/** -text -whitespace
+# This is a verbatim conversation source, including Markdown line breaks.
+docs/genesis_discussion.md -text -whitespace
+
+# Keep theorem-source receipt hashes stable across checkouts.
+lean/*.lean text eol=lf
+lean-toolchain text eol=lf

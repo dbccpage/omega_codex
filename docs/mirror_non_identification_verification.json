@@ -1,0 +1,46 @@
+{
+  "verified": true,
+  "source": "lean/MirrorNonIdentification.lean",
+  "source_sha256": "a215d0b339497db9c5af7c7aaa711c54487c35cb535468303a74382c2da94ad5",
+  "direct_imports": {
+    "lean/PrimitiveDifference.lean": "8ea8cc47eae4bedcc2a0e00b6af257313918b2165a159f85f54f866da03d41c8"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 19,
+  "allowed_axioms": [
+    "propext"
+  ],
+  "dependencies": {
+    "one_referent_assignment": [],
+    "two_referent_assignment": [],
+    "identity_answer_correct": [],
+    "same_accessible_relation": [],
+    "accessible_swap_invariant": [],
+    "identical_observations": [],
+    "different_identity_answers": [],
+    "observation_only_outputs_agree": [],
+    "mirror_non_identification": [],
+    "presentation_difference_does_not_descend": [],
+    "decoding_requires_fiber_constancy": [],
+    "fiber_constant_iff_separates": [],
+    "decoder_correct_of_separates": [
+      "propext"
+    ],
+    "decodes_iff_fiber_constant": [
+      "propext"
+    ],
+    "enhancement_separates_iff": [],
+    "extra_observation_completion": [
+      "propext"
+    ],
+    "constant_extra_fails": [
+      "propext"
+    ],
+    "target_bit_extra_suffices": [
+      "propext"
+    ],
+    "target_answer_has_no_preferred_presentation": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

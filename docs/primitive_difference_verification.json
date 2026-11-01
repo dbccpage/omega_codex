@@ -1,0 +1,48 @@
+{
+  "verified": true,
+  "source": "lean/PrimitiveDifference.lean",
+  "source_sha256": "8ea8cc47eae4bedcc2a0e00b6af257313918b2165a159f85f54f866da03d41c8",
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 26,
+  "allowed_axioms": [
+    "propext"
+  ],
+  "dependencies": {
+    "irrefl_witness_ne": [],
+    "irrefl_iff_soundness": [],
+    "universal_soundness_iff_entails_irrefl": [],
+    "local_pair_does_not_force_irrefl": [],
+    "S2_legacy_reading": [],
+    "S2_irrefl": [],
+    "counterpart_involution": [],
+    "counterpart_ne": [],
+    "counterpart_characterization": [],
+    "counterpart_unique": [],
+    "swap_preserves_relation": [],
+    "counterpart_equivariant": [],
+    "no_swap_fixed_participant": [],
+    "no_invariant_unary_separator": [],
+    "difference_correct": [],
+    "binary_difference_swap_invariant": [],
+    "binary_difference_nonconstant": [],
+    "nontrivial_output_action": [],
+    "identified_witness_violates_irrefl": [],
+    "reject_iff_identifies": [
+      "propext"
+    ],
+    "reject_invariant_under_input_swap": [
+      "propext"
+    ],
+    "reject_invariant_under_output_swap": [
+      "propext"
+    ],
+    "registered_refusal_correct": [
+      "propext"
+    ],
+    "registered_refusal_on_collapse": [],
+    "registered_acceptance_on_identity": [],
+    "static_relation_does_not_force_refusal": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}
