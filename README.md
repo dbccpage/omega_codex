@@ -4,7 +4,11 @@ Genesis to Cosmos studies: one home for the developing account of marks, questio
 
 ## Setup and review
 
-[CONTRIBUTING.md](CONTRIBUTING.md) gives the local Lean/Python commands and our user–Codex–friend review loop. We preserve existing files, agree one bounded reconstruction slice before implementing it, and review its result before moving on. The first reconstruction slice is proposed there for discussion; this setup step imports no legacy files.
+[CONTRIBUTING.md](CONTRIBUTING.md) gives the local Lean/Python commands and our user–Codex–friend review loop. We preserve existing files, agree one bounded reconstruction slice before implementing it, and review its result before moving on. The approved mirror slice and the deferred earlier proposal are recorded there; further reconstruction awaits our next review.
+
+## Approved mirror investigation
+
+The [mirror non-identification slice](docs/mirror_non_identification.md) now constructs two models with identical accessible presentation relations and different referent assignments. It proves that an observation-only decoder cannot answer both identity targets correctly, and characterizes when a supplied additional observation suffices. Its 19 Lean theorems and finite code example keep the availability of that extra observation explicit. The result is ready for our next review; it does not authorize a further reconstruction slice.
 
 ## Start here
 

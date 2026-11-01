@@ -38,4 +38,6 @@ jobs:
           use-mathlib-cache: "false"
           use-github-cache: "false"
       - name: Check every theorem and its axiom dependencies
-        run: python3 scripts/check_primitive_difference.py
+        run: |
+          python3 scripts/check_primitive_difference.py
+          python3 scripts/check_primitive_difference.py --module MirrorNonIdentification

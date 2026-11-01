@@ -9,7 +9,7 @@ Omega Codex develops one reviewed piece at a time. Existing files remain in plac
 - Dependencies: Lean core only; no Mathlib or other Lake packages.
 - Python: 3.9 or newer; verification uses the standard library only.
 - Local environment: `.venv`, ignored by Git. No project dependency on PFP's environment.
-- CI: archive verification, five corruption/reconstruction tests, the Lean build, and the 26-theorem dependency census.
+- CI: archive verification, five archive corruption/reconstruction tests plus five mirror-model tests, the Lean build, and the separate 26- and 19-theorem dependency censuses.
 
 The source-bound receipt in `docs/primitive_difference_verification.json` records the earlier local theorem check. Running the checker normally prints a fresh result without rewriting that receipt.
 
@@ -50,7 +50,7 @@ This is a working agreement from the user's instruction, not a claim that the cu
 
 ## Proposed first reconstruction slice
 
-Status: **proposed for discussion, not implemented by this setup step**.
+Status: **deferred; retained as an earlier proposal**. The user subsequently approved the four-part mirror non-identification slice instead.
 
 Question: What exactly makes a witnessed relation fail to fit on one position?
 
@@ -72,3 +72,9 @@ Assumptions to discuss: an admitted carrier, a binary relation, the meaning of a
 Expected limits: no Regime, no question evaluator, no persistence mechanism, no physical witnessing claim, and no broad import of `primdiff.py`. The existing 26-theorem module remains in place.
 
 Before implementation, the discussion should settle whether this is the right next question and whether “witnessed pair” here denotes an admitted formal fact or the stronger internally performed event the user wants to investigate.
+
+## Approved mirror slice
+
+The user approved the two-model mirror proposal: identical accessible observations, an exact non-identification theorem, and an extra-observation completion criterion. See [the implementation report](docs/mirror_non_identification.md). The four-step lift and the older one-position reconstruction remain deferred. This approval covers that slice only; review its result before choosing the next one.
+
+After `lake build`, run the existing census and also `python scripts/check_primitive_difference.py --module MirrorNonIdentification`. The finite example is `python scripts/mirror_models.py`; the full test command includes its five tests alongside the five archive tests.
