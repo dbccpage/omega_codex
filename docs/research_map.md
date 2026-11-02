@@ -1,12 +1,22 @@
 # Genesis research map and adversarial review
 
-Snapshot date: 2026-11-01. Mathematical and evidence baseline: `06b57ae21d72b83c0ddbb96d4c27cfca8e351428` on `codex/genesis-study-home`. This document is a new review artifact; it adds no mathematical implementation. It is a reconstruction of the idea graph from source and discussion, not a previously implemented derivation engine.
+Original review snapshot: 2026-11-01. Mathematical and evidence baseline: `06b57ae21d72b83c0ddbb96d4c27cfca8e351428` on `codex/genesis-study-home`. That original snapshot added no mathematical implementation. The approved quotient reconstruction described below now extends it from merged baseline `b8acbe0ccef33a83f41cafd37b9fe943a3414e5e`. It is a reconstruction of the idea graph from source and discussion, not a previously implemented derivation engine.
 
 ## Reading the root
 
 `<>` is the root inscription supplied to this investigation. It is not automatically the empty set, a singleton type, two delimiter objects, an event in time, or a universe. Those interpretations require admissions. There is currently no theorem deriving the remainder of this map from the inscription alone.
 
 Our target remains: account for a nontrivial internally supported distinction while exposing every capability supplied by the representation. Whether structural non-collapse alone meets the intended meaning of self-witnessing remains open. An observable answer, an invoked judgment, a recorded answer, and a persistent record are stronger, separately specified tasks.
+
+## Implemented quotient bridge
+
+The approved [zero-equivalence, descent, and refusal slice](zero_equivalence.md) adds `lean/ZeroEquivalence.lean` and its [source-bound receipt](zero_equivalence_verification.json). Omega Codex now has three Lean modules with 26, 19, and 62 checked theorem declarations, respectively. Only the new quotient module permits `Quot.sound` alongside `propext`; the previous modules retain their stricter allowance. No preserved evidence or earlier mathematical source changed.
+
+The new checked path starts by supplying carrier/value types, a difference function, a zero predicate, and equivalence laws. E is the largest identification relation preserving the declared zero-status. Exact values and named readouts can require finer identifications. Four finite fixtures separate quotient subsingleton status from exact descent. A symmetric edge with an isolated third position defeats a general reverse bridge from symmetric irreflexive relations. Supplied bijective relabeling preserves the quotient and descent judgments; a static quotient does not select a continuation rule.
+
+At the zero/nonzero level the distinction is inequality of quotient classes. Re-encoding E as proposition-valued differences preserves E while potentially losing exact values. These results do not derive a witness from `<>`, make every refusal profile lossless, or establish one weakest common structure for `PrimDiff`, `Bridge`, quotient descent, and `SymmetryFloor`.
+
+The DAG below adds N28–N33. The older repository inventory and review narratives retain their dated provenance; the implementation report gives the new scope and checks. The next review is the coarsest-identification theorem and four-case classification. Torsor formalization remains deferred.
 
 ## Assessment under review
 
@@ -65,7 +75,7 @@ This sharpens rather than settles the assumption comparison. A group, action and
 
 The attachment explicitly recommends its four targets “without yet authorizing implementation”. The user's accompanying instruction authorizes committing and merging the existing PR. We therefore incorporate this proposed bridge in the documentation and stop before a new reconstruction slice. The reviewer assessed the supplied argument and compressed graph, not every entry in the previously uncommitted full map.
 
-## Current repository
+## Historical repository inventory
 
 At the pinned baseline there are **101 tracked files**, including 76 preserved evidence files. The working development branch is `codex/genesis-study-home`. [PR #1](https://github.com/dbccpage/omega_codex/pull/1) was open, unmerged, and mergeable at this snapshot. Its base was `84038ed5d695d882bcb5494f085772eb507bc924`: the development content was not yet merged into `main`.
 
@@ -81,11 +91,12 @@ At the pinned baseline there are **101 tracked files**, including 76 preserved e
 | `.github/workflows/` | Two CI jobs: offline archive plus Python tests; Lean build plus separate theorem-dependency censuses. |
 | Ignored local setup | `.venv` and `.lake` are working environment/build products, not mathematical evidence or imported legacy trees. |
 
-The actual Lean module dependency graph is simply:
+The current Lean module dependency graph is:
 
 ```mermaid
 flowchart LR
   PD[PrimitiveDifference] --> MN[MirrorNonIdentification]
+  PD --> ZE[ZeroEquivalence]
 ```
 
 There is no implemented dependency path from these modules to the legacy Regime, refusal, natural-sections, or gluing packages. There is no implemented Genesis-to-Cosmos pipeline, physical model, or universal minimality theorem.
@@ -155,6 +166,12 @@ flowchart TD
   N25["N25 O: difference, anti-self, and absence of a witness"]
   N26["N26 P: point and edge as simplicial representations"]
   N27["N27 P: C2 torsor and unique displacement bridge"]
+  N28["N28 C: zero-equivalence kernel and quotient"]
+  N29["N29 C: largest identification preserving zero-status"]
+  N30["N30 C: specified value/readout descent; four fixtures"]
+  N31["N31 C: quotient inequality and information-loss limits"]
+  N32["N32 C: quotient and descent under supplied relabeling"]
+  N33["N33 C: static kernel does not fix continuation"]
 
   N00 -. research admission .-> N01
   N00 -. empirical probe .-> N24
@@ -194,6 +211,16 @@ flowchart TD
   N05 -. recover automorphisms and specify action .-> N27
   N14 -. add free transitive action on positions .-> N27
   N27 -. compare displacement and relation .-> N15
+  N01 -. supply carrier, values, zero predicate, equivalence laws .-> N28
+  N28 --> N29
+  N28 -. specify values or named readouts to preserve .-> N30
+  N28 -. compare encodings and relation classes .-> N31
+  N28 -. supply bijective renaming .-> N32
+  N28 -. supply continuation relation .-> N33
+  N28 -. supply nonzero pair and candidate collapse .-> N07
+  N28 -. specialize to Boolean XOR .-> N05
+  N29 -. supply internal refusal mechanism .-> N21
+  N30 -. account for acquisition and registration .-> N21
 ```
 
 ### Node ledger and unresolved bridges
@@ -219,7 +246,14 @@ flowchart TD
 | N24 | Frozen experiment, exact responses, finite checks, and scoped audit. | Independent replication or broader experiments would be new work, not something the archive already establishes. |
 | N25 | The user's delta/anti-self language asks whether the first difference is its own internal support. | A counterpart is not automatically logical negation. Absence of an observed difference is not automatically proof of no difference. Reciprocity and internal reflexive witnessing must be distinguished from the diagonal condition `R(x,x)`, which protected irreflexivity forbids. |
 | N26 | A point/edge picture can represent zero- and one-dimensional simplices in an admitted simplicial framework. | A vertex is already an admitted mathematical object; an edge representation supplies its incidence structure. This does not derive geometry or require the first difference to be a simplex. No simplicial implementation exists here. |
-| N27 | Proposed C2 torsor bridge: free transitive action on two positions and unique displacement. Added following the next review; the original map had 27 nodes. | Establish the exact action/displacement statements and what their translations preserve. No privileged origin is selected; the admitted group/action/positions still require accounting. The map now has 28 nodes and 38 edges. |
+| N27 | Proposed C2 torsor bridge: free transitive action on two positions and unique displacement. Added following the next review; the original map had 27 nodes. | Establish the exact action/displacement statements and what their translations preserve. No privileged origin is selected; the admitted group/action/positions still require accounting. That proposal snapshot had 28 nodes and 38 edges; the quotient update below adds six nodes and ten edges. |
+
+| N28 | Kernel E and quotient Q; R is pulled-back class inequality. Empty and singleton cases are explicit. | No nonzero pair is forced by the kernel. Carrier/value types and equivalence laws are supplied after the root. |
+| N29 | Zero-status descends through S iff S is contained in E. | Preserve a different task only after specifying it. A structural obstruction does not perform or record a refusal. |
+| N30 | Unary/binary congruence iff descent; four fixtures realize both subsingleton and exact-descent truth values independently. | Named extra readouts can fail even when a first readout descends. No universal quantification over unrequested readouts is imposed. |
+| N31 | Re-encoding preserves E but can forget exact values and factorization behavior. An isolated-edge relation cannot be the complement of an equivalence. | Assess logical strength separately from information loss; no universal weakest kernel is established. |
+| N32 | Supplied inverse maps induce inverse quotient maps; transported values and readouts have invariant descent judgments. | This is relabeling, not noninjective collapse or a chosen quotient representative. |
+| N33 | The same static kernel and quotient state support either no successor or an identity self-loop under different supplied rules. | New content, reachability, productive growth, and operational termination need their own definitions and rules. |
 
 ### The five Regime fields
 
@@ -272,6 +306,8 @@ These are dependencies to investigate, not a claim that Genesis must unfold as f
 
 ## Proposed next slice for discussion, not implementation
 
+Status update: this torsor proposal remains deferred. The user instead approved the quotient bridge now recorded above. Its next review concerns the coarsest-identification theorem and four-case classification; this historical proposal is retained for a later slice.
+
 Compare four descriptions: the identity-only candidate, the exact two-operation C2 candidate, current S2, and a two-position C2 torsor as a possible bridge. Use explicit observation tasks and map classes. Keep the refusal model as a control showing why object count and configuration count differ.
 
 Sources: current PrimitiveDifference plus the pinned Refusal, PrimDiff and NaturalSections references above. Intended assumptions: finite carriers/operation types, explicit identity/composition table for C2, explicit actions when talking about effects on states, and stated allowed maps. No category-theory framework or Mathlib import is needed to test the finite core.
@@ -299,3 +335,7 @@ The earlier one-position reconstruction, ten-stick comparison and four-step lift
 ### Pre-merge validation refresh
 
 After incorporating the follow-up torsor review, both existing Lean modules were rebuilt and all 26 plus 19 theorem dependency checks passed. The 76-file archive replay and all ten Python tests passed again. No mathematical source or preserved evidence changed. The updated proposed DAG has 28 reachable nodes and 38 edges; its links and acyclicity were checked before committing. This records local validation; final hosted CI and merge status are GitHub records rather than predictions in this document.
+
+### Quotient implementation validation
+
+The three Lean libraries build under Lean 4.33.0. The fresh censuses cover 26 + 19 + 62 = 107 theorem declarations. The existing ten Python tests and the 76-file anchored archive verifier passed. The new [receipt](zero_equivalence_verification.json) lists every quotient theorem and its actual dependencies; no `Classical.choice` occurs. The updated conceptual graph has 34 nodes and 48 edges. These are local checks of the approved slice, separate from the historical hosted-CI records above.

@@ -1,0 +1,198 @@
+{
+  "verified": true,
+  "source": "lean/ZeroEquivalence.lean",
+  "source_sha256": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d",
+  "direct_imports": {
+    "lean/PrimitiveDifference.lean": "8ea8cc47eae4bedcc2a0e00b6af257313918b2165a159f85f54f866da03d41c8"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 62,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "zeroRel_equivalence": [],
+    "nonzero_irrefl": [],
+    "nonzero_symm": [],
+    "nonzero_implies_ne": [],
+    "classOf_eq_iff_zeroRel": [
+      "propext",
+      "Quot.sound"
+    ],
+    "nonzero_iff_classes_ne": [
+      "propext",
+      "Quot.sound"
+    ],
+    "exists_nonzero_iff_distinct_classes": [
+      "propext",
+      "Quot.sound"
+    ],
+    "quotient_subsingleton_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "unaryFactor_mk": [],
+    "unary_descends_iff": [
+      "Quot.sound"
+    ],
+    "unaryFactor_unique": [
+      "Quot.sound"
+    ],
+    "unary_no_factor_of_witness": [
+      "Quot.sound"
+    ],
+    "binaryFactor_mk": [],
+    "binary_descends_iff": [
+      "Quot.sound"
+    ],
+    "binaryFactor_unique": [
+      "Quot.sound"
+    ],
+    "binary_no_factor_of_witness": [
+      "Quot.sound"
+    ],
+    "zero_status_descends_iff_refines": [
+      "propext",
+      "Quot.sound"
+    ],
+    "zero_status_descends_own": [
+      "propext",
+      "Quot.sound"
+    ],
+    "deltaFactor_exists_iff_deltaCongruent": [
+      "Quot.sound"
+    ],
+    "pair_descends_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "localGreenGlobalRed_pair_obstruction": [
+      "propext",
+      "Quot.sound"
+    ],
+    "fromSetoid_zeroRel": [],
+    "forget_reconstruct_zeroRel": [],
+    "fromSetoid_exact_descends": [
+      "propext",
+      "Quot.sound"
+    ],
+    "exact_descends_implies_zero_status": [
+      "Quot.sound"
+    ],
+    "four_fixtures_zero_status_descends": [
+      "propext",
+      "Quot.sound"
+    ],
+    "constantAllZero_one_class": [
+      "propext",
+      "Quot.sound"
+    ],
+    "constantAllZero_exact_descends": [
+      "Quot.sound"
+    ],
+    "nonconstantAllZero_one_class": [
+      "propext",
+      "Quot.sound"
+    ],
+    "nonconstantAllZero_failure_witness": [],
+    "nonconstantAllZero_not_exact_descends": [
+      "Quot.sound"
+    ],
+    "binary_zeroRel_iff_eq": [
+      "propext"
+    ],
+    "binary_nonzero_iff_S2": [
+      "propext"
+    ],
+    "binary_two_classes": [
+      "propext",
+      "Quot.sound"
+    ],
+    "binary_exact_descends": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rich_zeroRel_classes": [
+      "propext"
+    ],
+    "rich_two_classes": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rich_failure_witness": [
+      "propext"
+    ],
+    "rich_not_exact_descends": [
+      "propext",
+      "Quot.sound"
+    ],
+    "presentation_inequality_without_class_inequality": [
+      "propext",
+      "Quot.sound"
+    ],
+    "same_zeroRel_different_values": [],
+    "same_zeroRel_different_descent": [
+      "Quot.sound"
+    ],
+    "finite_localGreenGlobalRed": [
+      "propext",
+      "Quot.sound"
+    ],
+    "isolatedEdge_irrefl": [
+      "propext"
+    ],
+    "isolatedEdge_symm": [
+      "propext"
+    ],
+    "isolatedEdge_witness": [],
+    "isolatedEdge_not_zero_complement": [
+      "propext"
+    ],
+    "isolatedEdge_not_equivalence_complement": [
+      "propext"
+    ],
+    "empty_quotient": [
+      "propext",
+      "Quot.sound"
+    ],
+    "singleton_quotient": [
+      "propext",
+      "Quot.sound"
+    ],
+    "empty_exact_descends": [
+      "Quot.sound"
+    ],
+    "singleton_exact_descends": [
+      "Quot.sound"
+    ],
+    "empty_and_singleton_zero_status": [
+      "propext",
+      "Quot.sound"
+    ],
+    "relabel_zeroRel": [],
+    "relabel_nonzero": [],
+    "relabel_quotient_left_inverse": [
+      "Quot.sound"
+    ],
+    "relabel_quotient_right_inverse": [
+      "Quot.sound"
+    ],
+    "relabel_exact_descends_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "relabel_unary_descends_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "zero_status_refuses_nonzero_identification": [
+      "propext",
+      "Quot.sound"
+    ],
+    "nonzero_collision_violates_irrefl": [],
+    "static_kernel_does_not_determine_terminal": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

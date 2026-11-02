@@ -5,11 +5,11 @@ Omega Codex develops one reviewed piece at a time. Existing files remain in plac
 ## Current environment
 
 - Lean: `leanprover/lean4:v4.33.0`, pinned in `lean-toolchain`.
-- Lake: the existing package builds `lean/PrimitiveDifference.lean`.
+- Lake: the package builds `PrimitiveDifference`, `MirrorNonIdentification`, and `ZeroEquivalence` from `lean/`.
 - Dependencies: Lean core only; no Mathlib or other Lake packages.
 - Python: 3.9 or newer; verification uses the standard library only.
 - Local environment: `.venv`, ignored by Git. No project dependency on PFP's environment.
-- CI: archive verification, five archive corruption/reconstruction tests plus five mirror-model tests, the Lean build, and the separate 26- and 19-theorem dependency censuses.
+- CI: archive verification, five archive corruption/reconstruction tests plus five mirror-model tests, the Lean build, and the separate 26-, 19-, and 62-theorem dependency censuses.
 
 The source-bound receipt in `docs/primitive_difference_verification.json` records the earlier local theorem check. Running the checker normally prints a fresh result without rewriting that receipt.
 
@@ -32,6 +32,8 @@ On Windows, run the checks using that environment directly; activation is option
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\check_primitive_difference.py
+.\.venv\Scripts\python.exe scripts\check_primitive_difference.py --module MirrorNonIdentification
+.\.venv\Scripts\python.exe scripts\check_primitive_difference.py --module ZeroEquivalence
 .\.venv\Scripts\python.exe scripts\verify_genesis_record.py
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
@@ -79,6 +81,14 @@ The user approved the two-model mirror proposal: identical accessible observatio
 
 After `lake build`, run the existing census and also `python scripts/check_primitive_difference.py --module MirrorNonIdentification`. The finite example is `python scripts/mirror_models.py`; the full test command includes its five tests alongside the five archive tests.
 
-## Current comparison proposal
+## Deferred torsor comparison proposal
 
-The [research map](docs/research_map.md#proposed-next-slice-for-discussion-not-implementation) records the next proposed comparison: identity-only, one-object C2 operations, reciprocal S2, and a two-position C2 torsor bridge. The follow-up review specifies singleton-action, automorphism/action, displacement, and assumption-comparison targets. These remain proposals for the next three-way discussion; committing or merging this record does not authorize their implementation. The ten-stick and lifted-state investigations remain deferred.
+The [research map](docs/research_map.md#proposed-next-slice-for-discussion-not-implementation) retains the deferred comparison: identity-only, one-object C2 operations, reciprocal S2, and a two-position C2 torsor bridge. The follow-up review specifies singleton-action, automorphism/action, displacement, and assumption-comparison targets. These remain proposals for a later three-way discussion; committing or merging this record does not authorize their implementation. The ten-stick and lifted-state investigations remain deferred.
+
+## Approved zero-equivalence slice
+
+The user approved the bounded quotient bridge described in [zero_equivalence.md](docs/zero_equivalence.md). It reconstructs E and its quotient, arbitrary-equivalence descent criteria, named-readout obstructions, the four fixtures, the reverse-bridge limit, relabeling invariance, and the static continuation boundary. It imports only PrimitiveDifference and uses the pinned toolchain. No internal evaluator or later Genesis layer is inferred.
+
+The checker has a module-specific axiom policy: only `propext` for the two previous modules, and `propext` plus `Quot.sound` for ZeroEquivalence. It verifies the declared import list and all theorem declarations. The new source-bound receipt is `docs/zero_equivalence_verification.json`; normal checks do not rewrite it or the earlier receipts.
+
+The next step is the three-way adversarial review of the coarsest-identification theorem and four-case classification. Completing this slice does not authorize torsor implementation or a continuation engine.
