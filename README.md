@@ -4,11 +4,15 @@ Genesis to Cosmos studies: one home for the developing account of marks, questio
 
 ## Setup and review
 
-[CONTRIBUTING.md](CONTRIBUTING.md) gives the local Lean/Python commands and our user–Codex–friend review loop. We preserve existing files, agree one bounded reconstruction slice before implementing it, and review its result before moving on. The approved mirror slice and the deferred earlier proposal are recorded there; further reconstruction awaits our next review.
+[CONTRIBUTING.md](CONTRIBUTING.md) gives the local Lean/Python commands and our user–Codex–friend review loop. We preserve existing files, agree one bounded reconstruction slice before implementing it, and review its result before moving on. The approved mirror and quotient slices and the deferred proposals are recorded there; each completed slice returns to discussion before further reconstruction.
 
 ## Current research map
 
-The [research map and adversarial review](docs/research_map.md) collects the current repository inventory, the idea DAG rooted at `<>`, legacy source links, and proposed paths. It distinguishes checked results from additional admissions and open witnessing obligations. The follow-up review adds a proposed two-position C2 torsor bridge between operations and reciprocal positions; implementation awaits the next agreed slice.
+The [research map and adversarial review](docs/research_map.md) collects the current repository inventory, the idea DAG rooted at `<>`, legacy source links, and proposed paths. It distinguishes checked results from additional admissions and open witnessing obligations. The map now includes the checked quotient bridge and its information-loss limits. The proposed two-position C2 torsor bridge remains deferred.
+
+## Zero-equivalence and specified preservation
+
+The [zero-equivalence report](docs/zero_equivalence.md) records the new 62-theorem Lean slice. E is the largest identification relation preserving its declared zero-status; exact values and named readouts have separate descent conditions. Four finite cases, an isolated-edge counterexample, relabeling invariance, and a continuation comparison expose the limits of this characterization. Its [dependency receipt](docs/zero_equivalence_verification.json) permits only `propext` and `Quot.sound`. The next discussion will adversarially review the coarsest-identification theorem and the four-case classification.
 
 ## Approved mirror investigation
 

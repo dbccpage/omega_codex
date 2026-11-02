@@ -1,4 +1,4 @@
-"""Check the small Lean module and every theorem's reported axiom dependencies."""
+"""Build each scoped Lean module and census every theorem's axiom dependencies."""
 import argparse
 import hashlib
 import json
@@ -8,14 +8,30 @@ import subprocess
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
-ALLOWED_AXIOMS = {"propext"}
+MODULES = {
+    "PrimitiveDifference": {
+        "namespace": "OmegaCodex.PrimitiveDifference.",
+        "allowed_axioms": {"propext"},
+        "imports": (),
+    },
+    "MirrorNonIdentification": {
+        "namespace": "OmegaCodex.MirrorNonIdentification.",
+        "allowed_axioms": {"propext"},
+        "imports": ("PrimitiveDifference",),
+    },
+    "ZeroEquivalence": {
+        "namespace": "OmegaCodex.ZeroEquivalence.",
+        "allowed_axioms": {"propext", "Quot.sound"},
+        "imports": ("PrimitiveDifference",),
+    },
+}
 
-MODULES = {"PrimitiveDifference": "OmegaCodex.PrimitiveDifference.",
-           "MirrorNonIdentification": "OmegaCodex.MirrorNonIdentification."}
 
 def check(module="PrimitiveDifference"):
+    config = MODULES[module]
     source_path = ROOT / "lean" / (module + ".lean")
-    prefix = MODULES[module]
+    prefix = config["namespace"]
+    allowed_axioms = config["allowed_axioms"]
     build = subprocess.run(["lake", "build", module], cwd=ROOT, capture_output=True,
                            text=True, encoding="utf-8", errors="replace")
     if build.returncode:
@@ -27,9 +43,13 @@ def check(module="PrimitiveDifference"):
         raise RuntimeError("Missing or duplicate theorem declarations")
     if re.search(r"^\s*(?:axiom|opaque)\s|\b(?:sorry|admit|native_decide)\b", source, re.M):
         raise RuntimeError("Unsupported declaration or proof placeholder in module")
+    imports = tuple(name for line in re.findall(r"^import\s+([^\r\n]+)", source, re.M)
+                    for name in line.split())
+    if imports != config["imports"]:
+        raise RuntimeError("Unexpected direct imports: " + repr(imports))
     census = source + "\n" + "\n".join("#print axioms " + prefix + name for name in names)
     with tempfile.TemporaryDirectory(prefix="omega-lean-") as temporary:
-        path = Path(temporary) / "PrimitiveDifferenceCensus.lean"
+        path = Path(temporary) / (module + "Census.lean")
         path.write_text(census, encoding="utf-8")
         result = subprocess.run(["lake", "env", "lean", str(path)], cwd=ROOT, capture_output=True,
                                 text=True, encoding="utf-8", errors="replace")
@@ -42,7 +62,7 @@ def check(module="PrimitiveDifference"):
         if not match:
             raise RuntimeError("Missing axiom report for " + name)
         axioms = [] if match[2] is None else [x.strip() for x in match[2].split(",") if x.strip()]
-        if set(axioms) - ALLOWED_AXIOMS:
+        if set(axioms) - allowed_axioms:
             raise RuntimeError("Unexpected theorem dependencies: " + name + " " + repr(axioms))
         dependencies[name] = axioms
     version = subprocess.check_output(["lean", "--version"], cwd=ROOT).decode("utf-8").strip()
@@ -51,13 +71,15 @@ def check(module="PrimitiveDifference"):
         raise RuntimeError("Unexpected Lean version")
     return {"verified": True, "source": source_path.relative_to(ROOT).as_posix(),
             "source_sha256": hashlib.sha256(raw).hexdigest(),
-            "direct_imports": ({"lean/PrimitiveDifference.lean": hashlib.sha256(
-                (ROOT / "lean/PrimitiveDifference.lean").read_bytes()).hexdigest()}
-                if module == "MirrorNonIdentification" else {}),
+            "direct_imports": {
+                "lean/" + name + ".lean": hashlib.sha256(
+                    (ROOT / "lean" / (name + ".lean")).read_bytes()).hexdigest()
+                for name in config["imports"]},
             "toolchain": toolchain,
             "lean_version": version, "theorems_checked": len(names),
-            "allowed_axioms": sorted(ALLOWED_AXIOMS), "dependencies": dependencies,
+            "allowed_axioms": sorted(allowed_axioms), "dependencies": dependencies,
             "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."}
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

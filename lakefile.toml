@@ -1,6 +1,6 @@
 name = "omega_codex"
 version = "0.1.0"
-defaultTargets = ["PrimitiveDifference", "MirrorNonIdentification"]
+defaultTargets = ["PrimitiveDifference", "MirrorNonIdentification", "ZeroEquivalence"]
 
 [[lean_lib]]
 name = "PrimitiveDifference"
@@ -8,4 +8,8 @@ srcDir = "lean"
 
 [[lean_lib]]
 name = "MirrorNonIdentification"
+srcDir = "lean"
+
+[[lean_lib]]
+name = "ZeroEquivalence"
 srcDir = "lean"
