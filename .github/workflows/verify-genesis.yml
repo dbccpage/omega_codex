@@ -39,6 +39,10 @@ jobs:
           use-github-cache: "false"
       - name: Check every theorem and its axiom dependencies
         run: |
-          python3 scripts/check_primitive_difference.py
-          python3 scripts/check_primitive_difference.py --module MirrorNonIdentification
-          python3 scripts/check_primitive_difference.py --module ZeroEquivalence
+          python3 scripts/check_primitive_difference.py --verify-receipt
+          python3 scripts/check_primitive_difference.py --module MirrorNonIdentification --verify-receipt
+          python3 scripts/check_primitive_difference.py --module ZeroEquivalence --verify-receipt
+      - name: Prove receipt gate rejects compilable theorem removal and weakening
+        env:
+          OMEGA_TEST_LEAN_MUTATIONS: "1"
+        run: python3 -m unittest discover -s tests -p test_lean_receipts.py -v

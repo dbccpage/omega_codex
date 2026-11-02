@@ -339,3 +339,16 @@ After incorporating the follow-up torsor review, both existing Lean modules were
 ### Quotient implementation validation
 
 The three Lean libraries build under Lean 4.33.0. The fresh censuses cover 26 + 19 + 62 = 107 theorem declarations. The existing ten Python tests and the 76-file anchored archive verifier passed. The new [receipt](zero_equivalence_verification.json) lists every quotient theorem and its actual dependencies; no `Classical.choice` occurs. The updated conceptual graph has 34 nodes and 48 edges. These are local checks of the approved slice, separate from the historical hosted-CI records above.
+
+### Symmetry-review follow-up
+
+The verification repairs now enforce all three stored theorem receipts and test
+compilable theorem removal/weakening. Independent finite checks retain the four
+zero-equivalence fixtures. These are verification changes: the 107 checked Lean
+theorem statements and the current 34-node DAG are unchanged.
+
+The next proposed mathematical comparison is complete incoming/outgoing profile
+equality for arbitrary binary E, mutual comparability for preorders, and E itself
+for equivalences. The preorder's directed `not E` is distinct from symmetric class
+inequality. The review approves the argument but requests a separate formalization
+slice; none of these proposed new theorems is marked checked here.

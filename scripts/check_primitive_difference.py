@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import re
 import subprocess
+import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +26,57 @@ MODULES = {
         "imports": ("PrimitiveDifference",),
     },
 }
+
+
+RECEIPTS = {
+    "PrimitiveDifference": "docs/primitive_difference_verification.json",
+    "MirrorNonIdentification": "docs/mirror_non_identification_verification.json",
+    "ZeroEquivalence": "docs/zero_equivalence_verification.json",
+}
+
+
+def _dependency_sets(receipt):
+    deps = receipt.get("dependencies")
+    if not isinstance(deps, dict) or not deps:
+        raise RuntimeError("Missing theorem inventory")
+    result = {}
+    for name, axioms in deps.items():
+        if (not isinstance(name, str) or not isinstance(axioms, list)
+                or any(not isinstance(a, str) for a in axioms)
+                or len(axioms) != len(set(axioms))):
+            raise RuntimeError("Malformed theorem dependency inventory")
+        result[name] = frozenset(axioms)
+    if type(receipt.get("theorems_checked")) is not int or receipt["theorems_checked"] != len(deps):
+        raise RuntimeError("Theorem count does not match inventory")
+    return result
+
+
+def verify_receipt(actual, expected, module):
+    """Compare the reviewed contract, ignoring platform text in lean --version.
+
+    Explicit receipt regeneration acknowledges drift; it does not establish that
+    a changed mathematical statement retains its former strength.
+    """
+    source = "lean/" + module + ".lean"
+    for item in (actual, expected):
+        if item.get("verified") is not True or item.get("source") != source:
+            raise RuntimeError("Receipt module identity or verification status mismatch")
+        version = re.match(r"^Lean \(version (\d+\.\d+\.\d+),", item.get("lean_version", ""))
+        if not version or version[1] != "4.33.0":
+            raise RuntimeError("Receipt Lean version mismatch")
+        axioms = item.get("allowed_axioms")
+        if (not isinstance(axioms, list) or any(not isinstance(a, str) for a in axioms)
+                or len(axioms) != len(set(axioms))
+                or set(axioms) != MODULES[module]["allowed_axioms"]):
+            raise RuntimeError("Receipt axiom policy mismatch")
+    for field in ("source_sha256", "toolchain", "theorems_checked"):
+        if actual.get(field) != expected.get(field):
+            raise RuntimeError("Stored receipt mismatch: " + field)
+    # The oldest primitive-difference receipt predates the empty imports field.
+    if actual.get("direct_imports", {}) != expected.get("direct_imports", {}):
+        raise RuntimeError("Stored receipt mismatch: direct_imports")
+    if _dependency_sets(actual) != _dependency_sets(expected):
+        raise RuntimeError("Stored receipt mismatch: theorem names or dependency sets")
 
 
 def check(module="PrimitiveDifference"):
@@ -83,10 +135,19 @@ def check(module="PrimitiveDifference"):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--receipt", type=Path)
+    output_mode = parser.add_mutually_exclusive_group()
+    output_mode.add_argument("--receipt", type=Path, help="Explicitly regenerate a reviewed receipt")
+    output_mode.add_argument("--verify-receipt", nargs="?", const="auto",
+                             help="Verify the stored receipt; optionally give its path")
     parser.add_argument("--module", choices=MODULES, default="PrimitiveDifference")
     args = parser.parse_args()
     receipt = check(args.module)
+    if args.verify_receipt:
+        path = (ROOT / RECEIPTS[args.module] if args.verify_receipt == "auto"
+                else Path(args.verify_receipt))
+        expected = json.loads(path.read_text(encoding="utf-8"))
+        verify_receipt(receipt, expected, args.module)
+        print("Verified reviewed receipt: " + str(path), file=sys.stderr)
     output = json.dumps(receipt, indent=2) + "\n"
     if args.receipt:
         args.receipt.write_text(output, encoding="utf-8")
