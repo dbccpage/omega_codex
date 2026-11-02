@@ -195,3 +195,25 @@ The receipt is a checked source snapshot, not a claim about physical witnessing,
 Adversarially review the quantifiers and preservation task in `zero_status_descends_iff_refines`, then the four-case classification and its explicit failure witnesses. Decide whether the loss of exact values and orientation is acceptable for the intended Genesis distinction. Review the failed reverse bridge before proposing further compression of the research DAG.
 
 Torsor formalization, holonomy, cochains, sheaves, numerical residuals, and a general continuation engine remain later slices. Internal acquisition, an invoked judgment, and a registered refusal remain unresolved obligations. No subsequent slice is authorized by completion of this one.
+
+## Review response: verification and symmetry weakening
+
+The supplied symmetry review inspected `6d6ba63`. Its engineering findings were
+still present when checked against the reviewed head. PR #2 has since merged
+at `c1d7f21`; this follow-up adds verification corrections against that unchanged tree. The checker now verifies the
+committed receipt in CI, and independent finite regressions cover all four cases,
+all 11 candidate equivalences, changed zero criteria, changed exact tables,
+empty/singleton carriers and bijective relabeling. Real Lean mutations remove the
+unused continuation theorem or weaken it to True: both compile, and both fail the
+reviewed receipt gate. All three unchanged receipts pass; 19 Python tests pass
+with the Lean mutation test enabled. The earlier Lean/evidence files are retained.
+
+The broader profile/preorder construction remains a proposed separate slice.
+For arbitrary E, equal incoming and outgoing profiles define an equivalence;
+for preorders that relation specializes to mutual comparability; for equivalences
+it specializes to E. These generalizations have not been added to the current
+62-theorem module. In the preorder proposal, `not E(x,y)` can be directed and must
+be distinguished from `not (E(x,y) and E(y,x))`, which corresponds to inequality
+of mutual-equivalence classes. No old reciprocal-difference theorem is silently
+reinterpreted. A future slice must account for the complete comparison interface
+and its universal quantification, separately from internal access or witnessing.

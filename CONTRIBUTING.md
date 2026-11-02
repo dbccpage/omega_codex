@@ -9,7 +9,7 @@ Omega Codex develops one reviewed piece at a time. Existing files remain in plac
 - Dependencies: Lean core only; no Mathlib or other Lake packages.
 - Python: 3.9 or newer; verification uses the standard library only.
 - Local environment: `.venv`, ignored by Git. No project dependency on PFP's environment.
-- CI: archive verification, five archive corruption/reconstruction tests plus five mirror-model tests, the Lean build, and the separate 26-, 19-, and 62-theorem dependency censuses.
+- CI: archive verification, archive/mirror/finite-quotient/receipt regressions, the Lean build, and receipt-enforced 26-, 19-, and 62-theorem dependency censuses. The Lean job also checks actual compilable theorem mutations.
 
 The source-bound receipt in `docs/primitive_difference_verification.json` records the earlier local theorem check. Running the checker normally prints a fresh result without rewriting that receipt.
 
@@ -31,9 +31,9 @@ python -m venv --without-pip .venv
 On Windows, run the checks using that environment directly; activation is optional:
 
 ```powershell
-.\.venv\Scripts\python.exe scripts\check_primitive_difference.py
-.\.venv\Scripts\python.exe scripts\check_primitive_difference.py --module MirrorNonIdentification
-.\.venv\Scripts\python.exe scripts\check_primitive_difference.py --module ZeroEquivalence
+.\.venv\Scripts\python.exe scripts\check_primitive_difference.py --verify-receipt
+.\.venv\Scripts\python.exe scripts\check_primitive_difference.py --module MirrorNonIdentification --verify-receipt
+.\.venv\Scripts\python.exe scripts\check_primitive_difference.py --module ZeroEquivalence --verify-receipt
 .\.venv\Scripts\python.exe scripts\verify_genesis_record.py
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
@@ -79,7 +79,7 @@ Before implementation, the discussion should settle whether this is the right ne
 
 The user approved the two-model mirror proposal: identical accessible observations, an exact non-identification theorem, and an extra-observation completion criterion. See [the implementation report](docs/mirror_non_identification.md). The four-step lift and the older one-position reconstruction remain deferred. This approval covers that slice only; review its result before choosing the next one.
 
-After `lake build`, run the existing census and also `python scripts/check_primitive_difference.py --module MirrorNonIdentification`. The finite example is `python scripts/mirror_models.py`; the full test command includes its five tests alongside the five archive tests.
+After `lake build`, run the existing census and also `python scripts/check_primitive_difference.py --module MirrorNonIdentification`. The finite example is `python scripts/mirror_models.py`; the full test command includes its five tests alongside archive, finite-quotient and receipt regressions.
 
 ## Deferred torsor comparison proposal
 
@@ -92,3 +92,21 @@ The user approved the bounded quotient bridge described in [zero_equivalence.md]
 The checker has a module-specific axiom policy: only `propext` for the two previous modules, and `propext` plus `Quot.sound` for ZeroEquivalence. It verifies the declared import list and all theorem declarations. The new source-bound receipt is `docs/zero_equivalence_verification.json`; normal checks do not rewrite it or the earlier receipts.
 
 The next step is the three-way adversarial review of the coarsest-identification theorem and four-case classification. Completing this slice does not authorize torsor implementation or a continuation engine.
+
+## Reviewed receipt gate
+
+CI now uses `--verify-receipt` for each module. This compares current source/import
+hashes, module identity, theorem names/count, dependency sets, allowed axioms and
+the pinned Lean version with the committed receipt. Platform text in `lean --version`
+is informational; the version itself must agree. The original no-import receipt
+is supported without rewriting it.
+
+`--receipt PATH` explicitly regenerates a receipt and cannot be combined with
+verification. Regeneration acknowledges a source change; it does not establish
+that a changed theorem preserves its earlier mathematical strength.
+
+The independent finite checks are `python scripts/zero_equivalence_models.py`.
+Ordinary unit discovery includes their mutation cases. To run the real Lean
+removal/weakening regressions on Windows, set `OMEGA_TEST_LEAN_MUTATIONS=1` and run
+`python -m unittest discover -s tests -p test_lean_receipts.py -v`. CI runs those
+mutations in the Lean job; the offline archive job does not require Lean.
