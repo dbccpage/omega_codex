@@ -31,9 +31,14 @@
 | `5_forcing_checks.py` | Prompt 5 | Checks finite derivability and countermodels for `Supplied` ledger admissions. |
 | `6_minimal_chain.md` | Prompt 6 (Part A) | Assembles the shortest derivation chain from `<>` to `irreflexive R with R(a,b) gives a != b` and to the WDP admitted cut `(X, E, tau, K)`. |
 | `7_adversary.md` | Prompt 6 (Part B) | Reruns all check scripts, attempts to falsify `Derived` and `Witnessed` claims from Tasks 1-5 and Part A, and audits unproved terms. |
-| `8_open.md` | Prompt 6 (Part C) | Lists `OPEN` questions with the smallest check that would settle each, ordered by chain dependency weight, and records the formal resolution of `OQ-01` through `OQ-04`. |
+| `8_open.md` | Prompt 6 (Part C) | Lists `OPEN` questions ordered by chain dependency weight and records the formal resolution of `OQ-01` through `OQ-08`. |
 | `9_oq01_to_oq04.lean` | Post-Audit Settlement (`OQ-01`–`OQ-04`) | Self-contained Lean 4 proofs settling `OQ-04` (`mu2_unique_general`, `mu2_unique_F_general`), `OQ-03` (`oq03_retains_iff_four_conditions`), `OQ-01` (`subsingleton_image_no_irrefl_witness`), and `OQ-02` (`oq02_vortex_l1_defect_pos`) with zero `Classical.choice` and zero `sorry`. |
 | `9_oq01_to_oq04_checks.py` | Post-Audit Settlement (`OQ-01`–`OQ-04`) | Reproducible Python stdlib verification for `OQ-01` through `OQ-04`. |
+| `10_post_seal_inventory.md` | Campaign 1 (Post-Seal Audit) | Audits all post-seal modules in `A/lean4/Derivation/`, `A/research/`, and `B/wdp/`, testing deletions and countermodels and classifying each module as Drop, Merge, or Promote. |
+| `10_post_seal_checks.py` | Campaign 1 (Post-Seal Audit) | Reproducible Python stdlib checks and deletion countermodels for `SymmetryFloor`, `NaturalSections`, `ObserverDescent`, `Erasure`/`Ext`/`Closure`, and post-seal dynamics. |
+| `11_oq05_to_oq08.lean` | Campaign 2 (`OQ-05`–`OQ-08`) | Self-contained Lean 4 proofs settling `OQ-05` (`oq05_quotient_refinement_from_one`), `OQ-06` (`oq06_history_report_criterion_fin`), `OQ-07` (`oq07_weights_not_forced_without_symmetry`, `oq07_transitive_symmetry_forces_equal_weights`), and `OQ-08` (`oq08_refinement_commutes_at_zero_adm_ret_cost`) with zero `Classical.choice` and zero `sorry`. |
+| `11_oq05_to_oq08_checks.py` | Campaign 2 (`OQ-05`–`OQ-08`) | Reproducible Python stdlib verification for `OQ-05` through `OQ-08`. |
+| `12_post_seal_adversary_and_roadmap.md` | Campaign 3 Stage A | Red-team adversarial audit of Tasks 9–11 and `AGENTS.md`-compliant 5-slice reconstruction roadmap for `omega_codex/lean/`. |
 
 ## Prompt Summaries (One Line per Prompt)
 

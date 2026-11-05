@@ -23,10 +23,10 @@ Path abbreviations:
 | **2. `OQ-02`** (`PG-R-GAP-GENESIS-TO-WINDOW` / `A29`) | **`Derived` + `Witnessed`** (Settled in §9.4) | What is the minimal admission needed to pass from a discrete WDP Admitted Cut $C = (X, E, \tau, K)$ (`Step 7` / `WDP-CH01-D01`) to a linear cochain window $C^0 \xrightarrow{d^0} C^1 \xrightarrow{d^1} C^2$ with $d^1 \circ d^0 = 0$ and a real seminorm $J$ (`Root P`, `WDP-CH04-P01`)? | **All of WDP Root P and Chapters 4–9:** Quotient defect $\Phi_J([\delta])$, gauge equivalence, exact-vs-coexact decomposition, and $\ell_1$ obstruction calculus depend on $(C^\bullet, d^\bullet, J)$. | **Settled (`Not forced` from $C=(X,E,\tau,K)$; ring characteristic, edge/face orientation signs, $d^1 d^0 = 0$, and seminorm $J$ are independent `Supplied` admissions):** Formalized in `9_oq01_to_oq04.lean:730-802` and checked in `9_oq01_to_oq04_checks.py` `[4]`. |
 | **3. `OQ-03`** (`GEN-WDP-O02` / `N22` / `A33`) | **`Derived` + `Witnessed`** (Settled in §9.2) | What minimal axioms on a retention packet $\mathcal{R} = (M, u, r, \approx)$ isolate the `16 / 1024` distinction-retaining packets (`5_forcing_checks.py` `[4]`) and link Genesis monotone list retention (`insts, reqs`) to `WDP-CH03-O01/O02`? | **All multi-step dynamics, memory retention, and observer state (`ClosedRun`, WDP §3.3, WDP Chapter 10 `Mem_O`):** Required whenever a distinction must survive across $\ge 1$ transition step. | **Settled:** Exact 4-condition characterization (`C1` write separation, `C2` idle-step injectivity, `C3` readout injectivity, `C4` reflexive directed apartness) matches `retainsDistinction` with `0 / 1024` mismatches (`4 × 2 × 2 = 16`), and strengthening `C2 → C2'` (idle fixed-point stability, ruling out `CM5`) and `C4 → C4'` (symmetric equality on $O$) isolates the `4 / 1024` drift-free symmetric packets (`9_oq01_to_oq04.lean:565-680`, `9_oq01_to_oq04_checks.py` `[2]`). |
 | **4. `OQ-04`** (`GEN-WDP-O01` / `A19`) | **`Derived` + `Witnessed`** (Settled in §9.1) | Can the general strictly-monotone arity-cost uniqueness theorem (`general_refinement.py`: any $\phi(1) < \phi(k)$ for $k \ge 2$ selects $\{U_0, U_1\}$) be formalized in Lean 4 to replace the linear `aritySum` specialization in `Minimality.lean:480-485`? | **Uniqueness of the unary mark `(2, 1)` class (`R2` in `3_regime_fields.md`, Genesis §7 Prop. 2, `WDP-CH03-P03`):** Connects the single-hole context formula $k \cdot n^{k-1}$, multi-hole formula $(n+1)^k - n^k$, and `aritySum` $k$. | **Settled:** Formalized in Lean 4 (`mu2_unique_general` on `R2L` and `mu2_unique_F_general` on `R2F`, plus concrete corollaries `mu2_unique_linear`, `mu2_unique_singleHole`, `mu2_unique_multiHole` in `9_oq01_to_oq04.lean:250-558`) with zero `Classical.choice` and zero `sorry`. |
-| **5. `OQ-05`** (`GEN-WDP-O03` / `A21`) | **`OPEN`** | Does WDP Chapter 3 admit a multi-round closure theorem (`WDP-CH03-P04`) matching Genesis §8 (`closedRun_round_bound` $2(\|Q_0\|+m) \le n(n-1)$ and `mark_progress`), and what separates the explicit-`Q` bound $\binom{n}{2}$ from the derived-`Q` bound $n-1$ (`3_regime_deletions.py` `[6]`)? | **All finite cuts with $\|X\| = n \ge 3$ (`R5` in `3_regime_fields.md`, `GEN-WDP-07` in `B/wdp/bridge_reg.md:27`):** Needed to extend single-pair separation (`WDP-CH03-P03`) to full carrier separation. | State `WDP-CH03-P04` under both explicit pair-demand accounting (`Q`) and profile-quotient accounting ($Q_{\text{der}} = \text{separable}$), and verify in Python for $n = 3, 4, 5$ that max rounds are $\binom{n}{2}$ under `Q` vs $n-1$ under $Q_{\text{der}}$. |
-| **6. `OQ-06`** (`GEN-WDP-O05` / `H01`) | **`OPEN`** | Can `Classical.choice` (`H01`) be eliminated from Theorem 2 (`history_report_criterion` in `B/atlas/finite_obstruction_calculus/genesis/lean4/Paper.lean:24-27`) when $H$ is restricted to a finite history set? | **Report-descent criterion (`A06`, pre-Genesis §5 Thm. 2, Genesis §5 Thm. 2, `GEN-WDP-03`):** Settles whether the audit report theorem is constructive on finite trace spaces. | Formalize `history_report_criterion_fin` over `H : List Hist` with `[DecidableEq V]` using `List.find?` instead of `Classical.choose`, and run `#print axioms` in `lake env lean` to confirm zero classical axioms. |
-| **7. `OQ-07`** (`L1-R-RESIDUAL-TO-WEIGHTS` / `A32`) | **`OPEN`** | Are positive cell weights $w_e > 0$ in the weighted $\ell_1$ repair functional $\|v\|_{1,w} = \sum_e w_e \|v_e\|$ (`B/dag/derivation_dag.json:40`) forced by cut symmetries or must they remain `Supplied` (`A32`)? | **Weighted $\ell_1$ repair and dual-witness certification in WDP Chapters 5–7:** Determines whether $\ell_1$ weights are derived from the cut or supplied in the symmetry-breaking ledger (`WDP-CH03-D01`). | In Python, exhibit on a 3-edge cut two positive weight vectors $w=(1,1,1)$ and $w'=(1,2,3)$ yielding different $\ell_1$-optimal repairs (`Not forced` in general), and derive that transitive edge-automorphism invariance forces $w_e = c$. |
-| **8. `OQ-08`** (`GEN-WDP-O04` / `A30, A31`) | **`OPEN`** | Does a formal state-refinement morphism exist from the WDP Five-Gate Grounding Span `(g_sup, g_adm, g_ret, g_ev, g_auth)` (`WDP-CH01-D03`) to the `Horizon.lean` 1-gate budget world (`stepWorld`)? | **Priced observer boundary and horizon branch only (`A30, A31`, WDP §1.6 and §10.9):** Neither `WDP-CH01-P02` nor `WDP-CH03-P03` depends on it (`B/wdp/wdp.md:527`). | Write a Python or Lean 4 check testing whether specializing `WDP-CH01-D03` to $c_{\text{adm}}=1, c_{\text{ret}}=0, R \in \mathbb{N}$ commutes with `Horizon.stepWorld` across all 4 event constructors of `Horizon.Ev`. |
+| **5. `OQ-05`** (`GEN-WDP-O03` / `A21`) | **`Derived` + `Witnessed`** (Settled in §11.1) | Does WDP Chapter 3 admit a multi-round closure theorem (`WDP-CH03-P04`) matching Genesis §8 (`closedRun_round_bound` $2(\|Q_0\|+m) \le n(n-1)$ and `mark_progress`), and what separates the explicit-`Q` bound $\binom{n}{2}$ from the derived-`Q` bound $n-1$ (`3_regime_deletions.py` `[6]`)? | **All finite cuts with $\|X\| = n \ge 3$ (`R5` in `3_regime_fields.md`, `GEN-WDP-07` in `B/wdp/bridge_reg.md:27`):** Needed to extend single-pair separation (`WDP-CH03-P03`) to full carrier separation. | **Settled:** `collapsed r` forms a `ZeroEquivalence.Kernel Nat Prop` (`oq05_ctxKernel_zeroRel_iff`, `oq05_collapsed_equivalence`); explicit pair demand `Q` has bound $2(q_0+m) \le n(n-1)$ (`oq05_explicit_pair_round_bound`), whereas quotient-refinement demand $Q_{\text{der}}$ has bound $m \le n-1$ (`oq05_quotient_refinement_from_one`, strict gap for $n \ge 3$ in `oq05_strict_gap_for_n_ge_3`, witnessed on $n=3$ by `oq05_n3_unary_splits_two_pairs` in `11_oq05_to_oq08.lean:87-215`). |
+| **6. `OQ-06`** (`GEN-WDP-O05` / `H01`) | **`Derived` + `Witnessed`** (Settled in §11.2) | Can `Classical.choice` (`H01`) be eliminated from Theorem 2 (`history_report_criterion` in `B/atlas/finite_obstruction_calculus/genesis/lean4/Paper.lean:24-27`) when $H$ is restricted to a finite history set? | **Report-descent criterion (`A06`, pre-Genesis §5 Thm. 2, Genesis §5 Thm. 2, `GEN-WDP-03`):** Settles whether the audit report theorem is constructive on finite trace spaces. | **Settled (`does not depend on any axioms`):** `decodeFin` (`List.find?`) establishes `oq06_history_report_criterion_fin` over `H : List Hist` with `[DecidableEq V]` using zero axioms (`11_oq05_to_oq08.lean:223-280`, `11_oq05_to_oq08_checks.py` `[2]`). |
+| **7. `OQ-07`** (`L1-R-RESIDUAL-TO-WEIGHTS` / `A32`) | **`Derived` + `Witnessed`** (Settled in §11.3) | Are positive cell weights $w_e > 0$ in the weighted $\ell_1$ repair functional $\|v\|_{1,w} = \sum_e w_e \|v_e\|$ (`B/dag/derivation_dag.json:40`) forced by cut symmetries or must they remain `Supplied` (`A32`)? | **Weighted $\ell_1$ repair and dual-witness certification in WDP Chapters 5–7:** Determines whether $\ell_1$ weights are derived from the cut or supplied in the symmetry-breaking ledger (`WDP-CH03-D01`). | **Settled (`Not forced` without symmetry; `Forced` equal under transitive edge-automorphism invariance):** On the 3-edge cycle with $v_1+v_2+v_3=1$, $w=(1,2,2)$ uniquely selects $(1,0,0)$ while $w'=(2,1,2)$ uniquely selects $(0,1,0)$ (`oq07_weights_not_forced_without_symmetry`), whereas cyclic edge invariance forces $w_1=w_2=w_3$ (`oq07_transitive_symmetry_forces_equal_weights` in `11_oq05_to_oq08.lean:286-370`). |
+| **8. `OQ-08`** (`GEN-WDP-O04` / `A30, A31`) | **`Derived` + `Witnessed`** (Settled in §11.4) | Does a formal state-refinement morphism exist from the WDP Five-Gate Grounding Span `(g_sup, g_adm, g_ret, g_ev, g_auth)` (`WDP-CH01-D03`) to the `Horizon.lean` 1-gate budget world (`stepWorld`)? | **Priced observer boundary and horizon branch only (`A30, A31`, WDP §1.6 and §10.9):** Neither `WDP-CH01-P02` nor `WDP-CH03-P03` depends on it (`B/wdp/wdp.md:527`). | **Settled:** `projToHorizon` commutes with `stepHWorld` on all single steps and traces at gate costs $(0,0,0,1)$ (`oq08_refinement_commutes_at_zero_adm_ret_cost`, `oq08_trace_commutes_at_zero_adm_ret_cost`) and is strictly finer when $c_{\text{adm}} > 0$ or $c_{\text{ret}} > 0$ (`oq08_five_gate_strictly_finer_when_adm_priced` in `11_oq05_to_oq08.lean:376-499`). |
 
 ---
 
@@ -63,28 +63,28 @@ Path abbreviations:
 - **How it is settled (see §9.1):** `mu2_unique_general` (`9_oq01_to_oq04.lean:258-369`) and `mu2_unique_F_general` (`9_oq01_to_oq04.lean:374-475`) establish in Lean 4 (with zero `Classical.choice` and zero `sorry`) that for **any** weight function `φ : Nat → Nat` satisfying `∀ k, 2 ≤ k → φ 1 < φ k`, every 2-item valid separating response `[a, b]` on `R2L` (resp. `R2F`) with `phiSum φ [a, b] ≤ φ 1` yields a regime isomorphic to `U0` (resp. `U0F`). Concrete corollaries `mu2_unique_linear`, `mu2_unique_singleHole`, and `mu2_unique_multiHole` (`9_oq01_to_oq04.lean:541-558`) instantiate the theorem for all three cost formulas.
 
 ### 5. `OQ-05` — Multi-Round Closure Theorem in WDP (`GEN-WDP-O03` / `A21`)
-- **Tag:** `OPEN`
+- **Tag:** `Derived` + `Witnessed` (Settled in `11_oq05_to_oq08.lean:87-215` and `11_oq05_to_oq08_checks.py` `[1]`)
 - **Where recorded:** `B/wdp/bridge_reg.md:27,37` (`GEN-WDP-07`, `GEN-WDP-O03`), `B/wdp/programme.md:159-162` (`G3`), `3_regime_fields.md:49,160-166`.
-- **What is unsettled:** Genesis §8 establishes `closedRun_round_bound` ($2(|Q_0|+m) \le n(n-1)$) and `mark_progress` (`A/lean4/Derivation/Rounds.lean:452-468`, `Progress.lean:75-190`), whereas WDP Chapter 3 has no multi-round theorem. Moreover, `3_regime_deletions.py` `[6]` shows that on $n=3$, a single unary predicate separating `(0, 1)` automatically separates either `(0, 2)` or `(1, 2)`, so the maximum number of rounds when only *currently collapsed* pairs can be demanded is $n - 1$ (not $\binom{n}{2}$).
-- **Smallest check that would settle it:** Establish in Python and Lean 4 that if each round in a closed run must impose a pair $(i, j)$ that is **collapsed in the current regime $r_t$** (rather than only absent from $Q_t$) and applies a valid separating response preserving prior separations, then the number of equivalence classes of `collapsed` strictly increases at each round, bounding the round count by $m \le n - 1$.
+- **What was unsettled:** Genesis §8 establishes `closedRun_round_bound` ($2(|Q_0|+m) \le n(n-1)$) and `mark_progress` (`A/lean4/Derivation/Rounds.lean:452-468`, `Progress.lean:75-190`), whereas WDP Chapter 3 has no multi-round theorem. Moreover, `3_regime_deletions.py` `[6]` shows that on $n=3$, a single unary predicate separating `(0, 1)` automatically separates either `(0, 2)` or `(1, 2)`, so the maximum number of rounds when only *currently collapsed* pairs can be demanded is $n - 1$ (not $\binom{n}{2}$).
+- **How it is settled (see §11.1):** Formalized in `11_oq05_to_oq08.lean:87-215` via `ctxKernel`, `oq05_ctxKernel_zeroRel_iff`, `oq05_collapsed_equivalence`, `oq05_explicit_pair_round_bound` ($2(q_0+m) \le n(n-1)$), `oq05_quotient_refinement_from_one` ($m \le n-1$), `oq05_strict_gap_for_n_ge_3` ($2(n-1) < n(n-1)$ for $n \ge 3$), and `oq05_n3_unary_splits_two_pairs`.
 
 ### 6. `OQ-06` — Constructive Elimination of `Classical.choice` (`H01`) in `history_report_criterion` (`GEN-WDP-O05`)
-- **Tag:** `OPEN`
+- **Tag:** `Derived` + `Witnessed` (Settled in `11_oq05_to_oq08.lean:223-280` and `11_oq05_to_oq08_checks.py` `[2]`)
 - **Where recorded:** `B/wdp/bridge_reg.md:39` (`GEN-WDP-O05`), `B/wdp/programme.md:167-170` (`G5`), `1_admission_ledger.md:92` (`H01`), `B/atlas/finite_obstruction_calculus/genesis/lean4/Paper.lean:24-27`.
-- **What is unsettled:** `Paper.lean:24-27` uses `Classical.choose v.property` to construct a decoding function `decode : ReportImage report → S` in Theorem 2 (`history_report_criterion`), importing `Classical.choice` into an otherwise finite combinatorial development.
-- **Smallest check that would settle it:** In a Lean 4 scratch file, replace `H : Type` with `(H : List α)` and `[DecidableEq V]`, define `decode v` by selecting the first history `h ∈ H` with `report h = v.1` via `List.find?`, and verify with `#print axioms` that `Classical.choice` does not appear.
+- **What was unsettled:** `Paper.lean:24-27` uses `Classical.choose v.property` to construct a decoding function `decode : ReportImage report → S` in Theorem 2 (`history_report_criterion`), importing `Classical.choice` into an otherwise finite combinatorial development.
+- **How it is settled (see §11.2):** `decodeFin` (`11_oq05_to_oq08.lean:223-228`) uses `H.find? (fun h => report h == v)` over `H : List Hist` with `[DecidableEq V]`, and `oq06_history_report_criterion_fin` (`11_oq05_to_oq08.lean:273-280`) establishes the exact iff criterion with **zero axioms** (`does not depend on any axioms`).
 
 ### 7. `OQ-07` — Derivation vs Admission of Positive $\ell_1$ Weights (`L1-R-RESIDUAL-TO-WEIGHTS` / `A32`)
-- **Tag:** `OPEN`
+- **Tag:** `Derived` + `Witnessed` (Settled in `11_oq05_to_oq08.lean:286-370` and `11_oq05_to_oq08_checks.py` `[3]`)
 - **Where recorded:** `B/dag/derivation_dag.json:40` (`L1-R-RESIDUAL-TO-WEIGHTS`), `1_admission_ledger.md:48` (`A32`), `5_unrecognised_forcing.md:53` (`A32`).
-- **What is unsettled:** WDP Chapters 4–6 evaluate cochain repair cost via a weighted $\ell_1$ norm $\|v\|_{1,w} = \sum_{e \in E} w_e |v_e|$ with $w_e > 0$. `B/dag/derivation_dag.json:40` marks the bridge from unweighted residuals to weights $w_e$ as open.
-- **Smallest check that would settle it:** Exhibit on a 3-edge cycle $E = \{e_1, e_2, e_3\}$ with coboundary constraint $v_1 + v_2 + v_3 = 1$ that $w = (1, 2, 2)$ selects the unique minimizer $v^* = (1, 0, 0)$ whereas $w' = (2, 1, 2)$ selects $v^* = (0, 1, 0)$ (`Not forced` without symmetry), while requiring invariance under the transitive permutation group $S_3$ on $E$ forces $w_1 = w_2 = w_3$.
+- **What was unsettled:** WDP Chapters 4–6 evaluate cochain repair cost via a weighted $\ell_1$ norm $\|v\|_{1,w} = \sum_{e \in E} w_e |v_e|$ with $w_e > 0$. `B/dag/derivation_dag.json:40` marks the bridge from unweighted residuals to weights $w_e$ as open.
+- **How it is settled (see §11.3):** `oq07_weights_not_forced_without_symmetry` (`11_oq05_to_oq08.lean:324-354`) establishes over all $v \in \mathbb{Z}^3$ with $v_1+v_2+v_3=1$ that $w=(1,2,2)$ has unique minimizer $(1,0,0)$ while $w'=(2,1,2)$ has unique minimizer $(0,1,0)$ (`Not forced` without symmetry; weights are `Supplied`), and `oq07_transitive_symmetry_forces_equal_weights` (`11_oq05_to_oq08.lean:359-370`, zero axioms) establishes that cyclic edge-permutation invariance on valid repairs forces $w_1 = w_2 = w_3$.
 
 ### 8. `OQ-08` — State-Refinement Morphism Between `WDP-CH01-D03` and `Horizon.lean` (`GEN-WDP-O04` / `A30, A31`)
-- **Tag:** `OPEN`
+- **Tag:** `Derived` + `Witnessed` (Settled in `11_oq05_to_oq08.lean:376-499` and `11_oq05_to_oq08_checks.py` `[4]`)
 - **Where recorded:** `B/wdp/bridge_reg.md:38` (`GEN-WDP-O04`), `B/wdp/programme.md:163-166` (`G4`), `1_admission_ledger.md:47-48` (`A30, A31`), `4_priced_containers.md:35,54`.
-- **What is unsettled:** `WDP-CH01-D03` (`B/wdp/wdp.md:513-533`) defines a 5-gate span `(g_sup, g_adm, g_ret, g_ev, g_auth)` over a rational ledger $R \in \mathbb{Q}_{\ge 0}$, whereas `A/lean4/Derivation/Horizon.lean:155-161` defines `stepWorld` with a single `Nat` budget gate on `.addView`. No formal map connects the two state machines.
-- **Smallest check that would settle it:** Write a Python check mapping each of the 4 `Horizon.Ev` constructors (`.admitTok`, `.require`, `.addView`, `.setBudget`) to a composite of `(g_sup, g_adm, g_ret, g_ev, g_auth)` at $c_{\text{adm}} = 0, c_{\text{ret}} = 0, c_{\text{view}} = 1$, and test commute-or-mismatch across all states reachable up to horizon $k \le 3$.
+- **What was unsettled:** `WDP-CH01-D03` (`B/wdp/wdp.md:513-533`) defines a 5-gate span `(g_sup, g_adm, g_ret, g_ev, g_auth)` over a rational ledger $R \in \mathbb{Q}_{\ge 0}$, whereas `A/lean4/Derivation/Horizon.lean:155-161` defines `stepWorld` with a single `Nat` budget gate on `.addView`. No formal map connected the two state machines.
+- **How it is settled (see §11.4):** `oq08_refinement_commutes_at_zero_adm_ret_cost` and `oq08_trace_commutes_at_zero_adm_ret_cost` (`11_oq05_to_oq08.lean:457-483`) establish exact commutation of `projToHorizon` at gate costs $(0,0,0,1)$, and `oq08_five_gate_strictly_finer_when_adm_priced` (`11_oq05_to_oq08.lean:491-499`) establishes that positive admission or retention prices ($c_{\text{adm}}=1$ or $c_{\text{ret}}=1$) make the 5-gate WDP span strictly finer.
 
 
 ---
@@ -208,4 +208,99 @@ Pasted output:
   Signed cyclic (+1,+1,-1) over Z: d1(d0(c)) == 0 on [-2..2]^3: True
   Signed flipped (+1,+1,+1) over Z on c=(0,0,1): d1(d0(c)) = 2 != 0
   Vortex h=(1,1,1): d1_cyc(h) = 1 != 0 (not in im d0); J0 defect = 0; min L1 defect = 1
+```
+
+
+---
+
+## 11. Formal Resolution of `OQ-05` through `OQ-08` (`11_oq05_to_oq08.lean` and `11_oq05_to_oq08_checks.py`)
+
+### 11.1 `OQ-05` (`GEN-WDP-O03` / `A21`) — Multi-Round Closure Bound (`ExplicitQRun` vs `QuotRefRun`) and Connection to `ZeroEquivalence`
+- **Tag:** `Derived` + `Witnessed`
+- **Full proof (`11_oq05_to_oq08.lean:87-215`):**
+  1. `ctxKernel` and `oq05_ctxKernel_zeroRel_iff` (`11_oq05_to_oq08.lean:90-112`): For any fixed regime `r` and context `c`, `relabel binary (fun d => derivableBool r (plug c d))` defines a `ZeroEquivalence.Kernel Nat Bool` whose `ZeroRel` is equivalent to `(derivable r (plug c d1) ↔ derivable r (plug c d2))`.
+  2. `collapsedSetoid`, `collapsedKernel`, and `oq05_collapsed_equivalence` (`11_oq05_to_oq08.lean:128-140`): `collapsed r` is the intersection of `ZeroRel (ctxKernel r c)` over all well-formed contexts `c` and forms a `ZeroEquivalence.Kernel Nat Prop`.
+  3. `oq05_explicit_pair_round_bound` (`11_oq05_to_oq08.lean:149-154`): Under explicit pair-demand accounting (`ExplicitQRun n q0 m`, where each round adds one demanded unordered pair inside capacity $n(n-1)/2$), $2(q_0 + m) \le n(n-1)$ holds by induction on `m`.
+  4. `oq05_quotient_refinement_bound` and `oq05_quotient_refinement_from_one` (`11_oq05_to_oq08.lean:165-176`): Under quotient-refinement accounting (`QuotRefRun n c0 m`, where each round strictly refines the partition of `{0, ..., n-1}` into `c` equivalence classes of `collapsedSetoid`), $c_0 + m \le n$, so for $c_0 \ge 1$, $m \le n - 1$.
+  5. `oq05_strict_gap_for_n_ge_3` (`11_oq05_to_oq08.lean:181-186`) and `oq05_n3_unary_splits_two_pairs` (`11_oq05_to_oq08.lean:195-215`): For all $n \ge 3$, $2(n-1) < n(n-1)$. Concretely on $n = 3$, admitting the single unary instance `(0, [0])` in `R3_after_round1` separates `(0, 1)` AND simultaneously separates `(0, 2)`, leaving only `(1, 2)` collapsed.
+
+### 11.2 `OQ-06` (`GEN-WDP-O05` / `H01`) — Constructive Elimination of `Classical.choice` in `history_report_criterion`
+- **Tag:** `Derived` + `Witnessed`
+- **Full proof (`11_oq05_to_oq08.lean:223-280`):**
+  1. Define `decodeFin H report state defaultS v` by matching `H.find? (fun h => report h == v)` (`some h => state h`, `none => defaultS`).
+  2. `decode_implies_fiber_const`: If `∃ decode, ∀ h ∈ H, decode (report h) = state h`, then for any `h1, h2 ∈ H` with `report h1 = report h2`, `state h1 = decode (report h1) = decode (report h2) = state h2`.
+  3. `fiber_const_implies_decodeFin_exact`: By induction on `H : List Hist`, if `report head == report h` is `true`, fiber constancy gives `state head = state h`; if `false`, then `h ≠ head`, so `h ∈ tail` and the induction hypothesis gives `decodeFin tail ... (report h) = state h`.
+  4. `oq06_history_report_criterion_fin` combines both directions with **zero axioms** (`does not depend on any axioms`).
+
+### 11.3 `OQ-07` (`L1-R-RESIDUAL-TO-WEIGHTS` / `A32`) — Positive $\ell_1$ Weights: Non-Forcing Without Symmetry vs Forcing Under Transitive Edge Symmetry
+- **Tag:** `Derived` + `Witnessed`
+- **Full proof (`11_oq05_to_oq08.lean:286-370`):**
+  1. `oq07_weights_not_forced_without_symmetry`: On the 3-edge cycle with constraint $v_1 + v_2 + v_3 = 1$ ($v \in \mathbb{Z}^3$), for $w = (1, 2, 2)$, $J_w(1, 0, 0) = 1$ while every $v \ne (1, 0, 0)$ with $v_1 + v_2 + v_3 = 1$ satisfies $J_w(v) \ge 2$; for $w' = (2, 1, 2)$, $J_{w'}(0, 1, 0) = 1$ while every $v \ne (0, 1, 0)$ with $v_1 + v_2 + v_3 = 1$ satisfies $J_{w'}(v) \ge 2$. Thus positive weights are `Not forced` without symmetry (`Supplied`).
+  2. `oq07_transitive_symmetry_forces_equal_weights`: If $J_w(\text{rotEdge}(v)) = J_w(v)$ for all valid repairs $v$, evaluating at $(1, 0, 0)$ gives $w_3 = w_1$ and evaluating at $(0, 1, 0)$ gives $w_1 = w_2$, forcing $w_1 = w_2 = w_3$ (`does not depend on any axioms`).
+
+### 11.4 `OQ-08` (`GEN-WDP-O04` / `A30, A31`) — State-Refinement Morphism (`WDP-CH01-D03` vs `Horizon.lean`)
+- **Tag:** `Derived` + `Witnessed`
+- **Full proof (`11_oq05_to_oq08.lean:376-499`):**
+  1. `oq08_refinement_commutes_at_zero_adm_ret_cost` and `oq08_trace_commutes_at_zero_adm_ret_cost`: When `GateCosts` is specialized to `⟨0, 0, 0, 1⟩`, the forgetful map `projToHorizon w = ⟨w.adm, w.ret, w.views, w.ledger⟩` commutes with every single event `ev : HEv` and every finite trace `evs : List HEv`.
+  2. `oq08_five_gate_strictly_finer_when_adm_priced`: At `⟨0, 1, 0, 1⟩` (priced admission) or `⟨0, 0, 1, 1⟩` (priced retention) with `ledger = 0`, `stepWDPWorld` refuses `.admitTok 0` (resp. `.require 0 1`), whereas `stepHWorld` admits them for free.
+
+---
+
+## 12. Witnessed Execution Outputs for `OQ-05` through `OQ-08`
+
+### 12.1 Lean 4 Verification (`lake env lean audit/2026-11-05_minimal_chain/11_oq05_to_oq08.lean`)
+
+Command:
+```text
+lake env lean audit/2026-11-05_minimal_chain/11_oq05_to_oq08.lean
+```
+
+Pasted output:
+```text
+'MinimalChainAuditOQ05To08.oq05_ctxKernel_zeroRel_iff' depends on axioms: [propext, Quot.sound]
+'MinimalChainAuditOQ05To08.oq05_collapsed_equivalence' depends on axioms: [propext]
+'MinimalChainAuditOQ05To08.oq05_explicit_pair_round_bound' depends on axioms: [propext, Quot.sound]
+'MinimalChainAuditOQ05To08.oq05_quotient_refinement_from_one' depends on axioms: [propext, Quot.sound]
+'MinimalChainAuditOQ05To08.oq05_strict_gap_for_n_ge_3' depends on axioms: [propext, Quot.sound]
+'MinimalChainAuditOQ05To08.oq05_n3_unary_splits_two_pairs' depends on axioms: [propext, Quot.sound]
+'MinimalChainAuditOQ05To08.oq06_history_report_criterion_fin' does not depend on any axioms
+'MinimalChainAuditOQ05To08.oq07_weights_not_forced_without_symmetry' depends on axioms: [propext, Quot.sound]
+'MinimalChainAuditOQ05To08.oq07_transitive_symmetry_forces_equal_weights' does not depend on any axioms
+'MinimalChainAuditOQ05To08.oq08_refinement_commutes_at_zero_adm_ret_cost' depends on axioms: [propext, Quot.sound]
+'MinimalChainAuditOQ05To08.oq08_trace_commutes_at_zero_adm_ret_cost' depends on axioms: [propext, Quot.sound]
+'MinimalChainAuditOQ05To08.oq08_five_gate_strictly_finer_when_adm_priced' depends on axioms: [propext, Quot.sound]
+```
+
+### 12.2 Python Verification (`python audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py`)
+
+Command:
+```text
+python audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py
+```
+
+Pasted output:
+```text
+=== [1] OQ-05: MULTI-ROUND CLOSURE BOUND (EXPLICIT Q VS DERIVED Q_der) ===
+  n=2: max_rounds(explicit Q) = 1 [n(n-1)/2], max_rounds(derived Q_der) = 1 [n-1], gap = 0
+  n=3: max_rounds(explicit Q) = 3 [n(n-1)/2], max_rounds(derived Q_der) = 2 [n-1], gap = 1
+  n=4: max_rounds(explicit Q) = 6 [n(n-1)/2], max_rounds(derived Q_der) = 3 [n-1], gap = 3
+  n=5: max_rounds(explicit Q) = 10 [n(n-1)/2], max_rounds(derived Q_der) = 4 [n-1], gap = 6
+  n=3 unary witness (0,[0]): sep(0,1)=True, sep(0,2)=True, collapsed(1,2)=True (1 round splits 2 pairs simultaneously)
+
+=== [2] OQ-06: CONSTRUCTIVE decodeFin (List.find?) ON FINITE HISTORIES ===
+  |H|=4, |V|=2, |S|=2: total (report, state) pairs = 256
+  Fiber-constant pairs:                60 / 256
+  decodeFin exact on all h in H:       60 / 256
+  Mismatches (fiber_const != decodeFin): 0
+
+=== [3] OQ-07: POSITIVE L1 WEIGHTS (NON-FORCING VS SYMMETRY FORCING) ===
+  Valid repairs in [-3..3]^3 with v1+v2+v3=1: 36
+  w=(1,2,2): min=1, unique minimizer=[(1, 0, 0)], min on v!=(1,0,0) is 2
+  w=(2,1,2): min=1, unique minimizer=[(0, 1, 0)], min on v!=(0,1,0) is 2
+  Cyclic-invariant weights in {1..4}^3: 4 / 64 (matches w1==w2==w3: True)
+
+=== [4] OQ-08: STATE-REFINEMENT MORPHISM (WDP-CH01-D03 VS HORIZON.LEAN) ===
+  Zero adm/ret cost (0,0,0,1): traces(len<=3)=155, commutation mismatches=0
+  Priced admission  (0,1,0,1): traces(len<=3)=155, commutation mismatches=114
+  Priced retention  (0,0,1,1): traces(len<=3)=155, commutation mismatches=70
 ```
