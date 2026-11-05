@@ -74,7 +74,7 @@ We compare six carriers in `2_mark_checks.py`: `Unit` ($|C|=1$), `Opaque1` ($|C|
 1. **Empty-transition inertia (`empty_T_inert = True`):** On every carrier $C$, if $T = \varnothing$, no element has a successor (`Derived` from $\varnothing$ definition; `Witnessed` across all 6 carriers in `2_mark_checks.py` §4).
 2. **Empty-instance collapse (`collapsed_of_no_insts`):** On every carrier $C$, when `insts = []`, every pair $(x, y) \in C \times C$ has identical positive derivability profile (`Derived` in `Inertia.lean:40-46`).
 3. **Bare self-relation consistency (`selfdiff_consistent`):** On every nonempty carrier ($|C| \ge 1$), there exists at least one nonempty binary relation $R \subseteq C \times C$ (namely $R = \{(x_0, x_0)\}$, giving `bare_witness_models >= 1`; `Witnessed` in `2_mark_checks.py` §4).
-4. **Universal soundness of irreflexivity (`irrefl_implies_ne = True`):** On every carrier $C$, for every irreflexive relation $R$ on $C$, $(a, b) \in R \implies a \ne b$ (`Derived` by substitution of $a = b$ into $\neg R(a,a)$; `Witnessed` across all 6 carriers in `2_mark_checks.py` §4; holds vacuously on `Unit` and `Opaque1` where `inhabited_irrefl_models = 0`).
+4. **Soundness of irreflexivity across all carriers (`irrefl_implies_ne = True`):** On every carrier $C$, for every irreflexive relation $R$ on $C$, $(a, b) \in R \implies a \ne b$ (`Derived` by substitution of $a = b$ into $\neg R(a,a)$; `Witnessed` across all 6 carriers in `2_mark_checks.py` §4; holds vacuously on `Unit` and `Opaque1` where `inhabited_irrefl_models = 0`).
 
 ### 4.2 Results That DO Change Under Carrier Swap (`Derived` and `Witnessed`)
 
