@@ -1,0 +1,81 @@
+# Task 6 (Part C): Open Questions Left in the Chain (Ordered by Dependency Weight)
+
+## Source Commits
+
+- `A` (`C:\Users\a343o\source\repos\19L57G1`): `45bb09864f9b52ed5ecf66e977ca81f0ed623de7`
+- `B` (`C:\Users\a343o\source\repos\theory_of_finite_quantum_mechanics`): `e45ed2e133920aa3790af8c5e072ee9829898490`
+- `omega_codex` (`C:\Users\a343o\source\repos\omega_codex` baseline): `e21b785626ff8d0231a53409c76fe4e7a57cd59d`
+
+Path abbreviations:
+- `B/pregenesis/paper.md` = `B/atlas/finite_obstruction_calculus/pregenesis_to_minimal_symbol_systems/paper.md`
+- `B/genesis/paper.md` = `B/atlas/finite_obstruction_calculus/genesis/paper.md`
+- `B/wdp/wdp.md` = `B/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md`
+- `B/wdp/bridge_reg.md` = `B/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_bridge_register.md`
+- `B/wdp/programme.md` = `B/atlas/finite_obstruction_calculus/witnessed_difference_programme/docs/genesis_to_wdp_derivation_programme.md`
+
+---
+
+## Summary Table of Open Questions (Ordered from Highest to Lowest Chain Dependency)
+
+| Rank & ID | Open Question (`Tag: OPEN`) | How Much of the Chain Depends on It | Smallest Check That Would Settle It |
+|---|---|---|---|
+| **1. `OQ-01`** (`PG-R-GAP-DIAMOND-TO-ROOT` / `N21`) | Can a 2-point carrier $\|X\| \ge 2$ and an inhabited irreflexive relation $R(a,b)$ (`S2, S3` in `6_minimal_chain.md`) be obtained from `<>` (`Step 0`) without an external second token, occurrence-indexing rule (`stepOcc`), or reifying refusal rule (`reifyUntagged` / `reifyTagged`)? | **All post-mark steps (`S2`–`D2` in `6_minimal_chain.md`, Genesis §§6–9, WDP Chapters 1–10):** Every non-trivial separation and cut requires $\|X\| \ge 2$ (`PrimDiff.no_witness_on_subsingleton`). | Formalize a Lean 4 theorem over any function $F : X_0 \to \text{Finset } X_1$ starting from singleton $X_0 = \{\text{<>}\}$ showing that $\|F(\text{<>})\| \ge 2$ requires $X_1$ to already contain $\ge 2$ distinct host terms (`a != b` in `X_1`). |
+| **2. `OQ-02`** (`PG-R-GAP-GENESIS-TO-WINDOW` / `A29`) | What is the minimal admission needed to pass from a discrete WDP Admitted Cut $C = (X, E, \tau, K)$ (`Step 7` / `WDP-CH01-D01`) to a linear cochain window $C^0 \xrightarrow{d^0} C^1 \xrightarrow{d^1} C^2$ with $d^1 \circ d^0 = 0$ and a real seminorm $J$ (`Root P`, `WDP-CH04-P01`)? | **All of WDP Root P and Chapters 4–9:** Quotient defect $\Phi_J([\delta])$, gauge equivalence, exact-vs-coexact decomposition, and $\ell_1$ obstruction calculus depend on $(C^\bullet, d^\bullet, J)$. | In Python or Lean 4, construct on the same 2-token cut $X=\{0,1\}, E=\{(0,1)\}$ two non-isomorphic linearisations ($\mathbb{F}_2$ vs $\mathbb{R}$) and a 3-token cut with $d^1 \circ d^0 \ne 0$, settling that coefficient ring, orientation signs, and $d^1 d^0 = 0$ are `Supplied`. |
+| **3. `OQ-03`** (`GEN-WDP-O02` / `N22` / `A33`) | What minimal axioms on a retention packet $\mathcal{R} = (M, u, r, \approx)$ isolate the `16 / 1024` distinction-retaining packets (`5_forcing_checks.py` `[4]`) and link Genesis monotone list retention (`insts, reqs`) to `WDP-CH03-O01/O02`? | **All multi-step dynamics, memory retention, and observer state (`ClosedRun`, WDP §3.3, WDP Chapter 10 `Mem_O`):** Required whenever a distinction must survive across $\ge 1$ transition step. | Run a finite Python check on the $1,024$ packets for $\|M\|=\|I\|=\|O\|=2$ testing whether (i) $\approx$ is equality on $O$, (ii) $r$ is a bijection, and (iii) $u(u(m_0, i_x), i_{\text{idle}}) = u(m_0, i_x)$ for $u(m_0, 0) \ne u(m_0, 1)$ characterize the exact $16$ packets. |
+| **4. `OQ-04`** (`GEN-WDP-O01` / `A19`) | Can the general strictly-monotone arity-cost uniqueness theorem (`general_refinement.py`: any $\phi(1) < \phi(k)$ for $k \ge 2$ selects $\{U_0, U_1\}$) be formalized in Lean 4 to replace the linear `aritySum` specialization in `Minimality.lean:480-485`? | **Uniqueness of the unary mark `(2, 1)` class (`R2` in `3_regime_fields.md`, Genesis §7 Prop. 2, `WDP-CH03-P03`):** Connects the single-hole context formula $k \cdot n^{k-1}$, multi-hole formula $(n+1)^k - n^k$, and `aritySum` $k$. | Write a Lean 4 theorem `mu2_unique_general (φ : Nat → Nat) (hφ1 : 0 < φ 1) (hφ : ∀ k ≥ 2, φ 1 < φ k)` in a scratch file inside the audit folder and check it with `lake env lean`. |
+| **5. `OQ-05`** (`GEN-WDP-O03` / `A21`) | Does WDP Chapter 3 admit a multi-round closure theorem (`WDP-CH03-P04`) matching Genesis §8 (`closedRun_round_bound` $2(\|Q_0\|+m) \le n(n-1)$ and `mark_progress`), and what separates the explicit-`Q` bound $\binom{n}{2}$ from the derived-`Q` bound $n-1$ (`3_regime_deletions.py` `[6]`)? | **All finite cuts with $\|X\| = n \ge 3$ (`R5` in `3_regime_fields.md`, `GEN-WDP-07` in `B/wdp/bridge_reg.md:27`):** Needed to extend single-pair separation (`WDP-CH03-P03`) to full carrier separation. | State `WDP-CH03-P04` under both explicit pair-demand accounting (`Q`) and profile-quotient accounting ($Q_{\text{der}} = \text{separable}$), and verify in Python for $n = 3, 4, 5$ that max rounds are $\binom{n}{2}$ under `Q` vs $n-1$ under $Q_{\text{der}}$. |
+| **6. `OQ-06`** (`GEN-WDP-O05` / `H01`) | Can `Classical.choice` (`H01`) be eliminated from Theorem 2 (`history_report_criterion` in `B/atlas/finite_obstruction_calculus/genesis/lean4/Paper.lean:24-27`) when $H$ is restricted to a finite history set? | **Report-descent criterion (`A06`, pre-Genesis §5 Thm. 2, Genesis §5 Thm. 2, `GEN-WDP-03`):** Settles whether the audit report theorem is constructive on finite trace spaces. | Formalize `history_report_criterion_fin` over `H : List Hist` with `[DecidableEq V]` using `List.find?` instead of `Classical.choose`, and run `#print axioms` in `lake env lean` to confirm zero classical axioms. |
+| **7. `OQ-07`** (`L1-R-RESIDUAL-TO-WEIGHTS` / `A32`) | Are positive cell weights $w_e > 0$ in the weighted $\ell_1$ repair functional $\|v\|_{1,w} = \sum_e w_e \|v_e\|$ (`B/dag/derivation_dag.json:40`) forced by cut symmetries or must they remain `Supplied` (`A32`)? | **Weighted $\ell_1$ repair and dual-witness certification in WDP Chapters 5–7:** Determines whether $\ell_1$ weights are derived from the cut or supplied in the symmetry-breaking ledger (`WDP-CH03-D01`). | In Python, exhibit on a 3-edge cut two positive weight vectors $w=(1,1,1)$ and $w'=(1,2,3)$ yielding different $\ell_1$-optimal repairs (`Not forced` in general), and derive that transitive edge-automorphism invariance forces $w_e = c$. |
+| **8. `OQ-08`** (`GEN-WDP-O04` / `A30, A31`) | Does a formal state-refinement morphism exist from the WDP Five-Gate Grounding Span `(g_sup, g_adm, g_ret, g_ev, g_auth)` (`WDP-CH01-D03`) to the `Horizon.lean` 1-gate budget world (`stepWorld`)? | **Priced observer boundary and horizon branch only (`A30, A31`, WDP §1.6 and §10.9):** Neither `WDP-CH01-P02` nor `WDP-CH03-P03` depends on it (`B/wdp/wdp.md:527`). | Write a Python or Lean 4 check testing whether specializing `WDP-CH01-D03` to $c_{\text{adm}}=1, c_{\text{ret}}=0, R \in \mathbb{N}$ commutes with `Horizon.stepWorld` across all 4 event constructors of `Horizon.Ev`. |
+
+---
+
+## Detailed Specifications for Each Open Question
+
+### 1. `OQ-01` — Root-to-Two-Point-Carrier Gap (`PG-R-GAP-DIAMOND-TO-ROOT` / `N21`)
+- **Tag:** `OPEN`
+- **Where recorded:** `B/dag/derivation_dag.json:25` (`PG-R-GAP-DIAMOND-TO-ROOT`), `omega_codex/docs/research_map.md:105-115` (`N21`), `A/lean4/Derivation/Bridge.lean:87-91` (`single_token_carrier_bound`), `A/lean4/Derivation/Refusal.lean:142-230`.
+- **What is unsettled:** In `6_minimal_chain.md`, Step `S0` starts at `<>` (a single token), whereas Step `S2` + `S3` requires an inhabited irreflexive relation $R(a, b)$, which by `Step 4` (`PrimDiff.no_witness_on_subsingleton`) requires $|X| \ge 2$. In `A/lean4/Derivation/Bridge.lean:87-91`, token-deduplicated admission from a 1-token supply satisfies `t.tokens.length ≤ 1` forever. Reaching $|X| = 2$ in `Refusal.lean` requires choosing either `stepOcc` (which uses the host natural-number step index) or `Mode.reifyUntagged` / `Mode.reifyTagged` (which reifies a duplicate-admission refusal into a second carrier element).
+- **Smallest check that would settle it:** Formalize in Lean 4 that for any singleton type `X0` (`Subsingleton X0`) and any pure function `f : X0 → X1`, the image of `f` has cardinality at most $1$ (`∀ x y : X0, f x = f y`), so producing two distinct elements $a \ne b$ in $X_1$ requires at least two distinct inputs in the domain (such as `Bool`, `Nat`, or two constructors `token` vs `refusal`).
+
+### 2. `OQ-02` — Discrete Admitted Cut to Linear Cochain Window (`PG-R-GAP-GENESIS-TO-WINDOW` / `A29`)
+- **Tag:** `OPEN`
+- **Where recorded:** `B/dag/derivation_dag.json:32` (`PG-R-GAP-GENESIS-TO-WINDOW`), `5_unrecognised_forcing.md:50` (`A29`), `B/wdp/wdp.md:547-557` (`Root P`), `B/wdp/wdp.md:990-1035` (`WDP-CH04-P01`).
+- **What is unsettled:** Target 2 of `6_minimal_chain.md` reaches the discrete tuple $C = (X, E, \tau, K)$ (`WDP-CH01-D01`). WDP Chapter 4 (`WDP-CH04-P01`) assumes an abelian group / real vector-space cochain complex $(C^0, C^1, C^2, d^0, d^1)$ with $d^1 \circ d^0 = 0$ and a convex seminorm $J : C^1 \to \mathbb{R}_{\ge 0}$ (plus real completeness `H08` in `WDP-CH04-P02`). No theorem in `A`, `B`, or `omega_codex` derives vector-space structure, edge orientation signs $\pm 1$, or $d^1 \circ d^0 = 0$ from $C = (X, E, \tau, K)$ alone.
+- **Smallest check that would settle it:** Write a 30-line Python script constructing on the same 3-vertex cut $X=\{0,1,2\}$ (i) an incidence operator over $\mathbb{F}_2$ (where $-1 = +1$), (ii) a signed coboundary $d^0$ over $\mathbb{Q}$ with $d^1 \circ d^0 = 0$, and (iii) an unsigned incidence matrix $B$ with $B_2 B_1 \ne 0$, demonstrating that signed orientation, ring characteristic, and $d^1 \circ d^0 = 0$ are independent `Supplied` admissions.
+
+### 3. `OQ-03` — Minimal Axioms for Memory Retention (`GEN-WDP-O02` / `N22` / `A33`)
+- **Tag:** `OPEN`
+- **Where recorded:** `B/wdp/bridge_reg.md:36` (`GEN-WDP-O02`), `B/wdp/programme.md:155-158` (`G2`), `omega_codex/docs/research_map.md:116-120` (`N22`), `5_unrecognised_forcing.md:54` (`A33`).
+- **What is unsettled:** `5_forcing_checks.py` `[4]` shows that among the $1,024$ retention packets $(u, r, \approx)$ on $|M|=|I|=|O|=2$, $1,008$ fail to retain a 1-bit distinction across a single idle step (`CM1`–`CM5`). Neither WDP §3.3 (`WDP-CH03-O01/O02`) nor `omega_codex` (`N22`) states the minimal algebraic axioms on $(M, u, r, \approx)$ that characterize the $16$ retaining packets and bridge them to Genesis's append-only list retention (`reqs`, `insts`).
+- **Smallest check that would settle it:** Extend `5_forcing_checks.py` `[4]` by testing whether the conjunction of (1) $\approx$ is the diagonal `=` on $O$, (2) $r : M \to O$ is injective, (3) write separation $u(m_0, 0) \ne u(m_0, 1)$, and (4) idle idempotence $u(u(m_0, x), \text{idle}) = u(m_0, x)$ holds on all and only the $16$ retaining packets (`16 / 1024`).
+
+### 4. `OQ-04` — Lean 4 Formalization of General Cost Refinement (`GEN-WDP-O01` / `A19`)
+- **Tag:** `OPEN`
+- **Where recorded:** `B/wdp/bridge_reg.md:35` (`GEN-WDP-O01`), `B/wdp/programme.md:151-154` (`G1`), `A/code/derivation/general_refinement.py:1-120`, `7_adversary.md` Finding `F2`.
+- **What is unsettled:** As found in `7_adversary.md` `F2`, `3_regime_fields.md` and `3_regime_deletions.py` conflated three distinct second-stage cost formulas: `Minimality.lean`'s linear `aritySum` ($k$), `3_regime_deletions.py`'s single-hole context count ($k \cdot n^{k-1}$), and `B/genesis/paper.md:253-255`'s multi-hole context count ($\sum ((n+1)^k - n^k)$). All three are instances of a strictly increasing positive function $\phi(k)$ with $\phi(1) < \phi(k)$ for $k \ge 2$, which is checked in Python (`A/code/derivation/general_refinement.py`) but not in Lean 4 (`A/lean4/Derivation/Minimality.lean`).
+- **Smallest check that would settle it:** Formalize in Lean 4 that for any weight function `φ : Nat → Nat` satisfying `∀ k ≥ 2, φ 1 < φ k`, any valid 2-item separating delta on `R2L` minimizing `φSum δ` has `δ.forms = [1]` and yields a regime isomorphic to `U0`.
+
+### 5. `OQ-05` — Multi-Round Closure Theorem in WDP (`GEN-WDP-O03` / `A21`)
+- **Tag:** `OPEN`
+- **Where recorded:** `B/wdp/bridge_reg.md:27,37` (`GEN-WDP-07`, `GEN-WDP-O03`), `B/wdp/programme.md:159-162` (`G3`), `3_regime_fields.md:49,160-166`.
+- **What is unsettled:** Genesis §8 establishes `closedRun_round_bound` ($2(|Q_0|+m) \le n(n-1)$) and `mark_progress` (`A/lean4/Derivation/Rounds.lean:452-468`, `Progress.lean:75-190`), whereas WDP Chapter 3 has no multi-round theorem. Moreover, `3_regime_deletions.py` `[6]` shows that on $n=3$, a single unary predicate separating `(0, 1)` automatically separates either `(0, 2)` or `(1, 2)`, so the maximum number of rounds when only *currently collapsed* pairs can be demanded is $n - 1$ (not $\binom{n}{2}$).
+- **Smallest check that would settle it:** Establish in Python and Lean 4 that if each round in a closed run must impose a pair $(i, j)$ that is **collapsed in the current regime $r_t$** (rather than only absent from $Q_t$) and applies a valid separating response preserving prior separations, then the number of equivalence classes of `collapsed` strictly increases at each round, bounding the round count by $m \le n - 1$.
+
+### 6. `OQ-06` — Constructive Elimination of `Classical.choice` (`H01`) in `history_report_criterion` (`GEN-WDP-O05`)
+- **Tag:** `OPEN`
+- **Where recorded:** `B/wdp/bridge_reg.md:39` (`GEN-WDP-O05`), `B/wdp/programme.md:167-170` (`G5`), `1_admission_ledger.md:92` (`H01`), `B/atlas/finite_obstruction_calculus/genesis/lean4/Paper.lean:24-27`.
+- **What is unsettled:** `Paper.lean:24-27` uses `Classical.choose v.property` to construct a decoding function `decode : ReportImage report → S` in Theorem 2 (`history_report_criterion`), importing `Classical.choice` into an otherwise finite combinatorial development.
+- **Smallest check that would settle it:** In a Lean 4 scratch file, replace `H : Type` with `(H : List α)` and `[DecidableEq V]`, define `decode v` by selecting the first history `h ∈ H` with `report h = v.1` via `List.find?`, and verify with `#print axioms` that `Classical.choice` does not appear.
+
+### 7. `OQ-07` — Derivation vs Admission of Positive $\ell_1$ Weights (`L1-R-RESIDUAL-TO-WEIGHTS` / `A32`)
+- **Tag:** `OPEN`
+- **Where recorded:** `B/dag/derivation_dag.json:40` (`L1-R-RESIDUAL-TO-WEIGHTS`), `1_admission_ledger.md:48` (`A32`), `5_unrecognised_forcing.md:53` (`A32`).
+- **What is unsettled:** WDP Chapters 4–6 evaluate cochain repair cost via a weighted $\ell_1$ norm $\|v\|_{1,w} = \sum_{e \in E} w_e |v_e|$ with $w_e > 0$. `B/dag/derivation_dag.json:40` marks the bridge from unweighted residuals to weights $w_e$ as open.
+- **Smallest check that would settle it:** Exhibit on a 3-edge cycle $E = \{e_1, e_2, e_3\}$ with coboundary constraint $v_1 + v_2 + v_3 = 1$ that $w = (1, 2, 2)$ selects the unique minimizer $v^* = (1, 0, 0)$ whereas $w' = (2, 1, 2)$ selects $v^* = (0, 1, 0)$ (`Not forced` without symmetry), while requiring invariance under the transitive permutation group $S_3$ on $E$ forces $w_1 = w_2 = w_3$.
+
+### 8. `OQ-08` — State-Refinement Morphism Between `WDP-CH01-D03` and `Horizon.lean` (`GEN-WDP-O04` / `A30, A31`)
+- **Tag:** `OPEN`
+- **Where recorded:** `B/wdp/bridge_reg.md:38` (`GEN-WDP-O04`), `B/wdp/programme.md:163-166` (`G4`), `1_admission_ledger.md:47-48` (`A30, A31`), `4_priced_containers.md:35,54`.
+- **What is unsettled:** `WDP-CH01-D03` (`B/wdp/wdp.md:513-533`) defines a 5-gate span `(g_sup, g_adm, g_ret, g_ev, g_auth)` over a rational ledger $R \in \mathbb{Q}_{\ge 0}$, whereas `A/lean4/Derivation/Horizon.lean:155-161` defines `stepWorld` with a single `Nat` budget gate on `.addView`. No formal map connects the two state machines.
+- **Smallest check that would settle it:** Write a Python check mapping each of the 4 `Horizon.Ev` constructors (`.admitTok`, `.require`, `.addView`, `.setBudget`) to a composite of `(g_sup, g_adm, g_ret, g_ev, g_auth)` at $c_{\text{adm}} = 0, c_{\text{ret}} = 0, c_{\text{view}} = 1$, and test commute-or-mismatch across all states reachable up to horizon $k \le 3$.
