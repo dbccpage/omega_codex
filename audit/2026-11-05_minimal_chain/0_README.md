@@ -31,7 +31,9 @@
 | `5_forcing_checks.py` | Prompt 5 | Checks finite derivability and countermodels for `Supplied` ledger admissions. |
 | `6_minimal_chain.md` | Prompt 6 (Part A) | Assembles the shortest derivation chain from `<>` to `irreflexive R with R(a,b) gives a != b` and to the WDP admitted cut `(X, E, tau, K)`. |
 | `7_adversary.md` | Prompt 6 (Part B) | Reruns all check scripts, attempts to falsify `Derived` and `Witnessed` claims from Tasks 1-5 and Part A, and audits unproved terms. |
-| `8_open.md` | Prompt 6 (Part C) | Lists remaining `OPEN` questions with the smallest check that would settle each, ordered by chain dependency weight. |
+| `8_open.md` | Prompt 6 (Part C) | Lists `OPEN` questions with the smallest check that would settle each, ordered by chain dependency weight, and records the formal resolution of `OQ-01` through `OQ-04`. |
+| `9_oq01_to_oq04.lean` | Post-Audit Settlement (`OQ-01`–`OQ-04`) | Self-contained Lean 4 proofs settling `OQ-04` (`mu2_unique_general`, `mu2_unique_F_general`), `OQ-03` (`oq03_retains_iff_four_conditions`), `OQ-01` (`subsingleton_image_no_irrefl_witness`), and `OQ-02` (`oq02_vortex_l1_defect_pos`) with zero `Classical.choice` and zero `sorry`. |
+| `9_oq01_to_oq04_checks.py` | Post-Audit Settlement (`OQ-01`–`OQ-04`) | Reproducible Python stdlib verification for `OQ-01` through `OQ-04`. |
 
 ## Prompt Summaries (One Line per Prompt)
 
