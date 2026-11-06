@@ -1,0 +1,109 @@
+{
+  "recovered": "2026-11-06",
+  "source_revision": null,
+  "scope": "Selected local source snapshot; original revision not established; no Lean build performed",
+  "files": [
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\formal\\authorization_incompleteness_core.lean",
+      "local": "formal/authorization_incompleteness_core.lean",
+      "bytes": 4182,
+      "sha256": "80776d087b1800e0c917fd0cc9dfd6068126f49f38bf7376a6e956b5d0ad2991"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\formal\\direct_turing_machine_models.lean",
+      "local": "formal/direct_turing_machine_models.lean",
+      "bytes": 10341,
+      "sha256": "0fb0e2bd0688bd926904235e3e666504b82ab45d4a72f7d53e3ddfcec46402c9"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\formal\\direct_turing_machine_token_code_models.lean",
+      "local": "formal/direct_turing_machine_token_code_models.lean",
+      "bytes": 6152,
+      "sha256": "6d3aecf402c15951b53eccf49e1609180346bac425496f3cd85264e6ba527153"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\formal\\global_computability_lift_models.lean",
+      "local": "formal/global_computability_lift_models.lean",
+      "bytes": 4552,
+      "sha256": "c3a3d2a9ba5fb5a78f1a36ebdb3e3e754510956143097a8af4831df74fddb18d"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\formal\\logical_externality_models.lean",
+      "local": "formal/logical_externality_models.lean",
+      "bytes": 4418,
+      "sha256": "4955e53d4dfedb619b9da91eefcc510975a7ecbeffad2d9dc804dd3ce496f35a"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\formal\\primitive_difference_authorization_models.lean",
+      "local": "formal/primitive_difference_authorization_models.lean",
+      "bytes": 3841,
+      "sha256": "4178e928eac8f349a98cc03d7f9b13604296f12d57f5f221d09fc6436c410d47"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\formal\\primitive_difference_p0_bridge.lean",
+      "local": "formal/primitive_difference_p0_bridge.lean",
+      "bytes": 5156,
+      "sha256": "205df3a04fbf7e6850e919e9f40b635c14b23b1e2bccda71bba35390bd2b7e51"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\formal\\replay_packet_binding_models.lean",
+      "local": "formal/replay_packet_binding_models.lean",
+      "bytes": 10347,
+      "sha256": "a0d50e28e7c5fb67468ecc34f24ccf6b101542e94377969e97c963f02310ebdb"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\formal\\tape_control_authorization_models.lean",
+      "local": "formal/tape_control_authorization_models.lean",
+      "bytes": 7525,
+      "sha256": "c6d4e136cd5e0c8f696383518cee4657bd58e3354b07960f5525216b28af87df"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\formal\\tape_transition_invariant_models.lean",
+      "local": "formal/tape_transition_invariant_models.lean",
+      "bytes": 9417,
+      "sha256": "5d6467c5b88a3955bd78f55a6629fe5c204a004bfe4e68c11b24e11544e1fab0"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\formal\\terminal_authorization_boundary_models.lean",
+      "local": "formal/terminal_authorization_boundary_models.lean",
+      "bytes": 9570,
+      "sha256": "a0ac0eec152cf48147a6294c3e4c84d933b71c3032e76e19ea51e10735d954d3"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\README.md",
+      "local": "README.md",
+      "bytes": 10082,
+      "sha256": "8b18116c9ecab1a34827b77772cde960d49ac491bf4f37180eed42c2ad531644"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\formal\\README.md",
+      "local": "formal/README.md",
+      "bytes": 7485,
+      "sha256": "bee9b788be86ffc01647ed94d7259d5e7d8767fd9633064488101a952ecf6793"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\authorization_incompleteness_theory_claim_ledger.md",
+      "local": "authorization_incompleteness_theory_claim_ledger.md",
+      "bytes": 15606,
+      "sha256": "2f6a9075292ebe3226d3689b3fc73b11958e62a33182a38c033ea810c2b62b5e"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\controlled_turing_derivation_series.md",
+      "local": "controlled_turing_derivation_series.md",
+      "bytes": 19892,
+      "sha256": "722bc4ff6561fb8392b8f70050da9913594179afea9b95142febc368f1750002"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\evidence\\source_map.md",
+      "local": "evidence/source_map.md",
+      "bytes": 9006,
+      "sha256": "b96c1f003673bce51b056c56b8aff6cccc344cf3e598c150c38dab6ea7da6a37"
+    },
+    {
+      "source": "C:\\.ana\\coda_university\\authorization_an_incompleteness_theory\\_support\\authorization_incompleteness_dtm2_input_execution_update_packet.md",
+      "local": "_support/authorization_incompleteness_dtm2_input_execution_update_packet.md",
+      "bytes": 5240,
+      "sha256": "023c31d22e46026b1ca71dd31c5aeb6a6e90ff683946949f63957ee122da542a"
+    }
+  ]
+}

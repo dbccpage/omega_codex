@@ -48,5 +48,15 @@ srcDir = "lean"
 name = "ProfilePreorderAndGenerator"
 srcDir = "lean"
 
+# Explicit scoped target; the shared DAG/default build is maintained separately.
+[[lean_lib]]
+name = "WitnessedDifference"
+srcDir = "lean"
+roots = ["WitnessedDifference.GenerativeHistoryCompression", "WitnessedDifference.GenesisConstruction"]
+
+[[lean_lib]]
+name = "AdmissionReplay"
+srcDir = "lean"
+
 
 

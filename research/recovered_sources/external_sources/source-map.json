@@ -1,0 +1,2238 @@
+{
+  "scope": "Previously identified 19L57G1 Derivation, anomalon lean4, non-PFP papers inventory, and two identified diagonal files",
+  "records": [
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Apartness.lean",
+      "sha256": "ab08fd0dc417d66ba8756672676b797f73d2281a0947435f2629c060821b0288",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Apartness.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Attachment.lean",
+      "sha256": "3a288f5ee8e69b836addbc8081d5daa2c8017c1c0b856f8d15d6d3c9984a37aa",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Attachment.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Basic.lean",
+      "sha256": "bcd7c7f9bbc6a0786fcdc504a6d8efce2dc1bafe0eaac44767dd2ef16a80c019",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Basic.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/BoundaryCancellation.lean",
+      "sha256": "a178e62776ead2e460db11a7e86ea5da3c8efb8dec7bc35ec22ad30c4aa3b1b9",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/BoundaryCancellation.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Breaking.lean",
+      "sha256": "f95c1a56271fa02f55b4d2cb472a8437eafe9d03967b10f245f89ff16364bb71",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Breaking.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Bridge.lean",
+      "sha256": "3519b757605bf025fcf513c0970de4fe9eb5b16c4977f574254ff0924c482055",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Bridge.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/CapacityBound.lean",
+      "sha256": "74321242f8bca114aa8f58fc393824d1eab86f998eb7db92b8f840aa47ce7203",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/CapacityBound.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/ClosureSymmetry.lean",
+      "sha256": "b88f8616144290330d23c2e65250b216310a35e44b6122119cca857a2e121027",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/ClosureSymmetry.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Completion.lean",
+      "sha256": "56a1f32d09e2ea03d5c8a275c29107c250e6617537e92b052b0a98152124b0bc",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Completion.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Composing.lean",
+      "sha256": "77811bd27d616e745e302504305963c5ca428a5d370e0a2f266cbcac42d79ab4",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Composing.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Compression.lean",
+      "sha256": "4196c0013a5aa3c6cd87a5f5ce8fcd7e17a5d79aac102f2317aa4dedf9df13c0",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Compression.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Constitution.lean",
+      "sha256": "785fc9d39f17bfc2257bd0076e75b916fc66c17992cbcf9aec678bd13c1b0e2f",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Constitution.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/ContactBridge.lean",
+      "sha256": "87a881477e2f352ff832613170851ac3b8004c07d3c77d3575c43367bcae5524",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/ContactBridge.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/ContactKernel.lean",
+      "sha256": "6f2bbcb59b24397258e026959a31b4b02181ceb2a507a002ef4bda242c97c4e4",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/ContactKernel.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/ControllerCategory.lean",
+      "sha256": "3bf9dd3a737242d49ab38eb45b71470f9c889000ddd44e116c2f1dffaea240f2",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/ControllerCategory.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/CountTransport.lean",
+      "sha256": "027382c59c28fd122f9182b18138bc5bedcee654990e497631475003c62e17ca",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/CountTransport.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Counting.lean",
+      "sha256": "66cb3367a331c062fc1b456a05abcb84a58975058764d7a7afbc7e937779b98a",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Counting.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/DiffAnchor.lean",
+      "sha256": "1df73744f5365d4ec5ea7d65f1d8f0fe44396de536b6e5238e351c4d7654fc3b",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/DiffAnchor.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/DiffAnchorCompat.lean",
+      "sha256": "c349b473c277d20c46385a256d1a6f59c0aefe92285d112f8d1de1e050423a76",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/DiffAnchorCompat.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/DiffInterface.lean",
+      "sha256": "1b76a3080e54db1f3888d0aa5cedfd1cff8aeb63763a05a2154023d1cf7c3a32",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/DiffInterface.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/EndogenousFidelityGenerator.lean",
+      "sha256": "53232e3d79f40d90d4240daee38616c10d2a0ba008964c53f556e4f23d862a82",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/EndogenousFidelityGenerator.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Erasure.lean",
+      "sha256": "1e49d258a52b7b42f2649ef91a0b3ee0686b3a2bb4c727db06098400755e801e",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Erasure.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Ext.lean",
+      "sha256": "a076e389830ec4442d9b9aae8965e7f33cba75cc0de66e08381cb53e27bd205a",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Ext.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/FidelityClosure.lean",
+      "sha256": "f3ccbc2b833fe7ac6e1f5116561128c83dfa0d9d4f7d400362621755dcc068bd",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/FidelityClosure.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/FormRenaming.lean",
+      "sha256": "2d9942d474830fe6f6f7f92d42379e6dd50dc6b2e552d0a02aa442eddd407b68",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/FormRenaming.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/FormTransport.lean",
+      "sha256": "00129c45c7d99ff85c739efb174a03ee8c56e6aa1d1f455898570d43bc29525f",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/FormTransport.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/FormTransportCompat.lean",
+      "sha256": "b081ec5951e30f48c586cacb4552ba0e9c6297cde4e0823b997de4f304970f38",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/FormTransportCompat.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/G1Class.lean",
+      "sha256": "9d2ee7313ccb971edfa9d450c54db0a791325bbe89f3fd4dadd2365996554dbf",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/G1Class.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Generator.lean",
+      "sha256": "8443cff7f21ade04379b7042e194348c6ba8951e5ad5e3b7d653d161ccf8aa02",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Generator.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/GraphGenesis.lean",
+      "sha256": "e2fd0328bc499897f8615e92e5e3c0acce581b04c62fb7386deae680d28a8552",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/GraphGenesis.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/HigherStructure.lean",
+      "sha256": "66bbf9fd8bb76c53b60c3cfc8a7c9413fc887eb0c3bee311e165a968087bb70a",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/HigherStructure.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Horizon.lean",
+      "sha256": "50bb10f4167b9cbb6f779ad2d4684989ceaa38318ad6622653a745f0f601abd6",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Horizon.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Inertia.lean",
+      "sha256": "cc8cc00c5d4ea3f73b980f0136ebd6c91b8d0412a0006630b8c4847d4946b81e",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Inertia.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Initiality.lean",
+      "sha256": "f59ab72fb94725357472140fab51058e94b06b335f7c201fc501df9d8b8a59a1",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Initiality.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/InterpreterBoundary.lean",
+      "sha256": "d1f26cc4b3765e06b22bfca6fa643e36c1ce0b2dd9055f9c089d99f7fdc3e706",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/InterpreterBoundary.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/IsoBridge.lean",
+      "sha256": "0966790644beb6fde1f7fa0f2eee6986c4a7b10492bf4b5e3a1c510fda8ca7c9",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/IsoBridge.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/IsoBridgeCompat.lean",
+      "sha256": "c0424ebca89697f6ce02371b9fa3e31af1a27caaa00ce7c2dd0d372eb1da1447",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/IsoBridgeCompat.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/IsoCanon.lean",
+      "sha256": "b164133df00cf331130fe078556134c096979e567c90ead7e9364cc568bcd6aa",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/IsoCanon.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/IsoCanonCompat.lean",
+      "sha256": "9c54dd1feae0578a63dea77f2ef76c3e48374c404527c303f24de920d523520a",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/IsoCanonCompat.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/IsoCollapse.lean",
+      "sha256": "9804291ec3377c1ed3e1ad1470e8412c8f49645cc257e306583e88a043382a1a",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/IsoCollapse.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/IsoCollapseCompat.lean",
+      "sha256": "52904708b2fc53b4fb56c3326c63cc3a5cefe10067f144af39e02d82a84a39bb",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/IsoCollapseCompat.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/LadderGeneral.lean",
+      "sha256": "c5594bea670617eacd07b3b77bc77109aab8c4140decbbabebdb4f876ce7e5de",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/LadderGeneral.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/LocalStrategy.lean",
+      "sha256": "9886b77f21091834e41279497ee198664915f257e3f8c1dc7f00b26571ac76df",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/LocalStrategy.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Mention.lean",
+      "sha256": "530d5959fb1f89b0e236b31e5d8b4d7594f366a0c6e91c7a6459afea1689006e",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Mention.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Minimality.lean",
+      "sha256": "33bdfdeae38076f9f57d9b6f65bab7ed4657108fd4ffe3bd9d93409c926fdc3e",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Minimality.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/MinimalityF.lean",
+      "sha256": "1a6e7f73d20a2e566f5e426cd0eaa6943a53676be5a8716a990604d079ac8123",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/MinimalityF.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/NoOutside.lean",
+      "sha256": "bf8129032ba563c82f951b085ec9af606335a7573b9527c3c08df0651ead7284",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/NoOutside.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/NoOutsideFidelity.lean",
+      "sha256": "8aad2ea37d9804b1ea4cf3f737aa674a35e1754584e41b329c6784e9ef363aab",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/NoOutsideFidelity.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/ObsDescent.lean",
+      "sha256": "d7332774cbcd85cf5deb9923c6e1ae7ddfc1d29b53748be1462d6eb88ed7c6d4",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/ObsDescent.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/ObserverInventory.lean",
+      "sha256": "fbb3c07edb998a09637ec4eef0ebf8b67009eaeb103f2032d34ad62c3a3caa7d",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/ObserverInventory.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Pigeonhole.lean",
+      "sha256": "37bd041996d91513b4e05e60708d1882c12748a488dfd180b4b616f20f6e3334",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Pigeonhole.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/PresentationDescent.lean",
+      "sha256": "008dc9585ad2cfedea87b85718313e63ba486d5c94caa38242bc0705d0f1dc79",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/PresentationDescent.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/PresentationNaturality.lean",
+      "sha256": "f014274ca0af29e6dee6b0b2ad8d7ba749bc0ec04190f8353c58906eda50d8ea",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/PresentationNaturality.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/PresentationRelativity.lean",
+      "sha256": "3bcc1a7814f4f1bf781a6f0a52cbda860bbf86f4bdc874402a51c32e467c132a",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/PresentationRelativity.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/PrimDiff.lean",
+      "sha256": "a2fd261439d70c2522ea4419029865870745df07ce2a1532cedde7c45a36890b",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/PrimDiff.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/PrimitiveCats.lean",
+      "sha256": "2ff065f572792d69557ede20e7e6695f752cbc1927617a4d288f986c77028103",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/PrimitiveCats.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/PrimitiveContact.lean",
+      "sha256": "c50838ded0f0c6ec75bf5f8a6a2a12e526b15a18931f839e49140aac8ee5a776",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/PrimitiveContact.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/PrimitiveCore.lean",
+      "sha256": "63e2d3b6263930769263504385604f8861c34f2684f171026d3b7491769d88ff",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/PrimitiveCore.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/PrimitivePassage.lean",
+      "sha256": "8b32647482969132f9f7754ebf2517656cf5d8a88207106f68c46f876214af9c",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/PrimitivePassage.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Progress.lean",
+      "sha256": "b34cd13eec8f8fc81dd04c9b585a8c1efdecae02c301304d7b21cb4c2812b5cc",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Progress.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Quot.lean",
+      "sha256": "74e8d5f01188891a760e7242862be64944bf06ae8aa3b3e3da2711732abd1f5e",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Quot.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/QuotientRetention.lean",
+      "sha256": "0171cfd9384093f7142b5c66371ed9b5bea15ae2132ed3f3238834a43d52a33a",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/QuotientRetention.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Refusal.lean",
+      "sha256": "fa2ce279dee5083385fbcb87781800c834061520db121803f69ae0da51bee532",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Refusal.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/RefusalFrontier.lean",
+      "sha256": "a9be4e9273923134ae0bbba3689e57ff28c3fb3b6806bd90e4482ffb7fe77e65",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/RefusalFrontier.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/RenamingStructure.lean",
+      "sha256": "562f82c34e62c01d42ef677cad9329ccb210f121f6123a685603a0cdb8b67d3f",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/RenamingStructure.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Represented.lean",
+      "sha256": "3933ec8d68dca7d010a2e12f71c7cb79b00dddddd7b71aefbcc0124599a5a843",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Represented.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/ResidualClosure.lean",
+      "sha256": "ed8dc6b74af7f70a57899e1e9cfb6de7462ba6bcfba3f35fb3fdabeaeb568342",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/ResidualClosure.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/Rounds.lean",
+      "sha256": "e5880c13c3253a8ca710ddb52b2d8e6eb6f47b88bf496926947e484aba1158ee",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/Rounds.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/RuleBridge.lean",
+      "sha256": "7c0a1c1eb7298e42051fdf8def344269097d2f24c9de3fc9d35bf8df8e2615f1",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/RuleBridge.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/SeparationCapacity.lean",
+      "sha256": "876364c74b513c21976abea4375d37f5bb062048f9baf6d14391bead0b22474f",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/SeparationCapacity.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/StableContent.lean",
+      "sha256": "ae97d8cde6afaab02342ed330feda252a459fe611644452bfe6cf8c675cb1499",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/StableContent.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/TraceAlgebra.lean",
+      "sha256": "b7fd82301d45c26087184e0fc0993289bc506aa15e5859299db3b11d8fbfddad",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/TraceAlgebra.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/TransitionAlphabet.lean",
+      "sha256": "49ca95e33775611600f79cfccd2c91a52c99e03bbb6f4dec8f29d5e892238308",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/TransitionAlphabet.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/TransitionTransport.lean",
+      "sha256": "b59a82fb9dd98539339a41ec2707446c6a47ce9f91745d27c4b5cca9380872ff",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/TransitionTransport.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "lean4/Derivation/WeightProfile.lean",
+      "sha256": "2a568d71625d3fbb5597a2a63064c5f1af3a6f988ab77b97494dc973c6021142",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/lean4/Derivation/WeightProfile.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "research/diagonal_identity/lean/DiagonalIdentity.lean",
+      "sha256": "efe09b94f69aadedd8f90083dc489da6cfbdaed998f444d33785cae4d4b24a7f",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/research/diagonal_identity/lean/DiagonalIdentity.lean",
+      "copied": true
+    },
+    {
+      "repository": "19L57G1",
+      "source": "research/two_theorems/lean/ResearchTwoTheorems/Diagonal.lean",
+      "sha256": "237603ade308f8d66e6210def186cfa19eafc93dae98fff066c8a3bf6386c8a2",
+      "research_path": "research/recovered_sources/external_sources/19L57G1/research/two_theorems/lean/ResearchTwoTheorems/Diagonal.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/AntimorphicInvolution.lean",
+      "sha256": "f9cc8da1bf683a91dbf7c7b3db23f0bc08cd49b3d170c06a701ed4381d769400",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/AntimorphicInvolution.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/ConfluenceFlip.lean",
+      "sha256": "34c9c5ad20a043d4af73d22394eac94ce512048b39d061b86d7be949a39dc970",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/ConfluenceFlip.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/Core.lean",
+      "sha256": "db7e0f73c1ff81a4e4183541528908431e26a414c2794661432ff783a06dcb7d",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/Core.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/Demo3ProtocolInvariants.lean",
+      "sha256": "47f9674935d46d567d3ccc5b760f2f25fe775fe6a57f2ff64efae9de32d301d2",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/Demo3ProtocolInvariants.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/ExactRat.lean",
+      "sha256": "1912213af10f74b3687d3d78d04bb4b5b031aad25710c4a02713e99f700c50cf",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/ExactRat.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/ExactRat/Basic.lean",
+      "sha256": "0589343819d4cef8a4e6f73e3446337e7169d52868382582152aa112d10abd27",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/ExactRat/Basic.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/ExactRat/Laws.lean",
+      "sha256": "f2a045283f58a01b2ff134fc7f87e53be04e04feac09a991942448fe7a76427c",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/ExactRat/Laws.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/ExactRat/Linear.lean",
+      "sha256": "97c308cfdd71e145fe15617787cebbf5cac780048d9c5be64828c1f87b4ad373",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/ExactRat/Linear.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/ExactRat/Poly.lean",
+      "sha256": "26721952f7165470a23590b9e824b6bdc361170ea0fb920e23fa576dd2781432",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/ExactRat/Poly.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/Expressivity.lean",
+      "sha256": "cb6ea864c35aed2c0d74f99255b41d210761ed8618a0316e57d8589a873c6117",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/Expressivity.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/ExpressivityAxiomAudit.lean",
+      "sha256": "d34ff4390f6a8610eb37ee6feedf944824357f51ba0a97fb8bd82de361e358a9",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/ExpressivityAxiomAudit.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/ExpressivityNorm.lean",
+      "sha256": "20540c04dbd0db0782696c8213248bd46eaf9c33e74376a306f42e3e97d59155",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/ExpressivityNorm.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/Family.lean",
+      "sha256": "74f9c49439b847603714a678f498d76494d7438e5fa6f47fdc23021a5e59a3f3",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/Family.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/FidelityAdequacy.lean",
+      "sha256": "7aafb24c08769aecd7aa0b407307b6ff367c00500e8762ccfa4f2f6a5e1f5aa5",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/FidelityAdequacy.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/FiniteConsequences.lean",
+      "sha256": "43a7b1cbdbc4d346dd4bf7cbdcf06379db12ea65ae9ffe4e04cd126d48493670",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/FiniteConsequences.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/GrammarCeiling.lean",
+      "sha256": "54eb7a815ed7e6db69c45d765eb12d087f5ed0e4b4308aa27adae88e1c97c1ae",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/GrammarCeiling.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/GrammarDepthCeiling.lean",
+      "sha256": "eb8e353420d8a745725b8fa22fbdccb6f27e78f8fbb1efba02f08f7932f3f62a",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/GrammarDepthCeiling.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/LGGR.lean",
+      "sha256": "75209e051175aeddab58ae007c79ec08504328821931fec3178608242865c6df",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/LGGR.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/LGGR1.lean",
+      "sha256": "74e6172e2992dbbfbbbd7f8f870565cf64872c9d0ddfd789e1b1c4f5ba6b52de",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/LGGR1.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/LGGR2.lean",
+      "sha256": "fe7f16b8c6bf06f2de9711b89149e0f3b158293f73a323ee23df0a9089bfb198",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/LGGR2.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/LGGR3.lean",
+      "sha256": "3a652b199876ac1d1acd2d34730d1db78b9656187ce1d4badcbe0c0c64730c1d",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/LGGR3.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/Level17HodgeDecomposition.lean",
+      "sha256": "6fe043d3096d4b03b5bcb575feb37dd7cd4d4898f7799d7205bdef1fb7aafcb7",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/Level17HodgeDecomposition.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/Level18ZeroFloatLaw.lean",
+      "sha256": "62414135a2239c7fa944d1998aee48626c7daa461c9b4a7e0eeda9a22f5b87a4",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/Level18ZeroFloatLaw.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/LggrNonFactorization.lean",
+      "sha256": "583fe25ed28a387bef5a7b01a4bdffd6e536eb8179b6a3182faea4056b9440f2",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/LggrNonFactorization.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/Lib.lean",
+      "sha256": "255425e183973deb7597bca9dc734800b1df7ede284a549a91e1b9a66a045eb8",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/Lib.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/LiftPatchSemantics.lean",
+      "sha256": "92cd272348c83a53a48c7741770220a6d2e3a5c8390cb455b0cb730ce991f7c4",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/LiftPatchSemantics.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/LpWeakDuality.lean",
+      "sha256": "7b6862ad7f0dc938bd62a2604ee451354b4f68d00eef6fe92ff7296ca3c5427e",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/LpWeakDuality.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/Master.lean",
+      "sha256": "95370620f6b6fdf58e66eb5d59fe489ffcee1b76eb84cc36c312c0e19fcdcb2a",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/Master.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/NormalFormsCore.lean",
+      "sha256": "41d66f85238b6c49fccfb472ea0957bc3a1c64ca746e2329ff90daffe6f05e1a",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/NormalFormsCore.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/OperationTreeFold.lean",
+      "sha256": "3098ce5d29fd2dafe95aba064aae2ce0829ec8e19f910a8f19cbe81a879d14b3",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/OperationTreeFold.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/PrimitiveDifference.lean",
+      "sha256": "6731cb65753be770c7a6d1eb93d2f2f09423cc123583828069970d375f1829ba",
+      "research_path": "research/recovered_sources/anomalon/PrimitiveDifference.lean",
+      "copied": false
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/RuntimeLimits.lean",
+      "sha256": "cfd075ef41a78aab84b89605435b1adf3f251b53239dcdc64b07b279657b21d0",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/RuntimeLimits.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/RustLeanNormAgreement.lean",
+      "sha256": "8c8367f63b8a704739aefd6eb18716f3c3db7dbc37d130031593b9c2c168a37d",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/RustLeanNormAgreement.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/SLevel.lean",
+      "sha256": "4fededd39a87ef2d5a38db30305fcdb7f86e56c45269cbbeec0ed2f68eb3db88",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/SLevel.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/ShadowBoundary.lean",
+      "sha256": "ac6584549fd5c018f7c78f4511c43994e18bfe37febe3d7510e1efa6d026c079",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/ShadowBoundary.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/ShadowFactorization.lean",
+      "sha256": "4e81ebd53f41c8e55668ce29917a78e16e4ecc9242b52c5f80852350271e608e",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/ShadowFactorization.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/SnSymbolGameAndPackets.lean",
+      "sha256": "754ccf1d19e82f0a0d5642548274cc4a2588e7674d180f22be8a6d7cc35e9ce5",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/SnSymbolGameAndPackets.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/SnTower.lean",
+      "sha256": "4c81b8c6e830b2ce97d3bcf618030fd1c1aead831e2a31d7d709776b31244052",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/SnTower.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/Sweeper.lean",
+      "sha256": "b5f2fbff9af9730b7fb0d2b34a4be0fa122d74e43f6014ef2382101a8318bd8e",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/Sweeper.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/SymbolGame.lean",
+      "sha256": "c484feee2b2fbb697cf4d0bf5175d7bf63e93c7de23abf95d433f93b3f330f3d",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/SymbolGame.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/TerminalizerPolicy.lean",
+      "sha256": "43905002cf5a62655fcd0a088723bc0f7f19f5bc69a101fabb5657c49f79acb2",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/TerminalizerPolicy.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/TokenFrontier.lean",
+      "sha256": "fb1a9de7271ee6d134d2a0e42d6b39bf606ff33e045ff8fd0f189f84799fd0cb",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/TokenFrontier.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/TowerZeta.lean",
+      "sha256": "ee783fc1678d45ef5314575e039d95147721af5704586ffa6487c0b77a6c0bf1",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/TowerZeta.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/TriggerNotLicense.lean",
+      "sha256": "214e39ea3b9dfc3c7523ba40043e1f4dffd55d798ff493ff065dd9f8d2c2b1d2",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/TriggerNotLicense.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/TypedPacketShadow.lean",
+      "sha256": "8f2ecdcdb696fd711d6dfe9d159b0e0c1d342acf29055228324ecf9f26bcbdab",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/TypedPacketShadow.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/government_contracts/Core.lean",
+      "sha256": "bfa9ba2d7e6f9bae3e3a5f8f860717708d3749947442234621c6506c05027fcb",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/government_contracts/Core.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/lakefile.lean",
+      "sha256": "3ce55c7641c6390a58667fbb1b30a6fd884644841ef99764c834dbb7896732d5",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/pfp/Qddc.lean",
+      "sha256": "a42b1508f7fdb2faf643f974f5f8607d7a6449d04c3f61d717013e9d26aad687",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/pfp/Qddc.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/quantum_mechanics/C750AxiomCensus.lean",
+      "sha256": "4b0a8a895b2a014cc043c6d1b18674a8f7102086f6ed42296c88cf50e30b75fb",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/quantum_mechanics/C750AxiomCensus.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/quantum_mechanics/C750Definitions.lean",
+      "sha256": "ec4b5008fc003236e4e42f326f6b8b34556cadd4c9b79fc95664b630d8f417c6",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/quantum_mechanics/C750Definitions.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/quantum_mechanics/C750Purity.lean",
+      "sha256": "43bbd574a2d674e3f7938943da4fd1f0f04a87a003a2560776c4fafaf930b471",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/quantum_mechanics/C750Purity.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/quantum_mechanics/C750Reduction.lean",
+      "sha256": "ce9554012ab905acc827cf58f7c4487724e54096bc6e1f2dfb7f953887e43f93",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/quantum_mechanics/C750Reduction.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/quantum_mechanics/CoupledRelationalProjectors.lean",
+      "sha256": "7e236c1733356c34f65aafd79a47bf78f4a2a4c9eb1b13fb67266063764f8d79",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/quantum_mechanics/CoupledRelationalProjectors.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/quantum_mechanics/DerivationDagQMClosure.lean",
+      "sha256": "00bdd9d49688fbf0c8028a3cea04aef1c7f19386e8b1f7b1ffaeada00d8741e9",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/quantum_mechanics/DerivationDagQMClosure.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/quantum_mechanics/lakefile.lean",
+      "sha256": "052a1067c2418cfcfd70cc7a0fffdabf57d066d0ac387433a6174a4c5e64a6fa",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/quantum_mechanics/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/Bicategory.lean",
+      "sha256": "d4fbee0e7ce6288cfbde7042569ebd06401e4cb9200885ebe20017ae607b8a62",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/Bicategory.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/Braided.lean",
+      "sha256": "4b557794538acd7795da66c633f1cff41145e66982b3dc80400778facf67e0ac",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/Braided.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/Census.lean",
+      "sha256": "7ad8695bd56596bb5a3d4f3decb8a581f1cb4b09a3120ac4c5c2cb5af43d6b87",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/CoherenceTheorems.lean",
+      "sha256": "093a78e4295db87030789e22bc4c890065cbbac6f16e8c9742b2f68f57262e3f",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/CoherenceTheorems.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/CompactlyGenerated.lean",
+      "sha256": "91ebcff75bf0102531c2139de4f7d268ffb4de92aeecc10e7db5405455dfff35",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/CompactlyGenerated.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/DGCategory.lean",
+      "sha256": "2db5ed1fcd3e5e8c314383e24d4261dedd8ac26c7e29fcc7180e8acdf7efbfe9",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/DGCategory.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/DendroidalSet.lean",
+      "sha256": "f64ff0ca87c216ee8c1f3d43470c827fae69688b1feeba37ced8fff3cd9ec945",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/DendroidalSet.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/DerivedCategory.lean",
+      "sha256": "4a411cc41b32f12f333e451895bfc8aea861d3cf5dda9b8e1563235b8f9c37d9",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/DerivedCategory.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/DoubleCategory.lean",
+      "sha256": "f47b3671cced226aa80e52d361c8bf6270812572cc4b509a09841727c22d1404",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/DoubleCategory.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/Enriched.lean",
+      "sha256": "2a4724877e4ffad2b69aa2542e04fc6a0376e9ff6cc582a7c776d244493c6491",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/Enriched.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/HigherFunctor.lean",
+      "sha256": "ce048f51b0fde6fb1e5e578f8bf76a4219feb29d114a48ce8eed6605037f19ea",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/HigherFunctor.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/HigherNaturalTransformation.lean",
+      "sha256": "1da9a426a8285ad612f032f69a4ea567608575da76f661d98875cb915069c18c",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/HigherNaturalTransformation.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/Master.lean",
+      "sha256": "5606cc693b8a7380823a08175857cfa26bc679b4d0ab8a13e37104fb201ca80c",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/Master.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/ModelCategory.lean",
+      "sha256": "b011e1b9e7a41018c86b16b5e91a1f31bd4482fb72d3971331784db3606610ef",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/ModelCategory.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/Monoidal.lean",
+      "sha256": "63847acd16dfff482a97d97ff4734e14537d8546fa852828ef7e9d7d5f611554",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/Monoidal.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/OperadicNerve.lean",
+      "sha256": "3d3f19d8d9295fa59e89481ca295dfee5c084067083a6d9859717d4a35aec8b0",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/OperadicNerve.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/Regression.lean",
+      "sha256": "eb10852868d314ee3143ed9cd9e7374015e59de9fd94d0a203afadc0a4c90120",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/Regression.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/Ribbon.lean",
+      "sha256": "5b4d07db8910d6c5e0593c847445976ab8daf3ff4d9edaf753de917d5bc8fbe4",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/Ribbon.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/SimplicialSet.lean",
+      "sha256": "e0e5861993eac3f429981f08634379c76dd31b7f380fa689b8b88627321c98c7",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/SimplicialSet.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/StableInfinityCategory.lean",
+      "sha256": "5c936f7f27a8a236da3b821d5866c7f17d02acaa864dda1046c76be1741f4e50",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/StableInfinityCategory.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/Triangulated.lean",
+      "sha256": "d943958f408d9f86522238555d1c67166bf838fd8edd703bcf215cf9630fd501",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/Triangulated.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/higher_category_theory/TwoCategory.lean",
+      "sha256": "670e4493baa6345a265ec54a489e096b6839d070a773c7c16e8d120811fbc271",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/higher_category_theory/TwoCategory.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/AnswerKeeping.lean",
+      "sha256": "4acff10358fdfec9a8cdd2f48cc25c79fcfaa67768923e0257f0533cd3edbf87",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/AnswerKeeping.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/AssociatorTables.lean",
+      "sha256": "f992e1bcc12f9deb1cef402c07c6a85a6f450efad0df3078471072007a1d057f",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/AssociatorTables.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/AxiomReport.lean",
+      "sha256": "cbe8161cf2a432e0c84d2a66053aa741bb20e42ff6d61e48eb0692dc9570e22e",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/AxiomReport.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/BoundAxioms.lean",
+      "sha256": "a43d86627d2e138e32cb9058e19155b6a92f620448f56c8dbfa257bb4489b950",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/BoundAxioms.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/BudgetedReleases.lean",
+      "sha256": "23d43355abd2859ac95c4af647c4a8bddc8aafe4e513ef1642b9217e12f8c8fa",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/BudgetedReleases.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/ClassOperations.lean",
+      "sha256": "62dec60ecec61009c56e660612edafbf81de816a5b553023fa38ccc084bc8129",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/ClassOperations.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/ClosedFaces.lean",
+      "sha256": "d699e4834828947f490eee9eb3b531de94757fb38a721cb41ce49214582ccf8f",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/ClosedFaces.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/CommutingChecks.lean",
+      "sha256": "94e1b63c9e3fc557322ed86d65abf12064dc77ea592471c1bf3aac59607e7171",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/CommutingChecks.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/ConfirmedRuns.lean",
+      "sha256": "d151206b36880c405741a02efc03cbe52dea99743bb1d3bc7ab2b7535e5750ba",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/ConfirmedRuns.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/CycleWords.lean",
+      "sha256": "6d42bea3633227141cd1c6d17c1e2cc2edaf4e02d19cd6bbafc4c094c11db79f",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/CycleWords.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/DistanceForm.lean",
+      "sha256": "58500cc1c4fd440ea58994c270e84c330e51e23c6d8fbbddb1d1753988eb8b3b",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/DistanceForm.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/DualEndpoints.lean",
+      "sha256": "e7cadf28847ff0078f7a24c4b78fc4d185f010441da32d1bdfe88ef5cb704b00",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/DualEndpoints.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/FaceProducts.lean",
+      "sha256": "2fec7c3bfe80eb3976537ec0215927e6a9569b8437c145286755a6c0d77d7aa4",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/FaceProducts.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/FarBlind.lean",
+      "sha256": "92ecff49713de01f714e5aba81031dfba03d4425d880ab5dce60db9e5998aabf",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/FarBlind.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/FilteredPages.lean",
+      "sha256": "b70a77008c38baf347feda868d717f0b9e2e4f3a5f6424d7fbed62b5fcb316bd",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/FilteredPages.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/FlowCertificate.lean",
+      "sha256": "8cf5701ba05713c132b6d0afbfa33f5734bb1e17d5f3343491e8a34c36fe81dc",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/FlowCertificate.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/ForcedDifferences.lean",
+      "sha256": "e92e39fd798f6f7b33a9dc655b7acf84c2eb2d221a3b89c87ee486d41a35228f",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/ForcedDifferences.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/HingeDeficits.lean",
+      "sha256": "0470a8eb96d22f7db2b07167dc46227c40dab7508ed8626f37f95218617d9218",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/HingeDeficits.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/IsolatedRoots.lean",
+      "sha256": "5e7516e4adcbd1f3f97ebaac4feed559a31eccaec801fcefe84d341d278ae1b8",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/IsolatedRoots.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/JointPayoffs.lean",
+      "sha256": "79af1f8d61596e2a386312b7b3baabf45d83b3cbfa8b7d899064c75aca757c15",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/JointPayoffs.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/JointRank.lean",
+      "sha256": "dd6ad3515976dd9f8a946f347a206b95e874c65e2183dff06cb9c0b1139022eb",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/JointRank.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/LoopProducts.lean",
+      "sha256": "3c00a74f52e4e1b0964f2c89fac002c866614d80b6d64d43b58618a643f8b8df",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/LoopProducts.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/MirrorPairs.lean",
+      "sha256": "90ce1d60d7eded955e2af5ab467a29bfd7f7ab77936f8455b0958136d0d53aa0",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/MirrorPairs.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/NamedFrames.lean",
+      "sha256": "a05c5fe3f31018a1666e5961ab3167dd7054958f5a7bcabe0b037b73258ade83",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/NamedFrames.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/OrderedLog.lean",
+      "sha256": "08fdf7723808608765aceba2d4ec9fea69161d5d4cb7b085df5448d9d1b31f5e",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/OrderedLog.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/OrderedSplits.lean",
+      "sha256": "ad733a29633bea1867b4d56aa8d1fdb9427e8fbf4dd65cf166a93500570ccd1e",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/OrderedSplits.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/OutwardBounds.lean",
+      "sha256": "eff3976958cc3b41ffc686aefe479cface427fe470828d5518e81b3ae7f09c50",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/OutwardBounds.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/OverlapChoices.lean",
+      "sha256": "b2d13bf20624b65e7017d97c58ea3cb65590f50720333742d4db871b5919331f",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/OverlapChoices.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/PatchedViews.lean",
+      "sha256": "702922a78087fe419fe2b9d40f3bbcbe1c01c05dcbba72183da2da3ea96364ca",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/PatchedViews.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/RatedLimits.lean",
+      "sha256": "dac568f76f073d3ef742fc5a0146e353402fa8b61f920e131c38a31fcb5d2fcc",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/RatedLimits.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/RefinedSums.lean",
+      "sha256": "4776257c850efd3a5f1b512630eb6001aab1716f280ffd4cd8fb24ee17414426",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/RefinedSums.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/ReindexedFibres.lean",
+      "sha256": "0a8c3134e27542d4c0161f376a48846ed77a896c605ecdb09cf4f6d7c7310e42",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/ReindexedFibres.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/RimCochains.lean",
+      "sha256": "24bf614c09249391bbce67287019a6fa3e736a74c9cd3576938177d92689e191",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/RimCochains.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/SameBackground.lean",
+      "sha256": "c499c34378f3239746d1867e1048d6a0946ff7baa705efa409450400dcfcdd6d",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/SameBackground.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/ScaleSteps.lean",
+      "sha256": "eb54618ead435950b3e41dc35d97c4da3c6bdb7a263bd518766a099fec344b02",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/ScaleSteps.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/ScopeFence.lean",
+      "sha256": "73ebba38bb9f7386d7025617239eb3b3084af2b3d82ef9ef8eda40c1d113a1b8",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/ScopeFence.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/SideReduction.lean",
+      "sha256": "75ad6846183c5bdcb6c319a7aa9b78b6ca47609093312ac26ffd6615eb697735",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/SideReduction.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/SignedCells.lean",
+      "sha256": "d1bea0bf89d1fffccebe0218ddedf59a1a70576a5245b8b7edd96e869fd65915",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/SignedCells.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/SignedTotals.lean",
+      "sha256": "da3b39b3ad8f29161fafd2c8008023b3a3880f6d7eb9083ca13baf9741bd5a50",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/SignedTotals.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/SizeKeeping.lean",
+      "sha256": "9488e7d486ee0040cf9ef2792d931fd67ea6d2f387590dde8c7b339eca3fd008",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/SizeKeeping.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/SplitWeights.lean",
+      "sha256": "189d51984c3d37086cda32be5bad7af928f647e0a678097634602033e60fa78e",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/SplitWeights.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/SquareOne.lean",
+      "sha256": "9dc4e6d5eb8225eb8816b6ea45e18a2b4ea690ff83999d89ecc1d834a9d546dd",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/SquareOne.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/StableProfiles.lean",
+      "sha256": "9156d95145e7533b6bbe5b8caaa8c9f94849098ec58dc5481d6dc8a9441c07a0",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/StableProfiles.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/StepWeights.lean",
+      "sha256": "e5c9cc2dddfe68f6eb51b1dab4c2bca52f74e3a135eff0d7bb690c26671f6f00",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/StepWeights.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/TablePolynomial.lean",
+      "sha256": "3f17b34b45a12f40e9c4a62f1c3a776a57c2f61f977f62686bc893ea1e3575d4",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/TablePolynomial.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/TableRoots.lean",
+      "sha256": "c5c62e169a0972acff65a4aeacbbae2c67f43e3837771eb9bfadd74a9c3c8a22",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/TableRoots.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/ThreeWaySplit.lean",
+      "sha256": "37375c18cc406187e1cd2c95c224c488d3a9bbf4fbfdb54301953074f5a4b742",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/ThreeWaySplit.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/TwoPartyBound.lean",
+      "sha256": "384ed316c40674ff379e9f111b2389ab1634b540aa6c758408d0042ae0c25c52",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/TwoPartyBound.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/UnitRows.lean",
+      "sha256": "3bdbaa35d08f2ccc49b070166f1847e86484f13b50dba668442fe3f4dc04a992",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/UnitRows.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/UseOnceTerms.lean",
+      "sha256": "59769ef527140739d859c5fc6c8bf938edca962ecda379b6db56fa0b48b29766",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/UseOnceTerms.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/WalkTransport.lean",
+      "sha256": "b126fc900d8c9b725d7422aa74c7217af41710f6c407c03f89edc6195c8f3dbe",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/WalkTransport.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/WeightedUpdate.lean",
+      "sha256": "afbc803ad583b487883b64e28b194ce84d570e71e0c72eb2b333d8139e5f7dfb",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/WeightedUpdate.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/level_engine/WitnessedTriples.lean",
+      "sha256": "d5e2e87809b2a6d87519911e6330c81eeb816ed76e572d80dfe674a36afa4fd8",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/level_engine/WitnessedTriples.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/normal_forms/BQNF.lean",
+      "sha256": "655384d082205acd89190bfdfffce093e7dcd41830e13b4f2a16f9f5a747790e",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/normal_forms/BQNF.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/prompt_civilization/BoundedStabilization.lean",
+      "sha256": "ed224bdad3024df6bb5fa13680475af21dcc48f34d1a9feb9002044758e96792",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/prompt_civilization/BoundedStabilization.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/wdp_reasoning/ExecutableReasoning.lean",
+      "sha256": "45e84a8230275c507a559e30a2321fa2a01614460d64dceb03f5c3772bce9206",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/wdp_reasoning/ExecutableReasoning.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/wdp_reasoning/ReasoningAxioms.lean",
+      "sha256": "3478e5702a14e75a0824563206dc52fd6a095556c99d192f887dc5880f0cda4f",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/wdp_reasoning/ReasoningAxioms.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/wdp_reasoning/RefinementAxioms.lean",
+      "sha256": "09ac0b21525cbf7cd67af904346d7a44060296734cb7a55a68ccf82a30805df1",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/wdp_reasoning/RefinementAxioms.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/wdp_reasoning/WitnessedReasoning.lean",
+      "sha256": "f063fd17bccdcfe8d5fea07a0032a3bc171c35b2a4dae76879fbf0b14c71eda0",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/wdp_reasoning/WitnessedReasoning.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/woland/ConcreteHintDPO.lean",
+      "sha256": "c19b44ebc34e99eae57a5fdaa5172a29dff1cf9466928ed14ac89f8adadf3dfb",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/woland/ConcreteHintDPO.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/woland/ConcretePromptRewrite.lean",
+      "sha256": "9b72555b1c3d37d6f3021d763c45cbbb18dc6aa421f528b3b0e3c5547b85aa9c",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/woland/ConcretePromptRewrite.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/woland/ExplicitGraftLaws.lean",
+      "sha256": "1ce2525f64009e0a44cefbc16a36719a7e50c48d6d511bad54bf9e6004128990",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/woland/ExplicitGraftLaws.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/woland/ExplicitInputAction.lean",
+      "sha256": "195a6938d62120ee3891ce6193fa57f6783e395530fedba9e238343768e27d70",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/woland/ExplicitInputAction.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/woland/GateIdeal.lean",
+      "sha256": "502c29a079f2392e45a227407cf294c8e2eef41641ff174c77c8807c3181e35b",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/woland/GateIdeal.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/woland/NativeModelBridge.lean",
+      "sha256": "418a016cd84bab6e2a6632f29e5408db1cf1d8bfd354d9faf14993d979aa4b17",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/woland/NativeModelBridge.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/woland/PlanarTree.lean",
+      "sha256": "fcc2a3d5a2f56b04e07e69e5afa1c55a01446d316a2ebcc15ac142c480b4332d",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/woland/PlanarTree.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/woland/ProtectedRewrite.lean",
+      "sha256": "2ed294751b426f470e0a4f8a511a6557673d8ebfe0651b3af1b5bce59ca03b68",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/woland/ProtectedRewrite.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/woland/SlotSelection.lean",
+      "sha256": "9c89c489c62a85c3a7cd70485d79ae952bf81237f5acccc5a823dce4a8176ce6",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/woland/SlotSelection.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/research_programs/woland/SymmetricGateQuotient.lean",
+      "sha256": "8710d95814efec77fa6a4ce30537c6ea489e323aa390c4924f741f04c50cc837",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/research_programs/woland/SymmetricGateQuotient.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/simplex/autop/CrossVerification.lean",
+      "sha256": "9a3e6353f277a9db0242ad8ed7c53c90cca50e8138f35eb3a49007826051bf06",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/simplex/autop/CrossVerification.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/simplex/autop/Kernel.lean",
+      "sha256": "01a7caa0a7d623deebeb93aae79af13e863b642b6a73b4a7702329a7db752b77",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/simplex/autop/Kernel.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/simplex/autop/Semantics.lean",
+      "sha256": "e87e980bee3f3e8138c6e1b40bb83b99d546729727b193fa747fe0f1f4f53c29",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/simplex/autop/Semantics.lean",
+      "copied": true
+    },
+    {
+      "repository": "anomalon",
+      "source": "lean4/simplex/autop/Syntax.lean",
+      "sha256": "173b8f30426d055c4f298b9f7290838ed68ef6fdb39a08495592de1d0ea119ab",
+      "research_path": "research/recovered_sources/external_sources/anomalon/lean4/simplex/autop/Syntax.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/AllDegreeCurvature.lean",
+      "sha256": "7325faa7e55d87fd5d3391fbab8af8aa3fdf2960436f909a4c07d728e8181a04",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/AllDegreeCurvature.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/AxiomAudit.lean",
+      "sha256": "eabd32e9158f40b79e9d336df9a829033ee338bf70449f1dd04ba791899b322b",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/AxiomAudit.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/CODAWitnessStandalone.lean",
+      "sha256": "6810506c41d71dad44458bdeb679cac8dd63ca3dc41ede9da254d5443f284bf8",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/CODAWitnessStandalone.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/Census.lean",
+      "sha256": "f7977fe2c2ed9cd84ca16fad15d1b59633d766b18584b23a52f1ef96be67eda4",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/CohomologyClass.lean",
+      "sha256": "a36be8a268d52ae6a285dc6bb261be7c72be0669c3d36926513eb1491ee8691d",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/CohomologyClass.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/ConcreteIncidence.lean",
+      "sha256": "4035f7b3894f55d7b58ed05390b72557b3eee1ddf8a2a4959aa94bb3d383602c",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/ConcreteIncidence.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/Core.lean",
+      "sha256": "e293370673c3a7a750914101de978f9d4ec7b91610b5308ed80570ad99a8ec22",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/Core.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/CurvatureCochain.lean",
+      "sha256": "15b846108b96d3345dad5d90ed046c468121e36839a29a57f944080101c04b46",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/CurvatureCochain.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/CurvedDerivation.lean",
+      "sha256": "a24959ada58dcd1745b874ebc802cd731153a51139bbc40b7d2857e28d9aa679",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/CurvedDerivation.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/CurvedDerivationStandalone.lean",
+      "sha256": "ad3105a9e1ad5fb1162f2b248c7628dff928f2945108dde0634ae6cdbc74bddc",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/CurvedDerivationStandalone.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/DualWitnessStandalone.lean",
+      "sha256": "b9340b7506257701e8dd7ef8326c45a6a71e2bef104fd84b10d3216eba8e1fee",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/DualWitnessStandalone.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/FlatLossAndCurvature.lean",
+      "sha256": "bae0816fb203dc228c031a9f89ebf63e44adcfbaa84e9e4421c0872381462c8b",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/FlatLossAndCurvature.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/HeterogeneousIncidence.lean",
+      "sha256": "e14cd93b886eccc2c4307503b7e47787c8105ec58c0eadb281b8c6b5fe94cdfe",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/HeterogeneousIncidence.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/PrimeTriadRouterStandalone.lean",
+      "sha256": "91d772aa3e89db1bae296112dadea41950e01b30a1f786b60c4a4fdb5d52bb31",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/PrimeTriadRouterStandalone.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/PrimitiveDifference.lean",
+      "sha256": "fa33fec04e96fd61733d387a792f205a8265063592be84dc444f4bad4aa19aae",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/PrimitiveDifference.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/PrimitiveDifferenceLggr.lean",
+      "sha256": "024abf5c436413b98bce75dd0cc59cd5f9ca8a0c37497030645afdf856a93da7",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/PrimitiveDifferenceLggr.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/ReggeBianchiStandalone.lean",
+      "sha256": "4282992e52ed47af02c7b5dbc108866b1158a3c0b7f90b2d0d207a9736c3b210",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/ReggeBianchiStandalone.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/SheafContextualityStandalone.lean",
+      "sha256": "97921367a0a8472acca63fe94a755597aa0136834631829bc9ce0e1c48754aa1",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/SheafContextualityStandalone.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/StrictCompletion.lean",
+      "sha256": "d290dc8e65642b1739701682fd379511da82749d3cf175249e01039d1358236d",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/StrictCompletion.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/TransportIdentities.lean",
+      "sha256": "95d8ea763628b04f6f225d5c10afe3092d7c13fdf7438b1c0cf96dd7fb51869a",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/TransportIdentities.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/lakefile.lean",
+      "sha256": "6fff666206193a3a2ec6f1a9eb14115ca7c25741c06c0a2fa248827e2bba4309",
+      "research_path": "research/recovered_sources/papers_lean_recovery/001_from_covering_edge_descent_complexes_to_functorial_presheaves_and_coherence_defects/lean4/lakefile.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/Census.lean",
+      "sha256": "a0dd1d82455c1f7a022456e9d3b2c06a61dcb1c3a330eec194ac5438e06c23ef",
+      "research_path": "research/recovered_sources/l1_native_cohomology/Census.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/l1c_core.lean",
+      "sha256": "cfc1ac904fad8857cb5dc18e980f34c4ef001f43e69cbebd7cf61efce4285231",
+      "research_path": "research/recovered_sources/l1_native_cohomology/l1c_core.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/l1c_general_certificate.lean",
+      "sha256": "525ed2de5d841e32e5e68fbeba4aa2449603b60de6c61b7c02bf99472da098fa",
+      "research_path": "research/recovered_sources/l1_native_cohomology/l1c_general_certificate.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/l1c_lp_cochains.lean",
+      "sha256": "0597160e3a4140b1e88dedbaa3f935b18ced813b6fbfdf2c4c3ae8e9e56be51f",
+      "research_path": "research/recovered_sources/l1_native_cohomology/l1c_lp_cochains.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/l1c_lp_duality.lean",
+      "sha256": "2345e92fc04c970d7b7ead72e381aed21c75bebe1165226f5f2d6bf6e30d208c",
+      "research_path": "research/recovered_sources/l1_native_cohomology/l1c_lp_duality.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/l1c_lp_hodge_decomposition.lean",
+      "sha256": "4ac6cafd7352e46603048dde4f76bc1f20889eb9d3beb2e68d9636452291d410",
+      "research_path": "research/recovered_sources/l1_native_cohomology/l1c_lp_hodge_decomposition.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/l1c_lp_strict_uniqueness.lean",
+      "sha256": "32fa7244ac1834392ee4f7db151f3eb3d4ae95d1d31ceed8bb967ad4a54eb2cc",
+      "research_path": "research/recovered_sources/l1_native_cohomology/l1c_lp_strict_uniqueness.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/l1c_t01_attainment.lean",
+      "sha256": "510146e6686f820a5aa536497d8de080b5995744ff6798a6f1047d118442ecdc",
+      "research_path": "research/recovered_sources/l1_native_cohomology/l1c_t01_attainment.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/l1c_t02_quotient_norm.lean",
+      "sha256": "803737d35748a5e75507ae455e15fb67efa9fc6eb75685d09fa5949c12ec4b2e",
+      "research_path": "research/recovered_sources/l1_native_cohomology/l1c_t02_quotient_norm.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/l1c_t03_weak_duality.lean",
+      "sha256": "e224ec2cbb86e04e5273fe4cc0c878ebc318b0f47bbaca9766db3ef79ace78db",
+      "research_path": "research/recovered_sources/l1_native_cohomology/l1c_t03_weak_duality.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/l1c_t04_complementary_slackness.lean",
+      "sha256": "456b1724267c0c82952c1a49cb5b19753b5678a241c9e4813b82716501966b5f",
+      "research_path": "research/recovered_sources/l1_native_cohomology/l1c_t04_complementary_slackness.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/l1c_t05_cycle_invariant.lean",
+      "sha256": "7e03d5d5c6280f3e4674c3d905ae092b66ca74699dbe879ca2f7f9017aba5502",
+      "research_path": "research/recovered_sources/l1_native_cohomology/l1c_t05_cycle_invariant.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/l1c_t07_bianchi_nilpotency.lean",
+      "sha256": "059529559655bf78fc299a6ea3758028e4b28a16e19985871d356b14108e6a04",
+      "research_path": "research/recovered_sources/l1_native_cohomology/l1c_t07_bianchi_nilpotency.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/002_l1_native_cohomology/lean4/lakefile.lean",
+      "sha256": "98b8afb4c29e15999449fb3ac197ea78a4bb9fc1db109c3492dc2097b1982ce8",
+      "research_path": "research/recovered_sources/l1_native_cohomology/lakefile.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/003_l1_obstruction_framework/lean4/Census.lean",
+      "sha256": "24fce839a580d85d5b43e570d34a57c1b9d61fd5fc887b1bb39f39d8efedc565",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/003_l1_obstruction_framework/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/003_l1_obstruction_framework/lean4/lakefile.lean",
+      "sha256": "35cbdbb261fe06fc6ca4f7e198fe5b8e58ffa2ba3ffe40741e4cab748421edea",
+      "research_path": "research/recovered_sources/papers_lean_recovery/003_l1_obstruction_framework/lean4/lakefile.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/003_l1_obstruction_framework/lean4/lp_cochains.lean",
+      "sha256": "f629eedc1ec343f72fa878b879fa67c430a58dfc9ebfa8483cb9d602139927b4",
+      "research_path": "research/recovered_sources/papers_lean_recovery/003_l1_obstruction_framework/lean4/lp_cochains.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/003_l1_obstruction_framework/lean4/lp_core.lean",
+      "sha256": "2380f4f1e9273bfafcf17ee2adf7053f622f21762c12513c944e458711e84008",
+      "research_path": "research/recovered_sources/papers_lean_recovery/003_l1_obstruction_framework/lean4/lp_core.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/003_l1_obstruction_framework/lean4/lp_general_certificate.lean",
+      "sha256": "34d3e3ecab98a8ac3028404987f8be52237bcbd5a1c1a5c0664f61252958e9a8",
+      "research_path": "research/recovered_sources/papers_lean_recovery/003_l1_obstruction_framework/lean4/lp_general_certificate.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/003_l1_obstruction_framework/lean4/lp_hodge_helmholtz.lean",
+      "sha256": "d17ac62386871ca307f718387203c5d3ce2e4a103137432dcd5b1340a7319392",
+      "research_path": "research/recovered_sources/papers_lean_recovery/003_l1_obstruction_framework/lean4/lp_hodge_helmholtz.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/003_l1_obstruction_framework/lean4/lp_strict_convexity.lean",
+      "sha256": "d20fb0d9c5b9c9b5630c1bc84a823b0149eaf3905a1bf0fea14741cc9a77a970",
+      "research_path": "research/recovered_sources/papers_lean_recovery/003_l1_obstruction_framework/lean4/lp_strict_convexity.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/003_l1_obstruction_framework/lean4/lp_weak_duality.lean",
+      "sha256": "d7349ad3cb937f8876919aa461685c3b5b1949acfeef45f55d922d861e0b730e",
+      "research_path": "research/recovered_sources/papers_lean_recovery/003_l1_obstruction_framework/lean4/lp_weak_duality.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/003_representation_abundance_is_not_physical_authority/lean4/Census.lean",
+      "sha256": "1304776c8ca133daf5fb9399a02a3f81f32ce9243d837a98a740f7b7809fc741",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/003_representation_abundance_is_not_physical_authority/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/003_representation_abundance_is_not_physical_authority/lean4/Representation.lean",
+      "sha256": "f7e513883be1f5a7f2b64da2ec35b4ad4fc0fe406abf5c1e35c743c0be32cf85",
+      "research_path": "research/recovered_sources/papers_lean_recovery/003_representation_abundance_is_not_physical_authority/lean4/Representation.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/003_representation_abundance_is_not_physical_authority/lean4/lakefile.lean",
+      "sha256": "b6c80f0a11bbf5658ec7420325f06dc0db07e98e004675991608fa9dc8919727",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/003_representation_abundance_is_not_physical_authority/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/004_degree_wise_dsl/lean4/Census.lean",
+      "sha256": "39085cf0e3757c761fdfdc161edd20592bc9adf4e84c2d03f1587c2e2b22d66c",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/004_degree_wise_dsl/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/004_degree_wise_dsl/lean4/DegreeSeparation.lean",
+      "sha256": "b0e9523436f18aa7600213f2b3eb33facbbcf3fb135d5367b1749b7cd3564ccc",
+      "research_path": "research/recovered_sources/papers_lean_recovery/004_degree_wise_dsl/lean4/DegreeSeparation.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/004_degree_wise_dsl/lean4/lakefile.lean",
+      "sha256": "176f514577b8b6ca2a254add04d646c1392235d286d721d258d2a35fc84445bf",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/004_degree_wise_dsl/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/004_role_non_impersonation_and_authority_preservation/lean4/AuthorityDescent.lean",
+      "sha256": "237c5a4397d5edcdabb5c7dafc5c9c650b0a4d584474b0aa4f93125aba1becb5",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/004_role_non_impersonation_and_authority_preservation/lean4/AuthorityDescent.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/004_role_non_impersonation_and_authority_preservation/lean4/AuthorityResidual.lean",
+      "sha256": "26bcff6ac6fb89fea8200b0e9746dce17916397c06bfe70c6f4fda7499aee278",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/004_role_non_impersonation_and_authority_preservation/lean4/AuthorityResidual.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/004_role_non_impersonation_and_authority_preservation/lean4/Census.lean",
+      "sha256": "a9626b995bde7770e2239dfe21a5f8e8a62773593321a0297da3819cbe6ef529",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/004_role_non_impersonation_and_authority_preservation/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/004_role_non_impersonation_and_authority_preservation/lean4/ExceptionPipeline.lean",
+      "sha256": "cb20e651af664734d842b8b2e2d3ccf543423a96e2efa91cf4bb37c622a9b5e0",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/004_role_non_impersonation_and_authority_preservation/lean4/ExceptionPipeline.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/004_role_non_impersonation_and_authority_preservation/lean4/QuotientBoundary.lean",
+      "sha256": "0ad2309434388e1fee18379109104de3487dd5f28706048b8f8715b97ea9c1a5",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/004_role_non_impersonation_and_authority_preservation/lean4/QuotientBoundary.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/004_role_non_impersonation_and_authority_preservation/lean4/RoleFailure.lean",
+      "sha256": "886b54a8bb469334b35b5039713c431d4262f78761fa884f84a20213f9ff1a26",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/004_role_non_impersonation_and_authority_preservation/lean4/RoleFailure.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/004_role_non_impersonation_and_authority_preservation/lean4/lakefile.lean",
+      "sha256": "bfdd8609a6943ae5b81c0c5f35eff1c092fbef8af18384d35939ac1de13db382",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/004_role_non_impersonation_and_authority_preservation/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/005_the_authority_gap/lean4/AuthorityGap.lean",
+      "sha256": "94982201338429c18df28d814b25b2e31148d8a6cb41b5f9a483e71ef1630533",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/005_the_authority_gap/lean4/AuthorityGap.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/005_the_authority_gap/lean4/Census.lean",
+      "sha256": "2aa5b3a30f38b2c4aa88be9d45e535451a9772a1485b8065e3a99a7a3bb0fc82",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/005_the_authority_gap/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/005_the_authority_gap/lean4/lakefile.lean",
+      "sha256": "86b6c66e25ef1e2cfad9653dcd298f17424f618fdc77e4d5dd28e7738912dee7",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/005_the_authority_gap/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Census.lean",
+      "sha256": "893c8e2434f55cce06a14d8eb4ce6443b9f97e9129f636f57a7d727e62626757",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean",
+      "sha256": "f88694fc02e8592bf0320db84e63176b8ecefbf3eae0cd34c17aeb16004768a0",
+      "research_path": "research/recovered_sources/papers_lean_recovery/013_operator_lifts_trace_metrics_and_representation_limits/lean4/Lifts.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/013_operator_lifts_trace_metrics_and_representation_limits/lean4/lakefile.lean",
+      "sha256": "5e1ba8409f1e1b916c67cc7ffb43ac8ce6c7dbadc5b0581b4e6d092ab0b74e4c",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/013_operator_lifts_trace_metrics_and_representation_limits/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/018_constraint_level_regulation_via_multi_channel_obstruction_diagnostics/lean4/Census.lean",
+      "sha256": "90668e8e1806794e2f4c1b84a8c5fe90384f6ea5107f4723b86fa6b0827a47e3",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/018_constraint_level_regulation_via_multi_channel_obstruction_diagnostics/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/018_constraint_level_regulation_via_multi_channel_obstruction_diagnostics/lean4/Regulate.lean",
+      "sha256": "ae143c0e9942f083c10cb45fb511fdd0f434bbae40574d6b0f53647b71979aec",
+      "research_path": "research/recovered_sources/papers_lean_recovery/018_constraint_level_regulation_via_multi_channel_obstruction_diagnostics/lean4/Regulate.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/018_constraint_level_regulation_via_multi_channel_obstruction_diagnostics/lean4/lakefile.lean",
+      "sha256": "b64bf7319eab14740e095aea35e56350083f2d26ce826522ad648f77e5d9f5b9",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/018_constraint_level_regulation_via_multi_channel_obstruction_diagnostics/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/019_observer_robust_control_of_obstruction_diagnostics/lean4/Census.lean",
+      "sha256": "3ac3c5eaafeb7df371b9a12145f3786a1f6b3ab638e3c138ac7d853ede366d25",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/019_observer_robust_control_of_obstruction_diagnostics/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/019_observer_robust_control_of_obstruction_diagnostics/lean4/JointDetectorAdequacy.lean",
+      "sha256": "a5b53fbb99a2a1d8f9d143c5c911961660d8e90b7577cde56a6191c697f48dab",
+      "research_path": "research/recovered_sources/papers_lean_recovery/019_observer_robust_control_of_obstruction_diagnostics/lean4/JointDetectorAdequacy.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/019_observer_robust_control_of_obstruction_diagnostics/lean4/ObserverRobustControlCore.lean",
+      "sha256": "fa5e5a6ada5304d4fe1576e57f6712624b2465b06d0e99cdc534f98cf387cbc0",
+      "research_path": "research/recovered_sources/papers_lean_recovery/019_observer_robust_control_of_obstruction_diagnostics/lean4/ObserverRobustControlCore.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/019_observer_robust_control_of_obstruction_diagnostics/lean4/lakefile.lean",
+      "sha256": "8de736e18723e6473e332d1249889ed458fc3ad65588a8f2a53e3d7f2ca88ad9",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/019_observer_robust_control_of_obstruction_diagnostics/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/026_operator_proposal_layer_for_finite_l1_obstruction_systems/lean4/Census.lean",
+      "sha256": "0ec993ae5678fdd07a5c3cdecec055a1cef79ae553a59d8666130b4be22bfde0",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/026_operator_proposal_layer_for_finite_l1_obstruction_systems/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/026_operator_proposal_layer_for_finite_l1_obstruction_systems/lean4/Proposal.lean",
+      "sha256": "cc3cef35e1133abd161489354d3c4043111268abaa1bfbb4afac8c27719e620a",
+      "research_path": "research/recovered_sources/papers_lean_recovery/026_operator_proposal_layer_for_finite_l1_obstruction_systems/lean4/Proposal.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/026_operator_proposal_layer_for_finite_l1_obstruction_systems/lean4/lakefile.lean",
+      "sha256": "9bb23b83602b34f1e696612e2f41e28a55ab75cdf4969e94361760e25f1a3879",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/026_operator_proposal_layer_for_finite_l1_obstruction_systems/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/027_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/lean4/Census.lean",
+      "sha256": "a7a222a7b1e4960e904a27473dc05ecf03e820724d6583b1fd82f01b8cba1e48",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/027_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/027_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/lean4/ResidualNonCreation.lean",
+      "sha256": "cfa5690056db7af1d5a08d3312088eb297bb8a2ee2a9c43deb9f3fc717891d40",
+      "research_path": "research/recovered_sources/papers_lean_recovery/027_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/lean4/ResidualNonCreation.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/027_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/lean4/lakefile.lean",
+      "sha256": "f0ebd2d367d3e3078e8c19c704e8d8e4fe8b96c90f6a4f3d23dec98d48c424b8",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/027_the_authority_firewall_a_machine_checked_separation_of_evidence_from_authority_in_finite_systems/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/028_finite_authority_and_non_terminal_computation/lean4/Census.lean",
+      "sha256": "99220749ea671875e9832af562a39413c5ddeec9a97b427297fc5afead089c69",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/028_finite_authority_and_non_terminal_computation/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/028_finite_authority_and_non_terminal_computation/lean4/FiniteAuthority.lean",
+      "sha256": "9dcc2a4e73620c8946b309e3a862f33f13a7f1f32c640afe0fa7bca19db4cc93",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/028_finite_authority_and_non_terminal_computation/lean4/FiniteAuthority.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/028_finite_authority_and_non_terminal_computation/lean4/lakefile.lean",
+      "sha256": "5ac8aa50614c454c4ac9a453a0cd0645dc94e9ca4c48245396601b9a6184259c",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/028_finite_authority_and_non_terminal_computation/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/029_the_anomalon_boundary/lean4/Census.lean",
+      "sha256": "d7c3674a947f00819439f2ff50ee9813b8acc9bc414968d08e55b096077f8635",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/029_the_anomalon_boundary/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/029_the_anomalon_boundary/lean4/FiniteBoundary.lean",
+      "sha256": "e551549e69bbf2609b8ab7f764792adfccf980e94b12959874bb0d2b1ac61911",
+      "research_path": "research/recovered_sources/papers_lean_recovery/029_the_anomalon_boundary/lean4/FiniteBoundary.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/029_the_anomalon_boundary/lean4/lakefile.lean",
+      "sha256": "aa8f5a8bf5c9c2c8afdcc3f30d8fca8d779c00058eacd4fd1930251b23b3171d",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/029_the_anomalon_boundary/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/030_authority_firewall_and_verification_limits/lean4/Calibration.lean",
+      "sha256": "6895ebad9d3a83217b9a6e37efce0309a6fc9b5b3529c04d2bb6ea3f49e7fa71",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/030_authority_firewall_and_verification_limits/lean4/Calibration.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/030_authority_firewall_and_verification_limits/lean4/lakefile.lean",
+      "sha256": "9b710b3907373a1666755e82e32e425e22b48a69bb4da2fc755fee7694e53f45",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/030_authority_firewall_and_verification_limits/lean4/lakefile.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/publication/author_review_2026_10_23/004/lean4/Census.lean",
+      "sha256": "4c142fe05ac08f688e94bd186c2d766bcce5884f7bc2bbf6a6cc4ad96a593cfd",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/publication/author_review_2026_10_23/004/lean4/Census.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/publication/author_review_2026_10_23/004/lean4/FullCensus.lean",
+      "sha256": "20ee1d1ffc2cd807a45f0517e71f43995490321fd5885575b3d9e4cc4c517d61",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/publication/author_review_2026_10_23/004/lean4/FullCensus.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/publication/author_review_2026_10_23/004/lean4/IdentityTypes.lean",
+      "sha256": "d0e55ef5ba198a905491fd149b0a58fdbd4d89d2a5d6d924e40f1baaa9512789",
+      "research_path": "research/recovered_sources/papers_lean_recovery/publication/author_review_2026_10_23/004/lean4/IdentityTypes.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/publication/author_review_2026_10_23/004/lean4/SnTower.lean",
+      "sha256": "b85f282183ce234df1cb8c0eb0f4d0c9974fd7ca514a583fc38639c2c221464e",
+      "research_path": "research/recovered_sources/papers_lean_recovery/publication/author_review_2026_10_23/004/lean4/SnTower.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/publication/author_review_2026_10_23/004/lean4/SparseLanding.lean",
+      "sha256": "b3c90f74d9b5b6c92139a7afa9ba62dc085014d5a8c97b994e14a252ea0d7b3f",
+      "research_path": "research/recovered_sources/papers_lean_recovery/publication/author_review_2026_10_23/004/lean4/SparseLanding.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/publication/author_review_2026_10_23/004/lean4/SparseLandingGeneral.lean",
+      "sha256": "87ff60b5f6a25d9d459eadade9262ce9d64209364f1e164ff19ea2ca91ae4a7d",
+      "research_path": "research/recovered_sources/papers_lean_recovery/publication/author_review_2026_10_23/004/lean4/SparseLandingGeneral.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/publication/author_review_2026_10_23/004/lean4/Topology50.lean",
+      "sha256": "1075f465d704a209fbf04916feee6370bd4b65fa0b4ae0698a097bf59a83c6a6",
+      "research_path": "research/recovered_sources/external_sources/proposal_fidelity_protocol_pfp/papers/publication/author_review_2026_10_23/004/lean4/Topology50.lean",
+      "copied": true
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/publication/author_review_2026_10_23/004/lean4/TotalUnimodularity.lean",
+      "sha256": "2eee3c93124b0eaef2f66258e940d5d4db23135c7ac52e8e2dbe0bdca4ddb21a",
+      "research_path": "research/recovered_sources/papers_lean_recovery/publication/author_review_2026_10_23/004/lean4/TotalUnimodularity.lean",
+      "copied": false
+    },
+    {
+      "repository": "proposal_fidelity_protocol_pfp",
+      "source": "papers/publication/author_review_2026_10_23/004/lean4/lakefile.lean",
+      "sha256": "8276e0b42e86ca03ec64049aa392961ace97dce0e2c4c4d19e744eee90a35898",
+      "research_path": "research/recovered_sources/papers_lean_recovery/publication/author_review_2026_10_23/004/lean4/lakefile.lean",
+      "copied": false
+    }
+  ]
+}

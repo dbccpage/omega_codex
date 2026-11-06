@@ -1,0 +1,113 @@
+{
+  "purpose": "Source custody and reading scope for the proposed finite reconstruction plan; not a proof or build receipt.",
+  "omega_snapshot": "3ba94e1e455295da278c855c434f0b3ba83b520a",
+  "tfqm_remote_source_snapshot": "1a7263e924accae0e114ab258b1747a84f693080",
+  "ongoing_remote_source_snapshot": "e38945d146faaa2c60dcae96cb6b6c6c5123bf38",
+  "local_sources": [
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\1_pregenesis_empty_mark\\01_experiment_design.md",
+      "sha256": "4a928847540c8212bb9667cf7c855334cbefcf365ac8c5494714de94ca2df8c6",
+      "reading_scope": "full"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\1_pregenesis_empty_mark\\03_results_and_arguments.md",
+      "sha256": "0da866613adce00ce901eed0584b3f94c9c1da62ea7e7390de51375c61a1a252",
+      "reading_scope": "full"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\1_pregenesis_empty_mark\\05_method_lessons.md",
+      "sha256": "144ec7389ccf8c1b9dc5419fde86dbd498c01917d44524cf537bc78ccd4ea10b",
+      "reading_scope": "full"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\2_symmetric_group_presentations\\sn.md",
+      "sha256": "96c4221a058880dca0ce9d8c3b489d1ba028e238beb3d8beba6c991be8bf661d",
+      "reading_scope": "full"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\2_symmetric_group_presentations\\source_correspondence.md",
+      "sha256": "20606b8d9fbac2bd2110b193cb5534d3cec8597944687a652530a05d6a05e148",
+      "reading_scope": "lines 1-65"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\3_minimal_symbol_systems\\reading_guide.md",
+      "sha256": "23f2faf90acf883d17ae000c65b6a020a33d64536c2a85b2237590e5f6bad35f",
+      "reading_scope": "selected sections, including source feedback and continuation"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\4_genesis_primitives\\genesis.md",
+      "sha256": "20060ea5a48a92820a345ef068bf0f632fa60ae2dcfd452b6b4c5d5079c47889",
+      "reading_scope": "full across reads"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\4_genesis_primitives\\wdp_integration.md",
+      "sha256": "2a7318d006cc01ad86efee39f1905d9d611a6153586da0bf7289094b18c033f5",
+      "reading_scope": "full"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\5_genesis_reading_notes\\genesis_ongoing.md",
+      "sha256": "c5a4462d72dee5952ef486794fd0c31a6bae1c2a893ab18c52b82f8e622281ed",
+      "reading_scope": "lines 1-200"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\6_genesis_foundations\\genesis_19L57G1.md",
+      "sha256": "0dc3a6147d64efb5243b159b201870198f87b2978c6ffbb657f5abe36ad70094",
+      "reading_scope": "lines 1-138; later headings only"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\6_genesis_foundations\\genesis_ongoing.md",
+      "sha256": "919abd7fca5a31839850eddd0aa03b9fd0552c2174538a20793665ba28fcfff2",
+      "reading_scope": "lines 1-170; later level-2 headings only"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\6_genesis_foundations\\this_repo.md",
+      "sha256": "2c8c82124e31d88c5dc0963da7928081a380fbf0684e2753429cc12041b54051",
+      "reading_scope": "lines 1-100; later headings only"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\7_genesis_language\\SPEC.md",
+      "sha256": "309afbfcbd00124f0675a6a3e71be7c798cf45a59a9592b8f20b0cab128626f2",
+      "reading_scope": "full"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\8_witnessed_difference_programme\\README.md",
+      "sha256": "397fd9df0a081593fc56d89ca179b71e00b55587cd79806c7d0ee63d80d13ee7",
+      "reading_scope": "lines 1-150"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\8_witnessed_difference_programme\\derivation_review.md",
+      "sha256": "4cec5d91ba9f0ff11aafa6671876cdea8b46723b8dcdb41362f504c5431a4479",
+      "reading_scope": "full"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\education\\8_witnessed_difference_programme\\reading_guide.md",
+      "sha256": "2c2e9a02b9edfdda12fbc922a3d67df89994c42097956e19c787abb29147ec0e",
+      "reading_scope": "full"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\lean4\\AdmitCore.lean",
+      "sha256": "c8e46cf7f11884572047e863c8d3b8bc1328f73a9bb4ea04f9e001f91abc61d9",
+      "reading_scope": "lines 1-85"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\atlas\\finite_obstruction_calculus\\witnessed_difference_programme\\docs\\01_substantiated\\derivations\\genesis_construction.md",
+      "sha256": "3e8636fbccc23635b30a2ad8509af64938818689a22654b3d263736a2d51b2e1",
+      "reading_scope": "full"
+    },
+    {
+      "path": "C:\\Users\\a343o\\source\\repos\\theory_of_finite_quantum_mechanics\\atlas\\finite_obstruction_calculus\\witnessed_difference_programme\\lean4\\WitnessedDifference\\GenerativeHistoryCompression.lean",
+      "sha256": "9804d239b85207f6273a7b3a4a80d9f4c673afc9ca720b9899ec8c3439f3e6d4",
+      "reading_scope": "lines 1-100 and declaration search; full source read in earlier route work"
+    }
+  ],
+  "remote_blobs": {
+    "GenesisConstruction.lean": "46588ef5be1c1445e745d7b4e216059d120451d7",
+    "genesis_construction.md": "4332fec3a13e2fe150e53fcd2c2596d8c64c5803",
+    "H3_seed_prompt.md": "040d0a40f932b1a2e1fe981c919bc616e6cda2ce",
+    "H3_Sixteenth_Reach.lean": "936e3e6cdcba8682c479bc35b12fe35b49136eec",
+    "H3_Twentythird_Raise.lean": "fea34713a004b29eaecfd932f4a12156403020c0"
+  },
+  "new_mathematical_implementation": false,
+  "fresh_lean_build": false,
+  "full_education_tree_review": false
+}

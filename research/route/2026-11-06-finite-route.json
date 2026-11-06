@@ -1,0 +1,213 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-06",
+  "purpose": "Source-linked finite construction route. Review artifact, not a new derivation or a declaration that open obligations are closed.",
+  "snapshots": {
+    "omega_local": "1835c79c96817b1661dbfce8836906c134725839",
+    "omega_remote_main_at_read": "b94d9232109f7bb9c63661c3a3811de03940d48b",
+    "tfqm_remote_main": "1a7263e924accae0e114ab258b1747a84f693080",
+    "monograph_git_blob": "1812a5a44b1b69218dc9793308cfad368413d090"
+  },
+  "scope": {
+    "read_monograph_sections": [
+      "1-2",
+      "3.2",
+      "4.1 and 4.4-4.5",
+      "technical note for chapters 1-5",
+      "17.7-17.11",
+      "20.7-20.9",
+      "20.14-20.15",
+      "22.1",
+      "Appendix B"
+    ],
+    "entire_monograph_reviewed": false,
+    "finite_moves_only": true,
+    "continuum_work_deferred": true,
+    "new_lean_implemented": false
+  },
+  "omega_state": {
+    "derived_nodes": 25,
+    "owed_nodes": 12,
+    "imagined_nodes": 10,
+    "receipt_bound_theorems": 362,
+    "latest_addition": "DER-25: two-sheet period-four iff nontrivial two-step sheet holonomy; n=3 minimum for the specified one-stick reflection residual task.",
+    "remaining": "The new classification does not force sheet holonomy or select a ten-slot carrier."
+  },
+  "route": [
+    {
+      "id": "mark",
+      "owner": "Genesis and Omega admission audit",
+      "source": "https://github.com/dbccpage/omega_codex/blob/1835c79c96817b1661dbfce8836906c134725839/audit/2026-11-05_minimal_chain/6_minimal_chain.md",
+      "result": "Existing minimal-chain ledger distinguishes opaque inscription from admitted witness, relation and protected law.",
+      "supplied": [
+        "host logic and equality",
+        "carrier and witnessed relation",
+        "irreflexivity for endpoint distinctness"
+      ],
+      "next": "Use the existing admission record; do not invent a constructor in the glyph."
+    },
+    {
+      "id": "priced_separation",
+      "owner": "Omega MinimalSeparation; WDP CH03-P03",
+      "source": "https://github.com/dbccpage/omega_codex/blob/1835c79c96817b1661dbfce8836906c134725839/lean/MinimalSeparation.lean",
+      "wdp": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/1a7263e924accae0e114ab258b1747a84f693080/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#L669",
+      "result": "Declare a unary form and assert it on one endpoint; two-item minimum in the declared grammar, with two symmetric marked minimizers. Strict fresh-form refinement preserves old separations and grows the class count.",
+      "supplied": [
+        "admitted endpoints and separation demand",
+        "Item4 grammar",
+        "item and arity costs"
+      ],
+      "same_argument": "WDP CH03-P03 and Omega minimum-separation results are the same declared-grammar problem; do not reprove as a new tower stage."
+    },
+    {
+      "id": "typed_histories",
+      "owner": "WDP GenerativeHistoryCompression",
+      "source": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/1a7263e924accae0e114ab258b1747a84f693080/atlas/finite_obstruction_calculus/witnessed_difference_programme/lean4/WitnessedDifference/GenerativeHistoryCompression.lean",
+      "result": "transitionSignature accepts State -> Event -> Option State; replay_transitionEvents proves endpoint preservation; transitionEvents_comp preserves ordered concatenation.",
+      "supplied": [
+        "source partial transition",
+        "typed endpoints",
+        "protected history questions"
+      ],
+      "integration": "Instantiate with Omega applyItem4. Preserve refusals separately from successful transition histories. This exact Omega instantiation was not found in searched lean/, audit/, dag/."
+    },
+    {
+      "id": "finite_reasoning",
+      "owner": "WDP RSN-01 through RSN-12",
+      "source": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/1a7263e924accae0e114ab258b1747a84f693080/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#L8588",
+      "code": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/1a7263e924accae0e114ab258b1747a84f693080/atlas/finite_obstruction_calculus/witnessed_difference_programme/code/witnessed_difference/reasoning.py",
+      "result": "Finite Horn derivations, checked proofs/countermodels and graph reachability transport already exist.",
+      "supplied": [
+        "finite atom names",
+        "facts",
+        "rules",
+        "query",
+        "budget for bounded execution"
+      ],
+      "integration": "Use as existing checker where the chosen source task has a declared encoding; do not replace arbitrary source semantics with Horn entailment."
+    },
+    {
+      "id": "cochain_obstruction",
+      "owner": "WDP Chapter 4 and existing constraint-closure package",
+      "source": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/1a7263e924accae0e114ab258b1747a84f693080/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#L894",
+      "result": "Repair quotient, representative invariance, cycle certificates and closure diagnostic.",
+      "supplied": [
+        "finite incidences",
+        "coefficient algebra",
+        "repair operator",
+        "norm or price",
+        "next differential when closure is requested"
+      ],
+      "integration": "Typed-history boundaries and source-specific adapters supply connection candidates; a separation count is not a cochain residual."
+    },
+    {
+      "id": "additive_tensor",
+      "owner": "WDP GEN-WDP-58 and 59",
+      "source": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/1a7263e924accae0e114ab258b1747a84f693080/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#L5871",
+      "result": "Free finite alternatives, signed completion, bilinear history composition and biadditive tensor factorization.",
+      "supplied": [
+        "generating signature",
+        "protected contextual quotient",
+        "additivity and independent biadditive composition"
+      ],
+      "integration": "Reuse existing AdditiveTensorCompletion; no Hilbert completion required."
+    },
+    {
+      "id": "dagger_hermitian",
+      "owner": "WDP GEN-WDP-60 through 63",
+      "source": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/1a7263e924accae0e114ab258b1747a84f693080/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#L5926",
+      "result": "Dagger extension, observer Gram radical, exact Gaussian-rational scalar action and Hermitianization.",
+      "supplied": [
+        "reversal compatible with contextual equivalence",
+        "additive observer",
+        "rationalization",
+        "J squared equals minus identity and Gram compatibility"
+      ],
+      "integration": "Finite algebraic branch; identify where each admitted structure enters instead of treating it as forced by the mark."
+    },
+    {
+      "id": "finite_qm",
+      "owner": "WDP GEN-WDP-64 through 68; TFQM interference",
+      "source": "https://github.com/dbccpage/theory_of_finite_quantum_mechanics/blob/1a7263e924accae0e114ab258b1747a84f693080/atlas/finite_obstruction_calculus/witnessed_difference_programme/witnessed_difference_programme.md#L6021",
+      "result": "Exact state/effect readout and process composition over the supplied Gaussian-rational factor language; existing phase-blind interference is a report non-descent witness.",
+      "supplied": [
+        "standard Hermitian coordinates",
+        "Gram factors",
+        "trace readout",
+        "complete process factors"
+      ],
+      "integration": "Attach existing results to Omega IMG-04; selection questions remain explicit without rebuilding these results."
+    },
+    {
+      "id": "continuum",
+      "owner": "Deferred interface",
+      "result": "No continuum construction in this slice.",
+      "supplied": [],
+      "integration": "Record finite duality and completion proposals when an actual downstream requirement calls for them; no lift number or automatic Pontryagin recovery is asserted."
+    }
+  ],
+  "next_slice_for_agreement": {
+    "name": "Omega admitted moves to WDP typed histories",
+    "sources": [
+      "Omega MinimalSeparation.applyItem4 and applyDelta4",
+      "WDP GenerativeHistoryCompression.transitionSignature, replay_transitionEvents, transitionEvents_comp"
+    ],
+    "supplied": [
+      "existing Regime4 and Item4 definitions",
+      "ordered finite event list",
+      "existing cost convention",
+      "explicit protected questions: endpoint, retained distinctions, occurrence count and declared cost"
+    ],
+    "intended_result": "A source-specific adapter reusing WDP's generic partial-transition history construction, with agreement of Omega execution and WDP replay. Preserve ordered events and prices without adding state generators.",
+    "checks": [
+      "two-item unary repair succeeds and has declared price",
+      "invalid instance before form declaration refuses",
+      "extracting and replaying events recovers endpoint",
+      "concatenation preserves event order and additive chosen price",
+      "equal endpoints with different occurrence counts remain distinguishable when occurrence is protected",
+      "existing-form re-collapse control remains a failure of retention"
+    ],
+    "unresolved": [
+      "initial admission and requirement origin",
+      "all-future compression for the selected questions",
+      "carrier-changing cochain transport",
+      "endogenous invocation"
+    ],
+    "implementation_status": "proposed; no new mathematical slice implemented"
+  },
+  "checks": {
+    "omega_dag": {
+      "valid": true,
+      "nodes": 47,
+      "edges": 110,
+      "admission_edges": 53,
+      "modules": 9,
+      "theorems": 362,
+      "lean_recompiled": false
+    },
+    "omega_refinement_tests": {
+      "passed": 5
+    },
+    "omega_profile_tests": {
+      "passed": 7
+    },
+    "omega_oq01_04": {
+      "exit_code": 0,
+      "arity_bound": 4,
+      "retention_packets": 1024,
+      "retention_mismatches": 0
+    },
+    "wdp_reasoning": {
+      "source_git_blob_lf": "733c2a3fc89f0ae0d338bc87564888308d9be5f7",
+      "independent_graph_reachability_comparison": {
+        "queries": 64,
+        "proofs": 48,
+        "countermodels": 16,
+        "wrong_query_rejections": 64
+      },
+      "no_fact_no_rule_countermodel": true,
+      "zero_budget_is_undetermined": true,
+      "scope": "Python source replay; no Lean compilation"
+    }
+  }
+}

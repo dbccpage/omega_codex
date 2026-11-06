@@ -53,3 +53,7 @@ jobs:
         env:
           OMEGA_TEST_LEAN_MUTATIONS: "1"
         run: python3 -m unittest discover -s tests -p test_lean_receipts.py -v
+      - name: Check Omega admission replay against WDP histories
+        run: |
+          python3 scripts/check_admission_replay.py
+          python3 -m unittest discover -s tests -p test_admission_replay.py -v

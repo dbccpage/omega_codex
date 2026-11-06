@@ -1,0 +1,17 @@
+import WitnessedReasoning
+
+#print axioms WitnessedReasoning.derivation_sound
+#print axioms WitnessedReasoning.derivable_is_model
+#print axioms WitnessedReasoning.derivable_iff_entailed
+#print axioms WitnessedReasoning.countermodel_excludes_derivation
+#print axioms WitnessedReasoning.inert_seed_derives_nothing
+#print axioms WitnessedReasoning.checked_trace_derivable
+#print axioms WitnessedReasoning.checked_trace_sound
+#print axioms WitnessedReasoning.learned_rule_conservative
+#print axioms WitnessedReasoning.interpreted_claim_sound
+#print axioms WitnessedReasoning.derivation_substitution
+#print axioms WitnessedReasoning.theory_weakening
+#print axioms WitnessedReasoning.report_collision
+#print axioms WitnessedReasoning.processing_preserves_collision
+#print axioms WitnessedReasoning.history_collision
+#print axioms WitnessedReasoning.constant_question_needs_no_injective_report
