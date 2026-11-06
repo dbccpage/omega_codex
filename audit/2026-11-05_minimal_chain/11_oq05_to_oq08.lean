@@ -2,16 +2,26 @@ import PrimitiveDifference
 import ZeroEquivalence
 
 /-!
-# Settling Open Questions `OQ-05` through `OQ-08` (`8_open.md`)
+# Open Questions `OQ-05` through `OQ-08` (`8_open.md`)
 
 Pinned commits:
   A (19L57G1): 45bb09864f9b52ed5ecf66e977ca81f0ed623de7
   B (theory_of_finite_quantum_mechanics): e45ed2e133920aa3790af8c5e072ee9829898490
   omega_codex (baseline): e21b785626ff8d0231a53409c76fe4e7a57cd59d
 
-This self-contained Lean 4 module settles `OQ-05`, `OQ-06`, `OQ-07`, and `OQ-08`
-from `8_open.md` using core Lean 4, `PrimitiveDifference`, and `ZeroEquivalence`
-only (zero `Classical.choice`, zero `sorry`, zero new axioms).
+This self-contained Lean 4 module checks:
+- `OQ-05` (`DERIVED_CONDITIONALLY` in `DER-08`): conditional arithmetic round bound
+  `oq05_quotient_refinement_from_one` assuming per-step class-count growth `c + 1 ≤ c'`
+  on a fixed finite carrier (`r.data = n` fixed), plus the `n = 3` unary witness.
+  The general `Regime4` transition-to-class-count bridge remains `OWED` (`OWE-11`).
+- `OQ-06` (`DER-10`): choice-free `oq06_history_report_criterion_fin` via `decodeFin`.
+- `OQ-07` (`DER-14`): `oq07_weights_not_forced_without_symmetry` and
+  `oq07_transitive_symmetry_forces_equal_weights`.
+- `OQ-08` (`DERIVED_CONDITIONALLY` in `DER-12`): simplified-model commutation
+  `oq08_refinement_commutes_at_zero_adm_ret_cost` between `WDPWorld` and `HWorld`
+  (omitting legacy `Represented.World`'s novelty, `increaseB`, and `augLicensed` guards;
+  see `lean/InternalMetatheory.lean` (`DER-19`) for the 4 discrepancy regressions and
+  `OWE-12` for the open source bridge).
 -/
 
 set_option autoImplicit false
@@ -22,7 +32,7 @@ open OmegaCodex.PrimitiveDifference
 open OmegaCodex.ZeroEquivalence
 
 /-! =========================================================================
-    SECTION 1: OQ-05 — Multi-Round Closure Bound & Explicit `Q` vs `Q_der`
+    SECTION 1: OQ-05 — Conditional Multi-Round Bound & Explicit `Q` vs `Q_der`
     ========================================================================= -/
 
 abbrev Inst := Nat × List Nat

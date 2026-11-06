@@ -1,7 +1,7 @@
 {
   "verified": true,
   "source": "lean/InternalMetatheory.lean",
-  "source_sha256": "c5238e0583e29aeb0f3664f7960dc2364b06f13d871ba641ec62a1f12b47f430",
+  "source_sha256": "1bb426804d1671c0318c4e991ef1557f1cbc510779b84e8828622dd1d34142bd",
   "direct_imports": {
     "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
     "lean/MinimalSeparation.lean": "d3827b170ed51e35b823c2db9152d02bf9cf6c597a1d39a629f0d2ac9f5ae829",
@@ -9,7 +9,7 @@
   },
   "toolchain": "leanprover/lean4:v4.33.0",
   "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
-  "theorems_checked": 24,
+  "theorems_checked": 29,
   "allowed_axioms": [
     "Quot.sound",
     "propext"
@@ -83,6 +83,26 @@
       "Quot.sound"
     ],
     "regime4Measure_newForm_lt": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_singleton_discrepancy_regression": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_duplicate_view_regression": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_disabled_license_regression": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_no_new_separation_regression": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_full_guard_refinement_commutes_at_zero_adm_ret_cost": [
       "propext",
       "Quot.sound"
     ]

@@ -21,11 +21,12 @@ class DerivationDagTests(unittest.TestCase):
     def test_canonical_dag_validates(self) -> None:
         summary = validator.validate_dag_data(self.data, root=ROOT)
         self.assertTrue(summary["valid"])
-        self.assertEqual(summary["total_nodes"], 40)
-        self.assertEqual(summary["total_edges"], 56)
-        self.assertEqual(summary["bucket_counts"], {"DERIVED": 20, "OWED": 10, "IMAGINED": 10})
-        self.assertEqual(summary["lean_modules_verified"], 8)
-        self.assertEqual(summary["total_lean_theorems"], 245)
+        self.assertEqual(summary["total_nodes"], 46)
+        self.assertEqual(summary["total_edges"], 102)
+        self.assertEqual(summary["requires_admission_edges"], 50)
+        self.assertEqual(summary["bucket_counts"], {"DERIVED": 23, "OWED": 13, "IMAGINED": 10})
+        self.assertEqual(summary["lean_modules_verified"], 9)
+        self.assertEqual(summary["total_lean_theorems"], 314)
 
     def test_claim_hygiene_violations_fail_closed(self) -> None:
         for bad_word in ("proves", "guarantees", "impossible", "universal", "obviously", "metaphysics", "ontology"):
@@ -56,9 +57,9 @@ class DerivationDagTests(unittest.TestCase):
     def test_missing_research_map_ref_fails_closed(self) -> None:
         mutated = copy.deepcopy(self.data)
         for node in mutated["nodes"]:
-            if node["id"] == "OWE-07":
+            node["research_map_refs"] = [r for r in node["research_map_refs"] if r != "N21"]
+            if not node["research_map_refs"]:
                 node["research_map_refs"] = ["N22"]
-                break
         with self.assertRaisesRegex(ValueError, "missing required research_map/OQ/RT references"):
             validator.validate_dag_data(mutated, root=ROOT)
 
@@ -76,6 +77,59 @@ class DerivationDagTests(unittest.TestCase):
                         break
                 with self.assertRaisesRegex(ValueError, "references missing"):
                     validator.validate_dag_data(mutated, root=ROOT)
+
+    def test_wrong_existing_lean_file_fails_closed(self) -> None:
+        """Codex reproducer #1: changing DER-01 lean_file to another existing Lean file must fail closed."""
+        mutated = copy.deepcopy(self.data)
+        for node in mutated["nodes"]:
+            if node["id"] == "DER-01":
+                node["artifacts"]["lean_file"] = "lean/InternalMetatheory.lean"
+                break
+        with self.assertRaisesRegex(ValueError, "Lean source/receipt binding mismatch"):
+            validator.validate_dag_data(mutated, root=ROOT)
+
+    def test_wrong_lean_module_fails_closed(self) -> None:
+        mutated = copy.deepcopy(self.data)
+        for node in mutated["nodes"]:
+            if node["id"] == "DER-01":
+                node["artifacts"]["lean_module"] = "InternalMetatheory"
+                break
+        with self.assertRaisesRegex(ValueError, "lean_module 'InternalMetatheory' does not match 'PrimitiveDifference'"):
+            validator.validate_dag_data(mutated, root=ROOT)
+
+    def test_removing_all_requires_admission_edges_fails_closed(self) -> None:
+        """Codex reproducer #2: removing all requires_admission edges must fail closed."""
+        mutated = copy.deepcopy(self.data)
+        mutated["edges"] = [e for e in mutated["edges"] if e["kind"] != "requires_admission"]
+        with self.assertRaisesRegex(ValueError, "missing required 'requires_admission' edge"):
+            validator.validate_dag_data(mutated, root=ROOT)
+
+    def test_removing_single_requires_admission_edge_with_compensating_edge_fails_closed(self) -> None:
+        """Removing one required admission edge must fail even if an unrelated edge preserves total edge count."""
+        mutated = copy.deepcopy(self.data)
+        mutated["edges"] = [
+            e
+            for e in mutated["edges"]
+            if not (e["from"] == "OWE-01" and e["to"] == "DER-01" and e["kind"] == "requires_admission")
+        ]
+        mutated["edges"].append({
+            "from": "DER-01",
+            "to": "DER-05",
+            "kind": "derives",
+            "note": "Unrelated compensating edge preserving total edge count.",
+        })
+        self.assertEqual(len(mutated["edges"]), len(self.data["edges"]))
+        with self.assertRaisesRegex(ValueError, "missing required 'requires_admission' edge"):
+            validator.validate_dag_data(mutated, root=ROOT)
+
+    def test_unresolved_admission_identifier_fails_closed(self) -> None:
+        mutated = copy.deepcopy(self.data)
+        for node in mutated["nodes"]:
+            if node["id"] == "DER-01":
+                node["unpriced_inputs_or_admissions"].append("unknown_admission_xyz")
+                break
+        with self.assertRaisesRegex(ValueError, "unresolved admission identifier"):
+            validator.validate_dag_data(mutated, root=ROOT)
 
     def test_derived_node_without_executable_artifacts_fails_closed(self) -> None:
         mutated = copy.deepcopy(self.data)

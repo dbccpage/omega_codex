@@ -50,6 +50,11 @@ MODULES = {
         "allowed_axioms": {"propext", "Quot.sound"},
         "imports": ("TorsorAndOperations", "MinimalSeparation", "RetentionAndRefusal"),
     },
+    "ProfilePreorderAndGenerator": {
+        "namespace": "OmegaCodex.ProfilePreorderAndGenerator.",
+        "allowed_axioms": {"propext", "Quot.sound"},
+        "imports": ("TorsorAndOperations", "ZeroEquivalence"),
+    },
 }
 
 
@@ -62,6 +67,7 @@ RECEIPTS = {
     "RetentionAndRefusal": "docs/retention_and_refusal_verification.json",
     "LocalGlobalObstruction": "docs/local_global_obstruction_verification.json",
     "InternalMetatheory": "docs/internal_metatheory_verification.json",
+    "ProfilePreorderAndGenerator": "docs/profile_preorder_and_generator_verification.json",
 }
 
 

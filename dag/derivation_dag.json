@@ -10,11 +10,11 @@
   },
   "buckets": {
     "DERIVED": {
-      "count": 20,
+      "count": 23,
       "definition": "Checked in Lean 4.33.0 (constructive core, zero sorry, zero Classical.choice, zero Mathlib, allowed axioms restricted to propext and Quot.sound) and/or stdlib Python check scripts with source-bound verification receipts in docs/."
     },
     "OWED": {
-      "count": 10,
+      "count": 13,
       "definition": "Explicitly priced host substrate admissions (S0-S5), unfreezing mechanism choices (M1-M3), and open bridge obligations where a claim in the historical or target chain requires a premise not forced by prior derived nodes alone."
     },
     "IMAGINED": {
@@ -69,7 +69,13 @@
       "module": "InternalMetatheory",
       "source": "lean/InternalMetatheory.lean",
       "receipt": "docs/internal_metatheory_verification.json",
-      "theorems_checked": 24
+      "theorems_checked": 29
+    },
+    {
+      "module": "ProfilePreorderAndGenerator",
+      "source": "lean/ProfilePreorderAndGenerator.lean",
+      "receipt": "docs/profile_preorder_and_generator_verification.json",
+      "theorems_checked": 64
     }
   ],
   "nodes": [
@@ -96,6 +102,9 @@
         ]
       },
       "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host"
+      ],
+      "defines_admissions": [
         "S0_lean_core_host"
       ]
     },
@@ -128,6 +137,9 @@
       },
       "unpriced_inputs_or_admissions": [
         "S1_off_diagonal_pair_witness"
+      ],
+      "defines_admissions": [
+        "S1_off_diagonal_pair_witness"
       ]
     },
     {
@@ -158,6 +170,12 @@
         "S3_endomorphism_composition",
         "S4_retention_state_bit",
         "S5_additive_cost_target"
+      ],
+      "defines_admissions": [
+        "S2_symmetric_closure",
+        "S3_endomorphism_composition",
+        "S4_retention_state_bit",
+        "S5_additive_cost_target"
       ]
     },
     {
@@ -183,6 +201,11 @@
         ]
       },
       "unpriced_inputs_or_admissions": [
+        "M1_carrier_multiplicity",
+        "M2_indexed_context_family",
+        "M3_step_history_dynamics"
+      ],
+      "defines_admissions": [
         "M1_carrier_multiplicity",
         "M2_indexed_context_family",
         "M3_step_history_dynamics"
@@ -241,12 +264,14 @@
         "doc_refs": [
           "docs/symmetric_primitive_difference.md",
           "audit/2026-11-05_minimal_chain/2_mark_alone.md"
-        ]
+        ],
+        "lean_module": "PrimitiveDifference"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "S1_off_diagonal_pair_witness"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-02",
@@ -305,14 +330,16 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/2_mark_alone.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "TorsorAndOperations"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "S1_off_diagonal_pair_witness",
         "S2_symmetric_closure",
         "S3_endomorphism_composition"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-03",
@@ -349,12 +376,14 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/8_open.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "TorsorAndOperations"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "M3_step_history_dynamics"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-04",
@@ -402,12 +431,14 @@
         "doc_refs": [
           "docs/mirror_non_identification.md",
           "audit/2026-11-05_minimal_chain/4_priced_containers.md"
-        ]
+        ],
+        "lean_module": "MirrorNonIdentification"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "S2_symmetric_closure"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-05",
@@ -500,12 +531,14 @@
         "doc_refs": [
           "docs/zero_equivalence.md",
           "audit/2026-11-05_minimal_chain/5_unrecognised_forcing.md"
-        ]
+        ],
+        "lean_module": "ZeroEquivalence"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "M2_indexed_context_family"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-06",
@@ -544,12 +577,14 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "MinimalSeparation"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "M2_indexed_context_family"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-07",
@@ -585,26 +620,28 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/8_open.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "MinimalSeparation"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "S5_additive_cost_target"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-08",
       "code": "OQ-05-RT-09-MULTI-ROUND-CLOSURE",
-      "title": "Multi-Round Closure Bounds, Fresh-Form Monotonicity, and Existing-Form Re-Collapse (OQ-05 / RT-09)",
+      "title": "Conditional Quotient-Refinement Round Bound Under Assumed Class-Count Growth (OQ-05)",
       "bucket": "DERIVED",
-      "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
+      "status_detail": "DERIVED_CONDITIONALLY",
       "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
       "research_map_refs": [
         "N12",
         "OQ-05",
         "RT-09"
       ],
-      "statement": "On an n-element carrier, sequential explicit-pair closure takes at most n(n-1)/2 rounds while quotient-class refinement takes at most n-1 rounds (a strict gap for all n >= 3, OQ-05); appending a fresh form and instance [newForm 1, newInst 1 [1]] preserves all prior separations and refines all 3 pairs on {0, 1, 2} in 2 = n-1 rounds, whereas appending an instance [newInst 0 [2]] to an existing form separates (1, 2) and preserves requested (0, 1) while re-collapsing unrequested (0, 2) (RT-09).",
+      "statement": "DERIVED_CONDITIONALLY: On a fixed finite carrier of size n (r.items = n fixed), any QuotRefRun sequence whose transitions satisfy the assumed per-step class-count growth premise c + 1 <= c' satisfies m <= n - 1 (quotRefRun_length_le_pred, regime4_stabilizes_in_at_most_pred_rounds). Includes an n = 3 fresh-form existence witness (rt09_fresh_form_strictly_refines_all_pairs) and preserves the existing-form re-collapse counterexample (rt09_unrequested_pair_recollapse_witness) where appending a duplicate form can re-collapse an unrequested pair. Does not establish that arbitrary Regime4 transitions satisfy c + 1 <= c'; that general transition-to-class-count bridge remains open in OWE-11.",
       "artifacts": {
         "lean_file": "lean/MinimalSeparation.lean",
         "lean_theorems": [
@@ -623,13 +660,16 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/8_open.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "MinimalSeparation"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "M2_indexed_context_family",
-        "M3_step_history_dynamics"
-      ]
+        "M3_step_history_dynamics",
+        "regime4_strict_class_count_growth_admission"
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-09",
@@ -660,12 +700,14 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "RetentionAndRefusal"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "S4_retention_state_bit"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-10",
@@ -701,13 +743,15 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/8_open.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "RetentionAndRefusal"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "S4_retention_state_bit",
         "M3_step_history_dynamics"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-11",
@@ -742,18 +786,20 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/8_open.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "RetentionAndRefusal"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-12",
       "code": "RT-06-OQ-08-RT-12-CLOSURE-DUALITY-AND-HORIZON-MORPHISM",
-      "title": "Closure-vs-Symmetry-Break Duality and 5-Gate WDP-to-Horizon Morphism (RT-06 / OQ-08 / RT-12)",
+      "title": "Simplified-Model WDPWorld / HWorld Guarded Commutation at Zero Admission/Retention Cost (OQ-08)",
       "bucket": "DERIVED",
-      "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
+      "status_detail": "DERIVED_CONDITIONALLY",
       "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
       "research_map_refs": [
         "N18",
@@ -762,7 +808,7 @@
         "RT-06",
         "RT-12"
       ],
-      "statement": "Failure of readout q to factor through presentation p on finite dataset D is equivalent to an internal transposition symmetry transpose a b of p that breaks q, and the common refinement (p, q) closes the obstruction (RT-06); the 5-gate WDP step (and its carrier-bound guarded variant) commutes with projection to the 3-gate Horizon world at specialization costs (0, 0, 0, 1) and is strictly finer when admission or retention gates are positively priced (OQ-08 / RT-12).",
+      "statement": "DERIVED_CONDITIONALLY: Shows in Lean exact commutation between two simplified models (WDPWorld and HWorld via stepWDPGuarded and stepHWorldGuarded) at c_adm = 0, c_ret = 0, c_ref = 1, where stepHWorldGuarded checks budget >= 1 and carrier index v < w.toks.length. This simplified model omits three augmentation guards present in pinned legacy Represented.World (19L57G1/Represented.lean:105-120): view novelty !(decide (c in w.views)), strict separation increase increaseB w c, and augmentation licensing w.augLicensed. Concrete discrepancy regressions and adapted FullWDPWorld commutation are recorded in DER-19; the full source-level bridge from prose WDP-CH01-D03 to legacy Represented/Horizon remains open in OWE-12.",
       "artifacts": {
         "lean_file": "lean/RetentionAndRefusal.lean",
         "lean_theorems": [
@@ -782,13 +828,16 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/8_open.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "RetentionAndRefusal"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "S4_retention_state_bit",
-        "S5_additive_cost_target"
-      ]
+        "S5_additive_cost_target",
+        "wdp_ch01_d03_full_represented_world_bridge_admission"
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-13",
@@ -827,13 +876,15 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/8_open.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "LocalGlobalObstruction"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "M1_carrier_multiplicity",
         "S5_additive_cost_target"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-14",
@@ -864,12 +915,14 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/8_open.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "LocalGlobalObstruction"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "S5_additive_cost_target"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-15",
@@ -908,12 +961,14 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "LocalGlobalObstruction"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "M1_carrier_multiplicity"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-16",
@@ -948,12 +1003,14 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "InternalMetatheory"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "S1_off_diagonal_pair_witness"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-17",
@@ -990,11 +1047,13 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "InternalMetatheory"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-18",
@@ -1026,17 +1085,19 @@
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
-        ]
+        ],
+        "lean_module": "InternalMetatheory"
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "M3_step_history_dynamics"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-19",
       "code": "AUDIT-MINIMAL-CHAIN-CAMPAIGNS-1-TO-3",
-      "title": "Minimal Derivation Chain Audit and Post-Seal Pruning Census (OQ-01 to OQ-08, RT-01 to RT-12)",
+      "title": "Minimal Chain Audit, OQ-08 Guard Discrepancy Regressions, and Adapted 5-Gate Commutation (OQ-01 to OQ-08, RT-01 to RT-12)",
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "5_INTERNAL_METATHEORY",
@@ -1062,7 +1123,7 @@
         "RT-11",
         "RT-12"
       ],
-      "statement": "All 8 open questions (OQ-01 through OQ-08) and 12 red-team boundary stress tests (RT-01 through RT-12) have executable Lean 4.33.0 proofs and stdlib Python check suites establishing exact finite scope conditions and countermodels.",
+      "statement": "Audit check suites and Lean 4.33.0 regressions across OQ-01 through OQ-08 and RT-01 through RT-12, including four concrete OQ-08 guard-discrepancy regressions between simplified stepHWorldGuarded and pinned legacy Represented.World (singleton non-separating view addView [0] on data=[0], duplicate view rejection, disabled augmentation license rejection, and novel view with zero new separation rejection) and adapted 5-gate FullWDPWorld commutation with Represented.step at zero admission/retention cost. OQ-05 and OQ-08 remain DERIVED_CONDITIONALLY in DER-08 and DER-12 with their unconstructed source bridges tracked in OWE-11 and OWE-12.",
       "artifacts": {
         "python_checks": [
           "audit/2026-11-05_minimal_chain/2_mark_checks.py",
@@ -1081,11 +1142,22 @@
           "audit/2026-11-05_minimal_chain/8_open.md",
           "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ],
+        "lean_file": "lean/InternalMetatheory.lean",
+        "lean_module": "InternalMetatheory",
+        "receipt_json": "docs/internal_metatheory_verification.json",
+        "lean_theorems": [
+          "oq08_singleton_discrepancy_regression",
+          "oq08_duplicate_view_regression",
+          "oq08_disabled_license_regression",
+          "oq08_no_new_separation_regression",
+          "oq08_full_guard_refinement_commutes_at_zero_adm_ret_cost"
         ]
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host"
-      ]
+      ],
+      "defines_admissions": []
     },
     {
       "id": "DER-20",
@@ -1111,7 +1183,179 @@
       },
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host"
-      ]
+      ],
+      "defines_admissions": []
+    },
+    {
+      "id": "DER-21",
+      "code": "SLICE-IX-PROFILE-PREORDER-EQUIVALENCE-BRIDGE",
+      "bucket": "DERIVED",
+      "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
+      "layer": "2_EQUIVALENCE_AND_OPERATIONS",
+      "title": "Profile-Equality vs. Mutual-Comparability Preorder and Quotient Retention Bridge (N19)",
+      "statement": "On any carrier alpha and binary relation R : Rel alpha, complete incoming+outgoing profile equality profileEq R is an equivalence relation, and mutual comparability mutualComp R is an equivalence relation whenever R is a preorder. For any preorder R, profileEq R x y <-> mutualComp R x y (and for any equivalence relation R, profileEq R x y <-> R x y), while concrete 3-element and empty-relation counterexamples show failure without transitivity or reflexivity. The quotient lift profileQuotRel R is a well-defined partial order (reflexive, transitive, antisymmetric on Quotient (profileSetoid R)), and under SingleBitObsRetention the retained bit cannot separate profile-equivalent elements.",
+      "research_map_refs": [
+        "N14",
+        "N15",
+        "N19"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M2_indexed_context_family",
+        "M3_step_history_dynamics"
+      ],
+      "artifacts": {
+        "lean_file": "lean/ProfilePreorderAndGenerator.lean",
+        "lean_module": "ProfilePreorderAndGenerator",
+        "receipt_json": "docs/profile_preorder_and_generator_verification.json",
+        "lean_theorems": [
+          "profileEquiv_refl",
+          "profileEquiv_symm",
+          "profileEquiv_trans",
+          "profileEquiv_equivalence",
+          "mutualComp_refl_of_preorder",
+          "mutualComp_symm",
+          "mutualComp_trans_of_preorder",
+          "mutualComp_equivalence_of_preorder",
+          "profileEquiv_iff_mutualComp_of_preorder",
+          "mutualComp_iff_rel_of_symmetric",
+          "profileEquiv_iff_rel_of_equivalence",
+          "boolLeq_preorder",
+          "directed_not_rel_ne_class_ineq_on_preorder",
+          "profileEquiv_strictly_generalizes_mutualComp_without_refl",
+          "collapseMap_mk",
+          "collapseMap_surjective",
+          "failed_identification_retains_two_classes",
+          "collapseMap_injective_iff_reverse_refinement",
+          "symmetry_failure_retains_multiplicity",
+          "coarse_zero_coexists_with_fine_nonzero"
+        ],
+        "python_checks": [
+          "scripts/profile_preorder_and_generator_models.py",
+          "tests/test_profile_preorder_and_generator.py"
+        ],
+        "doc_refs": [
+          "docs/research_map.md",
+          "dag/README.md"
+        ]
+      },
+      "defines_admissions": []
+    },
+    {
+      "id": "DER-22",
+      "code": "SLICE-IX-TEN-STICK-RESIDUAL-AND-PHASE-LIFT-MODELS",
+      "bucket": "DERIVED",
+      "status_detail": "DERIVED_CONDITIONALLY",
+      "layer": "2_EQUIVALENCE_AND_OPERATIONS",
+      "title": "Conditional Ten-Stick Reflection Residual and Four-Step vs. Two-Step Phase Lift Models (N19-N20)",
+      "statement": "DERIVED_CONDITIONALLY: Under the supplied carrier StickConfig = Fin 10 -> Bool, spatial reversal reflectStick, and half-sums stickLeft/stickRight, stickDelta(reflectStick c) = -stickDelta(c), and symmetric configurations satisfy stickDelta c = 0 while non-palindromic balanced configurations witness that stickDelta c = 0 does not recover full reflection symmetry. Under the supplied 4-element carrier FourPhase with stepFour and sheetParity, stepFour has exact period 4 and sheetParity flips every 2 steps; however, trivial_two_step_lift_also_intertwines shows on Bool x Bool that a 2-step lift also intertwines the same base flip. Necessity of carrier size 10 and necessity of period 4 remain open in OWE-08.",
+      "research_map_refs": [
+        "N19",
+        "N20"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M2_indexed_context_family",
+        "M3_step_history_dynamics",
+        "ten_stick_carrier_and_period_four_necessity_admission"
+      ],
+      "artifacts": {
+        "lean_file": "lean/ProfilePreorderAndGenerator.lean",
+        "lean_module": "ProfilePreorderAndGenerator",
+        "receipt_json": "docs/profile_preorder_and_generator_verification.json",
+        "lean_theorems": [
+          "reflectIndex10_involutive",
+          "reflect10_involutive",
+          "stickLeft_reflect_eq_stickRight",
+          "stickLeft_stickRight_raw_vs_reflResidual",
+          "stickLeft_stickMid_reflResidual_pos",
+          "proj2_intertwines_counterpart",
+          "step4_two_projects_to_id_but_flips_sheet",
+          "step4_period_four",
+          "trivial_two_step_lift_also_intertwines"
+        ],
+        "python_checks": [
+          "scripts/profile_preorder_and_generator_models.py",
+          "tests/test_profile_preorder_and_generator.py"
+        ],
+        "doc_refs": [
+          "docs/research_map.md",
+          "dag/README.md"
+        ]
+      },
+      "defines_admissions": []
+    },
+    {
+      "id": "DER-23",
+      "code": "SLICE-IX-SUPPLIED-GENERATOR-TRACE-AND-RADIUS-PROFILE-COLLISION",
+      "bucket": "DERIVED",
+      "status_detail": "DERIVED_CONDITIONALLY",
+      "layer": "3_SEPARATION_AND_RETENTION",
+      "title": "Conditional Supplied-Rule Generator Growth, Lower Bound, and Radius-d Profile Collision (N21-N22)",
+      "statement": "DERIVED_CONDITIONALLY: Under the externally supplied two-constructor alphabet GenForm (token vs. receipt), supplied transition rules stepM and stepRefl, and external Nat-indexed iteration runRefl, shows in Lean: (1) a 2-step closure witness min_witnessed_route_closes paired with the lower-bound theorem stepM_lower_bound_two_steps over all stepM traces from empty state measured by step count; and (2) linear growth of runRefl (n elements, n-1 edges at round n >= 1) and radius-d profile collision for interior vertices paired with radius-(n-1) full separation. Endogenous acquisition/invocation of the witnessing rule remains open in OWE-07 and multi-round law/repair persistence remains open in OWE-13.",
+      "research_map_refs": [
+        "N21",
+        "N22",
+        "N25"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M2_indexed_context_family",
+        "M3_step_history_dynamics",
+        "operational_witness_acquisition_invocation_admission",
+        "multi_round_law_and_repair_persistence_admission"
+      ],
+      "artifacts": {
+        "lean_file": "lean/ProfilePreorderAndGenerator.lean",
+        "lean_module": "ProfilePreorderAndGenerator",
+        "receipt_json": "docs/profile_preorder_and_generator_verification.json",
+        "lean_theorems": [
+          "stepM_lower_bound_two_steps",
+          "min_witnessed_route_closes",
+          "bridge_facts_not_law",
+          "reflective_chain_growth",
+          "reflective_chain_is_initial_segment",
+          "reflective_chain_successor_relation",
+          "reflective_chain_irreflexive_facts",
+          "reflective_chain_tags",
+          "chain_tagged_iff",
+          "chain_hasIn_iff",
+          "chain_hasOut_iff",
+          "middle_profile",
+          "endpoint0_profile",
+          "endpointN_profile",
+          "depth1_obstructions_are_exactly_middle_pairs",
+          "generation_never_dries",
+          "automark_presence_vacuous",
+          "le_foldr_max",
+          "finite_marks_outrun",
+          "valued_marks_collapse_generation",
+          "middle_swap_not_relation_preserving",
+          "depth2_separates_near_ends_n4",
+          "depth2_obstruction_n5",
+          "filter_range_decide_eq",
+          "filter_range_succ_eq",
+          "filter_range_eq",
+          "ball_length",
+          "profileD_deep",
+          "depth_d_outrun",
+          "depth_d_obstruction",
+          "incoming_edges_interior",
+          "outgoing_edges_interior",
+          "profile2_interior",
+          "profileD_radius_one",
+          "radius_one_agrees_with_sealed_depth2"
+        ],
+        "python_checks": [
+          "scripts/profile_preorder_and_generator_models.py",
+          "tests/test_profile_preorder_and_generator.py"
+        ],
+        "doc_refs": [
+          "docs/research_map.md",
+          "dag/README.md"
+        ]
+      },
+      "defines_admissions": []
     },
     {
       "id": "OWE-05",
@@ -1133,7 +1377,10 @@
         ]
       },
       "unpriced_inputs_or_admissions": [
-        "S1_off_diagonal_pair_witness"
+        "cohomological_dimension_bridge_admission"
+      ],
+      "defines_admissions": [
+        "cohomological_dimension_bridge_admission"
       ]
     },
     {
@@ -1158,13 +1405,16 @@
         ]
       },
       "unpriced_inputs_or_admissions": [
-        "M1_carrier_multiplicity"
+        "operational_seed_generator_admission"
+      ],
+      "defines_admissions": [
+        "operational_seed_generator_admission"
       ]
     },
     {
       "id": "OWE-07",
       "code": "N21-N22-INTERNAL-WITNESSING-AND-PERSISTENCE",
-      "title": "Internal Witnessing Invocation, Acquisition, and Persistence Dynamic Bridge (N21-N22)",
+      "title": "Operational Internal Witness Acquisition and Endogenous Rule Invocation (N21)",
       "bucket": "OWED",
       "status_detail": "OPEN_PROOF_OBLIGATION",
       "layer": "6_OWED_BRIDGES",
@@ -1172,7 +1422,7 @@
         "N21",
         "N22"
       ],
-      "statement": "While the algebraic effects of applying a new form Delta are derived in MinimalSeparation.lean and two-step memory retention is characterized in RetentionAndRefusal.lean, the endogenous Genesis bridge from collision detection to witnessing form acquisition (N21) and persistence (N22) remains an owed specification step requiring M2/M3 admissions.",
+      "statement": "OWED: While DER-23 checks deterministic trace growth and radius-d profile collisions under the externally supplied rules stepM and stepRefl, iterating a supplied rule that appends a fresh element, tag, and edge on invocation does not derive how a purely internal system acquires or invokes that constructor without an external caller, nor does a profile collision under a chosen observation map constitute performed internal witnessing. Discharging this obligation requires deriving endogenous witness acquisition and invocation without presupposing the token/receipt constructor split or external step scheduling.",
       "artifacts": {
         "doc_refs": [
           "docs/research_map.md",
@@ -1180,14 +1430,16 @@
         ]
       },
       "unpriced_inputs_or_admissions": [
-        "M2_indexed_context_family",
-        "M3_step_history_dynamics"
+        "operational_witness_acquisition_invocation_admission"
+      ],
+      "defines_admissions": [
+        "operational_witness_acquisition_invocation_admission"
       ]
     },
     {
       "id": "OWE-08",
       "code": "N19-N20-TEN-STICK-REFLECTION-AND-FOUR-STEP-LIFT",
-      "title": "Ten-Stick Reflection and Four-Step Lift Bridge (N19-N20)",
+      "title": "Ten-Stick Carrier Necessity and Period-Four Lift Necessity Beyond Reciprocal Symmetry (N19-N20)",
       "bucket": "OWED",
       "status_detail": "OPEN_PROOF_OBLIGATION",
       "layer": "6_OWED_BRIDGES",
@@ -1195,7 +1447,7 @@
         "N19",
         "N20"
       ],
-      "statement": "The historical Genesis steps for ten-stick reflection (N19) and the four-step reflective lift (N20) depend on unformalized reflection and multi-step lift admissions not forced by the sealed 2-element mark alone.",
+      "statement": "OWED: While DER-21 checks the general profile-equality vs. mutual-comparability preorder theorem on arbitrary carrier alpha and DER-22 checks ten-stick reflection residuality and an explicit four-state cycle lift on FourPhase, DER-22 also shows in Lean that a two-step lift on Bool x Bool intertwines the same base flip. Thus reciprocal symmetry alone does not force period four, and neither the cardinality 10 of StickConfig nor the necessity of a period-4 lift is derived from primitive distinction.",
       "artifacts": {
         "python_checks": [
           "audit/2026-11-05_minimal_chain/3_regime_deletions.py"
@@ -1206,8 +1458,10 @@
         ]
       },
       "unpriced_inputs_or_admissions": [
-        "M2_indexed_context_family",
-        "M3_step_history_dynamics"
+        "ten_stick_carrier_and_period_four_necessity_admission"
+      ],
+      "defines_admissions": [
+        "ten_stick_carrier_and_period_four_necessity_admission"
       ]
     },
     {
@@ -1237,7 +1491,10 @@
         ]
       },
       "unpriced_inputs_or_admissions": [
-        "S5_additive_cost_target"
+        "canonical_admissibility_pricing_functional_admission"
+      ],
+      "defines_admissions": [
+        "canonical_admissibility_pricing_functional_admission"
       ]
     },
     {
@@ -1264,7 +1521,101 @@
       },
       "unpriced_inputs_or_admissions": [
         "infinite_completion_admission"
+      ],
+      "defines_admissions": [
+        "infinite_completion_admission"
       ]
+    },
+    {
+      "id": "OWE-11",
+      "code": "OQ-05-REGIME4-TRANSITION-TO-CLASS-COUNT-BRIDGE",
+      "bucket": "OWED",
+      "status_detail": "UNPROVED_ADMISSION",
+      "layer": "3_SEPARATION_AND_RETENTION",
+      "title": "General Regime4 Transition-to-Class-Count Growth Bridge (OQ-05)",
+      "statement": "OWED: Connecting actual Regime4 transitions in MinimalSeparation.lean to the arithmetic bound QuotRefRun (m <= n - 1) requires five components not yet established in general: (1) a fixed finite carrier {0, ..., n - 1} with an explicit equivalence-class counting function on collapsed4 r; (2) a transition condition on form addition that preserves every prior separation; (3) separation of at least one previously collapsed pair; (4) a general theorem deriving strict class-count growth c + 1 <= c' from (1)-(3) for arbitrary n; and (5) a functorial bridge mapping valid Regime4 transition sequences to QuotRefRun.",
+      "research_map_refs": [
+        "N16",
+        "OQ-05",
+        "RT-09"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "regime4_strict_class_count_growth_admission"
+      ],
+      "defines_admissions": [
+        "regime4_strict_class_count_growth_admission"
+      ],
+      "artifacts": {
+        "lean_file": null,
+        "lean_module": null,
+        "receipt_json": null,
+        "lean_theorems": [],
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md"
+        ]
+      }
+    },
+    {
+      "id": "OWE-12",
+      "code": "OQ-08-LEGACY-REPRESENTED-HORIZON-BRIDGE",
+      "bucket": "OWED",
+      "status_detail": "UNPROVED_ADMISSION",
+      "layer": "3_SEPARATION_AND_RETENTION",
+      "title": "Source-Level Bridge Between Prose WDP-CH01-D03 and Pinned Legacy Represented/Horizon (OQ-08)",
+      "statement": "OWED: While DER-12 shows in Lean commutation between simplified models (WDPWorld and HWorld) and DER-19 shows both the 4 concrete guard-discrepancy regressions and commutation for the adapted 5-gate FullWDPWorld model, the prose ledger specification WDP-CH01-D03 in theory_of_finite_quantum_mechanics (witnessed_difference_programme.md:513-530, commit e45ed2e133920aa3790af8c5e072ee9829898490) does not define data-subset views, view novelty, increaseB separation checks, or augLicensed gating from 19L57G1/Represented.lean and Horizon.lean (commit 45bb09864f9b52ed5ecf66e977ca81f0ed623de7). Establishing a non-adapted source-level equivalence remains open.",
+      "research_map_refs": [
+        "N17",
+        "OQ-08"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "wdp_ch01_d03_full_represented_world_bridge_admission"
+      ],
+      "defines_admissions": [
+        "wdp_ch01_d03_full_represented_world_bridge_admission"
+      ],
+      "artifacts": {
+        "lean_file": null,
+        "lean_module": null,
+        "receipt_json": null,
+        "lean_theorems": [],
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md"
+        ]
+      }
+    },
+    {
+      "id": "OWE-13",
+      "code": "N22-MULTI-ROUND-LAW-AND-REPAIR-PERSISTENCE-BRIDGE",
+      "bucket": "OWED",
+      "status_detail": "UNPROVED_ADMISSION",
+      "layer": "3_SEPARATION_AND_RETENTION",
+      "title": "Multi-Round Law Formation, Retention Capacity Scaling, and Repair Persistence (N22)",
+      "statement": "OWED: DER-23 shows that under a fixed observation radius d, interior vertices in the deterministic reflective chain runRefl suffer profile collisions once n >= 2d + 3, and full separation requires observation radius d >= n - 1. Deriving an endogenous multi-round retention/repair mechanism whose memory capacity scales with round depth without external parameter tuning remains open.",
+      "research_map_refs": [
+        "N22"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "multi_round_law_and_repair_persistence_admission"
+      ],
+      "defines_admissions": [
+        "multi_round_law_and_repair_persistence_admission"
+      ],
+      "artifacts": {
+        "lean_file": null,
+        "lean_module": null,
+        "receipt_json": null,
+        "lean_theorems": [],
+        "python_checks": [],
+        "doc_refs": [
+          "docs/research_map.md"
+        ]
+      }
     },
     {
       "id": "IMG-01",
@@ -1287,6 +1638,9 @@
       },
       "unpriced_inputs_or_admissions": [
         "higher_simplicial_carrier_admission"
+      ],
+      "defines_admissions": [
+        "higher_simplicial_carrier_admission"
       ]
     },
     {
@@ -1307,6 +1661,9 @@
         ]
       },
       "unpriced_inputs_or_admissions": [
+        "causal_poset_window_admission"
+      ],
+      "defines_admissions": [
         "causal_poset_window_admission"
       ]
     },
@@ -1330,6 +1687,9 @@
       },
       "unpriced_inputs_or_admissions": [
         "parseval_l2_pairing_admission"
+      ],
+      "defines_admissions": [
+        "parseval_l2_pairing_admission"
       ]
     },
     {
@@ -1351,6 +1711,9 @@
       },
       "unpriced_inputs_or_admissions": [
         "frame_additivity_admission"
+      ],
+      "defines_admissions": [
+        "frame_additivity_admission"
       ]
     },
     {
@@ -1370,6 +1733,9 @@
         ]
       },
       "unpriced_inputs_or_admissions": [
+        "composite_tensor_pairing_admission"
+      ],
+      "defines_admissions": [
         "composite_tensor_pairing_admission"
       ]
     },
@@ -1392,6 +1758,9 @@
       },
       "unpriced_inputs_or_admissions": [
         "discrete_variational_stationarity_admission"
+      ],
+      "defines_admissions": [
+        "discrete_variational_stationarity_admission"
       ]
     },
     {
@@ -1413,6 +1782,9 @@
       },
       "unpriced_inputs_or_admissions": [
         "gauge_group_fiber_admission"
+      ],
+      "defines_admissions": [
+        "gauge_group_fiber_admission"
       ]
     },
     {
@@ -1433,6 +1805,9 @@
         ]
       },
       "unpriced_inputs_or_admissions": [
+        "simplicial_metric_edge_admission"
+      ],
+      "defines_admissions": [
         "simplicial_metric_edge_admission"
       ]
     },
@@ -1457,6 +1832,9 @@
       },
       "unpriced_inputs_or_admissions": [
         "bath_partition_admission"
+      ],
+      "defines_admissions": [
+        "bath_partition_admission"
       ]
     },
     {
@@ -1480,6 +1858,9 @@
       },
       "unpriced_inputs_or_admissions": [
         "internal_syntax_encoding_admission"
+      ],
+      "defines_admissions": [
+        "internal_syntax_encoding_admission"
       ]
     }
   ],
@@ -1488,31 +1869,301 @@
       "from": "OWE-01",
       "to": "DER-01",
       "kind": "requires_admission",
-      "note": "PrimitiveDifference.lean uses Lean 4.33.0 core types and propositions."
+      "note": "Node DER-01 requires explicit admission(s) provided by OWE-01."
     },
     {
       "from": "OWE-02",
       "to": "DER-01",
       "kind": "requires_admission",
-      "note": "Concrete mark instantiation requires an inhabited off-diagonal pair witness S1."
+      "note": "Node DER-01 requires explicit admission(s) provided by OWE-02."
     },
     {
       "from": "OWE-01",
       "to": "DER-02",
       "kind": "requires_admission",
-      "note": "TorsorAndOperations.lean runs in the Lean 4.33.0 host."
+      "note": "Node DER-02 requires explicit admission(s) provided by OWE-01."
     },
     {
       "from": "OWE-02",
       "to": "DER-02",
       "kind": "requires_admission",
-      "note": "D2 and S2Bool require the two-element carrier witness."
+      "note": "Node DER-02 requires explicit admission(s) provided by OWE-02."
     },
     {
       "from": "OWE-03",
       "to": "DER-02",
       "kind": "requires_admission",
-      "note": "Symmetric closure S2 and endomorphism composition S3 underlie the C2 torsor."
+      "note": "Node DER-02 requires explicit admission(s) provided by OWE-03."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-03",
+      "kind": "requires_admission",
+      "note": "Node DER-03 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-03",
+      "kind": "requires_admission",
+      "note": "Node DER-03 requires explicit admission(s) provided by OWE-04."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-04",
+      "kind": "requires_admission",
+      "note": "Node DER-04 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-04",
+      "kind": "requires_admission",
+      "note": "Node DER-04 requires explicit admission(s) provided by OWE-03."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-05",
+      "kind": "requires_admission",
+      "note": "Node DER-05 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-05",
+      "kind": "requires_admission",
+      "note": "Node DER-05 requires explicit admission(s) provided by OWE-04."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-06",
+      "kind": "requires_admission",
+      "note": "Node DER-06 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-06",
+      "kind": "requires_admission",
+      "note": "Node DER-06 requires explicit admission(s) provided by OWE-04."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-07",
+      "kind": "requires_admission",
+      "note": "Node DER-07 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-07",
+      "kind": "requires_admission",
+      "note": "Node DER-07 requires explicit admission(s) provided by OWE-03."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-08",
+      "kind": "requires_admission",
+      "note": "Node DER-08 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-08",
+      "kind": "requires_admission",
+      "note": "Node DER-08 requires explicit admission(s) provided by OWE-04."
+    },
+    {
+      "from": "OWE-11",
+      "to": "DER-08",
+      "kind": "requires_admission",
+      "note": "Node DER-08 requires explicit admission(s) provided by OWE-11."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-09",
+      "kind": "requires_admission",
+      "note": "Node DER-09 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-09",
+      "kind": "requires_admission",
+      "note": "Node DER-09 requires explicit admission(s) provided by OWE-03."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-10",
+      "kind": "requires_admission",
+      "note": "Node DER-10 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-10",
+      "kind": "requires_admission",
+      "note": "Node DER-10 requires explicit admission(s) provided by OWE-03."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-10",
+      "kind": "requires_admission",
+      "note": "Node DER-10 requires explicit admission(s) provided by OWE-04."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-11",
+      "kind": "requires_admission",
+      "note": "Node DER-11 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-12",
+      "kind": "requires_admission",
+      "note": "Node DER-12 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-12",
+      "kind": "requires_admission",
+      "note": "Node DER-12 requires explicit admission(s) provided by OWE-03."
+    },
+    {
+      "from": "OWE-12",
+      "to": "DER-12",
+      "kind": "requires_admission",
+      "note": "Node DER-12 requires explicit admission(s) provided by OWE-12."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-13",
+      "kind": "requires_admission",
+      "note": "Node DER-13 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-13",
+      "kind": "requires_admission",
+      "note": "Node DER-13 requires explicit admission(s) provided by OWE-04."
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-13",
+      "kind": "requires_admission",
+      "note": "Node DER-13 requires explicit admission(s) provided by OWE-03."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-14",
+      "kind": "requires_admission",
+      "note": "Node DER-14 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-14",
+      "kind": "requires_admission",
+      "note": "Node DER-14 requires explicit admission(s) provided by OWE-03."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-15",
+      "kind": "requires_admission",
+      "note": "Node DER-15 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-15",
+      "kind": "requires_admission",
+      "note": "Node DER-15 requires explicit admission(s) provided by OWE-04."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-16",
+      "kind": "requires_admission",
+      "note": "Node DER-16 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-02",
+      "to": "DER-16",
+      "kind": "requires_admission",
+      "note": "Node DER-16 requires explicit admission(s) provided by OWE-02."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-17",
+      "kind": "requires_admission",
+      "note": "Node DER-17 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-18",
+      "kind": "requires_admission",
+      "note": "Node DER-18 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-18",
+      "kind": "requires_admission",
+      "note": "Node DER-18 requires explicit admission(s) provided by OWE-04."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-19",
+      "kind": "requires_admission",
+      "note": "Node DER-19 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-20",
+      "kind": "requires_admission",
+      "note": "Node DER-20 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-21",
+      "kind": "requires_admission",
+      "note": "Node DER-21 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-21",
+      "kind": "requires_admission",
+      "note": "Node DER-21 requires explicit admission(s) provided by OWE-04."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-22",
+      "kind": "requires_admission",
+      "note": "Node DER-22 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-22",
+      "kind": "requires_admission",
+      "note": "Node DER-22 requires explicit admission(s) provided by OWE-04."
+    },
+    {
+      "from": "OWE-08",
+      "to": "DER-22",
+      "kind": "requires_admission",
+      "note": "Node DER-22 requires explicit admission(s) provided by OWE-08."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-23",
+      "kind": "requires_admission",
+      "note": "Node DER-23 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-23",
+      "kind": "requires_admission",
+      "note": "Node DER-23 requires explicit admission(s) provided by OWE-04."
+    },
+    {
+      "from": "OWE-07",
+      "to": "DER-23",
+      "kind": "requires_admission",
+      "note": "Node DER-23 requires explicit admission(s) provided by OWE-07."
+    },
+    {
+      "from": "OWE-13",
+      "to": "DER-23",
+      "kind": "requires_admission",
+      "note": "Node DER-23 requires explicit admission(s) provided by OWE-13."
     },
     {
       "from": "DER-01",
@@ -1527,34 +2178,10 @@
       "note": "Single involution orbit bound and binary pair-tree 2^t growth build on C2 operations."
     },
     {
-      "from": "OWE-04",
-      "to": "DER-03",
-      "kind": "requires_admission",
-      "note": "Step/tree depth indexing uses M3 dynamics."
-    },
-    {
       "from": "DER-01",
       "to": "DER-04",
       "kind": "derives",
       "note": "MirrorNonIdentification imports PrimitiveDifference for two-slot counterpart symmetry."
-    },
-    {
-      "from": "OWE-03",
-      "to": "DER-04",
-      "kind": "requires_admission",
-      "note": "Uses symmetric access invariance on S2Bool."
-    },
-    {
-      "from": "OWE-01",
-      "to": "DER-05",
-      "kind": "requires_admission",
-      "note": "ZeroEquivalence uses Quot.sound and propext in Lean 4.33.0."
-    },
-    {
-      "from": "OWE-04",
-      "to": "DER-05",
-      "kind": "requires_admission",
-      "note": "Observation kernels use indexed context families (M2)."
     },
     {
       "from": "DER-05",
@@ -1575,12 +2202,6 @@
       "note": "Binary arity weight uniqueness mu(2) = 1 and RT-01 scope countermodel build on Regime4 separation."
     },
     {
-      "from": "OWE-03",
-      "to": "DER-07",
-      "kind": "requires_admission",
-      "note": "Uses positive arity cost target S5."
-    },
-    {
       "from": "DER-06",
       "to": "DER-08",
       "kind": "derives",
@@ -1597,12 +2218,6 @@
       "to": "DER-09",
       "kind": "derives",
       "note": "RetentionAndRefusal imports ZeroEquivalence."
-    },
-    {
-      "from": "OWE-03",
-      "to": "DER-09",
-      "kind": "requires_admission",
-      "note": "Uses retention state bit S4."
     },
     {
       "from": "DER-09",
@@ -1639,12 +2254,6 @@
       "to": "DER-13",
       "kind": "derives",
       "note": "LocalGlobalObstruction imports ZeroEquivalence."
-    },
-    {
-      "from": "OWE-04",
-      "to": "DER-13",
-      "kind": "requires_admission",
-      "note": "3-cycle and 4-simplex carriers use multiplicity M1 (|alpha| >= 3)."
     },
     {
       "from": "DER-13",
@@ -1699,12 +2308,6 @@
       "to": "DER-19",
       "kind": "derives",
       "note": "Includes strict measure no-return verification."
-    },
-    {
-      "from": "OWE-01",
-      "to": "DER-20",
-      "kind": "requires_admission",
-      "note": "Historical seed audit verification runs on the repository manifest."
     },
     {
       "from": "OWE-02",
@@ -1819,6 +2422,90 @@
       "to": "IMG-10",
       "kind": "extends_to",
       "note": "Diagonal non-exhaustion and reflective tower extend to self-hosting Cosmos metatheory."
+    },
+    {
+      "from": "DER-03",
+      "to": "DER-21",
+      "kind": "derives",
+      "note": "Zero-equivalence and preorder quotient machinery underpin the general profile-preorder equivalence theorem."
+    },
+    {
+      "from": "DER-09",
+      "to": "DER-21",
+      "kind": "derives",
+      "note": "Single-bit retention capacity constraints specialize to quotient class separation bounds under profileEq."
+    },
+    {
+      "from": "DER-04",
+      "to": "DER-22",
+      "kind": "derives",
+      "note": "Two-element involution and torsor parity structure the ten-stick reflection residual and phase lift models."
+    },
+    {
+      "from": "DER-21",
+      "to": "DER-22",
+      "kind": "derives",
+      "note": "Profile quotient collapsing motivates the ten-stick residual collapse and phase-lift observability analysis."
+    },
+    {
+      "from": "DER-06",
+      "to": "DER-23",
+      "kind": "derives",
+      "note": "Minimal separation regime hierarchy frames the supplied-rule generator trace and radius-d profile collision bounds."
+    },
+    {
+      "from": "DER-21",
+      "to": "DER-23",
+      "kind": "derives",
+      "note": "Profile equivalence specializes to bounded-radius observation profiles along runRefl chains."
+    },
+    {
+      "from": "DER-06",
+      "to": "OWE-11",
+      "kind": "motivates_bridge",
+      "note": "Conditional QuotRefRun arithmetic bound isolates the missing general Regime4 class-count growth bridge."
+    },
+    {
+      "from": "DER-09",
+      "to": "OWE-12",
+      "kind": "motivates_bridge",
+      "note": "Simplified-model commutation and DER-19 guard regressions isolate the open prose-to-legacy Represented/Horizon bridge."
+    },
+    {
+      "from": "DER-06",
+      "to": "OWE-13",
+      "kind": "motivates_bridge",
+      "note": "Radius-d interior profile collisions in runRefl isolate the open multi-round retention scaling and repair persistence obligation."
     }
-  ]
+  ],
+  "admissions_catalog": {
+    "S0_lean_core_host": "OWE-01",
+    "S1_off_diagonal_pair_witness": "OWE-02",
+    "S2_symmetric_closure": "OWE-03",
+    "S3_endomorphism_composition": "OWE-03",
+    "S4_retention_state_bit": "OWE-03",
+    "S5_additive_cost_target": "OWE-03",
+    "M1_carrier_multiplicity": "OWE-04",
+    "M2_indexed_context_family": "OWE-04",
+    "M3_step_history_dynamics": "OWE-04",
+    "cohomological_dimension_bridge_admission": "OWE-05",
+    "operational_seed_generator_admission": "OWE-06",
+    "operational_witness_acquisition_invocation_admission": "OWE-07",
+    "ten_stick_carrier_and_period_four_necessity_admission": "OWE-08",
+    "canonical_admissibility_pricing_functional_admission": "OWE-09",
+    "infinite_completion_admission": "OWE-10",
+    "regime4_strict_class_count_growth_admission": "OWE-11",
+    "wdp_ch01_d03_full_represented_world_bridge_admission": "OWE-12",
+    "multi_round_law_and_repair_persistence_admission": "OWE-13",
+    "higher_simplicial_carrier_admission": "IMG-01",
+    "causal_poset_window_admission": "IMG-02",
+    "parseval_l2_pairing_admission": "IMG-03",
+    "frame_additivity_admission": "IMG-04",
+    "composite_tensor_pairing_admission": "IMG-05",
+    "discrete_variational_stationarity_admission": "IMG-06",
+    "gauge_group_fiber_admission": "IMG-07",
+    "simplicial_metric_edge_admission": "IMG-08",
+    "bath_partition_admission": "IMG-09",
+    "internal_syntax_encoding_admission": "IMG-10"
+  }
 }

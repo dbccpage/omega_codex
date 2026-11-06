@@ -275,8 +275,61 @@ def proj_to_horizon(w_wdp):
     return (adm, ret, views, ledger)
 
 
+def step_hworld_guarded(w, ev):
+    toks, reqs, views, budget = w
+    kind = ev[0]
+    if kind == "admitTok":
+        t = ev[1]
+        return (toks if t in toks else toks + (t,), reqs, views, budget)
+    if kind == "require":
+        i, j = ev[1], ev[2]
+        if i < len(toks) and j < len(toks) and i != j:
+            pair = (i, j)
+            return (toks, reqs if pair in reqs else reqs + (pair,), views, budget)
+        return w
+    if kind == "addView":
+        v = ev[1]
+        if budget >= 1 and v < len(toks):
+            return (toks, reqs, views if v in views else views + (v,), budget - 1)
+        return w
+    if kind == "setBudget":
+        return (toks, reqs, views, ev[1])
+    raise ValueError(f"Unknown event: {ev}")
+
+
+def sep_b(col, i, j):
+    return (i in col) != (j in col)
+
+
+def sat_b(views, req):
+    return any(sep_b(c, req[0], req[1]) for c in views)
+
+
+def increase_b(data_len, views, col):
+    return any(
+        i != j and sep_b(col, i, j) and not sat_b(views, (i, j))
+        for i in range(data_len)
+        for j in range(data_len)
+    )
+
+
+def aug_ok_b(data_len, views, col):
+    return (
+        all(p < data_len for p in col)
+        and (col not in views)
+        and increase_b(data_len, views, col)
+    )
+
+
+def step_represented_add_view(w, col):
+    data, views, reqs, refusals, budget, aug_licensed, notes = w
+    if aug_ok_b(len(data), views, col) and aug_licensed and budget > 0:
+        return (data, views + (col,), reqs, refusals, budget - 1, aug_licensed, notes)
+    return w
+
+
 def check_oq08():
-    print("=== [4] OQ-08: STATE-REFINEMENT MORPHISM (WDP-CH01-D03 VS HORIZON.LEAN) ===")
+    print("=== [4] OQ-08: STATE-REFINEMENT MORPHISM (SIMPLIFIED VS FULL REPRESENTED GUARDS) ===")
     events = [
         ("admitTok", 0),
         ("admitTok", 1),
@@ -304,7 +357,43 @@ def check_oq08():
                     w_h = step_hworld(w_h, ev)
                 if proj_to_horizon(w_wdp) != w_h:
                     mismatches += 1
+        if label.startswith("Zero"):
+            assert mismatches == 0
+        else:
+            assert mismatches > 0
         print(f"  {label}: traces(len<=3)={total_traces}, commutation mismatches={mismatches}")
+
+    # Regressions comparing simplified stepHWorldGuarded vs full Represented.World step
+    # 1. Singleton discrepancy: toks=[0], budget=1 accepts addView 0 in HWorld, rejected in World
+    hw_sing = ((0,), (), (), 1)
+    w_sing = ((0,), (), (), (), 1, True, ())
+    assert step_hworld_guarded(hw_sing, ("addView", 0)) == ((0,), (), (0,), 0)
+    assert not aug_ok_b(1, (), (0,))
+    assert step_represented_add_view(w_sing, (0,)) == w_sing
+
+    # 2. Duplicate view: [1] already in views; World rejects and keeps budget=1, HWorld debits budget
+    hw_dup = ((0, 1), ((0, 1),), (1,), 1)
+    w_dup = ((0, 1), ((1,),), ((0, 1),), (), 1, True, ())
+    assert step_hworld_guarded(hw_dup, ("addView", 1)) == ((0, 1), ((0, 1),), (1,), 0)
+    assert not aug_ok_b(2, ((1,),), (1,))
+    assert step_represented_add_view(w_dup, (1,)) == w_dup
+
+    # 3. Disabled augmentation license: augLicensed=False rejects in World, accepted in HWorld
+    hw_lic = ((0, 1), ((0, 1),), (), 1)
+    w_lic = ((0, 1), (), ((0, 1),), (), 1, False, ())
+    assert aug_ok_b(2, (), (1,))
+    assert step_represented_add_view(w_lic, (1,)) == w_lic
+    assert step_hworld_guarded(hw_lic, ("addView", 1)) == ((0, 1), ((0, 1),), (1,), 0)
+
+    # 4. No new separation: (0,1) already separated by [0]; novel [1] rejected in World, accepted in HWorld
+    hw_nosep = ((0, 1), ((0, 1),), (0,), 1)
+    w_nosep = ((0, 1), ((0,),), ((0, 1),), (), 1, True, ())
+    assert (1,) not in w_nosep[1]
+    assert not increase_b(2, ((0,),), (1,))
+    assert not aug_ok_b(2, ((0,),), (1,))
+    assert step_represented_add_view(w_nosep, (1,)) == w_nosep
+    assert step_hworld_guarded(hw_nosep, ("addView", 1)) == ((0, 1), ((0, 1),), (0, 1), 0)
+    print("  All 4 Represented.World vs simplified HWorld guard regressions verified.")
 
 
 if __name__ == "__main__":
@@ -312,3 +401,4 @@ if __name__ == "__main__":
     check_oq06()
     check_oq07()
     check_oq08()
+

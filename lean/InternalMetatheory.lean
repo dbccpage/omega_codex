@@ -618,4 +618,188 @@ theorem regime4Measure_newForm_lt (r : Regime4) (k : Nat) :
   simp only [regime4Measure, List.length_append, List.length_singleton]
   omega
 
+/-! ## Section 5: OQ-08 Guard-Discrepancy Regressions and Full-Guard Adapted Commutation
+
+Compares the simplified `HWorld` / `stepHWorldGuarded` model in
+`RetentionAndRefusal.lean` against the fuller `Represented.World` / `step`
+semantics (`19L57G1/lean4/Derivation/Represented.lean`, commit
+`45bb09864f9b52ed5ecf66e977ca81f0ed623de7`), which enforces:
+1. Carrier bound: `c.all (fun p => decide (p < w.data.length))`
+2. View novelty: `!(decide (c ∈ w.views))`
+3. Increased separation: `increaseB w c`
+4. Augmentation licensing: `w.augLicensed`
+5. Positive budget: `decide (0 < w.budget)`
+
+We prove four regression theorems witnessing the concrete discrepancies between
+`stepHWorldGuarded` and `Represented.step` (singleton carrier `[0]`, duplicate
+views, disabled `augLicensed`, and novel views creating no new separation), and
+prove commutation for an adapted full-guard 5-gate state `FullWDPWorld` over
+`Represented.World` at `horizonSpecializationCosts = ⟨0, 0, 0, 1⟩`. The prose
+5-gate grounding span `WDP-CH01-D03` (rational ledger `R ∈ ℚ≥0`, form/arity
+admission, temporal retention fee, and `ℓ₁` cochain defect `Φ₁`) remains an
+explicit `OWED` bridge (`OWE-12`). -/
+
+/-- Regression 1 (Codex singleton discrepancy): on a singleton carrier `toks = [0]`
+    with `budget = 1`, `stepHWorldGuarded` accepts `.addView 0` and decrements
+    `budget` to `0`, whereas `Represented.step` on `data = [0]` rejects
+    `.addView [0]` because `increaseB` is `false` (`[0]` separates no pair). -/
+theorem oq08_singleton_discrepancy_regression :
+    stepHWorldGuarded ⟨[0], [], [], 1⟩ (.addView 0) = ⟨[0], [], [0], 0⟩ ∧
+    augOkB ⟨[0], [], [], [], 1, true, []⟩ [0] = false ∧
+    step ⟨[0], [], [], [], 1, true, []⟩ (.addView [0]) =
+      ⟨[0], [], [], [], 1, true, []⟩ := by
+  decide
+
+/-- Regression 2 (duplicate view): when `[1]` is already in `views` on `data = [0, 1]`
+    with `budget = 1`, `Represented.step` rejects `.addView [1]` and preserves
+    `budget = 1` via the novelty guard `!(decide (c ∈ w.views))`, whereas
+    `stepHWorldGuarded` leaves `views = [1]` unchanged via `insertNewNat` but
+    still decrements `budget` from `1` to `0`. -/
+theorem oq08_duplicate_view_regression :
+    let w : World := ⟨[0, 1], [[1]], [(0, 1)], [], 1, true, []⟩
+    let hw : HWorld := ⟨[0, 1], [(0, 1)], [1], 1⟩
+    augOkB w [1] = false ∧
+    step w (.addView [1]) = w ∧
+    (step w (.addView [1])).budget = 1 ∧
+    stepHWorldGuarded hw (.addView 1) = ⟨[0, 1], [(0, 1)], [1], 0⟩ := by
+  decide
+
+/-- Regression 3 (disabled augmentation license): on `data = [0, 1]`, `reqs = [(0, 1)]`,
+    `views = []`, `budget = 1`, `augLicensed = false`, view `[1]` satisfies
+    `augOkB w [1] = true`, yet `Represented.step` rejects `.addView [1]` because
+    `w.augLicensed = false`, whereas `stepHWorldGuarded` has no license guard
+    and accepts `.addView 1`. -/
+theorem oq08_disabled_license_regression :
+    let w : World := ⟨[0, 1], [], [(0, 1)], [], 1, false, []⟩
+    let hw : HWorld := ⟨[0, 1], [(0, 1)], [], 1⟩
+    augOkB w [1] = true ∧
+    step w (.addView [1]) = w ∧
+    stepHWorldGuarded hw (.addView 1) = ⟨[0, 1], [(0, 1)], [1], 0⟩ := by
+  decide
+
+/-- Regression 4 (addition creating no new separation): on `data = [0, 1]`,
+    `reqs = [(0, 1)]`, `views = [[0]]`, `budget = 1`, `augLicensed = true`,
+    `(0, 1)` is already separated by `[0]`, so novel view `[1]` (`[1] ∉ [[0]]`)
+    has `increaseB w [1] = false` and `Represented.step` rejects `.addView [1]`,
+    whereas `stepHWorldGuarded` accepts `.addView 1` and decrements `budget`. -/
+theorem oq08_no_new_separation_regression :
+    let w : World := ⟨[0, 1], [[0]], [(0, 1)], [], 1, true, []⟩
+    let hw : HWorld := ⟨[0, 1], [(0, 1)], [0], 1⟩
+    decide ([1] ∈ w.views) = false ∧
+    increaseB w [1] = false ∧
+    augOkB w [1] = false ∧
+    step w (.addView [1]) = w ∧
+    stepHWorldGuarded hw (.addView 1) = ⟨[0, 1], [(0, 1)], [0, 1], 0⟩ := by
+  decide
+
+/-- Adapted 5-gate state carrying the full `Represented.World` fields together
+    with raw ingress supply `sup` and diagnostic receipt counter `receipts`. -/
+structure FullWDPWorld where
+  sup         : List Nat
+  adm         : List Nat
+  views       : List View
+  ret         : List Req
+  refusals    : List Req
+  ledger      : Nat
+  augLicensed : Bool
+  notes       : List Nat
+  receipts    : Nat
+deriving Repr, DecidableEq
+
+/-- Forgetful projection from `FullWDPWorld` to the exact `Represented.World` record. -/
+def projToRepresentedWorld (w : FullWDPWorld) : World :=
+  { data        := w.adm
+    views       := w.views
+    reqs        := w.ret
+    refusals    := w.refusals
+    budget      := w.ledger
+    augLicensed := w.augLicensed
+    notes       := w.notes }
+
+/-- Adapted 5-gate transition enforcing the exact `Represented.World` guards
+    (`reqOkB`, `markOkB`, `augOkB`, `augLicensed`, `obstructedB`) alongside
+    parametric gate costs `GateCosts`. -/
+def stepFullWDPWorld (costs : GateCosts) (w : FullWDPWorld) : Event → FullWDPWorld
+  | .admitTok t =>
+      let cost := costs.cSup + costs.cAdm
+      if cost ≤ w.ledger then
+        let adm' := if t ∈ w.adm then w.adm else w.adm ++ [t]
+        { w with sup := w.sup ++ [t], adm := adm', ledger := w.ledger - cost }
+      else w
+  | .require i j =>
+      let pw := projToRepresentedWorld w
+      if decide (costs.cRet ≤ w.ledger) && reqOkB pw i j then
+        { w with ret := w.ret ++ [(i, j)], ledger := w.ledger - costs.cRet }
+      else w
+  | .mark v p =>
+      let pw := projToRepresentedWorld w
+      if markOkB pw v p && decide (costs.cEv ≤ w.ledger) then
+        { w with
+            views := (markApply pw v p).views,
+            ledger := w.ledger - costs.cEv,
+            receipts := w.receipts + 1 }
+      else w
+  | .addView c =>
+      let pw := projToRepresentedWorld w
+      if augOkB pw c && w.augLicensed && decide (costs.cEv ≤ w.ledger) then
+        { w with
+            views := (augApply pw c).views,
+            ledger := w.ledger - costs.cEv,
+            receipts := w.receipts + 1 }
+      else w
+  | .refuse i j =>
+      let pw := projToRepresentedWorld w
+      if obstructedB pw (i, j) && !(decide ((i, j) ∈ w.refusals)) then
+        { w with refusals := w.refusals ++ [(i, j)] }
+      else w
+  | .note n =>
+      { w with notes := w.notes ++ [n] }
+  | .setBudget n =>
+      { w with ledger := n }
+  | .setAugLicense b =>
+      { w with augLicensed := b }
+
+/-- At `horizonSpecializationCosts = ⟨0, 0, 0, 1⟩`, the adapted full-guard 5-gate
+    transition `stepFullWDPWorld` commutes with `projToRepresentedWorld` and
+    `Represented.step` across all 8 `Event` constructors. -/
+theorem oq08_full_guard_refinement_commutes_at_zero_adm_ret_cost
+    (w : FullWDPWorld) (ev : Event) :
+    projToRepresentedWorld (stepFullWDPWorld horizonSpecializationCosts w ev) =
+      step (projToRepresentedWorld w) ev := by
+  cases ev with
+  | admitTok t =>
+      by_cases ht : t ∈ w.adm <;>
+        simp [stepFullWDPWorld, horizonSpecializationCosts, step,
+          projToRepresentedWorld, ht]
+  | require i j =>
+      have hle : (0 : Nat) ≤ w.ledger := Nat.zero_le w.ledger
+      cases hr : reqOkB (projToRepresentedWorld w) i j <;>
+        simp [stepFullWDPWorld, horizonSpecializationCosts, step, hle, hr] <;>
+        rfl
+  | mark v p =>
+      have hpos : (1 ≤ w.ledger) = (0 < w.ledger) := rfl
+      cases hm : markOkB (projToRepresentedWorld w) v p <;>
+        by_cases hb : 0 < w.ledger <;>
+          simp [stepFullWDPWorld, horizonSpecializationCosts, step, hm, hb, hpos,
+            show (projToRepresentedWorld w).budget = w.ledger from rfl] <;>
+          rfl
+  | addView c =>
+      have hpos : (1 ≤ w.ledger) = (0 < w.ledger) := rfl
+      cases ha : augOkB (projToRepresentedWorld w) c <;>
+        cases hl : w.augLicensed <;>
+          by_cases hb : 0 < w.ledger <;>
+            simp [stepFullWDPWorld, horizonSpecializationCosts, step, ha, hl, hb, hpos,
+              show (projToRepresentedWorld w).budget = w.ledger from rfl,
+              show (projToRepresentedWorld w).augLicensed = w.augLicensed from rfl] <;>
+            simp [projToRepresentedWorld, augApply, hl]
+  | refuse i j =>
+      cases ho : obstructedB (projToRepresentedWorld w) (i, j) <;>
+        by_cases hr : (i, j) ∈ w.refusals <;>
+          simp [stepFullWDPWorld, step, ho, hr,
+            show ((i, j) ∈ (projToRepresentedWorld w).refusals) ↔ ((i, j) ∈ w.refusals) from Iff.rfl] <;>
+          rfl
+  | note n => rfl
+  | setBudget n => rfl
+  | setAugLicense b => rfl
+
 end OmegaCodex.InternalMetatheory

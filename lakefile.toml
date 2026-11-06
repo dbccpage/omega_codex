@@ -8,7 +8,8 @@ defaultTargets = [
   "MinimalSeparation",
   "RetentionAndRefusal",
   "LocalGlobalObstruction",
-  "InternalMetatheory"
+  "InternalMetatheory",
+  "ProfilePreorderAndGenerator"
 ]
 
 [[lean_lib]]
@@ -42,5 +43,10 @@ srcDir = "lean"
 [[lean_lib]]
 name = "InternalMetatheory"
 srcDir = "lean"
+
+[[lean_lib]]
+name = "ProfilePreorderAndGenerator"
+srcDir = "lean"
+
 
 

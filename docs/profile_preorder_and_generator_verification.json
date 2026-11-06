@@ -1,0 +1,212 @@
+{
+  "verified": true,
+  "source": "lean/ProfilePreorderAndGenerator.lean",
+  "source_sha256": "9b8d3c31c1d3356d185645d8a7ef9927cb31516943bfe8689c5fd808de055b73",
+  "direct_imports": {
+    "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
+    "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 64,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "profileEquiv_refl": [],
+    "profileEquiv_symm": [],
+    "profileEquiv_trans": [],
+    "profileEquiv_equivalence": [],
+    "mutualComp_refl_of_preorder": [],
+    "mutualComp_symm": [],
+    "mutualComp_trans_of_preorder": [],
+    "mutualComp_equivalence_of_preorder": [],
+    "profileEquiv_iff_mutualComp_of_preorder": [],
+    "mutualComp_iff_rel_of_symmetric": [],
+    "profileEquiv_iff_rel_of_equivalence": [],
+    "boolLeq_preorder": [
+      "propext"
+    ],
+    "directed_not_rel_ne_class_ineq_on_preorder": [],
+    "profileEquiv_strictly_generalizes_mutualComp_without_refl": [
+      "propext"
+    ],
+    "collapseMap_mk": [
+      "Quot.sound"
+    ],
+    "collapseMap_surjective": [
+      "Quot.sound"
+    ],
+    "failed_identification_retains_two_classes": [
+      "propext",
+      "Quot.sound"
+    ],
+    "collapseMap_injective_iff_reverse_refinement": [
+      "propext",
+      "Quot.sound"
+    ],
+    "symmetry_failure_retains_multiplicity": [
+      "propext",
+      "Quot.sound"
+    ],
+    "coarse_zero_coexists_with_fine_nonzero": [],
+    "reflectIndex10_involutive": [
+      "propext",
+      "Quot.sound"
+    ],
+    "reflect10_involutive": [
+      "propext",
+      "Quot.sound"
+    ],
+    "stickLeft_reflect_eq_stickRight": [
+      "propext",
+      "Quot.sound"
+    ],
+    "stickLeft_stickRight_raw_vs_reflResidual": [
+      "propext",
+      "Quot.sound"
+    ],
+    "stickLeft_stickMid_reflResidual_pos": [
+      "propext",
+      "Quot.sound"
+    ],
+    "proj2_intertwines_counterpart": [],
+    "step4_two_projects_to_id_but_flips_sheet": [],
+    "step4_period_four": [],
+    "trivial_two_step_lift_also_intertwines": [],
+    "stepM_lower_bound_two_steps": [
+      "propext"
+    ],
+    "min_witnessed_route_closes": [
+      "propext"
+    ],
+    "bridge_facts_not_law": [
+      "propext"
+    ],
+    "reflective_chain_growth": [
+      "propext"
+    ],
+    "reflective_chain_is_initial_segment": [
+      "propext"
+    ],
+    "reflective_chain_successor_relation": [
+      "propext"
+    ],
+    "reflective_chain_irreflexive_facts": [
+      "propext",
+      "Quot.sound"
+    ],
+    "reflective_chain_tags": [
+      "propext"
+    ],
+    "chain_tagged_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "chain_hasIn_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "chain_hasOut_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "middle_profile": [
+      "propext",
+      "Quot.sound"
+    ],
+    "endpoint0_profile": [
+      "propext",
+      "Quot.sound"
+    ],
+    "endpointN_profile": [
+      "propext",
+      "Quot.sound"
+    ],
+    "depth1_obstructions_are_exactly_middle_pairs": [
+      "propext",
+      "Quot.sound"
+    ],
+    "generation_never_dries": [
+      "propext",
+      "Quot.sound"
+    ],
+    "automark_presence_vacuous": [
+      "propext",
+      "Quot.sound"
+    ],
+    "le_foldr_max": [
+      "propext",
+      "Quot.sound"
+    ],
+    "finite_marks_outrun": [
+      "propext",
+      "Quot.sound"
+    ],
+    "valued_marks_collapse_generation": [
+      "propext",
+      "Quot.sound"
+    ],
+    "middle_swap_not_relation_preserving": [
+      "propext",
+      "Quot.sound"
+    ],
+    "depth2_separates_near_ends_n4": [
+      "propext",
+      "Quot.sound"
+    ],
+    "depth2_obstruction_n5": [
+      "propext",
+      "Quot.sound"
+    ],
+    "filter_range_decide_eq": [
+      "propext",
+      "Quot.sound"
+    ],
+    "filter_range_succ_eq": [
+      "propext",
+      "Quot.sound"
+    ],
+    "filter_range_eq": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ball_length": [
+      "propext"
+    ],
+    "profileD_deep": [
+      "propext",
+      "Quot.sound"
+    ],
+    "depth_d_outrun": [
+      "propext",
+      "Quot.sound"
+    ],
+    "depth_d_obstruction": [
+      "propext",
+      "Quot.sound"
+    ],
+    "incoming_edges_interior": [
+      "propext",
+      "Quot.sound"
+    ],
+    "outgoing_edges_interior": [
+      "propext",
+      "Quot.sound"
+    ],
+    "profile2_interior": [
+      "propext",
+      "Quot.sound"
+    ],
+    "profileD_radius_one": [
+      "propext",
+      "Quot.sound"
+    ],
+    "radius_one_agrees_with_sealed_depth2": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

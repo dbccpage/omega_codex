@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Validate dag/derivation_dag.json against repository artifacts, receipts, and Claim Hygiene rules."""
+"""Validate dag/derivation_dag.json against repository artifacts, receipts, and Claim Hygiene rules.
+
+Scope note: This validator checks structural graph integrity, source-to-receipt SHA-256
+and module-identity binding, surjective theorem and reference coverage, and consistency
+between declared `unpriced_inputs_or_admissions` identifiers and `requires_admission`
+edges. It does not substitute for mathematical review of whether a Lean theorem statement
+faithfully captures an informal historical claim or whether declared premises are complete.
+"""
 from __future__ import annotations
 
 import argparse
@@ -68,6 +75,7 @@ def validate_dag_data(
         "description",
         "claim_hygiene_scope",
         "buckets",
+        "admissions_catalog",
         "lean_inventory",
         "nodes",
         "edges",
@@ -85,9 +93,15 @@ def validate_dag_data(
             raise ValueError(f"claim_hygiene_scope missing non-empty {key!r}")
         check_claim_hygiene_text(scope[key], f"claim_hygiene_scope.{key}")
 
-    # Validate Lean inventory and cache receipt theorem maps
+    admissions_catalog = data["admissions_catalog"]
+    if not isinstance(admissions_catalog, dict) or not admissions_catalog:
+        raise ValueError("admissions_catalog must be a non-empty object mapping admission IDs to provider node IDs")
+
+    # Validate Lean inventory and cache receipt theorem maps + bidirectional source/receipt bindings
     receipt_theorems_by_path: dict[str, set[str]] = {}
     referenced_theorems_by_path: dict[str, set[str]] = {}
+    inventory_by_source: dict[str, dict[str, Any]] = {}
+    inventory_by_receipt: dict[str, dict[str, Any]] = {}
     total_lean_theorems = 0
     seen_modules: set[str] = set()
     for entry in data["lean_inventory"]:
@@ -95,8 +109,15 @@ def validate_dag_data(
         src_rel = entry.get("source")
         rec_rel = entry.get("receipt")
         expected_count = entry.get("theorems_checked")
-        if not mod or mod in seen_modules:
+        if not mod or not isinstance(mod, str) or mod in seen_modules:
             raise ValueError(f"Duplicate or empty Lean module in lean_inventory: {mod!r}")
+        expected_src_rel = f"lean/{mod}.lean"
+        if src_rel != expected_src_rel:
+            raise ValueError(
+                f"Lean inventory source path mismatch for module {mod!r}: got {src_rel!r}, expected {expected_src_rel!r}"
+            )
+        if not rec_rel or not isinstance(rec_rel, str) or rec_rel in inventory_by_receipt:
+            raise ValueError(f"Duplicate or invalid receipt path in lean_inventory: {rec_rel!r}")
         seen_modules.add(mod)
         src_path = root / src_rel
         rec_path = root / rec_rel
@@ -139,6 +160,8 @@ def validate_dag_data(
                 )
         receipt_theorems_by_path[rec_rel] = set(deps.keys())
         referenced_theorems_by_path[rec_rel] = set()
+        inventory_by_source[src_rel] = entry
+        inventory_by_receipt[rec_rel] = entry
         total_lean_theorems += expected_count
 
     # Validate buckets declaration
@@ -157,6 +180,7 @@ def validate_dag_data(
     all_python_checks: list[str] = []
     seen_python_checks: set[str] = set()
     all_ref_tokens: set[str] = set()
+    defined_admissions_by_node: dict[str, set[str]] = {}
 
     for node in nodes:
         nid = node.get("id")
@@ -186,38 +210,75 @@ def validate_dag_data(
             for tok in re.findall(r"(?:N\d{2}|OQ-\d{2}|RT-\d{2})", str(ref)):
                 all_ref_tokens.add(tok)
 
-        if not node.get("unpriced_inputs_or_admissions"):
-            raise ValueError(f"Node {nid} must declare non-empty unpriced_inputs_or_admissions")
+        adm_list = node.get("unpriced_inputs_or_admissions")
+        if (
+            not adm_list
+            or not isinstance(adm_list, list)
+            or any(not isinstance(a, str) or not a.strip() for a in adm_list)
+            or len(adm_list) != len(set(adm_list))
+        ):
+            raise ValueError(
+                f"Node {nid} must declare a non-empty list of unique admission IDs in unpriced_inputs_or_admissions"
+            )
+
+        defines_adm = node.get("defines_admissions", [])
+        if defines_adm is not None:
+            if (
+                not isinstance(defines_adm, list)
+                or any(not isinstance(a, str) or not a.strip() for a in defines_adm)
+                or len(defines_adm) != len(set(defines_adm))
+            ):
+                raise ValueError(f"Node {nid} has malformed defines_admissions")
+            if defines_adm and bucket not in {"OWED", "IMAGINED"}:
+                raise ValueError(f"Only OWED or IMAGINED nodes may declare defines_admissions (found on {nid})")
+            defined_admissions_by_node[nid] = set(defines_adm)
 
         artifacts = node.get("artifacts", {})
         if not isinstance(artifacts, dict):
             raise ValueError(f"Node {nid} artifacts must be an object")
 
         lean_file = artifacts.get("lean_file")
+        lean_module = artifacts.get("lean_module")
         lean_theorems = artifacts.get("lean_theorems", [])
         receipt_json = artifacts.get("receipt_json")
         python_checks = artifacts.get("python_checks", [])
         doc_refs = artifacts.get("doc_refs", [])
 
-        if lean_file:
+        has_any_lean = bool(lean_file or receipt_json or lean_theorems or lean_module)
+        if has_any_lean:
+            if not lean_file or not isinstance(lean_file, str):
+                raise ValueError(f"Node {nid} specifies Lean receipt/theorems without a valid lean_file")
             if not (root / lean_file).is_file():
                 raise ValueError(f"Node {nid} references missing lean_file: {lean_file}")
-            if not receipt_json:
+            if not receipt_json or not isinstance(receipt_json, str):
                 raise ValueError(f"Node {nid} specifies lean_file without receipt_json")
-            if receipt_json not in receipt_theorems_by_path:
-                rec_path = root / receipt_json
-                if not rec_path.is_file():
-                    raise ValueError(f"Node {nid} references missing receipt_json: {receipt_json}")
-                rec_data = json.loads(rec_path.read_text(encoding="utf-8"))
-                receipt_theorems_by_path[receipt_json] = set(rec_data.get("dependencies", {}).keys())
-                referenced_theorems_by_path.setdefault(receipt_json, set())
+            if not (root / receipt_json).is_file():
+                raise ValueError(f"Node {nid} references missing receipt_json: {receipt_json}")
+            if lean_file not in inventory_by_source:
+                raise ValueError(f"Node {nid} references lean_file {lean_file!r} not registered in lean_inventory")
+            if receipt_json not in inventory_by_receipt:
+                raise ValueError(f"Node {nid} references receipt_json {receipt_json!r} not registered in lean_inventory")
+            inv_src_entry = inventory_by_source[lean_file]
+            inv_rec_entry = inventory_by_receipt[receipt_json]
+            if inv_src_entry["receipt"] != receipt_json or inv_rec_entry["source"] != lean_file:
+                raise ValueError(
+                    f"Node {nid} Lean source/receipt binding mismatch: lean_file={lean_file!r} "
+                    f"(expects receipt {inv_src_entry['receipt']!r}) vs receipt_json={receipt_json!r} "
+                    f"(bound to source {inv_rec_entry['source']!r})"
+                )
+            if lean_module is not None and lean_module != inv_src_entry["module"]:
+                raise ValueError(
+                    f"Node {nid} lean_module {lean_module!r} does not match {inv_src_entry['module']!r}"
+                )
             known_theorems = receipt_theorems_by_path[receipt_json]
-            if not lean_theorems:
-                raise ValueError(f"Node {nid} specifies lean_file without lean_theorems")
+            if not lean_theorems or not isinstance(lean_theorems, list):
+                raise ValueError(f"Node {nid} specifies lean_file without non-empty lean_theorems")
+            if len(lean_theorems) != len(set(lean_theorems)):
+                raise ValueError(f"Node {nid} has duplicate theorem names in lean_theorems")
             for thm in lean_theorems:
                 if thm not in known_theorems:
                     raise ValueError(
-                        f"Node {nid} references theorem {thm!r} not found in {receipt_json}"
+                        f"Node {nid} references theorem {thm!r} not found in {receipt_json} ({lean_file})"
                     )
                 referenced_theorems_by_path[receipt_json].add(thm)
 
@@ -244,6 +305,50 @@ def validate_dag_data(
         seen_codes.add(code)
         bucket_counts[bucket] += 1
 
+    # Validate admissions_catalog against node definitions
+    for adm_id, provider_id in admissions_catalog.items():
+        if not isinstance(adm_id, str) or not adm_id.strip():
+            raise ValueError(f"Invalid admission identifier in admissions_catalog: {adm_id!r}")
+        if provider_id not in node_by_id:
+            raise ValueError(
+                f"Admission {adm_id!r} in admissions_catalog points to unknown provider node {provider_id!r}"
+            )
+        provider_bucket = node_by_id[provider_id]["bucket"]
+        if provider_bucket not in {"OWED", "IMAGINED"}:
+            raise ValueError(
+                f"Admission {adm_id!r} provider node {provider_id!r} must be in bucket OWED or IMAGINED, got {provider_bucket!r}"
+            )
+        if adm_id not in defined_admissions_by_node.get(provider_id, set()):
+            raise ValueError(
+                f"Admission {adm_id!r} mapped to {provider_id!r} in admissions_catalog is not listed in "
+                f"{provider_id}.defines_admissions"
+            )
+
+    for nid, def_set in defined_admissions_by_node.items():
+        for adm_id in def_set:
+            if admissions_catalog.get(adm_id) != nid:
+                raise ValueError(
+                    f"Node {nid} declares defines_admissions entry {adm_id!r} not mapped to {nid} in admissions_catalog"
+                )
+
+    # Compute required upstream OWED admission provider nodes for every node
+    required_admission_providers: dict[str, set[str]] = {nid: set() for nid in node_by_id}
+    for nid, node in node_by_id.items():
+        bucket = node["bucket"]
+        for adm_id in node["unpriced_inputs_or_admissions"]:
+            if adm_id not in admissions_catalog:
+                raise ValueError(
+                    f"Node {nid} references unresolved admission identifier {adm_id!r} not in admissions_catalog"
+                )
+            provider_id = admissions_catalog[adm_id]
+            provider_bucket = node_by_id[provider_id]["bucket"]
+            if bucket in {"DERIVED", "OWED"} and provider_bucket != "OWED":
+                raise ValueError(
+                    f"{bucket} node {nid} cannot depend on admission {adm_id!r} from {provider_bucket} node {provider_id}"
+                )
+            if provider_id != nid and provider_bucket == "OWED":
+                required_admission_providers[nid].add(provider_id)
+
     # Surjective theorem coverage across all receipts in lean_inventory
     for entry in data["lean_inventory"]:
         rec_rel = entry["receipt"]
@@ -269,7 +374,7 @@ def validate_dag_data(
                 f"Bucket count mismatch for {bucket}: declared={declared}, actual={count}"
             )
 
-    # Validate edges and acyclicity
+    # Validate edges, admission edge completeness, and acyclicity
     edges = data["edges"]
     if not isinstance(edges, list) or not edges:
         raise ValueError("edges must be a non-empty list")
@@ -277,6 +382,7 @@ def validate_dag_data(
     adj: dict[str, list[str]] = {nid: [] for nid in node_by_id}
     indegree: dict[str, int] = {nid: 0 for nid in node_by_id}
     seen_edges: set[tuple[str, str]] = set()
+    actual_admission_providers: dict[str, set[str]] = {nid: set() for nid in node_by_id}
 
     for idx, edge in enumerate(edges):
         src = edge.get("from")
@@ -307,10 +413,31 @@ def validate_dag_data(
             raise ValueError(
                 f"Edge from OWED node {src} to DERIVED node {dst} must have kind 'requires_admission'"
             )
+        if kind == "requires_admission":
+            if src_bucket != "OWED":
+                raise ValueError(
+                    f"Edge ({src!r} -> {dst!r}) has kind 'requires_admission' but source {src!r} is in bucket {src_bucket!r}"
+                )
+            actual_admission_providers[dst].add(src)
 
         seen_edges.add((src, dst))
         adj[src].append(dst)
         indegree[dst] += 1
+
+    # Enforce exact 1-to-1 correspondence between required OWED admission providers and requires_admission edges
+    for nid, req_providers in required_admission_providers.items():
+        act_providers = actual_admission_providers[nid]
+        missing_adm_edges = sorted(req_providers - act_providers)
+        if missing_adm_edges:
+            raise ValueError(
+                f"Node {nid} is missing required 'requires_admission' edge(s) from OWED provider(s): {missing_adm_edges}"
+            )
+        extra_adm_edges = sorted(act_providers - req_providers)
+        if extra_adm_edges:
+            raise ValueError(
+                f"Node {nid} has 'requires_admission' edge(s) from {extra_adm_edges} not matching its "
+                f"declared unpriced_inputs_or_admissions"
+            )
 
     queue = deque([nid for nid, deg in indegree.items() if deg == 0])
     visited_order: list[str] = []
@@ -347,6 +474,7 @@ def validate_dag_data(
         "total_nodes": len(node_by_id),
         "bucket_counts": bucket_counts,
         "total_edges": len(edges),
+        "requires_admission_edges": sum(len(s) for s in actual_admission_providers.values()),
         "lean_modules_verified": len(data["lean_inventory"]),
         "total_lean_theorems": total_lean_theorems,
         "python_checks_executed": len(all_python_checks) if run_checks else 0,
