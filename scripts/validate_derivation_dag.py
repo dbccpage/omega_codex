@@ -13,6 +13,7 @@ import argparse
 from collections import deque
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
@@ -124,7 +125,7 @@ def validate_dag_data(
         expected_count = entry.get("theorems_checked")
         if not mod or not isinstance(mod, str) or mod in seen_modules:
             raise ValueError(f"Duplicate or empty Lean module in lean_inventory: {mod!r}")
-        expected_src_rel = f"lean/{mod}.lean"
+        expected_src_rel = f"lean/{mod.replace('.', '/')}.lean"
         if src_rel != expected_src_rel:
             raise ValueError(
                 f"Lean inventory source path mismatch for module {mod!r}: got {src_rel!r}, expected {expected_src_rel!r}"
@@ -486,10 +487,14 @@ def validate_dag_data(
         raise ValueError(f"Cycle detected in derivation DAG involving nodes: {cycle_nodes}")
 
     if run_checks:
+        tmp_dir = root / ".lake" / "admission-replay-tmp"
+        tmp_dir.mkdir(parents=True, exist_ok=True)
+        check_env = {**os.environ, "TEMP": str(tmp_dir), "TMP": str(tmp_dir), "PYTHONPATH": str(root)}
         for py_rel in all_python_checks:
             proc = subprocess.run(
                 [sys.executable, str(root / py_rel)],
                 cwd=root,
+                env=check_env,
                 capture_output=True,
                 text=True,
                 check=False,

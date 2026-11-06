@@ -1,0 +1,39 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/RetentionChoices.lean",
+  "source_sha256": "3d3c1590856e6da728104dafa8978fbcf9b57c4ffad8aad1bc48010e361b72b4",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 17,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "every_packet_reassembles": [],
+    "independently_combined_projections": [],
+    "word_compatible_is_forward_compatible": [],
+    "greatest_forward_relation": [],
+    "word_compatible_reflexive": [],
+    "word_compatible_symmetric": [],
+    "comparison_transitive_implies_word_compatible_transitive": [],
+    "word_compatible_equivalence_iff_transitive": [],
+    "raw_readout_descends_iff": [
+      "Quot.sound"
+    ],
+    "fixed_point_free_output_symmetry_refutes_readout": [],
+    "word_compatible_below_every_approximation": [],
+    "approximation_respects_reports": [],
+    "stabilized_approximation_iff_word_compatible": [],
+    "run_identity": [],
+    "identity_updates_word_compatible_iff": [],
+    "declared_tolerance_reflexive_symmetric": [
+      "propext"
+    ],
+    "static_tolerance_nontransitive_countermodel": [
+      "propext"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

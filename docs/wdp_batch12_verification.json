@@ -1,0 +1,73 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/WdpBatch12.lean",
+  "source_sha256": "a7d01372284defee0ab665f348651e0d9d4208777d6901a1f117dc3dd124604a",
+  "direct_imports": {
+    "lean/WitnessedDifference/WdpBatch11.lean": "3cef30055b7f54f63336d389ceab4fa429a6504aa7cd5e4fb15883581745be7f"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 18,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "engineCapCount1_bounds": [],
+    "engine_not_subset_opposite_measure": [
+      "propext"
+    ],
+    "c1_engine_class_144_and_no_initial": [
+      "propext",
+      "Quot.sound"
+    ],
+    "bridgePairDefect_false_iff": [],
+    "bridgeIdAdj_is_cert": [],
+    "bridgePairDefect_not_directed_step_cert": [
+      "propext"
+    ],
+    "diamond_price_curl_zero_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "pg_wdp_genesis_bridge_scoped_finite_slice": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tfq_0385_uniform_rule_erases_separation_and_no_return": [
+      "propext",
+      "Quot.sound"
+    ],
+    "o02_preservation_reflection_comp": [],
+    "o02_collision_refutes_preservation_reflection": [
+      "propext"
+    ],
+    "wdp_bridge_o02_scoped_preservation_reflection_characterization": [
+      "propext"
+    ],
+    "int_sq_nonneg": [
+      "propext"
+    ],
+    "gintNormSq_nonneg": [
+      "propext",
+      "Quot.sound"
+    ],
+    "gmatFrobSq_nonneg": [
+      "propext",
+      "Quot.sound"
+    ],
+    "gintMul_conj_left_re": [
+      "propext",
+      "Quot.sound"
+    ],
+    "gmat_born_numerator_identity": [
+      "propext",
+      "Quot.sound"
+    ],
+    "wdp_bridge_o04_scoped_operational_readout_and_countermodel": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

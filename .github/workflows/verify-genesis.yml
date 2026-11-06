@@ -49,6 +49,52 @@ jobs:
           python3 scripts/check_primitive_difference.py --module RetentionAndRefusal --verify-receipt
           python3 scripts/check_primitive_difference.py --module LocalGlobalObstruction --verify-receipt
           python3 scripts/check_primitive_difference.py --module InternalMetatheory --verify-receipt
+          python3 scripts/check_primitive_difference.py --module ProfilePreorderAndGenerator --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.GenerativeHistoryCompression --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.GenesisConstruction --verify-receipt
+          python3 scripts/check_primitive_difference.py --module AdmissionReplay --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.FiniteDistinction --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.RelationalRetention --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.RetentionChoices --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.Source25PairTransport --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.CochainTransport --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.BehavioralQuotient --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.ContextReflection --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.FaithfulRepresentation --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.GuardedHistoryCoherence --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.ObserverDescent --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.OriginalGenesisObserver --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.PrimitiveAdmissionFloor --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.PrimitiveContextFloor --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.RootGaugeNormalization --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.SparseChainTransportBounds --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.TrotterCharPoly --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.WdpBatch9 --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.Obstruction --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.LocalCompatibility --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.DiscreteGaussBonnet --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.FiniteWindowObstruction --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.HigherSimplicialCohomology --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.BridgeObligationReductions --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.GuardedScheduleTopology --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.FoundationalBridges --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.ObserverAdapterCompleteness --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.AdditiveTensorCompletion --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.DaggerObserverPairing --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.GaussianIntQuantumReadout --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.ComplexTensorBalancing --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.MarkedGaugeTransport --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.MeronThermoLimitConstants --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.FiniteConstraintRepresentation --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.DyadicPresentation --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.SelfReferenceBridges --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.FunctionalClassification --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.AdmissionCount --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.BalancePreservingEdits --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.WdpBatch10 --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.WdpBatch11 --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.WdpBatch12 --verify-receipt
+          python3 scripts/check_primitive_difference.py --module WitnessedDifference.WdpBatch13 --verify-receipt
       - name: Prove receipt gate rejects compilable theorem removal and weakening
         env:
           OMEGA_TEST_LEAN_MUTATIONS: "1"
@@ -57,3 +103,4 @@ jobs:
         run: |
           python3 scripts/check_admission_replay.py
           python3 -m unittest discover -s tests -p test_admission_replay.py -v
+          python3 scripts/validate_derivation_dag.py --run-checks

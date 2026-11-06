@@ -52,11 +52,53 @@ srcDir = "lean"
 [[lean_lib]]
 name = "WitnessedDifference"
 srcDir = "lean"
-roots = ["WitnessedDifference.GenerativeHistoryCompression", "WitnessedDifference.GenesisConstruction"]
+roots = [
+  "WitnessedDifference.GenerativeHistoryCompression",
+  "WitnessedDifference.GenesisConstruction",
+  "WitnessedDifference.FiniteDistinction",
+  "WitnessedDifference.RelationalRetention",
+  "WitnessedDifference.RetentionChoices",
+  "WitnessedDifference.Source25PairTransport",
+  "WitnessedDifference.CochainTransport",
+  "WitnessedDifference.BehavioralQuotient",
+  "WitnessedDifference.ContextReflection",
+  "WitnessedDifference.FaithfulRepresentation",
+  "WitnessedDifference.GuardedHistoryCoherence",
+  "WitnessedDifference.ObserverDescent",
+  "WitnessedDifference.OriginalGenesisObserver",
+  "WitnessedDifference.PrimitiveAdmissionFloor",
+  "WitnessedDifference.PrimitiveContextFloor",
+  "WitnessedDifference.RootGaugeNormalization",
+  "WitnessedDifference.SparseChainTransportBounds",
+  "WitnessedDifference.TrotterCharPoly",
+  "WitnessedDifference.WdpBatch9",
+  "WitnessedDifference.Obstruction",
+  "WitnessedDifference.LocalCompatibility",
+  "WitnessedDifference.DiscreteGaussBonnet",
+  "WitnessedDifference.FiniteWindowObstruction",
+  "WitnessedDifference.HigherSimplicialCohomology",
+  "WitnessedDifference.BridgeObligationReductions",
+  "WitnessedDifference.GuardedScheduleTopology",
+  "WitnessedDifference.FoundationalBridges",
+  "WitnessedDifference.ObserverAdapterCompleteness",
+  "WitnessedDifference.AdditiveTensorCompletion",
+  "WitnessedDifference.DaggerObserverPairing",
+  "WitnessedDifference.MarkedGaugeTransport",
+  "WitnessedDifference.ComplexTensorBalancing",
+  "WitnessedDifference.MeronThermoLimitConstants",
+  "WitnessedDifference.FiniteConstraintRepresentation",
+  "WitnessedDifference.DyadicPresentation",
+  "WitnessedDifference.SelfReferenceBridges",
+  "WitnessedDifference.WdpBatch10",
+  "WitnessedDifference.WdpBatch11",
+  "WitnessedDifference.WdpBatch12",
+  "WitnessedDifference.WdpBatch13",
+  "WitnessedDifference.FunctionalClassification",
+  "WitnessedDifference.AdmissionCount",
+  "WitnessedDifference.BalancePreservingEdits",
+  "WitnessedDifference.GaussianIntQuantumReadout"
+]
 
 [[lean_lib]]
 name = "AdmissionReplay"
 srcDir = "lean"
-
-
-

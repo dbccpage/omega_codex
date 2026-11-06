@@ -1,0 +1,72 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/FiniteConstraintRepresentation.lean",
+  "source_sha256": "4eb1829ae5f0c0701c42fdf29e23525d5d9591b47df90d5f49ec889eb289a711",
+  "direct_imports": {
+    "lean/WitnessedDifference/FaithfulRepresentation.lean": "a977fc152a6f39580f59249096d4e3e011189829453f142d6f8da2dfeb5b0fdf"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 26,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "restrict_compatible": [],
+    "restrict_local": [],
+    "glue_restrict": [],
+    "restrict_glue": [
+      "Quot.sound"
+    ],
+    "glue_global": [
+      "Quot.sound"
+    ],
+    "unique_gluing": [],
+    "concrete_system_sound": [
+      "Quot.sound"
+    ],
+    "concrete_solution_iff_certificate": [
+      "Quot.sound"
+    ],
+    "concrete_history_sound": [
+      "Quot.sound"
+    ],
+    "concrete_history_solution_iff": [
+      "Quot.sound"
+    ],
+    "indicator_difference_zero_iff": [
+      "propext"
+    ],
+    "zero_defect_iff_compatible": [
+      "propext"
+    ],
+    "augmentation_preserves_original_goal": [],
+    "arbitrary_network_faithful": [
+      "Quot.sound"
+    ],
+    "cartesian_exact": [
+      "propext",
+      "Quot.sound"
+    ],
+    "cartesian_empty_domain": [
+      "propext"
+    ],
+    "constructed_exhaustion": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rename_predicate_iff": [],
+    "join_exact": [],
+    "projection_join_contains_original": [],
+    "lossless_split_iff_no_spurious": [],
+    "auxiliary_forward": [],
+    "auxiliary_backward": [],
+    "auxiliary_roundtrip": [
+      "propext"
+    ],
+    "empty_domain_refutes": [],
+    "empty_relation_refutes": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

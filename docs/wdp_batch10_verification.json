@@ -1,0 +1,86 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/WdpBatch10.lean",
+  "source_sha256": "afaa656792b069530930e7291fb5f14c0542a48f6c713a6d45b77326c0808659",
+  "direct_imports": {
+    "lean/WitnessedDifference/WdpBatch9.lean": "c6ba163bf178bc458cb948476bd8f0032164e0b8b94286ea8e37a0cba10c48ba"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 18,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "mul_cross_swap": [
+      "propext"
+    ],
+    "gratNormSq_mul": [
+      "propext",
+      "Quot.sound"
+    ],
+    "composite_dimension_multiplicativity_selects_d_eq_two": [
+      "propext",
+      "Quot.sound"
+    ],
+    "l1_imp_complex_field_selection_and_gaussian_standin": [
+      "propext",
+      "Quot.sound"
+    ],
+    "free_stake_carries_no_demand": [
+      "propext",
+      "Quot.sound"
+    ],
+    "supply_preserves_demands": [
+      "propext",
+      "Quot.sound"
+    ],
+    "unarySeparatedBool_false_of_no_insts": [
+      "propext",
+      "Quot.sound"
+    ],
+    "growth_generates_apart_of_no_insts": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rung2a_stake_declared_label_and_growth_cases": [
+      "propext",
+      "Quot.sound"
+    ],
+    "first_demand_unique": [
+      "propext",
+      "Quot.sound"
+    ],
+    "successor_first_demand_not_inert": [],
+    "index_is_not_a_function_of_the_reached_regime": [
+      "propext",
+      "Quot.sound"
+    ],
+    "demand_can_cease": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rung3_first_demand_index_uniqueness_and_countermodels": [
+      "propext",
+      "Quot.sound"
+    ],
+    "uniform_stake_transports_demand_pair": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rung4_uniform_transport_and_nonuniform_escape": [
+      "propext",
+      "Quot.sound"
+    ],
+    "stepRung_eq_or_elems_succ": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rung5_symmetry_step_law_and_both_ways_witness": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

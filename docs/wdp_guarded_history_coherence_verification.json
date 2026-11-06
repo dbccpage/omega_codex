@@ -1,0 +1,55 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/GuardedHistoryCoherence.lean",
+  "source_sha256": "d8003ca39bb0202c68627faa8f723d6db1ba5ddaea96892afbf77daa3332f543",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 11,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "run_cons_some": [
+      "propext"
+    ],
+    "run_cons_none": [
+      "propext"
+    ],
+    "helper_swap_preserves_run": [
+      "propext"
+    ],
+    "commuting_swap_preserves_run": [
+      "propext"
+    ],
+    "add_before_remove_helps": [
+      "propext",
+      "Quot.sound"
+    ],
+    "count_kernel_swap": [
+      "propext",
+      "Quot.sound"
+    ],
+    "remove_first_refused_at_zero": [
+      "propext"
+    ],
+    "total_append": [
+      "propext",
+      "Quot.sound"
+    ],
+    "backtrack_invariant": [
+      "propext",
+      "Quot.sound"
+    ],
+    "face_move_invariant": [
+      "propext",
+      "Quot.sound"
+    ],
+    "moves_preserve_total": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

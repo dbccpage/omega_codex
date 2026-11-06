@@ -1,0 +1,73 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/FiniteWindowObstruction.lean",
+  "source_sha256": "0f64cbcb0ef2b7a73a9952340d1997916dd6bcc0fcc4f3aaa0b5fa6b169cdf20",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 24,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "add_zero": [],
+    "neg_add": [],
+    "closure_repair_invariant": [],
+    "exact_implies_closed": [],
+    "exact_not_active": [],
+    "sector_trichotomy": [],
+    "active_closure_survives_every_repair": [],
+    "kappa_descends_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "kappa_mk": [
+      "propext",
+      "Quot.sound"
+    ],
+    "kappa_eq_zero_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "kappa_not_defined_instance": [
+      "propext",
+      "Quot.sound"
+    ],
+    "representatives_disagree_instance": [
+      "propext",
+      "Quot.sound"
+    ],
+    "isPhi_shift": [
+      "propext",
+      "Quot.sound"
+    ],
+    "isPhi_unique": [
+      "propext",
+      "Quot.sound"
+    ],
+    "isPhi_zero_iff": [],
+    "isPhi_nonneg": [
+      "propext",
+      "Quot.sound"
+    ],
+    "diag_unique": [],
+    "diag_eq_exact_iff": [],
+    "diag_eq_closed_iff": [],
+    "diag_eq_active_iff": [],
+    "ne_zero_iff_pos": [
+      "propext",
+      "Quot.sound"
+    ],
+    "ratio_class": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tri_phi": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tri_gamma2": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

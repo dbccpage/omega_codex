@@ -1,0 +1,73 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/GenerativeHistoryCompression.lean",
+  "source_sha256": "9804d239b85207f6273a7b3a4a80d9f4c673afc9ca720b9899ec8c3439f3e6d4",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 21,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "Path.nil_comp": [],
+    "Path.comp_nil": [
+      "propext"
+    ],
+    "Path.comp_assoc": [
+      "propext"
+    ],
+    "replay_transitionEvents": [
+      "propext"
+    ],
+    "transitionEvents_comp": [
+      "propext"
+    ],
+    "Path.fold_comp": [],
+    "Path.fold_unique": [
+      "propext"
+    ],
+    "contextEq_refl": [],
+    "contextEq_symm": [],
+    "contextEq_trans": [],
+    "contextEq_preserves_question": [
+      "propext"
+    ],
+    "contextEq_prefix": [
+      "propext"
+    ],
+    "contextEq_suffix": [
+      "propext"
+    ],
+    "greatest_question_preserving_congruence": [],
+    "compressed_left_identity": [
+      "propext",
+      "Quot.sound"
+    ],
+    "compressed_right_identity": [
+      "propext",
+      "Quot.sound"
+    ],
+    "compressed_associative": [
+      "propext",
+      "Quot.sound"
+    ],
+    "contextEq_iff_equal_compressed_classes": [
+      "propext",
+      "Quot.sound"
+    ],
+    "compressedAsk_mk": [
+      "propext"
+    ],
+    "Path.vertexBoundary_telescopes": [
+      "propext",
+      "Quot.sound"
+    ],
+    "parallel_comparison_boundary_zero": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

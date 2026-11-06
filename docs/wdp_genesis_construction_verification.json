@@ -1,0 +1,32 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/GenesisConstruction.lean",
+  "source_sha256": "f1d9c3859de7ed4109600bb93ee59fa9cd3e1d1f2d9585183f8b4afa781a2904",
+  "direct_imports": {
+    "lean/WitnessedDifference/GenerativeHistoryCompression.lean": "9804d239b85207f6273a7b3a4a80d9f4c673afc9ca720b9899ec8c3439f3e6d4"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 7,
+  "allowed_axioms": [
+    "propext"
+  ],
+  "dependencies": {
+    "accepted_replay_has_typed_history": [
+      "propext"
+    ],
+    "replay_commutes": [],
+    "replay_refusal_iff": [
+      "propext"
+    ],
+    "replay_exact_result_iff": [
+      "propext"
+    ],
+    "rootedHistory_events": [],
+    "literal_supply_replay": [],
+    "literal_root_construction": [
+      "propext"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

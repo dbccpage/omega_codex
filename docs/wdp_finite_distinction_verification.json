@@ -1,0 +1,96 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/FiniteDistinction.lean",
+  "source_sha256": "f9d24bffacd77ea20333c3c3f24bb0cf82e4c72d317b3582db08797c522ff692",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 34,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "list_all_true": [],
+    "nat_beq_self": [],
+    "related_refl": [],
+    "related_symm": [
+      "propext",
+      "Quot.sound"
+    ],
+    "related_trans": [
+      "propext",
+      "Quot.sound"
+    ],
+    "related_mono": [
+      "propext",
+      "Quot.sound"
+    ],
+    "list_all_congr": [],
+    "related_stable": [],
+    "sharp_m5_bound": [],
+    "wordInAlphabet_nil": [],
+    "wordInAlphabet_cons": [
+      "propext"
+    ],
+    "word_kernel_agreement": [
+      "propext",
+      "Quot.sound"
+    ],
+    "polyRelated_observe": [],
+    "polyRelated_mono": [],
+    "poly_word_kernel_agreement": [],
+    "strict_refinement_count_lower_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "stabilization_horizon_le_card_sub_b0": [
+      "propext",
+      "Quot.sound"
+    ],
+    "runWord_sharpUpdate_replicate": [
+      "propext",
+      "Quot.sound"
+    ],
+    "sharp_chain_general_witness": [
+      "propext",
+      "Quot.sound"
+    ],
+    "isUpdateCongruence_iff_r1_eq_r0": [],
+    "r1_eq_r0_iff_forall_rn_eq_r0": [
+      "propext"
+    ],
+    "forall_rn_eq_r0_iff_no_separating_word": [],
+    "no_escape_equivalence": [
+      "propext"
+    ],
+    "exists_of_list_all_eq_false": [],
+    "related_observe_eq": [
+      "propext"
+    ],
+    "shortest_separating_word": [
+      "propext",
+      "Quot.sound"
+    ],
+    "factored_report_preserves_polyRelated": [
+      "propext"
+    ],
+    "factored_report_preserves_related": [
+      "propext",
+      "Quot.sound"
+    ],
+    "unfactored_report_splits_r0": [],
+    "rInfinity_iff_word_kernel": [],
+    "rInfinity_coarsest_congruence": [],
+    "stabilized_polyRelated_iff_rInfinity": [],
+    "minimal_runWord": [
+      "propext",
+      "Quot.sound"
+    ],
+    "minimal_deterministic_quotient_factorization": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

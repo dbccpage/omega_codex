@@ -1,0 +1,113 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/GuardedScheduleTopology.lean",
+  "source_sha256": "1c868acd20086e2a9825cde8ad0f7ce88613dc161197d79466385fdb5098f39d",
+  "direct_imports": {
+    "lean/WitnessedDifference/GuardedHistoryCoherence.lean": "d8003ca39bb0202c68627faa8f723d6db1ba5ddaea96892afbf77daa3332f543"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 29,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "prefixSafe_nil": [
+      "propext"
+    ],
+    "prefixSafe_start": [
+      "propext",
+      "Quot.sound"
+    ],
+    "prefixSafe_finish": [
+      "propext",
+      "Quot.sound"
+    ],
+    "replay_iff_prefixSafe": [
+      "propext",
+      "Quot.sound"
+    ],
+    "replay_exists_iff_prefixSafe": [
+      "propext",
+      "Quot.sound"
+    ],
+    "prefixSafe_of_total_starts_le": [
+      "propext",
+      "Quot.sound"
+    ],
+    "startsFirst_perm": [
+      "propext"
+    ],
+    "all_refinements_safe_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "all_refinements_replay_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "block_capacity_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "earlyFinish_starts_positive": [
+      "propext",
+      "Quot.sound"
+    ],
+    "earlyFinish_start": [
+      "propext"
+    ],
+    "earlyFinish_finish": [
+      "propext",
+      "Quot.sound"
+    ],
+    "maximal_capacity_safe_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "maximal_capacity_replay_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "taggedStartsFirst_perm": [
+      "propext",
+      "Quot.sound"
+    ],
+    "starts_of_start_filter": [
+      "propext"
+    ],
+    "finishes_of_start_filter": [
+      "propext"
+    ],
+    "tagged_all_refinements_replay_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tagged_refinement_endpoint": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rank_increases_on_path": [],
+    "strict_rank_excludes_cycle": [],
+    "endpoint_constraints_exclude_cycle": [],
+    "endpoint_inequality_on_path": [],
+    "active_tasks_are_incomparable": [
+      "propext",
+      "Quot.sound"
+    ],
+    "strict_rank_constructs_endpoints": [
+      "propext",
+      "Quot.sound"
+    ],
+    "injective_rank_intervals_disjoint": [
+      "propext",
+      "Quot.sound"
+    ],
+    "early_finish_does_not_suffice_at_lower_capacity": [
+      "propext"
+    ],
+    "empty_replay_does_not_validate_source": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

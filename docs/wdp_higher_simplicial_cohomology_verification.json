@@ -1,0 +1,65 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/HigherSimplicialCohomology.lean",
+  "source_sha256": "8698fd48fc8d9799408945b159afc58dcb62952cece12672e3d413a1196cb593",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 21,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "tetrahedron_euler_characteristic": [],
+    "tet_chain2_ext": [
+      "propext"
+    ],
+    "tet_chain1_zero_ext": [],
+    "tet_d2_comp_d3_nilpotent": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tet_d2_boundary_cancellation": [],
+    "hollow_tet_exact_2cochain_iff_bianchi_zero": [
+      "propext",
+      "Quot.sound"
+    ],
+    "hollow_tet_monopole_nonexact_witness": [
+      "propext",
+      "Quot.sound"
+    ],
+    "hollow_tet_l1_weak_duality": [
+      "propext",
+      "Quot.sound"
+    ],
+    "hollow_tet_l1_strong_duality": [
+      "propext",
+      "Quot.sound"
+    ],
+    "octahedron_euler_characteristic": [],
+    "oct_d2_boundary_cancellation": [],
+    "pentachoron_euler_characteristic": [],
+    "pent_cochain3_ext": [
+      "propext"
+    ],
+    "pentachoron_d3_comp_d2_zero": [
+      "propext",
+      "Quot.sound"
+    ],
+    "pentachoron_3cocycle_exact_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "cayley_isometry_w0": [],
+    "cayley_isometry_w1": [],
+    "cayley_isometry_w2": [],
+    "cayley_isometry_w_neg1": [],
+    "cayley_isometry_w_neg2": [],
+    "cayley_orthogonality_general": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

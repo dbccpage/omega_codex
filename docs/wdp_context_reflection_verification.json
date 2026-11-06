@@ -1,0 +1,29 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/ContextReflection.lean",
+  "source_sha256": "b4fda9b69dc45a199b851dae32f6edcfd53e41256834bd92ea28f956da1a039a",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 14,
+  "allowed_axioms": [
+    "propext"
+  ],
+  "dependencies": {
+    "hom_ext": [],
+    "identity_left": [],
+    "identity_right": [],
+    "composition_associative": [],
+    "reflection_congruent": [],
+    "closure_preserved": [],
+    "reflection_initial": [],
+    "reflection_identity": [],
+    "reflection_composition": [],
+    "unit_natural": [],
+    "reflecting_unit_requires_congruence": [],
+    "no_reflecting_completion": [],
+    "countermodel_noncongruent": [],
+    "countermodel_has_no_reflecting_initial_object": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

@@ -1,0 +1,46 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/OriginalGenesisObserver.lean",
+  "source_sha256": "14c5fdc06377d5bcde041163fb2f623a1b08a5a8da6eeb05ae585af5923f0b76",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 18,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "history_update_empty": [],
+    "history_update_append": [],
+    "history_update_snoc": [],
+    "history_extension_unique": [
+      "propext",
+      "Quot.sound"
+    ],
+    "original_adapter_recovers_exact_source_fields": [],
+    "original_adapter_preserves_all_histories": [],
+    "original_adapter_does_not_invent_missing_layers": [],
+    "reach_presentation_onto": [],
+    "unique_reachable_context_adapter_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "grammar_terminal_replacement_preserves_O1_O2": [
+      "propext",
+      "Quot.sound"
+    ],
+    "full_six_classification_independence_fails": [
+      "propext",
+      "Quot.sound"
+    ],
+    "parity_observer_satisfies_O1": [],
+    "identity_context_parity_observer_not_O2": [],
+    "total_context_need_not_descend_to_reachable_memory": [],
+    "forgotten_history_context_satisfies_O2": [],
+    "constant_profile_refutes_O1": [],
+    "identity_updates_refute_O1": [],
+    "input_independent_updates_can_satisfy_O1": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

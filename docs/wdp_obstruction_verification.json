@@ -1,0 +1,91 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/Obstruction.lean",
+  "source_sha256": "1e2b2df682d685ee84914b75707c4931be1b823368900a02f5c2372a86f07346",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 31,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "mk_repair": [
+      "Quot.sound"
+    ],
+    "kappa_well_defined": [],
+    "kappa_mk": [],
+    "kappa_exact_sequence": [],
+    "closure_ratio_le_opnorm": [],
+    "closure_ratio_nonneg": [],
+    "closure_charge_le_opnorm_mul_phi": [],
+    "closure_ratio_bound_of_infimum": [],
+    "closure_ratio_signature": [],
+    "sumOver_add": [
+      "propext",
+      "Quot.sound"
+    ],
+    "sumOver_le": [
+      "propext",
+      "Quot.sound"
+    ],
+    "mul_le_weight_mul_qabs": [
+      "propext",
+      "Quot.sound"
+    ],
+    "dual_certificate_lower_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "matching_certificate_is_optimal": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tri_d1_d0": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tri_dual_annihilates": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tri_dual_bounded": [],
+    "tri_dual_pairing": [],
+    "tri_residual_lower_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tri_residual_at_witness": [],
+    "tri_closure_charge": [],
+    "tri_dual_linf": [],
+    "tri_closure_ratio": [],
+    "tri_d1_row": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tri_d1_row_bounded": [],
+    "tri_d1_opbound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tri_d1_opnorm_least": [
+      "propext",
+      "Quot.sound"
+    ],
+    "filled_triangle_signature": [
+      "propext",
+      "Quot.sound"
+    ],
+    "observer_passivity_of_infimum": [
+      "propext",
+      "Quot.sound"
+    ],
+    "induced_observer_norm_largest_passive": [],
+    "observer_exact_class_stays_exact": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

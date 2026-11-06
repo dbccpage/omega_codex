@@ -1,0 +1,67 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/DiscreteGaussBonnet.lean",
+  "source_sha256": "9eab0d71d8b3c2363763718a2c07d19d455005019222fe686375b725079eef10",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 15,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "cochain2_ext": [
+      "propext"
+    ],
+    "cochain_curvature_of_coboundary_zero": [
+      "propext",
+      "Quot.sound"
+    ],
+    "cochain_curvature_gauge_invariant": [
+      "propext",
+      "Quot.sound"
+    ],
+    "cochain_curvature_linear_scaling": [
+      "propext"
+    ],
+    "tetrahedral_bianchi_identity": [
+      "propext",
+      "Quot.sound"
+    ],
+    "obl_r03_scaling_dichotomy_cochain_vs_regge": [
+      "propext",
+      "Quot.sound"
+    ],
+    "obl_r03_flat_hinge_with_arbitrary_cochain_curvature": [
+      "propext",
+      "Quot.sound"
+    ],
+    "obl_r03_zero_cochain_curvature_with_positive_regge_deficit": [
+      "propext",
+      "Quot.sound"
+    ],
+    "obl_r03_gauss_bonnet_vs_bianchi_sum_contrast": [
+      "propext",
+      "Quot.sound"
+    ],
+    "discrete_gauss_bonnet_triangulated_surface": [
+      "propext",
+      "Quot.sound"
+    ],
+    "platonic_triangulated_gauss_bonnet": [
+      "propext",
+      "Quot.sound"
+    ],
+    "obl_r01_any_light_cone_slope_by_spacing_calibration": [
+      "propext"
+    ],
+    "obl_r01_spacing_calibration_injective": [
+      "propext",
+      "Quot.sound"
+    ],
+    "obl_r01_causal_character_depends_on_uncalibrated_spacing": [],
+    "obl_r01_manhattan_vs_euclidean_light_cone_anisotropy": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

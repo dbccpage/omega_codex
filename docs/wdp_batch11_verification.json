@@ -1,0 +1,61 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/WdpBatch11.lean",
+  "source_sha256": "3cef30055b7f54f63336d389ceab4fa429a6504aa7cd5e4fb15883581745be7f",
+  "direct_imports": {
+    "lean/WitnessedDifference/WdpBatch10.lean": "afaa656792b069530930e7291fb5f14c0542a48f6c713a6d45b77326c0808659"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 12,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "stepRung_change_eq_elems_diff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "admittingCount_le_everyCount": [
+      "propext"
+    ],
+    "rung6_succession_element_count_and_countermodels": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rung7_duration_under_changing_and_gap_countermodels": [
+      "propext",
+      "Quot.sound"
+    ],
+    "size_iso": [
+      "propext"
+    ],
+    "no_return_class_and_recurrence_is_stutter": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rung8_element_count_across_iso_and_clean_stutter": [
+      "propext",
+      "Quot.sound"
+    ],
+    "collapsedRung_equivalence": [],
+    "rung9_twoness_observational_classes_and_stage_bounds": [
+      "propext",
+      "Quot.sound"
+    ],
+    "exhausted_iff_not_distinguishes": [
+      "propext",
+      "Quot.sound"
+    ],
+    "uniform_rule_exhausts_form": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rung10_exhaustion_and_responder_move_witness": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

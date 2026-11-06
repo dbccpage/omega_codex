@@ -4,13 +4,13 @@
   "sources_sha256": {
     "lean/AdmissionReplay.lean": "a799df3d0db87b6799ad71d445a498b85d5998fcc5be1906016213093dba8997",
     "lean/MinimalSeparation.lean": "909c6e2e1d9102d92d5352ba05990a9d17e888166ab4709b32b34d900504530f",
-    "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
+    "lean/TorsorAndOperations.lean": "c65bf75f2f14c79b9a336d1945e0b5972848e882f13170fef9bddbe3ab0b82eb",
     "lean/PrimitiveDifference.lean": "8ea8cc47eae4bedcc2a0e00b6af257313918b2165a159f85f54f866da03d41c8",
     "lean/MirrorNonIdentification.lean": "a215d0b339497db9c5af7c7aaa711c54487c35cb535468303a74382c2da94ad5",
     "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d",
     "lean/WitnessedDifference/GenesisConstruction.lean": "f1d9c3859de7ed4109600bb93ee59fa9cd3e1d1f2d9585183f8b4afa781a2904",
     "lean/WitnessedDifference/GenerativeHistoryCompression.lean": "9804d239b85207f6273a7b3a4a80d9f4c673afc9ca720b9899ec8c3439f3e6d4",
-    "lakefile.toml": "c719d76a77b78407ffbe4249ee2920a94b05b562203ba29eb7ff1a47b8b8d943",
+    "lakefile.toml": "074ae8e071ccb867a446005b41a8aba9a8563ca744e4902f2e5d62522b8a358c",
     "scripts/admission_replay_walk.lean": "38a52d11fa81f9aba1cec4f4d8f888cbe1d31bbf88312642b9e82a5f074b095a",
     "scripts/admission_replay_checks.py": "87170f67d81a42f4874701be06fb4ca838cdd750caa27aa0c132ac75d1da42e7",
     "scripts/check_admission_replay.py": "fe8cc860d39ae9a67f7f7cd7e16ae2e06ea53ffbe00e5c704be71083ed4b3fae",
@@ -131,32 +131,32 @@
     "event-order": {
       "rejected": true,
       "exit_code": 1,
-      "diagnostic": "C:\\Users\\a343o\\source\\repos\\omega_codex\\.lake\\admission-replay-tmp\\omega-admission-replay-3lacco_7\\event-order.lean:3:74: error: Tactic `decide` proved that the proposition\n  applyDelta4 R2L4 [Item4.newInst 0 [0], Item4.newForm 1] = some U0_4\nis false"
+      "diagnostic": "C:\\Users\\a343o\\AppData\\Local\\Temp\\omega-admission-replay-758cdu6z\\event-order.lean:3:74: error: Tactic `decide` proved that the proposition\n  applyDelta4 R2L4 [Item4.newInst 0 [0], Item4.newForm 1] = some U0_4\nis false"
     },
     "argument": {
       "rejected": true,
       "exit_code": 1,
-      "diagnostic": "C:\\Users\\a343o\\source\\repos\\omega_codex\\.lake\\admission-replay-tmp\\omega-admission-replay-3lacco_7\\argument.lean:3:61: error: Tactic `decide` proved that the proposition\n  applyItem4 U0_4 (Item4.newInst 0 [2]) = some U0_4\nis false"
+      "diagnostic": "C:\\Users\\a343o\\AppData\\Local\\Temp\\omega-admission-replay-758cdu6z\\argument.lean:3:61: error: Tactic `decide` proved that the proposition\n  applyItem4 U0_4 (Item4.newInst 0 [2]) = some U0_4\nis false"
     },
     "refusal": {
       "rejected": true,
       "exit_code": 1,
-      "diagnostic": "C:\\Users\\a343o\\source\\repos\\omega_codex\\.lake\\admission-replay-tmp\\omega-admission-replay-3lacco_7\\refusal.lean:3:57: error: Tactic `decide` proved that the proposition\n  applyItem4 R2L4 (Item4.newForm 0) = some R2L4\nis false"
+      "diagnostic": "C:\\Users\\a343o\\AppData\\Local\\Temp\\omega-admission-replay-758cdu6z\\refusal.lean:3:57: error: Tactic `decide` proved that the proposition\n  applyItem4 R2L4 (Item4.newForm 0) = some R2L4\nis false"
     },
     "occurrence-price": {
       "rejected": true,
       "exit_code": 1,
-      "diagnostic": "C:\\Users\\a343o\\source\\repos\\omega_codex\\.lake\\admission-replay-tmp\\omega-admission-replay-3lacco_7\\occurrence-price.lean:3:81: error: Tactic `decide` proved that the proposition\n  eventCost (fun x => 1) (unaryResponse 0 ++ [Item4.newInst 0 [0]]) = 2\nis false"
+      "diagnostic": "C:\\Users\\a343o\\AppData\\Local\\Temp\\omega-admission-replay-758cdu6z\\occurrence-price.lean:3:81: error: Tactic `decide` proved that the proposition\n  eventCost (fun x => 1) (unaryResponse 0 ++ [Item4.newInst 0 [0]]) = 2\nis false"
     },
     "retained-distinction": {
       "rejected": true,
       "exit_code": 1,
-      "diagnostic": "C:\\Users\\a343o\\source\\repos\\omega_codex\\.lake\\admission-replay-tmp\\omega-admission-replay-3lacco_7\\retained-distinction.lean:3:58: error: Tactic `decide` proved that the proposition\n  collapsed4Bool R3_round2_fresh 0 2 = true\nis false"
+      "diagnostic": "C:\\Users\\a343o\\AppData\\Local\\Temp\\omega-admission-replay-758cdu6z\\retained-distinction.lean:3:58: error: Tactic `decide` proved that the proposition\n  collapsed4Bool R3_round2_fresh 0 2 = true\nis false"
     },
     "supply-is-not-admission": {
       "rejected": true,
       "exit_code": 1,
-      "diagnostic": "C:\\Users\\a343o\\source\\repos\\omega_codex\\.lake\\admission-replay-tmp\\omega-admission-replay-3lacco_7\\supply-is-not-admission.lean:3:80: error: Tactic `decide` proved that the proposition\n  presentedStep emptyRegime (PresentedEvent.supply \"<>\") = some { data := 1, forms := [], insts := [], reqs := [] }\nis false"
+      "diagnostic": "C:\\Users\\a343o\\AppData\\Local\\Temp\\omega-admission-replay-758cdu6z\\supply-is-not-admission.lean:3:80: error: Tactic `decide` proved that the proposition\n  presentedStep emptyRegime (PresentedEvent.supply \"<>\") = some { data := 1, forms := [], insts := [], reqs := [] }\nis false"
     }
   },
   "walk_sha256": "014715f261c6d88477fc2c6c490cfd4a48ea7937374c73058437d0071a3a1dc6"

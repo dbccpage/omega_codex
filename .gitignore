@@ -221,3 +221,6 @@ __marimo__/
 
 # Local Lean build products
 .lake/
+
+# Agent metadata
+.agents/

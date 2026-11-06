@@ -1,0 +1,168 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/AdditiveTensorCompletion.lean",
+  "source_sha256": "3784304edea08ef6a59d4bfb5f126ef213f72bf520e75b5b6a994543c5124e9f",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 54,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "CommMonoid.interchange": [],
+    "evalList_append": [],
+    "alternativeEq_refl": [],
+    "alternativeEq_symm": [],
+    "alternativeEq_trans": [],
+    "alternativeEq_append": [],
+    "alternative_add_zero": [
+      "propext",
+      "Quot.sound"
+    ],
+    "alternative_zero_add": [
+      "Quot.sound"
+    ],
+    "alternative_add_assoc": [
+      "propext",
+      "Quot.sound"
+    ],
+    "alternative_add_comm": [
+      "Quot.sound"
+    ],
+    "alternativeLift_zero": [],
+    "alternativeLift_unit": [],
+    "alternativeLift_add": [
+      "Quot.sound"
+    ],
+    "alternativeLift_unique": [
+      "Quot.sound"
+    ],
+    "signedEq_refl": [],
+    "signedEq_symm": [],
+    "signedEq_trans": [],
+    "evalSigned_add_pair": [],
+    "evalSigned_neg_pair": [],
+    "signedEq_add": [],
+    "signedEq_neg": [],
+    "signed_zero_add": [
+      "Quot.sound"
+    ],
+    "signed_add_zero": [
+      "propext",
+      "Quot.sound"
+    ],
+    "signed_add_assoc": [
+      "propext",
+      "Quot.sound"
+    ],
+    "signed_add_comm": [
+      "Quot.sound"
+    ],
+    "signed_neg_zero": [
+      "Quot.sound"
+    ],
+    "signed_neg_add": [
+      "Quot.sound"
+    ],
+    "signed_neg_neg": [
+      "Quot.sound"
+    ],
+    "signed_add_neg": [
+      "Quot.sound"
+    ],
+    "alternativeToSigned_zero": [
+      "Quot.sound"
+    ],
+    "alternativeToSigned_unit": [
+      "Quot.sound"
+    ],
+    "alternativeToSigned_add": [
+      "Quot.sound"
+    ],
+    "signed_is_difference": [
+      "propext",
+      "Quot.sound"
+    ],
+    "GroupHom.ext": [
+      "Quot.sound"
+    ],
+    "signedLift_zero": [
+      "propext"
+    ],
+    "signedLift_unit": [
+      "propext"
+    ],
+    "signedLift_add": [
+      "Quot.sound"
+    ],
+    "signedLift_neg": [
+      "Quot.sound"
+    ],
+    "signedLift_positive_list": [
+      "propext"
+    ],
+    "signedHom_eq_lift": [
+      "propext",
+      "Quot.sound"
+    ],
+    "grothendieck_extension": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tensor_unit_unit": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tensor_zero_left": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tensor_add_left": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tensor_neg_left": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tensor_zero_right": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tensor_add_right": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tensor_neg_right": [
+      "propext",
+      "Quot.sound"
+    ],
+    "extendBinary_unit_unit": [
+      "propext",
+      "Quot.sound"
+    ],
+    "extendBinary_add_left": [
+      "propext",
+      "Quot.sound"
+    ],
+    "extendBinary_add_right": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tensorFactor_right_generator": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tensorFactor_factors": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tensorFactor_unique": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

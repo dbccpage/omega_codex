@@ -1,0 +1,52 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/LocalCompatibility.lean",
+  "source_sha256": "0bb63f9a93dd4816ef127ccb017161adda0691f93b034f4affebd627a99ce782",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 15,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "decoder_iff": [],
+    "quotient_decoder_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "concrete_binary_decoder": [],
+    "blind_observer_collision": [],
+    "abs_le_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "abs_triangle": [
+      "propext",
+      "Quot.sound"
+    ],
+    "local_readout_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "conditioning_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "common_report_error": [
+      "propext",
+      "Quot.sound"
+    ],
+    "triangle_circulation_invariant": [
+      "propext",
+      "Quot.sound"
+    ],
+    "corrected_triangle_gradient": [],
+    "actual_exchange_product": [],
+    "six_negative_hops_do_not_exchange": [],
+    "local_section_compatibility_necessary": [],
+    "three_window_frustrated_parity_obstruction": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

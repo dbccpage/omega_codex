@@ -1,0 +1,63 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/WdpBatch13.lean",
+  "source_sha256": "9591cd1e7f5164483f62b9430976e774cc4fe1ffe7f6071515473caaf08076a3",
+  "direct_imports": {
+    "lean/WitnessedDifference/WdpBatch12.lean": "a7d01372284defee0ab665f348651e0d9d4208777d6901a1f117dc3dd124604a"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 13,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "guardedEnforcement_respects_boundary": [
+      "propext"
+    ],
+    "o05_authorization_firewall_and_policy_enforcement_separation": [
+      "propext"
+    ],
+    "int_natAbs_add_le": [
+      "propext"
+    ],
+    "m1_int_paired_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "wdp_meron_m1_scoped_finite_correlation_and_scaling_obstruction": [
+      "propext",
+      "Quot.sound"
+    ],
+    "binary_spin_fourth_cumulant_neg_two": [],
+    "wdp_meron_m2_scoped_fourth_cumulant_nonselection": [
+      "propext",
+      "Quot.sound"
+    ],
+    "m3_margin_positivity_bypass": [
+      "propext",
+      "Quot.sound"
+    ],
+    "wdp_meron_m3_gate_e_obstruction_and_margin_bypass": [
+      "propext",
+      "Quot.sound"
+    ],
+    "mul4_rev": [
+      "propext"
+    ],
+    "finite_history_sum_eq_ordered_trace": [
+      "propext",
+      "Quot.sound"
+    ],
+    "signed_vs_unsigned_trace_discrepancy": [
+      "propext",
+      "Quot.sound"
+    ],
+    "wdp_meron_spacetime_finite_history_trace_and_sign_discrepancy": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

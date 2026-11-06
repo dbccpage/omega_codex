@@ -1,0 +1,48 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/PrimitiveContextFloor.lean",
+  "source_sha256": "5e86fb1a540431e6e3e4151b65b34e81b3a754fdd70f450bae27f9956f5a8a47",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 11,
+  "allowed_axioms": [
+    "propext"
+  ],
+  "dependencies": {
+    "mask_plugs_to_tuple": [
+      "propext"
+    ],
+    "mask_has_hole_of_mentioned": [
+      "propext"
+    ],
+    "hole_plugs_to_mentioned": [
+      "propext"
+    ],
+    "recognized_implies_mentioned": [
+      "propext"
+    ],
+    "profile_inhabited_iff_mentioned": [
+      "propext"
+    ],
+    "hole_reflects_datum_equality": [
+      "propext"
+    ],
+    "common_recognition_reflects_equality": [
+      "propext"
+    ],
+    "one_instance_separates_iff_touches": [
+      "propext"
+    ],
+    "persistent_separation_iff_requirement_cover": [
+      "propext"
+    ],
+    "empty_tuple_separates_no_distinct_pair": [
+      "propext"
+    ],
+    "unary_witness_only_separates_pairs_touching_its_datum": [
+      "propext"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

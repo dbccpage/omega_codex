@@ -1,0 +1,54 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/BehavioralQuotient.lean",
+  "source_sha256": "b8608fca2299b2f6c1922b71d900ed8768fdf95bc814362540ad1f1915f50fb1",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 17,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "behavioral_eq_observation": [],
+    "behavioral_eq_action": [],
+    "greatest_invariant_relation": [],
+    "bounded_zero_iff_observation": [],
+    "bounded_succ_iff": [],
+    "behavioral_eq_implies_bounded": [],
+    "stabilized_bounded_relation_iff_behavioral": [],
+    "quotient_run": [
+      "Quot.sound"
+    ],
+    "quotient_word_observation": [
+      "Quot.sound"
+    ],
+    "quotient_eq_iff_behavioral_eq": [
+      "propext",
+      "Quot.sound"
+    ],
+    "unequal_classes_have_distinguishing_word": [
+      "Quot.sound"
+    ],
+    "comparison_preserves_readout": [
+      "Quot.sound"
+    ],
+    "comparison_intertwines_action": [
+      "Quot.sound"
+    ],
+    "comparison_commutes": [
+      "Quot.sound"
+    ],
+    "comparison_surjective": [
+      "Quot.sound"
+    ],
+    "comparison_unique": [
+      "Quot.sound"
+    ],
+    "quotient_is_observable": [
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

@@ -1,0 +1,77 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/DaggerObserverPairing.lean",
+  "source_sha256": "c2ef874a00fa5fc13215eb04f3e60b2caa04e0a714dbd8477632e2b8b92f76b7",
+  "direct_imports": {
+    "lean/WitnessedDifference/AdditiveTensorCompletion.lean": "3784304edea08ef6a59d4bfb5f126ef213f72bf520e75b5b6a994543c5124e9f"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 16,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "signedHom_ext_units": [
+      "propext",
+      "Quot.sound"
+    ],
+    "signedDagger_unit": [
+      "propext",
+      "Quot.sound"
+    ],
+    "signedDagger_add": [
+      "propext",
+      "Quot.sound"
+    ],
+    "signedDagger_neg": [
+      "propext",
+      "Quot.sound"
+    ],
+    "signedDagger_involutive": [
+      "propext",
+      "Quot.sound"
+    ],
+    "signedDagger_tensor": [
+      "propext",
+      "Quot.sound"
+    ],
+    "int_square_nonnegative": [],
+    "dot_self_nonnegative": [
+      "propext"
+    ],
+    "dot_self_eq_zero_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "observerPairing_symmetric": [
+      "propext",
+      "Quot.sound"
+    ],
+    "observerPairing_self_nonnegative": [
+      "propext",
+      "Quot.sound"
+    ],
+    "observerPairing_self_zero_iff_kernel": [
+      "propext",
+      "Quot.sound"
+    ],
+    "observed_sub_eq_zero_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "same_observation_iff_null_difference": [
+      "propext",
+      "Quot.sound"
+    ],
+    "no_rank_one_integer_complex_structure": [
+      "propext",
+      "Quot.sound"
+    ],
+    "positive_pairing_not_unique": [
+      "propext"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

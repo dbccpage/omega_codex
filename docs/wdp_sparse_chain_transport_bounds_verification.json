@@ -1,0 +1,173 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/SparseChainTransportBounds.lean",
+  "source_sha256": "b598bc9a25b0202eec277237db06105e3ca66862a12e37864a25435249cae6e7",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 45,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "geometricSum_balance": [
+      "propext",
+      "Quot.sound"
+    ],
+    "geometricSum_eq_powerSum": [
+      "propext",
+      "Quot.sound"
+    ],
+    "geometricSum_add_term": [
+      "propext",
+      "Quot.sound"
+    ],
+    "geometricSum_step_le": [
+      "propext",
+      "Quot.sound"
+    ],
+    "geometricSum_mono_depth": [
+      "propext",
+      "Quot.sound"
+    ],
+    "geometricSum_mono_branch": [],
+    "geometricSum_positive": [],
+    "positive_base_power": [],
+    "geometricSum_le_successor_power": [
+      "propext"
+    ],
+    "geometricSum_add_one_le_power": [
+      "propext",
+      "Quot.sound"
+    ],
+    "zero_start_recurrence_bound": [
+      "propext"
+    ],
+    "root_recurrence_bound": [
+      "propext"
+    ],
+    "unit_root_recurrence_bound": [
+      "propext"
+    ],
+    "recurrence_bound_at_rank": [
+      "propext",
+      "Quot.sound"
+    ],
+    "recurrence_exponential_bound": [
+      "propext"
+    ],
+    "level_branching_bound": [
+      "propext"
+    ],
+    "cumulative_branching_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "descending_path_length": [
+      "propext",
+      "Quot.sound"
+    ],
+    "descending_path_length_at_rank": [
+      "propext",
+      "Quot.sound"
+    ],
+    "descending_path_edges_at_rank": [
+      "propext",
+      "Quot.sound"
+    ],
+    "column_cost_sum_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "coefficient_le_mass": [
+      "propext"
+    ],
+    "support_le_mass": [
+      "propext",
+      "Quot.sound"
+    ],
+    "mass_bound_controls_support_and_coefficients": [
+      "propext",
+      "Quot.sound"
+    ],
+    "binary_envelope": [
+      "propext"
+    ],
+    "binary_envelope_strict": [
+      "propext",
+      "Quot.sound"
+    ],
+    "coefficient_binary_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "branchingMajorant_at_least_two": [
+      "propext",
+      "Quot.sound"
+    ],
+    "sparse_transport_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "sparse_transport_exponential_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "degree_zero_transport_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "finite_recurrence_extension": [
+      "propext",
+      "Quot.sound"
+    ],
+    "sweepGrowth_ge_two": [
+      "propext"
+    ],
+    "sweepGrowth_ge_product": [
+      "propext"
+    ],
+    "map_degree_bound": [
+      "propext"
+    ],
+    "map_degree_bound_up_to": [
+      "propext",
+      "Quot.sound"
+    ],
+    "sweep_map_degree_bound": [
+      "propext"
+    ],
+    "composed_map_degree_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "sweep_homotopy_degree_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "sweep_homotopy_degree_bound_with_growth": [
+      "propext",
+      "Quot.sound"
+    ],
+    "sweep_homotopy_degree_bound_up_to": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rankMajorant_le_square": [
+      "propext"
+    ],
+    "sweepGrowth_le_fixedDegreeBase": [
+      "propext"
+    ],
+    "fixed_degree_map_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "fixed_degree_homotopy_bound": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

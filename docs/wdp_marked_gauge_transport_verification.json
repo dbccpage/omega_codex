@@ -1,0 +1,86 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/MarkedGaugeTransport.lean",
+  "source_sha256": "8c592eb72e295d8397ad424a34aad4d5da73dfff8c85f36dfd815be8087a5aba",
+  "direct_imports": {
+    "lean/WitnessedDifference/RootGaugeNormalization.lean": "25c407572245c872c0d04b12158f7a72d286878cb2452ac2f1e209b99abaaf3b",
+    "lean/WitnessedDifference/Source25PairTransport.lean": "eb030bf1a1b4a1ae87e8ac52b1022a6aa725250fdedaf4fcf70e556b40117c90"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 19,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "cyclic_diagnostic": [
+      "propext",
+      "Quot.sound"
+    ],
+    "diagnostic_after_shift": [
+      "propext",
+      "Quot.sound"
+    ],
+    "diagnostic_after_normal": [
+      "propext",
+      "Quot.sound"
+    ],
+    "diagnostic_pullback_rename": [
+      "propext",
+      "Quot.sound"
+    ],
+    "balance_record_after_shift": [
+      "propext",
+      "Quot.sound"
+    ],
+    "balance_record_after_normal": [
+      "propext",
+      "Quot.sound"
+    ],
+    "same_fixed_iff_gradient": [
+      "propext",
+      "Quot.sound"
+    ],
+    "one_raise_excess": [
+      "propext",
+      "Quot.sound"
+    ],
+    "one_raise_same_fixed": [
+      "propext",
+      "Quot.sound"
+    ],
+    "add_term_is_source_step": [
+      "propext",
+      "Quot.sound"
+    ],
+    "identify_01_is_source_step": [
+      "propext",
+      "Quot.sound"
+    ],
+    "added_term_triangle_obstruction": [],
+    "identified_triangle_obstruction": [
+      "propext",
+      "Quot.sound"
+    ],
+    "original_marked_triangles_balanced": [],
+    "identification_changes_marked_balance": [
+      "propext",
+      "Quot.sound"
+    ],
+    "filled_direction_changes_balance": [],
+    "nonzero_cycle_forbids_gradient": [
+      "propext",
+      "Quot.sound"
+    ],
+    "term_addition_result_not_gradient": [
+      "propext",
+      "Quot.sound"
+    ],
+    "identification_result_not_gradient": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

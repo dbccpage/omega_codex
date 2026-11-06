@@ -1,0 +1,52 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/Source25PairTransport.lean",
+  "source_sha256": "eb030bf1a1b4a1ae87e8ac52b1022a6aa725250fdedaf4fcf70e556b40117c90",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 10,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "sum_congr": [
+      "propext"
+    ],
+    "sum_zero": [
+      "propext"
+    ],
+    "sum_add": [
+      "propext",
+      "Quot.sound"
+    ],
+    "sum_mul_right": [
+      "propext"
+    ],
+    "sum_swap": [
+      "propext",
+      "Quot.sound"
+    ],
+    "incidence_entry": [
+      "propext"
+    ],
+    "matrix_push_is_source_fiber_sum": [
+      "propext",
+      "Quot.sound"
+    ],
+    "matrix_operator_equals_fiber_operator": [
+      "propext",
+      "Quot.sound"
+    ],
+    "all_declared_steps_preserved_and_reflected": [
+      "propext",
+      "Quot.sound"
+    ],
+    "every_partial_run_and_paid_trace_preserved": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}
