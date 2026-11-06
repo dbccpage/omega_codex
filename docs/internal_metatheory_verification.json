@@ -1,27 +1,53 @@
 {
   "verified": true,
   "source": "lean/InternalMetatheory.lean",
-  "source_sha256": "85f153bf66c92dba93f3b7f395bd1cd9716bc722e7567c038f05689e6b6438cc",
+  "source_sha256": "c5238e0583e29aeb0f3664f7960dc2364b06f13d871ba641ec62a1f12b47f430",
   "direct_imports": {
-    "lean/TorsorAndOperations.lean": "74a482e92bccf16dce2c2afe02739f8c5676206860f290506933a8310f8f8b91",
-    "lean/MinimalSeparation.lean": "2b3651ed8547adf0b4fae34b30bf1dfde5da0e638179fbc4d5662c0d8fc9cad0",
-    "lean/RetentionAndRefusal.lean": "ec621cd7d920726a4e5e2c79deda161885d274461bfcfd9d0c981d8cc52f150b"
+    "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
+    "lean/MinimalSeparation.lean": "d3827b170ed51e35b823c2db9152d02bf9cf6c597a1d39a629f0d2ac9f5ae829",
+    "lean/RetentionAndRefusal.lean": "2734680344a49f7066e784cc9380f43518edb8ec4173f3d898d20d3ed69675bc"
   },
   "toolchain": "leanprover/lean4:v4.33.0",
   "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
-  "theorems_checked": 14,
+  "theorems_checked": 24,
   "allowed_axioms": [
     "Quot.sound",
     "propext"
   ],
   "dependencies": {
-    "d20_unique_compliant": [
+    "support_determines": [
+      "propext",
+      "Quot.sound"
+    ],
+    "support_determines_replay": [
+      "propext",
+      "Quot.sound"
+    ],
+    "interp_describe": [
+      "propext",
+      "Quot.sound"
+    ],
+    "allDescs_length": [],
+    "allDescs_complete": [
       "propext"
+    ],
+    "d20_unique_compliant": [
+      "propext",
+      "Quot.sound"
     ],
     "guard_independence_six_countermodels": [
-      "propext"
+      "propext",
+      "Quot.sound"
     ],
     "extension_retract_to_U0": [
+      "propext",
+      "Quot.sound"
+    ],
+    "effectual_outside_dichotomy": [
+      "propext",
+      "Quot.sound"
+    ],
+    "panel_equiv": [
       "propext",
       "Quot.sound"
     ],
@@ -35,6 +61,18 @@
     "diagonal_non_exhaustion": [],
     "tower_persists_at_every_stage": [
       "propext"
+    ],
+    "lt_maxNote_of_mem": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tower_persists": [
+      "propext",
+      "Quot.sound"
+    ],
+    "evalOpt_typed_refusal_and_embedding": [
+      "propext",
+      "Quot.sound"
     ],
     "strict_measure_irrefl": [],
     "strict_measure_asymm": [],

@@ -313,6 +313,24 @@ theorem rt05_unaryCongruent_iff_fiberConstant_all {α γ : Type}
   · intro h x y hxy
     exact h [x, y] x (List.Mem.head _) y (List.Mem.tail _ (List.Mem.head _)) hxy
 
+/-- RT-05 strictness (`ObsDescent.lean` §9): fiber constancy on a single fixed list
+`D = [false]` is strictly weaker than global `UnaryCongruent`. -/
+theorem rt05_fiberConstant_fixed_D_not_unaryCongruent :
+    (∀ x ∈ ([false] : List Bool), ∀ y ∈ ([false] : List Bool),
+      (zeroSetoid constantAllZero).r x y → x = y) ∧
+    ¬ UnaryCongruent (zeroSetoid constantAllZero) (fun x : Bool => x) := by
+  refine ⟨?_, ?_⟩
+  · intro x hx y hy _
+    cases hx with
+    | head =>
+        cases hy with
+        | head => rfl
+        | tail _ hnil => cases hnil
+    | tail _ hnil => cases hnil
+  · intro h
+    have hft : false = true := h false true True.intro
+    cases hft
+
 /-! ## Section 4: RT-06 ClosureSymmetry and ResidualClosure -/
 
 def FactorsOn {α β γ : Type} (D : List α) (p : α → β) (q : α → γ) : Prop :=
@@ -503,5 +521,66 @@ theorem oq08_five_gate_strictly_finer_when_adm_priced :
     projToHorizon (stepWDPWorld ⟨0, 0, 1, 1⟩ wdpEmptyZeroLedger (.require 0 1)) ≠
       stepHWorld (projToHorizon wdpEmptyZeroLedger) (.require 0 1) := by
   decide
+
+def stepHWorldGuarded (w : HWorld) : HEv → HWorld
+  | .admitTok t =>
+      if t ∈ w.toks then w else { w with toks := w.toks ++ [t] }
+  | .require i j =>
+      if i < w.toks.length ∧ j < w.toks.length ∧ i ≠ j then
+        if (i, j) ∈ w.reqs then w else { w with reqs := w.reqs ++ [(i, j)] }
+      else w
+  | .addView v =>
+      if 1 ≤ w.budget ∧ v < w.toks.length then
+        { w with views := insertNewNat w.views v, budget := w.budget - 1 }
+      else w
+  | .setBudget b =>
+      { w with budget := b }
+
+def stepWDPWorldGuarded (costs : GateCosts) (w : WDPWorld) : HEv → WDPWorld
+  | .admitTok t =>
+      let cost := costs.cSup + costs.cAdm
+      if cost ≤ w.ledger then
+        let adm' := if t ∈ w.adm then w.adm else w.adm ++ [t]
+        { w with sup := w.sup ++ [t], adm := adm', ledger := w.ledger - cost }
+      else w
+  | .require i j =>
+      if costs.cRet ≤ w.ledger ∧ i < w.adm.length ∧ j < w.adm.length ∧ i ≠ j then
+        let ret' := if (i, j) ∈ w.ret then w.ret else w.ret ++ [(i, j)]
+        { w with ret := ret', ledger := w.ledger - costs.cRet }
+      else w
+  | .addView v =>
+      if costs.cEv ≤ w.ledger ∧ v < w.adm.length then
+        { w with
+            views := insertNewNat w.views v,
+            ledger := w.ledger - costs.cEv,
+            receipts := w.receipts + 1 }
+      else w
+  | .setBudget b =>
+      { w with ledger := b }
+
+/-- RT-12 guarded refinement (`Horizon.lean` §2–§3): when carrier-bound guards
+`i < w.adm.length ∧ j < w.adm.length ∧ i ≠ j` and `v < w.adm.length` are enforced on
+`.require` and `.addView`, `projToHorizon` still commutes with `stepWDPWorldGuarded`
+at `horizonSpecializationCosts = ⟨0, 0, 0, 1⟩`. -/
+theorem rt12_guarded_refinement_commutes_at_zero_adm_ret_cost (w : WDPWorld) (ev : HEv) :
+    projToHorizon (stepWDPWorldGuarded horizonSpecializationCosts w ev) =
+      stepHWorldGuarded (projToHorizon w) ev := by
+  cases ev with
+  | admitTok t =>
+      by_cases ht : t ∈ w.adm <;>
+        simp [stepWDPWorldGuarded, horizonSpecializationCosts, stepHWorldGuarded, projToHorizon, ht]
+  | require i j =>
+      by_cases hg : i < w.adm.length ∧ j < w.adm.length ∧ i ≠ j
+      · by_cases hr : (i, j) ∈ w.ret <;>
+          simp [stepWDPWorldGuarded, horizonSpecializationCosts, stepHWorldGuarded,
+            projToHorizon, hg, hr]
+      · simp [stepWDPWorldGuarded, horizonSpecializationCosts, stepHWorldGuarded,
+          projToHorizon, hg]
+  | addView v =>
+      by_cases hg : 1 ≤ w.ledger ∧ v < w.adm.length <;>
+        simp [stepWDPWorldGuarded, horizonSpecializationCosts, stepHWorldGuarded,
+          projToHorizon, hg]
+  | setBudget b =>
+      rfl
 
 end OmegaCodex.RetentionAndRefusal

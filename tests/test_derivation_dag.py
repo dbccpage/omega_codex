@@ -22,9 +22,10 @@ class DerivationDagTests(unittest.TestCase):
         summary = validator.validate_dag_data(self.data, root=ROOT)
         self.assertTrue(summary["valid"])
         self.assertEqual(summary["total_nodes"], 40)
+        self.assertEqual(summary["total_edges"], 56)
         self.assertEqual(summary["bucket_counts"], {"DERIVED": 20, "OWED": 10, "IMAGINED": 10})
         self.assertEqual(summary["lean_modules_verified"], 8)
-        self.assertEqual(summary["total_lean_theorems"], 227)
+        self.assertEqual(summary["total_lean_theorems"], 245)
 
     def test_claim_hygiene_violations_fail_closed(self) -> None:
         for bad_word in ("proves", "guarantees", "impossible", "universal", "obviously", "metaphysics", "ontology"):
@@ -41,6 +42,24 @@ class DerivationDagTests(unittest.TestCase):
                 node["artifacts"]["lean_theorems"].append("nonexistent_theorem_xyz")
                 break
         with self.assertRaisesRegex(ValueError, "not found in"):
+            validator.validate_dag_data(mutated, root=ROOT)
+
+    def test_unreferenced_theorem_in_module_fails_closed(self) -> None:
+        mutated = copy.deepcopy(self.data)
+        for node in mutated["nodes"]:
+            if node["id"] == "DER-01":
+                node["artifacts"]["lean_theorems"] = node["artifacts"]["lean_theorems"][1:]
+                break
+        with self.assertRaisesRegex(ValueError, "unreferenced theorem"):
+            validator.validate_dag_data(mutated, root=ROOT)
+
+    def test_missing_research_map_ref_fails_closed(self) -> None:
+        mutated = copy.deepcopy(self.data)
+        for node in mutated["nodes"]:
+            if node["id"] == "OWE-07":
+                node["research_map_refs"] = ["N22"]
+                break
+        with self.assertRaisesRegex(ValueError, "missing required research_map/OQ/RT references"):
             validator.validate_dag_data(mutated, root=ROOT)
 
     def test_missing_artifact_files_fail_closed(self) -> None:
@@ -110,6 +129,16 @@ class DerivationDagTests(unittest.TestCase):
         })
         with self.assertRaisesRegex(ValueError, "Epistemic ordering violation"):
             validator.validate_dag_data(imagined_to_derived, root=ROOT)
+
+        imagined_to_owed = copy.deepcopy(self.data)
+        imagined_to_owed["edges"].append({
+            "from": "IMG-01",
+            "to": "OWE-09",
+            "kind": "motivates_bridge",
+            "note": "Invalid dependency of owed node on imagined node.",
+        })
+        with self.assertRaisesRegex(ValueError, "Epistemic ordering violation"):
+            validator.validate_dag_data(imagined_to_owed, root=ROOT)
 
         owed_wrong_kind = copy.deepcopy(self.data)
         for edge in owed_wrong_kind["edges"]:

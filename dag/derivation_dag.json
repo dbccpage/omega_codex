@@ -45,31 +45,31 @@
       "module": "TorsorAndOperations",
       "source": "lean/TorsorAndOperations.lean",
       "receipt": "docs/torsor_and_operations_verification.json",
-      "theorems_checked": 34
+      "theorems_checked": 36
     },
     {
       "module": "MinimalSeparation",
       "source": "lean/MinimalSeparation.lean",
       "receipt": "docs/minimal_separation_verification.json",
-      "theorems_checked": 26
+      "theorems_checked": 29
     },
     {
       "module": "RetentionAndRefusal",
       "source": "lean/RetentionAndRefusal.lean",
       "receipt": "docs/retention_and_refusal_verification.json",
-      "theorems_checked": 27
+      "theorems_checked": 29
     },
     {
       "module": "LocalGlobalObstruction",
       "source": "lean/LocalGlobalObstruction.lean",
       "receipt": "docs/local_global_obstruction_verification.json",
-      "theorems_checked": 19
+      "theorems_checked": 20
     },
     {
       "module": "InternalMetatheory",
       "source": "lean/InternalMetatheory.lean",
       "receipt": "docs/internal_metatheory_verification.json",
-      "theorems_checked": 14
+      "theorems_checked": 24
     }
   ],
   "nodes": [
@@ -80,13 +80,24 @@
       "bucket": "OWED",
       "status_detail": "SUPPLIED_HOST_ADMISSION",
       "layer": "0_HOST_AND_ADMISSIONS",
-      "research_map_refs": ["N00", "N01", "N02"],
+      "research_map_refs": [
+        "N00",
+        "N01",
+        "N02"
+      ],
       "statement": "The dependent type theory of Lean 4.33.0 (types, functions, inductive types, equality, quotients, propext, and Quot.sound) is supplied by the formal host environment and is not derived from empty nothingness.",
       "artifacts": {
-        "python_checks": ["scripts/check_primitive_difference.py"],
-        "doc_refs": ["docs/research_map.md", "audit/2026-11-05_minimal_chain/1_admission_ledger.md"]
+        "python_checks": [
+          "scripts/check_primitive_difference.py"
+        ],
+        "doc_refs": [
+          "docs/research_map.md",
+          "audit/2026-11-05_minimal_chain/1_admission_ledger.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host"
+      ]
     },
     {
       "id": "OWE-02",
@@ -95,16 +106,29 @@
       "bucket": "OWED",
       "status_detail": "SUPPLIED_HOST_ADMISSION",
       "layer": "0_HOST_AND_ADMISSIONS",
-      "research_map_refs": ["N00", "N03", "N05"],
+      "research_map_refs": [
+        "N00",
+        "N03",
+        "N05"
+      ],
       "statement": "To instantiate a concrete mark, one must supply a type alpha, a binary relation R, and an inhabited off-diagonal witness (a, b) with R a b and a != b. An empty or singleton carrier admits no such witness.",
       "artifacts": {
         "lean_file": "lean/TorsorAndOperations.lean",
-        "lean_theorems": ["offdiag_nonempty_iff"],
+        "lean_theorems": [
+          "offdiag_nonempty_iff"
+        ],
         "receipt_json": "docs/torsor_and_operations_verification.json",
-        "python_checks": ["audit/2026-11-05_minimal_chain/2_mark_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/1_admission_ledger.md", "audit/2026-11-05_minimal_chain/2_mark_alone.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/2_mark_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/1_admission_ledger.md",
+          "audit/2026-11-05_minimal_chain/2_mark_alone.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S1_off_diagonal_pair_witness"]
+      "unpriced_inputs_or_admissions": [
+        "S1_off_diagonal_pair_witness"
+      ]
     },
     {
       "id": "OWE-03",
@@ -113,13 +137,28 @@
       "bucket": "OWED",
       "status_detail": "SUPPLIED_HOST_ADMISSION",
       "layer": "0_HOST_AND_ADMISSIONS",
-      "research_map_refs": ["N04", "N07", "N16", "N29"],
+      "research_map_refs": [
+        "N04",
+        "N07",
+        "N16",
+        "N29"
+      ],
       "statement": "Extending directed difference D2 to symmetric apartness S2 (S2), equipping endomorphisms with composition (S3), adding a state retention bit (S4), and pricing arity or cochain defects via an additive norm (S5) are explicit structural admissions.",
       "artifacts": {
-        "python_checks": ["audit/2026-11-05_minimal_chain/10_post_seal_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/1_admission_ledger.md", "audit/2026-11-05_minimal_chain/6_minimal_chain.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/1_admission_ledger.md",
+          "audit/2026-11-05_minimal_chain/6_minimal_chain.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S2_symmetric_closure", "S3_endomorphism_composition", "S4_retention_state_bit", "S5_additive_cost_target"]
+      "unpriced_inputs_or_admissions": [
+        "S2_symmetric_closure",
+        "S3_endomorphism_composition",
+        "S4_retention_state_bit",
+        "S5_additive_cost_target"
+      ]
     },
     {
       "id": "OWE-04",
@@ -128,13 +167,26 @@
       "bucket": "OWED",
       "status_detail": "UNFREEZING_CHOICE",
       "layer": "0_HOST_AND_ADMISSIONS",
-      "research_map_refs": ["N12", "N17"],
+      "research_map_refs": [
+        "N12",
+        "N17"
+      ],
       "statement": "Because S2Bool has exactly two elements and C2 has one non-identity involution, any post-seal growth beyond cardinality 2 requires choosing at least one unfreezing mechanism: carrier multiplicity |alpha| >= 3 (M1), an indexed family of regimes/contexts (M2), or an external step/history index (M3).",
       "artifacts": {
-        "python_checks": ["audit/2026-11-05_minimal_chain/4_frozen_checks.py", "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/4_priced_containers.md", "audit/2026-11-05_minimal_chain/6_minimal_chain.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/4_frozen_checks.py",
+          "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/4_priced_containers.md",
+          "audit/2026-11-05_minimal_chain/6_minimal_chain.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["M1_carrier_multiplicity", "M2_indexed_context_family", "M3_step_history_dynamics"]
+      "unpriced_inputs_or_admissions": [
+        "M1_carrier_multiplicity",
+        "M2_indexed_context_family",
+        "M3_step_history_dynamics"
+      ]
     },
     {
       "id": "DER-01",
@@ -143,7 +195,13 @@
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "1_PRE_SEAL_MARK_AND_TORSOR",
-      "research_map_refs": ["N03", "N04", "N05", "N06", "N08", "N09"],
+      "research_map_refs": [
+        "N03",
+        "N04",
+        "N05",
+        "N06",
+        "N08"
+      ],
       "statement": "Global pairwise soundness of a relation R (every related pair is non-identical) is equivalent to irreflexivity of R; a local off-diagonal pair does not force global irreflexivity on larger carriers; on Bool, S2 is irreflexive, symmetric, and complete off-diagonal with unique counterpart involution.",
       "artifacts": {
         "lean_file": "lean/PrimitiveDifference.lean",
@@ -159,13 +217,36 @@
           "counterpart_characterization",
           "counterpart_unique",
           "swap_preserves_relation",
-          "no_invariant_unary_separator"
+          "counterpart_equivariant",
+          "no_swap_fixed_participant",
+          "no_invariant_unary_separator",
+          "difference_correct",
+          "binary_difference_swap_invariant",
+          "binary_difference_nonconstant",
+          "nontrivial_output_action",
+          "identified_witness_violates_irrefl",
+          "reject_iff_identifies",
+          "reject_invariant_under_input_swap",
+          "reject_invariant_under_output_swap",
+          "registered_refusal_correct",
+          "registered_refusal_on_collapse",
+          "registered_acceptance_on_identity",
+          "static_relation_does_not_force_refusal"
         ],
         "receipt_json": "docs/primitive_difference_verification.json",
-        "python_checks": ["scripts/check_primitive_difference.py", "audit/2026-11-05_minimal_chain/2_mark_checks.py"],
-        "doc_refs": ["docs/symmetric_primitive_difference.md", "audit/2026-11-05_minimal_chain/2_mark_alone.md"]
+        "python_checks": [
+          "scripts/check_primitive_difference.py",
+          "audit/2026-11-05_minimal_chain/2_mark_checks.py"
+        ],
+        "doc_refs": [
+          "docs/symmetric_primitive_difference.md",
+          "audit/2026-11-05_minimal_chain/2_mark_alone.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "S1_off_diagonal_pair_witness"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "S1_off_diagonal_pair_witness"
+      ]
     },
     {
       "id": "DER-02",
@@ -174,39 +255,80 @@
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "1_PRE_SEAL_MARK_AND_TORSOR",
-      "research_map_refs": ["N04", "N06", "N07", "N08", "N09", "N27"],
+      "research_map_refs": [
+        "N04",
+        "N06",
+        "N07",
+        "N08",
+        "N13",
+        "N14",
+        "N15",
+        "N27"
+      ],
       "statement": "Among the 16 binary relations on Bool, 4 are irreflexive (empty, D2, D2rev, S2Bool); D2 has trivial automorphism group while S2Bool has automorphism group C2 = {id, flip} acting freely and transitively as a C2-torsor; idempotent closure and diagonal merger collapse difference.",
       "artifacts": {
         "lean_file": "lean/TorsorAndOperations.lean",
         "lean_theorems": [
+          "offdiag_nonempty_iff",
           "D2_initial_pointed",
+          "D2_preserve_iff_id",
           "D2_automorphism_trivial",
           "S2_automorphism_iff",
           "c2Mul_assoc",
+          "c2Mul_id_left",
+          "c2Mul_id_right",
           "c2Mul_self_inv",
+          "singleton_action_trivial",
+          "c2_collapse_homomorphism",
+          "c2_faithful_injective",
+          "c2Act_id",
+          "c2Act_mul",
+          "c2Act_faithful",
           "c2Act_free",
           "c2Act_transitive",
           "c2Displacement_spec",
           "c2Displacement_unique",
+          "c2Displacement_swap_invariant",
+          "c2Displacement_nonid_iff_S2",
           "irred_empty_iff_ne",
+          "irred_antitone",
           "merger_erases",
+          "indist_equivalence",
+          "s2_isApart",
           "cotrans_not_forced_by_irrefl_symm"
         ],
         "receipt_json": "docs/torsor_and_operations_verification.json",
-        "python_checks": ["scripts/check_primitive_difference.py", "audit/2026-11-05_minimal_chain/2_mark_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/2_mark_alone.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "scripts/check_primitive_difference.py",
+          "audit/2026-11-05_minimal_chain/2_mark_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/2_mark_alone.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "S1_off_diagonal_pair_witness", "S2_symmetric_closure", "S3_endomorphism_composition"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "S1_off_diagonal_pair_witness",
+        "S2_symmetric_closure",
+        "S3_endomorphism_composition"
+      ]
     },
     {
       "id": "DER-03",
-      "code": "OQ-01-RT-03-RADIX-ECONOMY",
-      "title": "Two-Step Duplication Radix 2^t, Single-Op Stall, and List-Length Radix Bound (OQ-01 / RT-03)",
+      "code": "OQ-01-RT-03-N16-CARRIER-BOUNDS-AND-SYMMETRY-FLOOR",
+      "title": "Root-to-Two-Point Carrier Bounds, List-Length Radix Bound, and Symmetry Floor (OQ-01 / RT-03 / N16)",
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "1_PRE_SEAL_MARK_AND_TORSOR",
-      "research_map_refs": ["N06", "N07", "OQ-01", "RT-03"],
-      "statement": "Iterating a single self-inverting operation f^2 = id reaches at most 2 states along any orbit; binary pair-tree duplication reaches 2^t leaves at depth t; any list-expansion step of per-item length L <= 1 cannot increase list length, making L = 2 the minimal expanding radix.",
+      "research_map_refs": [
+        "N06",
+        "N07",
+        "N16",
+        "OQ-01",
+        "RT-03"
+      ],
+      "statement": "No subsingleton image admits an irreflexive witness; indexed pair admission requires distinct indices i != j; any list-expansion step [t] ++ next with [t].length = 1 requires next != [] to reach length >= 2 (OQ-01 / RT-03); under swap-equivariance on Bool, any non-empty irreflexive relation equals S2Bool, no single off-diagonal pair is swap-fixed, and on Fin 3 deterministic equivariant choice collapses to the fixed point 0 whereas invariant multi-element offers retain the 2-orbit {1, 2} (N16).",
       "artifacts": {
         "lean_file": "lean/TorsorAndOperations.lean",
         "lean_theorems": [
@@ -217,13 +339,22 @@
           "equivariant_witness_is_S2Bool",
           "no_swap_fixed_offdiag_pair",
           "equivariant_fixed_point_preserved",
+          "equivariant_family_invariant",
           "swap3_deterministic_vs_multi_offer"
         ],
         "receipt_json": "docs/torsor_and_operations_verification.json",
-        "python_checks": ["audit/2026-11-05_minimal_chain/9_oq01_to_oq04_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/8_open.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/9_oq01_to_oq04_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "M3_step_history_dynamics"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M3_step_history_dynamics"
+      ]
     },
     {
       "id": "DER-04",
@@ -232,13 +363,20 @@
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "1_PRE_SEAL_MARK_AND_TORSOR",
-      "research_map_refs": ["N10", "N11", "N12", "N33"],
+      "research_map_refs": [
+        "N09",
+        "N10",
+        "N11",
+        "N12",
+        "N33"
+      ],
       "statement": "Under swap-equivariant access on S2Bool, internal observation-only procedures give identical outputs on both slots, whereas external referent-indexed identity queries distinguish them; symmetry-preserving multi-element offers avoid single-choice collapse on Fin 3.",
       "artifacts": {
         "lean_file": "lean/MirrorNonIdentification.lean",
         "lean_theorems": [
           "one_referent_assignment",
           "two_referent_assignment",
+          "identity_answer_correct",
           "same_accessible_relation",
           "accessible_swap_invariant",
           "identical_observations",
@@ -246,40 +384,128 @@
           "observation_only_outputs_agree",
           "mirror_non_identification",
           "presentation_difference_does_not_descend",
+          "decoding_requires_fiber_constancy",
+          "fiber_constant_iff_separates",
+          "decoder_correct_of_separates",
+          "decodes_iff_fiber_constant",
+          "enhancement_separates_iff",
+          "extra_observation_completion",
+          "constant_extra_fails",
+          "target_bit_extra_suffices",
           "target_answer_has_no_preferred_presentation"
         ],
         "receipt_json": "docs/mirror_non_identification_verification.json",
-        "python_checks": ["scripts/check_primitive_difference.py", "audit/2026-11-05_minimal_chain/4_frozen_checks.py"],
-        "doc_refs": ["docs/mirror_non_identification.md", "audit/2026-11-05_minimal_chain/4_priced_containers.md"]
+        "python_checks": [
+          "scripts/check_primitive_difference.py",
+          "audit/2026-11-05_minimal_chain/4_frozen_checks.py"
+        ],
+        "doc_refs": [
+          "docs/mirror_non_identification.md",
+          "audit/2026-11-05_minimal_chain/4_priced_containers.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "S2_symmetric_closure"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "S2_symmetric_closure"
+      ]
     },
     {
       "id": "DER-05",
-      "code": "N16-N18-ZERO-EQUIVALENCE-AND-RESIDUAL-QUOTIENT",
+      "code": "N28-N33-ZERO-EQUIVALENCE-AND-RESIDUAL-QUOTIENT",
       "title": "Kernel Zero-Equivalence, Residual Quotient Factorization, and Boundary Non-Determination",
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "2_SEAL_AND_ZERO_EQUIVALENCE",
-      "research_map_refs": ["N16", "N17", "N18", "N24", "N32"],
+      "research_map_refs": [
+        "N18",
+        "N28",
+        "N29",
+        "N30",
+        "N31",
+        "N32",
+        "N33"
+      ],
       "statement": "Every observation kernel K : alpha -> beta induces an equivalence relation zeroRel; the canonical map factors injectively through ResidualQuotient K; collapse to a subsingleton quotient holds iff all pairs are zero-related; static kernel equivalence does not determine terminal behavior under admissible extensions.",
       "artifacts": {
         "lean_file": "lean/ZeroEquivalence.lean",
         "lean_theorems": [
           "zeroRel_equivalence",
+          "nonzero_irrefl",
+          "nonzero_symm",
+          "nonzero_implies_ne",
+          "classOf_eq_iff_zeroRel",
           "nonzero_iff_classes_ne",
+          "exists_nonzero_iff_distinct_classes",
           "quotient_subsingleton_iff",
+          "unaryFactor_mk",
           "unary_descends_iff",
+          "unaryFactor_unique",
+          "unary_no_factor_of_witness",
+          "binaryFactor_mk",
           "binary_descends_iff",
+          "binaryFactor_unique",
+          "binary_no_factor_of_witness",
           "zero_status_descends_iff_refines",
+          "zero_status_descends_own",
           "deltaFactor_exists_iff_deltaCongruent",
+          "pair_descends_iff",
+          "localGreenGlobalRed_pair_obstruction",
+          "fromSetoid_zeroRel",
+          "forget_reconstruct_zeroRel",
+          "fromSetoid_exact_descends",
+          "exact_descends_implies_zero_status",
+          "four_fixtures_zero_status_descends",
+          "constantAllZero_one_class",
+          "constantAllZero_exact_descends",
+          "nonconstantAllZero_one_class",
+          "nonconstantAllZero_failure_witness",
+          "nonconstantAllZero_not_exact_descends",
+          "binary_zeroRel_iff_eq",
+          "binary_nonzero_iff_S2",
+          "binary_two_classes",
+          "binary_exact_descends",
+          "rich_zeroRel_classes",
+          "rich_two_classes",
+          "rich_failure_witness",
+          "rich_not_exact_descends",
+          "presentation_inequality_without_class_inequality",
+          "same_zeroRel_different_values",
+          "same_zeroRel_different_descent",
+          "finite_localGreenGlobalRed",
+          "isolatedEdge_irrefl",
+          "isolatedEdge_symm",
+          "isolatedEdge_witness",
+          "isolatedEdge_not_zero_complement",
+          "isolatedEdge_not_equivalence_complement",
+          "empty_quotient",
+          "singleton_quotient",
+          "empty_exact_descends",
+          "singleton_exact_descends",
+          "empty_and_singleton_zero_status",
+          "relabel_zeroRel",
+          "relabel_nonzero",
+          "relabel_quotient_left_inverse",
+          "relabel_quotient_right_inverse",
+          "relabel_exact_descends_iff",
+          "relabel_unary_descends_iff",
+          "zero_status_refuses_nonzero_identification",
+          "nonzero_collision_violates_irrefl",
           "static_kernel_does_not_determine_terminal"
         ],
         "receipt_json": "docs/zero_equivalence_verification.json",
-        "python_checks": ["scripts/check_primitive_difference.py", "audit/2026-11-05_minimal_chain/5_forcing_checks.py"],
-        "doc_refs": ["docs/zero_equivalence.md", "audit/2026-11-05_minimal_chain/5_unrecognised_forcing.md"]
+        "python_checks": [
+          "scripts/check_primitive_difference.py",
+          "audit/2026-11-05_minimal_chain/5_forcing_checks.py"
+        ],
+        "doc_refs": [
+          "docs/zero_equivalence.md",
+          "audit/2026-11-05_minimal_chain/5_unrecognised_forcing.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "M2_indexed_context_family"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M2_indexed_context_family"
+      ]
     },
     {
       "id": "DER-06",
@@ -288,7 +514,11 @@
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
-      "research_map_refs": ["N12", "N17", "N24"],
+      "research_map_refs": [
+        "N12",
+        "N17",
+        "N24"
+      ],
       "statement": "Separability in the 6-tuple WDP regime is independent of rule lists and mention tags, reducing faithfully to the 4-tuple Regime4 = (items, forms, insts, eval); collapsed4 coincides with the joint ZeroEquivalence.Kernel over all instantiated forms; Delta-extensions preserve prior separability and are invariant under item/form bijections.",
       "artifacts": {
         "lean_file": "lean/MinimalSeparation.lean",
@@ -298,26 +528,42 @@
           "ctxKernel4_zeroRel_iff",
           "collapsed4_iff_all_ctxKernel4_zero",
           "collapsed4_equivalence",
+          "collapsed4_of_no_insts",
           "no_insts_no_separation4",
           "applyDelta4_pair",
           "collapsed4_fresh_datum_imp",
+          "getD_append_left4",
+          "collapsed4_fresh_form_iff",
           "separable4_perm_invariant"
         ],
         "receipt_json": "docs/minimal_separation_verification.json",
-        "python_checks": ["scripts/check_primitive_difference.py", "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/10_post_seal_inventory.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "scripts/check_primitive_difference.py",
+          "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "M2_indexed_context_family"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M2_indexed_context_family"
+      ]
     },
     {
       "id": "DER-07",
       "code": "OQ-04-RT-01-ARITY-COST-UNIQUENESS",
-      "title": "Binary Arity-Weight Uniqueness mu(2) = 1 and Three-Item Unary Scope Boundary (OQ-04 / RT-01)",
+      "title": "Unary Separator Uniqueness at Cost 2 and Zero-Unary-Weight Three-Item Countermodel (OQ-04 / RT-01)",
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
-      "research_map_refs": ["N29", "OQ-04", "RT-01"],
-      "statement": "Under positive arity weights (w(k) >= 1 for k >= 1), unary exclusion on the two-item target, and unit minimum witnessing cost, w(2) = 1 is uniquely forced across all functions Nat -> Nat; however, if w(1) = 0 is allowed on a 3-item carrier {0,1,2}, a unary form separating item 2 can witness (0,2) at cost 0 while keeping (0,1) unseparated, showing that positive unary weight or pair-scoped exclusion is required.",
+      "research_map_refs": [
+        "N29",
+        "OQ-04",
+        "RT-01"
+      ],
+      "statement": "For any arity weight phi : Nat -> Nat with phi(1) >= 1 and phi(1) < phi(k) for all k >= 2, no response list of total cost <= 1 separates (0, 1) from R2L4, and among 2-item responses [a, b] (mu1 = 2) with phiSum4 phi [a, b] <= phi(1), the unary separator U0_4 (and U0F_4) is unique up to regime isomorphism (OQ-04); if phi(1) = 0 is allowed without fixing response length to 2, the 3-item response [newForm 1, newForm 1, newInst 0 [0]] separates (0, 1) on R2L4 at phiSum4 = 0 with 2 forms instead of 1 (RT-01).",
       "artifacts": {
         "lean_file": "lean/MinimalSeparation.lean",
         "lean_theorems": [
@@ -325,23 +571,40 @@
           "genesis_mark_not_separable4",
           "mu2_unique_general",
           "mu2_unique_F_general",
+          "phiLinear4_strict",
+          "pow_pos_of_pos4",
+          "phiSingleHole4_strict",
+          "pow_succ_gap4",
+          "phiMultiHole4_strict",
           "rt01_zero_unary_weight_three_item_countermodel"
         ],
         "receipt_json": "docs/minimal_separation_verification.json",
-        "python_checks": ["audit/2026-11-05_minimal_chain/9_oq01_to_oq04_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/8_open.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/9_oq01_to_oq04_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "S5_additive_cost_target"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "S5_additive_cost_target"
+      ]
     },
     {
       "id": "DER-08",
       "code": "OQ-05-RT-09-MULTI-ROUND-CLOSURE",
-      "title": "Multi-Round Closure Bounds and Non-Monotonic Unrequested-Pair Re-Collapse (OQ-05 / RT-09)",
+      "title": "Multi-Round Closure Bounds, Fresh-Form Monotonicity, and Existing-Form Re-Collapse (OQ-05 / RT-09)",
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
-      "research_map_refs": ["N12", "OQ-05", "RT-09"],
-      "statement": "Batch closure takes at most 1 round and sequential pair closure takes at most |K| rounds over requested pairs K; however, a non-append-only repair step that overwrites evaluations can separate a requested pair (0,1) while re-collapsing an unrequested pair (1,2), showing that monotonicity requires append-only Delta extensions.",
+      "research_map_refs": [
+        "N12",
+        "OQ-05",
+        "RT-09"
+      ],
+      "statement": "On an n-element carrier, sequential explicit-pair closure takes at most n(n-1)/2 rounds while quotient-class refinement takes at most n-1 rounds (a strict gap for all n >= 3, OQ-05); appending a fresh form and instance [newForm 1, newInst 1 [1]] preserves all prior separations and refines all 3 pairs on {0, 1, 2} in 2 = n-1 rounds, whereas appending an instance [newInst 0 [2]] to an existing form separates (1, 2) and preserves requested (0, 1) while re-collapsing unrequested (0, 2) (RT-09).",
       "artifacts": {
         "lean_file": "lean/MinimalSeparation.lean",
         "lean_theorems": [
@@ -350,13 +613,23 @@
           "quotient_refinement_from_one",
           "strict_gap_for_n_ge_3",
           "n3_unary_splits_two_pairs",
-          "rt09_unrequested_pair_recollapse_witness"
+          "rt09_unrequested_pair_recollapse_witness",
+          "rt09_fresh_form_strictly_refines_all_pairs"
         ],
         "receipt_json": "docs/minimal_separation_verification.json",
-        "python_checks": ["audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/8_open.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "M2_indexed_context_family", "M3_step_history_dynamics"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M2_indexed_context_family",
+        "M3_step_history_dynamics"
+      ]
     },
     {
       "id": "DER-09",
@@ -365,7 +638,10 @@
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
-      "research_map_refs": ["N12", "N24"],
+      "research_map_refs": [
+        "N12",
+        "N24"
+      ],
       "statement": "On duplicate inputs, silent refusal and external meta-markers leave data state unchanged; fact-bit recording mutates state without growing the item carrier; untagged and tagged reification grow the carrier by 1 while the tag bit separates their outputs.",
       "artifacts": {
         "lean_file": "lean/RetentionAndRefusal.lean",
@@ -377,10 +653,19 @@
           "tag_separates_reified_modes"
         ],
         "receipt_json": "docs/retention_and_refusal_verification.json",
-        "python_checks": ["scripts/check_primitive_difference.py", "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/10_post_seal_inventory.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "scripts/check_primitive_difference.py",
+          "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "S4_retention_state_bit"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "S4_retention_state_bit"
+      ]
     },
     {
       "id": "DER-10",
@@ -389,7 +674,12 @@
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
-      "research_map_refs": ["N07", "N12", "OQ-03", "RT-02"],
+      "research_map_refs": [
+        "N07",
+        "N12",
+        "OQ-03",
+        "RT-02"
+      ],
       "statement": "Out of 2^10 = 1024 truth tables for (x', m') = F(x, m, e), 16 satisfy two-step retention (8 state updates x 2 output readouts), and 4 satisfy idle drift-freeness and slot symmetry; a law in the 16\\4 slice that flips m on idle steps loses retention at 2 idle steps, whereas drift-free laws preserve memory across arbitrary idle horizons k >= 0.",
       "artifacts": {
         "lean_file": "lean/RetentionAndRefusal.lean",
@@ -405,20 +695,35 @@
           "rt02_drift_free_all_idle_steps"
         ],
         "receipt_json": "docs/retention_and_refusal_verification.json",
-        "python_checks": ["audit/2026-11-05_minimal_chain/9_oq01_to_oq04_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/8_open.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/9_oq01_to_oq04_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "S4_retention_state_bit", "M3_step_history_dynamics"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "S4_retention_state_bit",
+        "M3_step_history_dynamics"
+      ]
     },
     {
       "id": "DER-11",
       "code": "OQ-06-RT-05-RT-10-CHOICE-FREE-REPORT-FACTORIZATION",
-      "title": "Choice-Free Finite Report Factorization, Image Invariance, and Unary-vs-General Fiber Congruence (OQ-06 / RT-05 / RT-10)",
+      "title": "Choice-Free Finite Report Decoding, Image Invariance, and Global-vs-Finite Congruence (OQ-06 / RT-05 / RT-10)",
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
-      "research_map_refs": ["N16", "N17", "OQ-06", "RT-05", "RT-10"],
-      "statement": "On Fin n, report r factors through history summary h via constructive table lookup decodeFin iff r is constant on h-fibers; on the image of h, decodeFin is independent of scan order and default fallback value, while off-image queries return the default; unary congruence across all unary predicates p : Fin n -> Bool is equivalent to fiber constancy for arbitrary output types.",
+      "research_map_refs": [
+        "N18",
+        "N30",
+        "OQ-06",
+        "RT-05",
+        "RT-10"
+      ],
+      "statement": "Over any finite history list H : List Hist with DecidableEq V, state factors through report on H iff state is constant on report-fibers, realized constructively by first-match lookup decodeFin without Classical.choice (OQ-06); on the report image of H, decodeFin is invariant under list reordering/duplication and fallback default changes, while off-image queries return defaultS (RT-10); global UnaryCongruent S phi is equivalent to fiber constancy across all finite lists D : List alpha, whereas fiber constancy on a single fixed list D = [false] is strictly weaker (RT-05).",
       "artifacts": {
         "lean_file": "lean/RetentionAndRefusal.lean",
         "lean_theorems": [
@@ -427,23 +732,37 @@
           "oq06_history_report_criterion_fin",
           "rt10_decodeFin_order_and_default_invariant_on_image",
           "rt10_decodeFin_off_image_eq_default",
-          "rt05_unaryCongruent_iff_fiberConstant_all"
+          "rt05_unaryCongruent_iff_fiberConstant_all",
+          "rt05_fiberConstant_fixed_D_not_unaryCongruent"
         ],
         "receipt_json": "docs/retention_and_refusal_verification.json",
-        "python_checks": ["audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/8_open.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host"
+      ]
     },
     {
       "id": "DER-12",
-      "code": "RT-06-OQ-08-CLOSURE-DUALITY-AND-HORIZON-MORPHISM",
-      "title": "Closure-vs-Symmetry-Break Duality and 5-Gate WDP-to-Horizon Morphism (RT-06 / OQ-08)",
+      "code": "RT-06-OQ-08-RT-12-CLOSURE-DUALITY-AND-HORIZON-MORPHISM",
+      "title": "Closure-vs-Symmetry-Break Duality and 5-Gate WDP-to-Horizon Morphism (RT-06 / OQ-08 / RT-12)",
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
-      "research_map_refs": ["N18", "N32", "OQ-08", "RT-06"],
-      "statement": "An unseparated pair (u, v) fails closure under predicate P iff the transposition swap(u, v) is an internal symmetry breaking P; refining P by a distinguishing predicate Q closes the current obstruction; the 5-gate WDP morphism commutes with 3-gate Horizon projection iff admission and retention costs vanish.",
+      "research_map_refs": [
+        "N18",
+        "N32",
+        "OQ-08",
+        "RT-06",
+        "RT-12"
+      ],
+      "statement": "Failure of readout q to factor through presentation p on finite dataset D is equivalent to an internal transposition symmetry transpose a b of p that breaks q, and the common refinement (p, q) closes the obstruction (RT-06); the 5-gate WDP step (and its carrier-bound guarded variant) commutes with projection to the 3-gate Horizon world at specialization costs (0, 0, 0, 1) and is strictly finer when admission or retention gates are positively priced (OQ-08 / RT-12).",
       "artifacts": {
         "lean_file": "lean/RetentionAndRefusal.lean",
         "lean_theorems": [
@@ -453,13 +772,23 @@
           "common_refinement_closes_current_obstruction",
           "oq08_refinement_commutes_at_zero_adm_ret_cost",
           "oq08_trace_commutes_at_zero_adm_ret_cost",
-          "oq08_five_gate_strictly_finer_when_adm_priced"
+          "oq08_five_gate_strictly_finer_when_adm_priced",
+          "rt12_guarded_refinement_commutes_at_zero_adm_ret_cost"
         ],
         "receipt_json": "docs/retention_and_refusal_verification.json",
-        "python_checks": ["audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/8_open.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "S4_retention_state_bit", "S5_additive_cost_target"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "S4_retention_state_bit",
+        "S5_additive_cost_target"
+      ]
     },
     {
       "id": "DER-13",
@@ -468,7 +797,15 @@
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "4_LOCAL_GLOBAL_AND_L1_GEOMETRY",
-      "research_map_refs": ["N27", "N28", "N29", "N30", "N31", "OQ-02", "RT-04"],
+      "research_map_refs": [
+        "N27",
+        "N28",
+        "N29",
+        "N30",
+        "N31",
+        "OQ-02",
+        "RT-04"
+      ],
       "statement": "On a 3-cycle and 4-simplex (tetrahedron), unsigned incidence satisfies d^2 = 0 over F2 but fails over Z; signed orientation satisfies d1 o d0 = 0 and d2 o d1 = 0 over Z; cyclic edge orientation intertwines with simplicial boundary signs via diag(1, 1, -1); the unit vortex 1-cochain has non-zero curl d1(w_vortex) = 1 and minimum L1 coboundary defect >= 1.",
       "artifacts": {
         "lean_file": "lean/LocalGlobalObstruction.lean",
@@ -484,10 +821,19 @@
           "boundary_cancellation_tet_unsigned_fails"
         ],
         "receipt_json": "docs/local_global_obstruction_verification.json",
-        "python_checks": ["audit/2026-11-05_minimal_chain/9_oq01_to_oq04_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/8_open.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/9_oq01_to_oq04_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "M1_carrier_multiplicity", "S5_additive_cost_target"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M1_carrier_multiplicity",
+        "S5_additive_cost_target"
+      ]
     },
     {
       "id": "DER-14",
@@ -496,7 +842,12 @@
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "4_LOCAL_GLOBAL_AND_L1_GEOMETRY",
-      "research_map_refs": ["N29", "N30", "OQ-07", "RT-11"],
+      "research_map_refs": [
+        "N29",
+        "N30",
+        "OQ-07",
+        "RT-11"
+      ],
       "statement": "Positive edge weights w_i > 0 on the 3-cycle are forced equal (w1 = w2 = w3) under cyclic edge-transitive symmetry, whereas without symmetry or under a non-transitive involution swapping only edges 2 and 3, unequal positive weights (w1 = 1, w2 = w3 = 2) remain invariant and tilt minimum-cost repair toward edge 1.",
       "artifacts": {
         "lean_file": "lean/LocalGlobalObstruction.lean",
@@ -507,10 +858,18 @@
           "rt11_non_transitive_swap23_allows_unequal_weights"
         ],
         "receipt_json": "docs/local_global_obstruction_verification.json",
-        "python_checks": ["audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/8_open.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "S5_additive_cost_target"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "S5_additive_cost_target"
+      ]
     },
     {
       "id": "DER-15",
@@ -519,69 +878,123 @@
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "4_LOCAL_GLOBAL_AND_L1_GEOMETRY",
-      "research_map_refs": ["N11", "N28", "N30", "RT-07", "RT-08"],
-      "statement": "An endomorphism f : X -> X admits an f-equivariant section of the terminal projection iff f fixes an off-diagonal pair (a, b) with a != b; a single carrier fixed point on Fin 3 while swapping the other two elements does not suffice; on a C2 triangle, untwisted transports glue uniquely per base value while twisted transports with holonomy true have pairwise solutions but no global section.",
+      "research_map_refs": [
+        "N11",
+        "N17",
+        "N18",
+        "N28",
+        "N30",
+        "RT-06",
+        "RT-07",
+        "RT-08"
+      ],
+      "statement": "A natural section sec : Unit -> alpha x alpha of AdmissiblePair obs under endomorphism sigma exists iff sigma fixes both components of an admissible pair; on Bool with obs = id and sigma = counterpart, raw admissible selection (false, true) exists while naturality is obstructed, and on Fin 3 a single fixed carrier point 0 under swap3 is insufficient (N17 / RT-07); on a 3-locus Bool triangle, untwisted transports glue uniquely while twisted transports are pairwise solvable with no global section (N18 / RT-08); faithful network descent forces trivial loop holonomy (RT-06).",
       "artifacts": {
         "lean_file": "lean/LocalGlobalObstruction.lean",
         "lean_theorems": [
           "fixed_pair_of_natural_section",
           "natural_section_exists_iff_fixed_pair",
           "rt07_carrier_fixed_point_insufficient_fin3",
+          "selection_is_possible_naturality_is_not",
           "untwisted_triangle_glues_uniquely",
           "twisted_triangle_pairwise_solvable_no_global",
           "faithful_network_descent_forces_trivial_loops"
         ],
         "receipt_json": "docs/local_global_obstruction_verification.json",
-        "python_checks": ["scripts/check_primitive_difference.py", "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/10_post_seal_inventory.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "scripts/check_primitive_difference.py",
+          "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "M1_carrier_multiplicity"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M1_carrier_multiplicity"
+      ]
     },
     {
       "id": "DER-16",
-      "code": "WDP-CH03-INITIALITY-AND-SIX-GUARD-INDEPENDENCE",
-      "title": "Six-Guard Constitutional Initiality of D2_0 and Guard Independence Countermodels",
+      "code": "WDP-CH03-CONSTITUTIONAL-INITIALITY-AND-RETRACT",
+      "title": "Six-Guard Constitutional Self-Description, Behavioral Initiality, and Conservative Retract",
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "5_INTERNAL_METATHEORY",
-      "research_map_refs": ["N03", "N04", "N12"],
-      "statement": "Within the finite candidate catalog, the bare directed difference D2_0 is the unique candidate satisfying all six constitutional guards (inhabited off-diagonal, irreflexive, asymmetric, minimal carrier, no extra labels, no extra operations), and each guard has an explicit independence countermodel violating only that guard.",
+      "research_map_refs": [
+        "N03",
+        "N04",
+        "N12"
+      ],
+      "statement": "Operational support supp determines single-step and multi-step replay; the 6-boolean descriptor kernelDesc executes under the family interpreter interpStep to the exact sealed step function (interp_describe); across all 64 descriptors in allDescs, kernelDesc is the unique descriptor passing all six behavioral probes (dedupAdmit, guardRequire, guardAccept, gateBudget, gateLicense, certRefusal), each guard has an independent countermodel failing only its dedicated probe, and the panel-extended kernel CWorld retracts conservatively to World on base events.",
       "artifacts": {
         "lean_file": "lean/InternalMetatheory.lean",
         "lean_theorems": [
+          "support_determines",
+          "support_determines_replay",
+          "interp_describe",
+          "allDescs_length",
+          "allDescs_complete",
           "d20_unique_compliant",
           "guard_independence_six_countermodels",
           "extension_retract_to_U0"
         ],
         "receipt_json": "docs/internal_metatheory_verification.json",
-        "python_checks": ["scripts/check_primitive_difference.py", "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/10_post_seal_inventory.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "scripts/check_primitive_difference.py",
+          "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "S1_off_diagonal_pair_witness"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "S1_off_diagonal_pair_witness"
+      ]
     },
     {
       "id": "DER-17",
       "code": "WDP-CH04-NO-OUTSIDE-AND-DIAGONAL-TOWER",
-      "title": "Unapplied Outside Irrelevance, Re-Entry Accounting, and Lawvere/Cantor Diagonal Non-Exhaustion",
+      "title": "Effectual-Outside Dichotomy, Panel Equivalence, and Interpreter Diagonal Non-Exhaustion",
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "5_INTERNAL_METATHEORY",
-      "research_map_refs": ["N11", "N12", "N24"],
-      "statement": "An unapplied external label leaves Regime4 separability unchanged and re-entry preserves item/form/instance counts; no internal indexing map enc : alpha -> (alpha -> Bool) surjects onto all predicates on alpha because diagNeg(a) = !enc(a)(a) differs at every a, forcing a strict reflective tower at every finite stage.",
+      "research_map_refs": [
+        "N11",
+        "N12",
+        "N24"
+      ],
+      "statement": "Worlds agreeing on operational support replay to identical support and identical violation/quiescence verdicts, whereas panel re-entry grows the represented view store by the re-entered panel size (effectual_outside_dichotomy); panel signature agreement is an equivalence relation; no internal evaluator eval : Code -> Code -> Bool represents its own diagonal negation diagNeg, and for any finite code list cs : List C and evaluator ev : C -> World -> Event -> World, diagEvent cs ev differs from every c in cs at (genesis, note 0), while Option ConstitutionDesc provides a typed refusal extension evalOpt.",
       "artifacts": {
         "lean_file": "lean/InternalMetatheory.lean",
         "lean_theorems": [
+          "effectual_outside_dichotomy",
+          "panel_equiv",
           "unapplied_outside_leaves_separable_unchanged",
           "panel_reentry_preserves_counts",
           "diagNeg_differs_at_self",
           "diagonal_non_exhaustion",
-          "tower_persists_at_every_stage"
+          "tower_persists_at_every_stage",
+          "lt_maxNote_of_mem",
+          "tower_persists",
+          "evalOpt_typed_refusal_and_embedding"
         ],
         "receipt_json": "docs/internal_metatheory_verification.json",
-        "python_checks": ["scripts/check_primitive_difference.py", "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/10_post_seal_inventory.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "scripts/check_primitive_difference.py",
+          "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host"
+      ]
     },
     {
       "id": "DER-18",
@@ -590,7 +1003,10 @@
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "5_INTERNAL_METATHEORY",
-      "research_map_refs": ["N12", "N18"],
+      "research_map_refs": [
+        "N12",
+        "N18"
+      ],
       "statement": "Any append-only transition that strictly increases the cumulative regime measure mu(R) = |items| + |forms| + |insts| is irreflexive and asymmetric, preventing return to any prior regime state along non-empty positive-step chains.",
       "artifacts": {
         "lean_file": "lean/InternalMetatheory.lean",
@@ -603,10 +1019,19 @@
           "regime4Measure_newForm_lt"
         ],
         "receipt_json": "docs/internal_metatheory_verification.json",
-        "python_checks": ["scripts/check_primitive_difference.py", "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"],
-        "doc_refs": ["audit/2026-11-05_minimal_chain/10_post_seal_inventory.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "python_checks": [
+          "scripts/check_primitive_difference.py",
+          "audit/2026-11-05_minimal_chain/10_post_seal_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host", "M3_step_history_dynamics"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M3_step_history_dynamics"
+      ]
     },
     {
       "id": "DER-19",
@@ -616,8 +1041,26 @@
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "5_INTERNAL_METATHEORY",
       "research_map_refs": [
-        "OQ-01", "OQ-02", "OQ-03", "OQ-04", "OQ-05", "OQ-06", "OQ-07", "OQ-08",
-        "RT-01", "RT-02", "RT-03", "RT-04", "RT-05", "RT-06", "RT-07", "RT-08", "RT-09", "RT-10", "RT-11", "RT-12"
+        "OQ-01",
+        "OQ-02",
+        "OQ-03",
+        "OQ-04",
+        "OQ-05",
+        "OQ-06",
+        "OQ-07",
+        "OQ-08",
+        "RT-01",
+        "RT-02",
+        "RT-03",
+        "RT-04",
+        "RT-05",
+        "RT-06",
+        "RT-07",
+        "RT-08",
+        "RT-09",
+        "RT-10",
+        "RT-11",
+        "RT-12"
       ],
       "statement": "All 8 open questions (OQ-01 through OQ-08) and 12 red-team boundary stress tests (RT-01 through RT-12) have executable Lean 4.33.0 proofs and stdlib Python check suites establishing exact finite scope conditions and countermodels.",
       "artifacts": {
@@ -640,7 +1083,9 @@
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
         ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host"
+      ]
     },
     {
       "id": "DER-20",
@@ -649,13 +1094,24 @@
       "bucket": "DERIVED",
       "status_detail": "PYTHON_STDLIB_VERIFIED",
       "layer": "5_INTERNAL_METATHEORY",
-      "research_map_refs": ["N00", "N12"],
+      "research_map_refs": [
+        "N00",
+        "N12",
+        "N24"
+      ],
       "statement": "The historical Genesis seed audit record in evidence/seed_audit_2026-11-01/ is preserved with SHA-256 integrity checks, normalized claim-class counts, and separation between historical narrative and constructive Lean 4 verification.",
       "artifacts": {
-        "python_checks": ["scripts/verify_genesis_record.py"],
-        "doc_refs": ["docs/genesis_discussion.md", "docs/research_map.md"]
+        "python_checks": [
+          "scripts/verify_genesis_record.py"
+        ],
+        "doc_refs": [
+          "docs/genesis_discussion.md",
+          "docs/research_map.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S0_lean_core_host"]
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host"
+      ]
     },
     {
       "id": "OWE-05",
@@ -664,12 +1120,21 @@
       "bucket": "OWED",
       "status_detail": "OPEN_PROOF_OBLIGATION",
       "layer": "6_OWED_BRIDGES",
-      "research_map_refs": ["N00", "N01", "N02"],
+      "research_map_refs": [
+        "N00",
+        "N01",
+        "N02"
+      ],
       "statement": "In the historical pre-Genesis narrative, the transition from pre-structural diamond/void language to an inhabited off-diagonal root witness is not forced by pure logic; it remains an explicit owed bridge (or must be replaced by explicit admission S1).",
       "artifacts": {
-        "doc_refs": ["docs/research_map.md", "audit/2026-11-05_minimal_chain/1_admission_ledger.md"]
+        "doc_refs": [
+          "docs/research_map.md",
+          "audit/2026-11-05_minimal_chain/1_admission_ledger.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S1_off_diagonal_pair_witness"]
+      "unpriced_inputs_or_admissions": [
+        "S1_off_diagonal_pair_witness"
+      ]
     },
     {
       "id": "OWE-06",
@@ -678,42 +1143,72 @@
       "bucket": "OWED",
       "status_detail": "OPEN_PROOF_OBLIGATION",
       "layer": "6_OWED_BRIDGES",
-      "research_map_refs": ["N10", "N12"],
+      "research_map_refs": [
+        "N10",
+        "N12"
+      ],
       "statement": "Moving from the sealed 2-position mark S2Bool to a finite multi-element window Fin n (n >= 3) requires an explicit multiplicity admission (M1) or iterated product construction (M2/M3) rather than emerging from S2Bool alone.",
       "artifacts": {
-        "python_checks": ["audit/2026-11-05_minimal_chain/4_frozen_checks.py"],
-        "doc_refs": ["docs/research_map.md", "audit/2026-11-05_minimal_chain/4_priced_containers.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/4_frozen_checks.py"
+        ],
+        "doc_refs": [
+          "docs/research_map.md",
+          "audit/2026-11-05_minimal_chain/4_priced_containers.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["M1_carrier_multiplicity"]
+      "unpriced_inputs_or_admissions": [
+        "M1_carrier_multiplicity"
+      ]
     },
     {
       "id": "OWE-07",
-      "code": "N13-N15-INTERNAL-WITNESSING-ACQUISITION",
-      "title": "Internal Witnessing Invocation, Acquisition, and Retention Dynamic Bridge",
+      "code": "N21-N22-INTERNAL-WITNESSING-AND-PERSISTENCE",
+      "title": "Internal Witnessing Invocation, Acquisition, and Persistence Dynamic Bridge (N21-N22)",
       "bucket": "OWED",
       "status_detail": "OPEN_PROOF_OBLIGATION",
       "layer": "6_OWED_BRIDGES",
-      "research_map_refs": ["N13", "N14", "N15"],
-      "statement": "While the algebraic effects of applying a new form Delta are derived in MinimalSeparation.lean, the dynamic mechanism that selects and acquires a specific witnessing form when an internal observer encounters a collision remains an owed specification step.",
+      "research_map_refs": [
+        "N21",
+        "N22"
+      ],
+      "statement": "While the algebraic effects of applying a new form Delta are derived in MinimalSeparation.lean and two-step memory retention is characterized in RetentionAndRefusal.lean, the endogenous Genesis bridge from collision detection to witnessing form acquisition (N21) and persistence (N22) remains an owed specification step requiring M2/M3 admissions.",
       "artifacts": {
-        "doc_refs": ["docs/research_map.md", "audit/2026-11-05_minimal_chain/8_open.md"]
+        "doc_refs": [
+          "docs/research_map.md",
+          "audit/2026-11-05_minimal_chain/8_open.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["M2_indexed_context_family", "M3_step_history_dynamics"]
+      "unpriced_inputs_or_admissions": [
+        "M2_indexed_context_family",
+        "M3_step_history_dynamics"
+      ]
     },
     {
       "id": "OWE-08",
-      "code": "N19-N22-PROFILE-PREORDER-AND-TEN-STICK-REFLECTION",
-      "title": "Profile Preorder Comparison, Ten-Stick Reflection, and Four-Step Lift Bridge",
+      "code": "N19-N20-TEN-STICK-REFLECTION-AND-FOUR-STEP-LIFT",
+      "title": "Ten-Stick Reflection and Four-Step Lift Bridge (N19-N20)",
       "bucket": "OWED",
       "status_detail": "OPEN_PROOF_OBLIGATION",
       "layer": "6_OWED_BRIDGES",
-      "research_map_refs": ["N19", "N20", "N21", "N22"],
-      "statement": "The historical Genesis steps for profile preorder comparison (N19), ten-stick reflection (N20), and four-step lift to additive/archimedean magnitudes (N21-N22) depend on unformalized ordering and reflection admissions not yet reduced to constructive Lean 4 theorems.",
+      "research_map_refs": [
+        "N19",
+        "N20"
+      ],
+      "statement": "The historical Genesis steps for ten-stick reflection (N19) and the four-step reflective lift (N20) depend on unformalized reflection and multi-step lift admissions not forced by the sealed 2-element mark alone.",
       "artifacts": {
-        "python_checks": ["audit/2026-11-05_minimal_chain/3_regime_deletions.py"],
-        "doc_refs": ["docs/research_map.md", "audit/2026-11-05_minimal_chain/3_regime_fields.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/3_regime_deletions.py"
+        ],
+        "doc_refs": [
+          "docs/research_map.md",
+          "audit/2026-11-05_minimal_chain/3_regime_fields.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["M2_indexed_context_family", "M3_step_history_dynamics"]
+      "unpriced_inputs_or_admissions": [
+        "M2_indexed_context_family",
+        "M3_step_history_dynamics"
+      ]
     },
     {
       "id": "OWE-09",
@@ -722,30 +1217,54 @@
       "bucket": "OWED",
       "status_detail": "OPEN_PROOF_OBLIGATION",
       "layer": "6_OWED_BRIDGES",
-      "research_map_refs": ["N24", "N29", "OQ-07", "RT-11"],
+      "research_map_refs": [
+        "N24",
+        "N29",
+        "OQ-07",
+        "RT-11"
+      ],
       "statement": "As shown in OQ-07 and RT-11, uniform positive L1 weights are forced only when the automorphism group acts transitively on the support; on asymmetric or non-edge-transitive quotient graphs, a canonical weight assignment remains an owed bridge.",
       "artifacts": {
         "lean_file": "lean/LocalGlobalObstruction.lean",
-        "lean_theorems": ["oq07_weights_not_forced_without_symmetry", "rt11_non_transitive_swap23_allows_unequal_weights"],
+        "lean_theorems": [
+          "oq07_weights_not_forced_without_symmetry",
+          "rt11_non_transitive_swap23_allows_unequal_weights"
+        ],
         "receipt_json": "docs/local_global_obstruction_verification.json",
-        "doc_refs": ["docs/research_map.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "doc_refs": [
+          "docs/research_map.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["S5_additive_cost_target"]
+      "unpriced_inputs_or_admissions": [
+        "S5_additive_cost_target"
+      ]
     },
     {
       "id": "OWE-10",
-      "code": "N23-N26-CONTINUUM-COMPLETENESS-ADMISSION",
-      "title": "Archimedean/Cauchy Real Completeness and Continuum Bridge",
+      "code": "N23-N26-PROFILE-PREORDER-AND-CONTINUUM-ADMISSION",
+      "title": "Profile Preorder, Unconditional Closure, and Continuum Completeness Bridge (N23, N25, N26)",
       "bucket": "OWED",
       "status_detail": "OPEN_PROOF_OBLIGATION",
       "layer": "6_OWED_BRIDGES",
-      "research_map_refs": ["N23", "N25", "N26"],
-      "statement": "Finite counting and rational defect ratios do not generate Cauchy-complete real numbers R without an explicit infinite completion or continuum limit admission; any downstream use of continuum real analysis is an owed admission.",
+      "research_map_refs": [
+        "N23",
+        "N25",
+        "N26"
+      ],
+      "statement": "The historical profile preorder / unconditional closure claims (N23, N25, N26) and any downstream continuum real completeness require explicit ordering, closure-policy, or infinite completion admissions beyond finite counting and rational defect ratios.",
       "artifacts": {
-        "python_checks": ["audit/2026-11-05_minimal_chain/5_forcing_checks.py"],
-        "doc_refs": ["docs/research_map.md", "audit/2026-11-05_minimal_chain/5_unrecognised_forcing.md"]
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/5_forcing_checks.py"
+        ],
+        "doc_refs": [
+          "docs/research_map.md",
+          "audit/2026-11-05_minimal_chain/5_unrecognised_forcing.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["infinite_completion_admission"]
+      "unpriced_inputs_or_admissions": [
+        "infinite_completion_admission"
+      ]
     },
     {
       "id": "IMG-01",
@@ -754,12 +1273,21 @@
       "bucket": "IMAGINED",
       "status_detail": "PLANNED_STAGE",
       "layer": "7_IMAGINED_COSMOS_EXTENSION",
-      "research_map_refs": ["N27", "N28", "N30"],
+      "research_map_refs": [
+        "N27",
+        "N28",
+        "N30"
+      ],
       "statement": "Generalize the 2-simplex triangle and 3-simplex tetrahedron boundary theorems in LocalGlobalObstruction.lean to arbitrary k-dimensional semi-simplicial complexes, non-abelian Cech 1-cocycles, and exact primal-dual L1 minimal repair witnesses.",
       "artifacts": {
-        "doc_refs": ["audit/2026-11-05_minimal_chain/10_post_seal_inventory.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["higher_simplicial_carrier_admission"]
+      "unpriced_inputs_or_admissions": [
+        "higher_simplicial_carrier_admission"
+      ]
     },
     {
       "id": "IMG-02",
@@ -768,12 +1296,19 @@
       "bucket": "IMAGINED",
       "status_detail": "PLANNED_STAGE",
       "layer": "7_IMAGINED_COSMOS_EXTENSION",
-      "research_map_refs": ["N32", "N33"],
+      "research_map_refs": [
+        "N32",
+        "N33"
+      ],
       "statement": "Construct the functor from finite posets of local observer windows (causal diamonds) to residual quotients and transport holonomies, deriving relational proper-time ticks from irreducible state-update counts.",
       "artifacts": {
-        "doc_refs": ["docs/research_map.md"]
+        "doc_refs": [
+          "docs/research_map.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["causal_poset_window_admission"]
+      "unpriced_inputs_or_admissions": [
+        "causal_poset_window_admission"
+      ]
     },
     {
       "id": "IMG-03",
@@ -782,12 +1317,20 @@
       "bucket": "IMAGINED",
       "status_detail": "PLANNED_STAGE",
       "layer": "7_IMAGINED_COSMOS_EXTENSION",
-      "research_map_refs": ["N29", "N30", "N31"],
+      "research_map_refs": [
+        "N29",
+        "N30",
+        "N31"
+      ],
       "statement": "Bridge discrete L1 cochain transport defects and cyclic C2/C4 phase holonomies to L2 inner-product amplitudes via discrete Fourier/Parseval duality on finite groupoids.",
       "artifacts": {
-        "doc_refs": ["docs/research_map.md"]
+        "doc_refs": [
+          "docs/research_map.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["parseval_l2_pairing_admission"]
+      "unpriced_inputs_or_admissions": [
+        "parseval_l2_pairing_admission"
+      ]
     },
     {
       "id": "IMG-04",
@@ -796,12 +1339,19 @@
       "bucket": "IMAGINED",
       "status_detail": "PLANNED_STAGE",
       "layer": "7_IMAGINED_COSMOS_EXTENSION",
-      "research_map_refs": ["N31", "N32"],
+      "research_map_refs": [
+        "N31",
+        "N32"
+      ],
       "statement": "Connect the Omega Codex minimal chain to finite-dimensional quantum probability: frame-function additivity, Born rule weights, Stinespring dilation, and completely positive trace-preserving (CPTP) channel dynamics.",
       "artifacts": {
-        "doc_refs": ["docs/research_map.md"]
+        "doc_refs": [
+          "docs/research_map.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["frame_additivity_admission"]
+      "unpriced_inputs_or_admissions": [
+        "frame_additivity_admission"
+      ]
     },
     {
       "id": "IMG-05",
@@ -810,12 +1360,18 @@
       "bucket": "IMAGINED",
       "status_detail": "PLANNED_STAGE",
       "layer": "7_IMAGINED_COSMOS_EXTENSION",
-      "research_map_refs": ["N31"],
+      "research_map_refs": [
+        "N31"
+      ],
       "statement": "Derive composite system tensor products, finite Weyl-Heisenberg clock-and-shift operators, mutually unbiased bases (including prime-power constructions and dimension-6 obstructions), and non-factorizable joint states.",
       "artifacts": {
-        "doc_refs": ["docs/research_map.md"]
+        "doc_refs": [
+          "docs/research_map.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["composite_tensor_pairing_admission"]
+      "unpriced_inputs_or_admissions": [
+        "composite_tensor_pairing_admission"
+      ]
     },
     {
       "id": "IMG-06",
@@ -824,12 +1380,19 @@
       "bucket": "IMAGINED",
       "status_detail": "PLANNED_STAGE",
       "layer": "7_IMAGINED_COSMOS_EXTENSION",
-      "research_map_refs": ["N29", "N31"],
+      "research_map_refs": [
+        "N29",
+        "N31"
+      ],
       "statement": "Formulate discrete variational path sums over finite cochain histories, deriving discrete Noether currents and conjugate position-momentum commutation relations.",
       "artifacts": {
-        "doc_refs": ["docs/research_map.md"]
+        "doc_refs": [
+          "docs/research_map.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["discrete_variational_stationarity_admission"]
+      "unpriced_inputs_or_admissions": [
+        "discrete_variational_stationarity_admission"
+      ]
     },
     {
       "id": "IMG-07",
@@ -838,12 +1401,19 @@
       "bucket": "IMAGINED",
       "status_detail": "PLANNED_STAGE",
       "layer": "7_IMAGINED_COSMOS_EXTENSION",
-      "research_map_refs": ["N28", "N30"],
+      "research_map_refs": [
+        "N28",
+        "N30"
+      ],
       "statement": "Extend C2 link holonomy on simplicial 2-complexes to non-abelian gauge groupoids, Wilson plaquette actions, discrete Gauss law constraints, and anomaly cancellation checks.",
       "artifacts": {
-        "doc_refs": ["docs/research_map.md"]
+        "doc_refs": [
+          "docs/research_map.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["gauge_group_fiber_admission"]
+      "unpriced_inputs_or_admissions": [
+        "gauge_group_fiber_admission"
+      ]
     },
     {
       "id": "IMG-08",
@@ -852,12 +1422,19 @@
       "bucket": "IMAGINED",
       "status_detail": "PLANNED_STAGE",
       "layer": "7_IMAGINED_COSMOS_EXTENSION",
-      "research_map_refs": ["N28", "N30"],
+      "research_map_refs": [
+        "N28",
+        "N30"
+      ],
       "statement": "Couple simplicial 2-face deficit angles and edge-length assignments on 3D/4D triangulations to form a discrete Regge action with exact Bianchi identity conservation on dual cells.",
       "artifacts": {
-        "doc_refs": ["docs/research_map.md"]
+        "doc_refs": [
+          "docs/research_map.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["simplicial_metric_edge_admission"]
+      "unpriced_inputs_or_admissions": [
+        "simplicial_metric_edge_admission"
+      ]
     },
     {
       "id": "IMG-09",
@@ -866,12 +1443,21 @@
       "bucket": "IMAGINED",
       "status_detail": "PLANNED_STAGE",
       "layer": "7_IMAGINED_COSMOS_EXTENSION",
-      "research_map_refs": ["N16", "N18", "OQ-03"],
+      "research_map_refs": [
+        "N16",
+        "N18",
+        "OQ-03"
+      ],
       "statement": "Connect the 16/1024 memory retention laws, merger erasure (merger_erases), and strict measure monotonicity (strict_measure_no_return) to finite constructor tasks, admissible vs obstructed transformations, and thermodynamic erasure bounds.",
       "artifacts": {
-        "doc_refs": ["docs/research_map.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "doc_refs": [
+          "docs/research_map.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["bath_partition_admission"]
+      "unpriced_inputs_or_admissions": [
+        "bath_partition_admission"
+      ]
     },
     {
       "id": "IMG-10",
@@ -880,70 +1466,359 @@
       "bucket": "IMAGINED",
       "status_detail": "PLANNED_STAGE",
       "layer": "7_IMAGINED_COSMOS_EXTENSION",
-      "research_map_refs": ["N12", "N18", "N32"],
+      "research_map_refs": [
+        "N12",
+        "N18",
+        "N32"
+      ],
       "statement": "Extend the internal metatheory slice (InternalMetatheory.lean) into a self-hosting finite syntax, type checker, and reflective stage compiler capable of internalizing each stage of the derivation DAG along the diagonal tower.",
       "artifacts": {
-        "doc_refs": ["audit/2026-11-05_minimal_chain/10_post_seal_inventory.md", "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"]
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
+        ]
       },
-      "unpriced_inputs_or_admissions": ["internal_syntax_encoding_admission"]
+      "unpriced_inputs_or_admissions": [
+        "internal_syntax_encoding_admission"
+      ]
     }
   ],
   "edges": [
-    {"from": "OWE-01", "to": "DER-01", "kind": "requires_admission", "note": "PrimitiveDifference.lean uses Lean 4.33.0 core types and propositions."},
-    {"from": "OWE-02", "to": "DER-01", "kind": "requires_admission", "note": "Concrete mark instantiation requires an inhabited off-diagonal pair witness S1."},
-    {"from": "OWE-01", "to": "DER-02", "kind": "requires_admission", "note": "TorsorAndOperations.lean runs in the Lean 4.33.0 host."},
-    {"from": "OWE-02", "to": "DER-02", "kind": "requires_admission", "note": "D2 and S2Bool require the two-element carrier witness."},
-    {"from": "OWE-03", "to": "DER-02", "kind": "requires_admission", "note": "Symmetric closure S2 and endomorphism composition S3 underlie the C2 torsor."},
-    {"from": "DER-01", "to": "DER-02", "kind": "derives", "note": "TorsorAndOperations imports PrimitiveDifference and extends S2/counterpart to C2 torsor and relation census."},
-    {"from": "DER-02", "to": "DER-03", "kind": "derives", "note": "Single involution orbit bound and binary pair-tree 2^t growth build on C2 operations."},
-    {"from": "OWE-04", "to": "DER-03", "kind": "requires_admission", "note": "Step/tree depth indexing uses M3 dynamics."},
-    {"from": "DER-01", "to": "DER-04", "kind": "derives", "note": "MirrorNonIdentification imports PrimitiveDifference for two-slot counterpart symmetry."},
-    {"from": "OWE-03", "to": "DER-04", "kind": "requires_admission", "note": "Uses symmetric access invariance on S2Bool."},
-    {"from": "OWE-01", "to": "DER-05", "kind": "requires_admission", "note": "ZeroEquivalence uses Quot.sound and propext in Lean 4.33.0."},
-    {"from": "OWE-04", "to": "DER-05", "kind": "requires_admission", "note": "Observation kernels use indexed context families (M2)."},
-    {"from": "DER-05", "to": "DER-06", "kind": "derives", "note": "MinimalSeparation imports ZeroEquivalence and bridges collapsed4 to Kernel/ResidualQuotient."},
-    {"from": "DER-02", "to": "DER-06", "kind": "derives", "note": "MinimalSeparation imports TorsorAndOperations for two-position separation."},
-    {"from": "DER-06", "to": "DER-07", "kind": "derives", "note": "Binary arity weight uniqueness mu(2) = 1 and RT-01 scope countermodel build on Regime4 separation."},
-    {"from": "OWE-03", "to": "DER-07", "kind": "requires_admission", "note": "Uses positive arity cost target S5."},
-    {"from": "DER-06", "to": "DER-08", "kind": "derives", "note": "Multi-round closure bounds and RT-09 re-collapse countermodel build on Regime4 Delta extensions."},
-    {"from": "DER-02", "to": "DER-09", "kind": "derives", "note": "RetentionAndRefusal imports TorsorAndOperations."},
-    {"from": "DER-05", "to": "DER-09", "kind": "derives", "note": "RetentionAndRefusal imports ZeroEquivalence."},
-    {"from": "OWE-03", "to": "DER-09", "kind": "requires_admission", "note": "Uses retention state bit S4."},
-    {"from": "DER-09", "to": "DER-10", "kind": "derives", "note": "16/1024 retaining packet census and RT-02 idle-drift laws refine state retention."},
-    {"from": "DER-05", "to": "DER-11", "kind": "derives", "note": "Choice-free report factorization decodeFin refines quotient factorization on Fin n."},
-    {"from": "DER-05", "to": "DER-12", "kind": "derives", "note": "5-gate WDP-to-Horizon morphism refines ZeroEquivalence operational traces."},
-    {"from": "DER-09", "to": "DER-12", "kind": "derives", "note": "Combines refusal/retention cost gates with closure-symmetry duality."},
-    {"from": "DER-02", "to": "DER-13", "kind": "derives", "note": "LocalGlobalObstruction imports TorsorAndOperations for C2 orientation signs."},
-    {"from": "DER-05", "to": "DER-13", "kind": "derives", "note": "LocalGlobalObstruction imports ZeroEquivalence."},
-    {"from": "OWE-04", "to": "DER-13", "kind": "requires_admission", "note": "3-cycle and 4-simplex carriers use multiplicity M1 (|alpha| >= 3)."},
-    {"from": "DER-13", "to": "DER-14", "kind": "derives", "note": "Positive L1 repair weights and RT-11 non-transitive countermodel act on the 3-cycle vortex defect."},
-    {"from": "DER-13", "to": "DER-15", "kind": "derives", "note": "Natural section fixed-pair criterion and twisted C2 holonomy obstruction use local-to-global cochains."},
-    {"from": "DER-02", "to": "DER-16", "kind": "derives", "note": "Six-guard constitutional initiality of D2_0 builds on the two-position relation census."},
-    {"from": "DER-06", "to": "DER-17", "kind": "derives", "note": "Unapplied outside irrelevance and diagonal non-exhaustion import MinimalSeparation."},
-    {"from": "DER-09", "to": "DER-17", "kind": "derives", "note": "InternalMetatheory imports RetentionAndRefusal."},
-    {"from": "DER-06", "to": "DER-18", "kind": "derives", "note": "Regime4 cumulative measure monotonicity builds on applyDelta4."},
-    {"from": "DER-16", "to": "DER-19", "kind": "derives", "note": "Campaigns 1-3 audit synthesis consolidates all 8 Lean modules and check scripts."},
-    {"from": "DER-17", "to": "DER-19", "kind": "derives", "note": "Includes internal metatheory and diagonal tower verification."},
-    {"from": "DER-18", "to": "DER-19", "kind": "derives", "note": "Includes strict measure no-return verification."},
-    {"from": "OWE-01", "to": "DER-20", "kind": "requires_admission", "note": "Historical seed audit verification runs on the repository manifest."},
-    {"from": "OWE-02", "to": "OWE-05", "kind": "motivates_bridge", "note": "Pre-Genesis diamond-to-root gap is priced explicitly by S1."},
-    {"from": "DER-04", "to": "OWE-06", "kind": "motivates_bridge", "note": "Seal at S2Bool motivates explicit multiplicity bridge to Fin n."},
-    {"from": "DER-06", "to": "OWE-07", "kind": "motivates_bridge", "note": "Regime4 Delta algebra motivates dynamic witnessing acquisition rules."},
-    {"from": "DER-03", "to": "OWE-08", "kind": "motivates_bridge", "note": "Radix 2^t counting motivates profile preorder and ten-stick reflection bridges."},
-    {"from": "DER-14", "to": "OWE-09", "kind": "motivates_bridge", "note": "RT-11 non-transitive countermodel shows canonical L1 weights on asymmetric quotients remain owed."},
-    {"from": "OWE-08", "to": "OWE-10", "kind": "motivates_bridge", "note": "Additive/archimedean magnitudes motivate the continuum completeness admission."},
-    {"from": "DER-13", "to": "IMG-01", "kind": "extends_to", "note": "Triangle/tetrahedron coboundaries extend to higher k-simplex WDP cohomology."},
-    {"from": "DER-15", "to": "IMG-01", "kind": "extends_to", "note": "Twisted triangle holonomy extends to non-abelian Cech 1-cocycles."},
-    {"from": "DER-12", "to": "IMG-02", "kind": "extends_to", "note": "5-gate WDP-to-Horizon morphism extends to causal diamond observer functors."},
-    {"from": "DER-13", "to": "IMG-03", "kind": "extends_to", "note": "L1 cochain defects and C2 holonomy extend to L2 complex phase amplitudes."},
-    {"from": "OWE-09", "to": "IMG-03", "kind": "motivates_bridge", "note": "Canonical cochain weights feed into the L1-to-L2 Parseval bridge."},
-    {"from": "IMG-03", "to": "IMG-04", "kind": "extends_to", "note": "L2 complex amplitudes support finite Born rule, Gleason frame functions, and CPTP channels."},
-    {"from": "IMG-04", "to": "IMG-05", "kind": "extends_to", "note": "Finite quantum state spaces extend to composite tensor products and MUBs."},
-    {"from": "IMG-03", "to": "IMG-06", "kind": "extends_to", "note": "Discrete phase transport extends to variational action sums and Noether conservation."},
-    {"from": "IMG-01", "to": "IMG-07", "kind": "extends_to", "note": "Higher simplicial cocycles and holonomy extend to finite lattice gauge sectors."},
-    {"from": "IMG-01", "to": "IMG-08", "kind": "extends_to", "note": "Simplicial 2-face holonomy and deficit angles extend to 3D/4D Regge gravity."},
-    {"from": "DER-10", "to": "IMG-09", "kind": "extends_to", "note": "16/1024 memory retention laws and merger erasure extend to constructor theory and Landauer cost."},
-    {"from": "DER-18", "to": "IMG-09", "kind": "extends_to", "note": "Strict measure no-return extends to thermodynamic irreversibility."},
-    {"from": "DER-17", "to": "IMG-10", "kind": "extends_to", "note": "Diagonal non-exhaustion and reflective tower extend to self-hosting Cosmos metatheory."}
+    {
+      "from": "OWE-01",
+      "to": "DER-01",
+      "kind": "requires_admission",
+      "note": "PrimitiveDifference.lean uses Lean 4.33.0 core types and propositions."
+    },
+    {
+      "from": "OWE-02",
+      "to": "DER-01",
+      "kind": "requires_admission",
+      "note": "Concrete mark instantiation requires an inhabited off-diagonal pair witness S1."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-02",
+      "kind": "requires_admission",
+      "note": "TorsorAndOperations.lean runs in the Lean 4.33.0 host."
+    },
+    {
+      "from": "OWE-02",
+      "to": "DER-02",
+      "kind": "requires_admission",
+      "note": "D2 and S2Bool require the two-element carrier witness."
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-02",
+      "kind": "requires_admission",
+      "note": "Symmetric closure S2 and endomorphism composition S3 underlie the C2 torsor."
+    },
+    {
+      "from": "DER-01",
+      "to": "DER-02",
+      "kind": "derives",
+      "note": "TorsorAndOperations imports PrimitiveDifference and extends S2/counterpart to C2 torsor and relation census."
+    },
+    {
+      "from": "DER-02",
+      "to": "DER-03",
+      "kind": "derives",
+      "note": "Single involution orbit bound and binary pair-tree 2^t growth build on C2 operations."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-03",
+      "kind": "requires_admission",
+      "note": "Step/tree depth indexing uses M3 dynamics."
+    },
+    {
+      "from": "DER-01",
+      "to": "DER-04",
+      "kind": "derives",
+      "note": "MirrorNonIdentification imports PrimitiveDifference for two-slot counterpart symmetry."
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-04",
+      "kind": "requires_admission",
+      "note": "Uses symmetric access invariance on S2Bool."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-05",
+      "kind": "requires_admission",
+      "note": "ZeroEquivalence uses Quot.sound and propext in Lean 4.33.0."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-05",
+      "kind": "requires_admission",
+      "note": "Observation kernels use indexed context families (M2)."
+    },
+    {
+      "from": "DER-05",
+      "to": "DER-06",
+      "kind": "derives",
+      "note": "MinimalSeparation imports ZeroEquivalence and bridges collapsed4 to Kernel/ResidualQuotient."
+    },
+    {
+      "from": "DER-02",
+      "to": "DER-06",
+      "kind": "derives",
+      "note": "MinimalSeparation imports TorsorAndOperations for two-position separation."
+    },
+    {
+      "from": "DER-06",
+      "to": "DER-07",
+      "kind": "derives",
+      "note": "Binary arity weight uniqueness mu(2) = 1 and RT-01 scope countermodel build on Regime4 separation."
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-07",
+      "kind": "requires_admission",
+      "note": "Uses positive arity cost target S5."
+    },
+    {
+      "from": "DER-06",
+      "to": "DER-08",
+      "kind": "derives",
+      "note": "Multi-round closure bounds and RT-09 re-collapse countermodel build on Regime4 Delta extensions."
+    },
+    {
+      "from": "DER-02",
+      "to": "DER-09",
+      "kind": "derives",
+      "note": "RetentionAndRefusal imports TorsorAndOperations."
+    },
+    {
+      "from": "DER-05",
+      "to": "DER-09",
+      "kind": "derives",
+      "note": "RetentionAndRefusal imports ZeroEquivalence."
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-09",
+      "kind": "requires_admission",
+      "note": "Uses retention state bit S4."
+    },
+    {
+      "from": "DER-09",
+      "to": "DER-10",
+      "kind": "derives",
+      "note": "16/1024 retaining packet census and RT-02 idle-drift laws refine state retention."
+    },
+    {
+      "from": "DER-05",
+      "to": "DER-11",
+      "kind": "derives",
+      "note": "Choice-free report factorization decodeFin refines quotient factorization on Fin n."
+    },
+    {
+      "from": "DER-05",
+      "to": "DER-12",
+      "kind": "derives",
+      "note": "5-gate WDP-to-Horizon morphism refines ZeroEquivalence operational traces."
+    },
+    {
+      "from": "DER-09",
+      "to": "DER-12",
+      "kind": "derives",
+      "note": "Combines refusal/retention cost gates with closure-symmetry duality."
+    },
+    {
+      "from": "DER-02",
+      "to": "DER-13",
+      "kind": "derives",
+      "note": "LocalGlobalObstruction imports TorsorAndOperations for C2 orientation signs."
+    },
+    {
+      "from": "DER-05",
+      "to": "DER-13",
+      "kind": "derives",
+      "note": "LocalGlobalObstruction imports ZeroEquivalence."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-13",
+      "kind": "requires_admission",
+      "note": "3-cycle and 4-simplex carriers use multiplicity M1 (|alpha| >= 3)."
+    },
+    {
+      "from": "DER-13",
+      "to": "DER-14",
+      "kind": "derives",
+      "note": "Positive L1 repair weights and RT-11 non-transitive countermodel act on the 3-cycle vortex defect."
+    },
+    {
+      "from": "DER-13",
+      "to": "DER-15",
+      "kind": "derives",
+      "note": "Natural section fixed-pair criterion and twisted C2 holonomy obstruction use local-to-global cochains."
+    },
+    {
+      "from": "DER-02",
+      "to": "DER-16",
+      "kind": "derives",
+      "note": "Six-guard constitutional initiality of D2_0 builds on the two-position relation census."
+    },
+    {
+      "from": "DER-06",
+      "to": "DER-17",
+      "kind": "derives",
+      "note": "Unapplied outside irrelevance and diagonal non-exhaustion import MinimalSeparation."
+    },
+    {
+      "from": "DER-09",
+      "to": "DER-17",
+      "kind": "derives",
+      "note": "InternalMetatheory imports RetentionAndRefusal."
+    },
+    {
+      "from": "DER-06",
+      "to": "DER-18",
+      "kind": "derives",
+      "note": "Regime4 cumulative measure monotonicity builds on applyDelta4."
+    },
+    {
+      "from": "DER-16",
+      "to": "DER-19",
+      "kind": "derives",
+      "note": "Campaigns 1-3 audit synthesis consolidates all 8 Lean modules and check scripts."
+    },
+    {
+      "from": "DER-17",
+      "to": "DER-19",
+      "kind": "derives",
+      "note": "Includes internal metatheory and diagonal tower verification."
+    },
+    {
+      "from": "DER-18",
+      "to": "DER-19",
+      "kind": "derives",
+      "note": "Includes strict measure no-return verification."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-20",
+      "kind": "requires_admission",
+      "note": "Historical seed audit verification runs on the repository manifest."
+    },
+    {
+      "from": "OWE-02",
+      "to": "OWE-05",
+      "kind": "motivates_bridge",
+      "note": "Pre-Genesis diamond-to-root gap is priced explicitly by S1."
+    },
+    {
+      "from": "DER-04",
+      "to": "OWE-06",
+      "kind": "motivates_bridge",
+      "note": "Seal at S2Bool motivates explicit multiplicity bridge to Fin n."
+    },
+    {
+      "from": "DER-06",
+      "to": "OWE-07",
+      "kind": "motivates_bridge",
+      "note": "Regime4 Delta algebra motivates dynamic witnessing acquisition rules."
+    },
+    {
+      "from": "DER-03",
+      "to": "OWE-08",
+      "kind": "motivates_bridge",
+      "note": "Radix 2^t counting motivates profile preorder and ten-stick reflection bridges."
+    },
+    {
+      "from": "DER-14",
+      "to": "OWE-09",
+      "kind": "motivates_bridge",
+      "note": "RT-11 non-transitive countermodel shows canonical L1 weights on asymmetric quotients remain owed."
+    },
+    {
+      "from": "OWE-08",
+      "to": "OWE-10",
+      "kind": "motivates_bridge",
+      "note": "Additive/archimedean magnitudes motivate the continuum completeness admission."
+    },
+    {
+      "from": "DER-13",
+      "to": "IMG-01",
+      "kind": "extends_to",
+      "note": "Triangle/tetrahedron coboundaries extend to higher k-simplex WDP cohomology."
+    },
+    {
+      "from": "DER-15",
+      "to": "IMG-01",
+      "kind": "extends_to",
+      "note": "Twisted triangle holonomy extends to non-abelian Cech 1-cocycles."
+    },
+    {
+      "from": "DER-12",
+      "to": "IMG-02",
+      "kind": "extends_to",
+      "note": "5-gate WDP-to-Horizon morphism extends to causal diamond observer functors."
+    },
+    {
+      "from": "DER-13",
+      "to": "IMG-03",
+      "kind": "extends_to",
+      "note": "L1 cochain defects and C2 holonomy extend to L2 complex phase amplitudes."
+    },
+    {
+      "from": "OWE-09",
+      "to": "IMG-03",
+      "kind": "motivates_bridge",
+      "note": "Canonical cochain weights feed into the L1-to-L2 Parseval bridge."
+    },
+    {
+      "from": "IMG-03",
+      "to": "IMG-04",
+      "kind": "extends_to",
+      "note": "L2 complex amplitudes support finite Born rule, Gleason frame functions, and CPTP channels."
+    },
+    {
+      "from": "IMG-04",
+      "to": "IMG-05",
+      "kind": "extends_to",
+      "note": "Finite quantum state spaces extend to composite tensor products and MUBs."
+    },
+    {
+      "from": "IMG-03",
+      "to": "IMG-06",
+      "kind": "extends_to",
+      "note": "Discrete phase transport extends to variational action sums and Noether conservation."
+    },
+    {
+      "from": "IMG-01",
+      "to": "IMG-07",
+      "kind": "extends_to",
+      "note": "Higher simplicial cocycles and holonomy extend to finite lattice gauge sectors."
+    },
+    {
+      "from": "IMG-01",
+      "to": "IMG-08",
+      "kind": "extends_to",
+      "note": "Simplicial 2-face holonomy and deficit angles extend to 3D/4D Regge gravity."
+    },
+    {
+      "from": "DER-10",
+      "to": "IMG-09",
+      "kind": "extends_to",
+      "note": "16/1024 memory retention laws and merger erasure extend to constructor theory and Landauer cost."
+    },
+    {
+      "from": "DER-18",
+      "to": "IMG-09",
+      "kind": "extends_to",
+      "note": "Strict measure no-return extends to thermodynamic irreversibility."
+    },
+    {
+      "from": "DER-17",
+      "to": "IMG-10",
+      "kind": "extends_to",
+      "note": "Diagonal non-exhaustion and reflective tower extend to self-hosting Cosmos metatheory."
+    }
   ]
 }

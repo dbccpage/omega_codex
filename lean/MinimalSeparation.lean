@@ -205,6 +205,47 @@ theorem collapsed4_fresh_datum_imp (r : Regime4) (d d' : Nat)
       change x < r.data + 1
       omega
 
+theorem getD_append_left4 (forms : List Nat) (k f : Nat) (hf : f < forms.length) :
+    (forms ++ [k]).getD f 0 = forms.getD f 0 := by
+  induction forms generalizing f with
+  | nil => cases hf
+  | cons a tail ih =>
+      cases f with
+      | zero => rfl
+      | succ f' =>
+          have hf' : f' < tail.length := Nat.lt_of_succ_lt_succ hf
+          exact ih f' hf'
+
+theorem collapsed4_fresh_form_iff (r : Regime4) (k d d' : Nat)
+    (hinsts : ∀ p ∈ r.insts, p.1 < r.forms.length) :
+    collapsed4 { r with forms := r.forms ++ [k] } d d' ↔ collapsed4 r d d' := by
+  constructor
+  · intro hc c hwf
+    apply hc c
+    refine ⟨?_, ?_, hwf.2.2.1, hwf.2.2.2⟩
+    · rw [List.length_append]
+      exact Nat.lt_of_lt_of_le hwf.1 (Nat.le_add_right _ _)
+    · rw [getD_append_left4 r.forms k c.form hwf.1]
+      exact hwf.2.1
+  · intro hc c hwf
+    rcases Nat.lt_or_ge c.form r.forms.length with hlt | hge
+    · apply hc c
+      refine ⟨hlt, ?_, hwf.2.2.1, hwf.2.2.2⟩
+      have hlen := hwf.2.1
+      rw [getD_append_left4 r.forms k c.form hlt] at hlen
+      exact hlen
+    · constructor
+      · intro hd
+        exfalso
+        have hlt := hinsts (plug4 c d) hd
+        change c.form < r.forms.length at hlt
+        omega
+      · intro hd'
+        exfalso
+        have hlt := hinsts (plug4 c d') hd'
+        change c.form < r.forms.length at hlt
+        omega
+
 theorem separable4_perm_invariant (r1 r2 : Regime4)
     (hd : r1.data = r2.data) (hf : r1.forms = r2.forms)
     (hi : ∀ p, p ∈ r1.insts ↔ p ∈ r2.insts) (x y : Nat) :
@@ -707,5 +748,22 @@ theorem rt09_unrequested_pair_recollapse_witness :
       | tail _ h => cases h
     subst hs
     decide
+
+def R3_round2_fresh : Regime4 := ⟨3, [1, 1], [(0, [0]), (1, [1])], [(0, 1)]⟩
+def ctxUnary1_4 : Ctx4 := ⟨1, [none]⟩
+
+/-- RT-09 positive counterpart (Condition 2 of `12_post_seal_adversary_and_roadmap.md` §A.3.1):
+introducing a fresh unary form `[.newForm 1, .newInst 1 [1]]` on `R3_round1`
+preserves both previously separated pairs `(0, 1)` and `(0, 2)` while also
+separating `(1, 2)`, completing discrete partition refinement in `2 = n - 1` rounds. -/
+theorem rt09_fresh_form_strictly_refines_all_pairs :
+    applyDelta4 R3_round1 [.newForm 1, .newInst 1 [1]] = some R3_round2_fresh ∧
+    separable4 R3_round2_fresh 0 1 ∧
+    separable4 R3_round2_fresh 0 2 ∧
+    separable4 R3_round2_fresh 1 2 := by
+  exact ⟨by decide,
+         ⟨ctxUnary0_4, by decide, by decide⟩,
+         ⟨ctxUnary0_4, by decide, by decide⟩,
+         ⟨ctxUnary1_4, by decide, by decide⟩⟩
 
 end OmegaCodex.MinimalSeparation

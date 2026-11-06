@@ -298,6 +298,21 @@ theorem rt07_carrier_fixed_point_insufficient_fin3 :
     | 2, _, h2 => cases h2
   exact hne (hx0.trans hy0.symm)
 
+/-- RT-07 (`PresentationNaturality.lean:335-339`): on `Bool` with `obs = id` and
+`σ = counterpart`, raw admissible selection is possible (`(false, true)` is an
+admissible pair), whereas naturality is obstructed (`¬ ∃ sec, NaturalSection id counterpart sec`). -/
+theorem selection_is_possible_naturality_is_not :
+    AdmissiblePair (fun x : Bool => x) (false, true) ∧
+    ¬ ∃ sec : Unit → Bool × Bool,
+      NaturalSection (fun x : Bool => x) counterpart sec := by
+  refine ⟨Bool.noConfusion, ?_⟩
+  intro hex
+  rcases (natural_section_exists_iff_fixed_pair (fun x : Bool => x)
+    counterpart).mp hex with
+    ⟨⟨x, _⟩, _, hfix1, _⟩
+  cases x <;> cases hfix1
+
+
 /-! ## Section 4: RT-08 ObserverDescent Bool triangle & RT-06 FidelityClosure -/
 
 /-- Untwisted 3-locus `Bool` triangle cover (`L01, L12, L20`): every local value

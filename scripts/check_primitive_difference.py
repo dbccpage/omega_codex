@@ -27,7 +27,7 @@ MODULES = {
     },
     "TorsorAndOperations": {
         "namespace": "OmegaCodex.TorsorAndOperations.",
-        "allowed_axioms": {"propext", "Quot.sound"},
+        "allowed_axioms": {"propext"},
         "imports": ("PrimitiveDifference", "MirrorNonIdentification"),
     },
     "MinimalSeparation": {

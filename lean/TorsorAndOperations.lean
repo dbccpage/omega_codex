@@ -35,10 +35,14 @@ def D2rev : Rel2
 
 def S2Bool : Rel2 := difference
 
+def RelEq (R S : Rel2) : Prop := ∀ x y, R x y = S x y
+
+def FunEq (f g : Bool → Bool) : Prop := ∀ x, f x = g x
+
 theorem offdiag_nonempty_iff (R : Rel2) :
     ((R false true = true ∨ R true false = true) ∧
       R false false = false ∧ R true true = false) ↔
-    (R = D2 ∨ R = D2rev ∨ R = S2Bool) := by
+    (RelEq R D2 ∨ RelEq R D2rev ∨ RelEq R S2Bool) := by
   constructor
   · rintro ⟨hoff, hff, htt⟩
     cases hft : R false true <;> cases htf : R true false
@@ -46,15 +50,18 @@ theorem offdiag_nonempty_iff (R : Rel2) :
       | inl h => exact Bool.noConfusion (hft.symm.trans h)
       | inr h => exact Bool.noConfusion (htf.symm.trans h)
     · right; left
-      funext x y
+      intro x y
       cases x <;> cases y <;> simp [D2rev, hff, hft, htf, htt]
     · left
-      funext x y
+      intro x y
       cases x <;> cases y <;> simp [D2, hff, hft, htf, htt]
     · right; right
-      funext x y
+      intro x y
       cases x <;> cases y <;> simp [S2Bool, difference, hff, hft, htf, htt]
-  · rintro (rfl | rfl | rfl) <;> decide
+  · rintro (hD2 | hD2r | hS2)
+    · refine ⟨Or.inl (hD2 false true), hD2 false false, hD2 true true⟩
+    · refine ⟨Or.inr (hD2r true false), hD2r false false, hD2r true true⟩
+    · refine ⟨Or.inl (hS2 false true), hS2 false false, hS2 true true⟩
 
 theorem D2_initial_pointed (R : Rel2) (p q : Bool)
     (hpq : R p q = true) (hirr : ∀ x, R x x = false) :
@@ -82,37 +89,49 @@ theorem D2_initial_pointed (R : Rel2) (p q : Bool)
   · have htt : R true true = false := hirr true
     exact Bool.noConfusion (htt.symm.trans hpq)
 
-theorem D2_automorphism_trivial (f : Bool → Bool) :
-    (∀ x y, D2 (f x) (f y) = D2 x y) ↔ f = id := by
+theorem D2_preserve_iff_id (f : Bool → Bool) :
+    (∀ x y, D2 x y = true → D2 (f x) (f y) = true) ↔ FunEq f id := by
   constructor
-  · intro h
-    have hft : D2 (f false) (f true) = true := (h false true).trans rfl
-    funext x
+  · intro h x
+    have hft : D2 (f false) (f true) = true := h false true rfl
     cases hf0 : f false <;> cases hf1 : f true
     · rw [hf0, hf1] at hft; cases hft
-    · cases x <;> simp [hf0, hf1]
+    · cases x <;> simp [id, hf0, hf1]
     · rw [hf0, hf1] at hft; cases hft
     · rw [hf0, hf1] at hft; cases hft
-  · rintro rfl _ _
+  · intro hf x y hxy
+    rw [hf x, hf y]
+    exact hxy
+
+theorem D2_automorphism_trivial (f : Bool → Bool) :
+    (∀ x y, D2 (f x) (f y) = D2 x y) ↔ FunEq f id := by
+  constructor
+  · intro h
+    exact (D2_preserve_iff_id f).mp (fun x y hxy => (h x y).trans hxy)
+  · intro hf x y
+    rw [hf x, hf y]
     rfl
 
 theorem S2_automorphism_iff (f : Bool → Bool) :
-    (∀ x y, S2Bool (f x) (f y) = S2Bool x y) ↔ (f = id ∨ f = counterpart) := by
+    (∀ x y, S2Bool (f x) (f y) = S2Bool x y) ↔ (FunEq f id ∨ FunEq f counterpart) := by
   constructor
   · intro h
     have hft : S2Bool (f false) (f true) = true := (h false true).trans rfl
     cases hf0 : f false <;> cases hf1 : f true
     · rw [hf0, hf1] at hft; cases hft
     · left
-      funext x
-      cases x <;> simp [hf0, hf1]
+      intro x
+      cases x <;> simp [id, hf0, hf1]
     · right
-      funext x
+      intro x
       cases x <;> simp [counterpart, hf0, hf1]
     · rw [hf0, hf1] at hft; cases hft
-  · rintro (rfl | rfl)
-    · intro _ _; rfl
+  · rintro (hf | hf)
     · intro x y
+      rw [hf x, hf y]
+      rfl
+    · intro x y
+      rw [hf x, hf y]
       exact binary_difference_swap_invariant x y
 
 /-! ## Section 2: C2 operations and the two-position C2 torsor bridge -/
@@ -375,7 +394,7 @@ theorem equivariant_witness_is_S2Bool (R : Rel2)
     (hirr : ∀ x, R x x = false)
     (hne : R false true = true ∨ R true false = true)
     (heq : ∀ x y, R (counterpart x) (counterpart y) = R x y) :
-    R = S2Bool := by
+    RelEq R S2Bool := by
   have hft : R false true = true := by
     cases hne with
     | inl h => exact h
@@ -385,7 +404,7 @@ theorem equivariant_witness_is_S2Bool (R : Rel2)
   have htf : R true false = true := (heq false true).trans hft
   have hff : R false false = false := hirr false
   have htt : R true true = false := hirr true
-  funext x y
+  intro x y
   cases x <;> cases y <;> simp [S2Bool, difference, hff, hft, htf, htt]
 
 theorem no_swap_fixed_offdiag_pair :
@@ -399,6 +418,14 @@ theorem equivariant_fixed_point_preserved {α : Type u}
     (heq : ∀ x, f (σ x) = σ (f x)) {x : α} (hfix : σ x = x) :
     σ (f x) = f x := by
   rw [← heq x, hfix]
+
+theorem equivariant_family_invariant {S : Type u} {R : Type v}
+    (actS : S → S) (actR : R → R) (F : S → List R)
+    (hequiv : ∀ s, F (actS s) = (F s).map actR) {s : S}
+    (hfix : actS s = s) :
+    (F s).map actR = F s := by
+  calc (F s).map actR = F (actS s) := (hequiv s).symm
+    _ = F s := by rw [hfix]
 
 def swap3 : Fin 3 → Fin 3
   | ⟨0, _⟩ => ⟨0, by decide⟩

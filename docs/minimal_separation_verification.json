@@ -1,14 +1,14 @@
 {
   "verified": true,
   "source": "lean/MinimalSeparation.lean",
-  "source_sha256": "2b3651ed8547adf0b4fae34b30bf1dfde5da0e638179fbc4d5662c0d8fc9cad0",
+  "source_sha256": "d3827b170ed51e35b823c2db9152d02bf9cf6c597a1d39a629f0d2ac9f5ae829",
   "direct_imports": {
-    "lean/TorsorAndOperations.lean": "74a482e92bccf16dce2c2afe02739f8c5676206860f290506933a8310f8f8b91",
+    "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
     "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
   },
   "toolchain": "leanprover/lean4:v4.33.0",
   "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
-  "theorems_checked": 26,
+  "theorems_checked": 29,
   "allowed_axioms": [
     "Quot.sound",
     "propext"
@@ -42,6 +42,13 @@
       "Quot.sound"
     ],
     "collapsed4_fresh_datum_imp": [
+      "propext",
+      "Quot.sound"
+    ],
+    "getD_append_left4": [
+      "propext"
+    ],
+    "collapsed4_fresh_form_iff": [
       "propext",
       "Quot.sound"
     ],
@@ -109,6 +116,10 @@
       "Quot.sound"
     ],
     "rt09_unrequested_pair_recollapse_witness": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rt09_fresh_form_strictly_refines_all_pairs": [
       "propext",
       "Quot.sound"
     ]
