@@ -163,10 +163,10 @@ theorem oq05_explicit_pair_round_bound {n q0 m : Nat}
   | nil q hcap => omega
   | step hinc _ ih => omega
 
-/-- Quotient-refinement run (`QuotRefRun n c m`): under `Q_der`, each round demands a pair
-that is currently `collapsed` (in the same equivalence class of `collapsedSetoid r_t`) and
-applies a valid separating response that preserves prior separations, so the number of
-equivalence classes `c` on `{0, ..., n - 1}` increases by at least `1` per round up to `n`. -/
+/-- Conditional quotient-refinement run (`QuotRefRun n c m`): assumes by explicit hypothesis
+(`hinc : c + 1 ≤ c'`) that each round increments the class count `c` by at least `1` up to
+a fixed carrier capacity `n`. Connecting actual `Regime4` transitions to this premise
+remains an open bridge (`OWE-11`). -/
 inductive QuotRefRun (n : Nat) : Nat → Nat → Prop where
   | nil (c : Nat) (hcap : c ≤ n) : QuotRefRun n c 0
   | step {c c' m : Nat} (hinc : c + 1 ≤ c') (hrest : QuotRefRun n c' m) :
@@ -390,8 +390,9 @@ inductive HEv where
   | setBudget (b : Nat)
 deriving Repr, DecidableEq
 
-/-- 1-gate `Horizon` world (`Horizon.lean`), where `.admitTok` and `.require` are unpriced
-and only `.addView` is gated by `1 ≤ budget`. -/
+/-- Simplified 1-gate `Horizon` model (`HWorld`), where `.admitTok` and `.require` are unpriced
+and only `.addView` is gated by `1 ≤ budget` (omitting legacy `Represented.World`'s novelty,
+`increaseB`, and `augLicensed` guards; see `lean/InternalMetatheory.lean` (`DER-19`) and `OWE-12`). -/
 structure HWorld where
   toks   : List Nat
   reqs   : List (Nat × Nat)
@@ -461,9 +462,9 @@ def projToHorizon (w : WDPWorld) : HWorld :=
 
 def horizonSpecializationCosts : GateCosts := ⟨0, 0, 0, 1⟩
 
-/-- **OQ-08 Theorem 1 (`oq08_refinement_commutes_at_zero_adm_ret_cost`):**
-When the 5-gate WDP costs are specialized to `cSup = 0, cAdm = 0, cRet = 0, cEv = 1`,
-`projToHorizon` is an exact state-refinement morphism commuting with every event `ev : HEv`. -/
+/-- **OQ-08 Theorem 1 (`oq08_refinement_commutes_at_zero_adm_ret_cost`, simplified model):**
+When the simplified 5-gate `WDPWorld` costs are specialized to `cSup = 0, cAdm = 0, cRet = 0, cEv = 1`,
+`projToHorizon` commutes with every event `ev : HEv` on the simplified `HWorld` model. -/
 theorem oq08_refinement_commutes_at_zero_adm_ret_cost (w : WDPWorld) (ev : HEv) :
     projToHorizon (stepWDPWorld horizonSpecializationCosts w ev) =
       stepHWorld (projToHorizon w) ev := by

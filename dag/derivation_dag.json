@@ -123,6 +123,7 @@
       "statement": "To instantiate a concrete mark, one must supply a type alpha, a binary relation R, and an inhabited off-diagonal witness (a, b) with R a b and a != b. An empty or singleton carrier admits no such witness.",
       "artifacts": {
         "lean_file": "lean/TorsorAndOperations.lean",
+        "lean_module": "TorsorAndOperations",
         "lean_theorems": [
           "offdiag_nonempty_iff"
         ],
@@ -641,7 +642,7 @@
         "OQ-05",
         "RT-09"
       ],
-      "statement": "DERIVED_CONDITIONALLY: On a fixed finite carrier of size n (r.items = n fixed), any QuotRefRun sequence whose transitions satisfy the assumed per-step class-count growth premise c + 1 <= c' satisfies m <= n - 1 (quotRefRun_length_le_pred, regime4_stabilizes_in_at_most_pred_rounds). Includes an n = 3 fresh-form existence witness (rt09_fresh_form_strictly_refines_all_pairs) and preserves the existing-form re-collapse counterexample (rt09_unrequested_pair_recollapse_witness) where appending a duplicate form can re-collapse an unrequested pair. Does not establish that arbitrary Regime4 transitions satisfy c + 1 <= c'; that general transition-to-class-count bridge remains open in OWE-11.",
+      "statement": "DERIVED_CONDITIONALLY: On a fixed finite carrier of size n (r.items = n fixed), any QuotRefRun sequence whose transitions satisfy the assumed per-step class-count growth premise c + 1 <= c' satisfies c0 + m <= n and m <= n - 1 when 1 <= c0 (quotient_refinement_bound, quotient_refinement_from_one). Includes an n = 3 fresh-form existence witness (rt09_fresh_form_strictly_refines_all_pairs) and preserves the existing-form re-collapse counterexample (rt09_unrequested_pair_recollapse_witness) where appending a duplicate form can re-collapse an unrequested pair. Does not establish that arbitrary Regime4 transitions satisfy c + 1 <= c'; that general transition-to-class-count bridge remains open in OWE-11.",
       "artifacts": {
         "lean_file": "lean/MinimalSeparation.lean",
         "lean_theorems": [
@@ -808,7 +809,7 @@
         "RT-06",
         "RT-12"
       ],
-      "statement": "DERIVED_CONDITIONALLY: Shows in Lean exact commutation between two simplified models (WDPWorld and HWorld via stepWDPGuarded and stepHWorldGuarded) at c_adm = 0, c_ret = 0, c_ref = 1, where stepHWorldGuarded checks budget >= 1 and carrier index v < w.toks.length. This simplified model omits three augmentation guards present in pinned legacy Represented.World (19L57G1/Represented.lean:105-120): view novelty !(decide (c in w.views)), strict separation increase increaseB w c, and augmentation licensing w.augLicensed. Concrete discrepancy regressions and adapted FullWDPWorld commutation are recorded in DER-19; the full source-level bridge from prose WDP-CH01-D03 to legacy Represented/Horizon remains open in OWE-12.",
+      "statement": "DERIVED_CONDITIONALLY: Shows in Lean exact commutation between two simplified models (WDPWorld and HWorld via stepWDPWorld/stepHWorld in oq08_refinement_commutes_at_zero_adm_ret_cost and stepWDPWorldGuarded/stepHWorldGuarded in rt12_guarded_refinement_commutes_at_zero_adm_ret_cost) at cSup = 0, cAdm = 0, cRet = 0, cEv = 1, where stepHWorldGuarded checks 1 <= w.budget and carrier index v < w.toks.length. This simplified model omits three augmentation guards present in pinned legacy Represented.World (19L57G1/Represented.lean:105-120): view novelty !(decide (c in w.views)), strict separation increase increaseB w c, and augmentation licensing w.augLicensed. Concrete discrepancy regressions and adapted FullWDPWorld commutation are recorded in DER-19; the full source-level bridge from prose WDP-CH01-D03 to legacy Represented/Horizon remains open in OWE-12.",
       "artifacts": {
         "lean_file": "lean/RetentionAndRefusal.lean",
         "lean_theorems": [
@@ -1191,9 +1192,9 @@
       "code": "SLICE-IX-PROFILE-PREORDER-EQUIVALENCE-BRIDGE",
       "bucket": "DERIVED",
       "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
-      "layer": "2_EQUIVALENCE_AND_OPERATIONS",
+      "layer": "2_SEAL_AND_ZERO_EQUIVALENCE",
       "title": "Profile-Equality vs. Mutual-Comparability Preorder and Quotient Retention Bridge (N19)",
-      "statement": "On any carrier alpha and binary relation R : Rel alpha, complete incoming+outgoing profile equality profileEq R is an equivalence relation, and mutual comparability mutualComp R is an equivalence relation whenever R is a preorder. For any preorder R, profileEq R x y <-> mutualComp R x y (and for any equivalence relation R, profileEq R x y <-> R x y), while concrete 3-element and empty-relation counterexamples show failure without transitivity or reflexivity. The quotient lift profileQuotRel R is a well-defined partial order (reflexive, transitive, antisymmetric on Quotient (profileSetoid R)), and under SingleBitObsRetention the retained bit cannot separate profile-equivalent elements.",
+      "statement": "On any carrier alpha and binary relation E : alpha -> alpha -> Prop, complete incoming+outgoing profile equality ProfileEquiv E is an equivalence relation, and mutual comparability MutualComp E is an equivalence relation whenever IsPreorder E holds. For any preorder E, ProfileEquiv E x y <-> MutualComp E x y (profileEquiv_iff_mutualComp_of_preorder), and for any equivalence relation E, ProfileEquiv E x y <-> E x y (profileEquiv_iff_rel_of_equivalence), while D2 on Bool shows that ProfileEquiv strictly generalizes MutualComp without reflexivity (profileEquiv_strictly_generalizes_mutualComp_without_refl) and boolLeq shows that directed non-relation does not coincide with class inequality (directed_not_rel_ne_class_ineq_on_preorder). For any RelationRefinement fine coarse, collapseMap is surjective (collapseMap_surjective) and injective iff reverse refinement holds (collapseMap_injective_iff_reverse_refinement), retaining distinct fine classes and fine nonzero Kernel defects inside coarse zero classes (failed_identification_retains_two_classes, symmetry_failure_retains_multiplicity, coarse_zero_coexists_with_fine_nonzero).",
       "research_map_refs": [
         "N14",
         "N15",
@@ -1246,9 +1247,9 @@
       "code": "SLICE-IX-TEN-STICK-RESIDUAL-AND-PHASE-LIFT-MODELS",
       "bucket": "DERIVED",
       "status_detail": "DERIVED_CONDITIONALLY",
-      "layer": "2_EQUIVALENCE_AND_OPERATIONS",
+      "layer": "2_SEAL_AND_ZERO_EQUIVALENCE",
       "title": "Conditional Ten-Stick Reflection Residual and Four-Step vs. Two-Step Phase Lift Models (N19-N20)",
-      "statement": "DERIVED_CONDITIONALLY: Under the supplied carrier StickConfig = Fin 10 -> Bool, spatial reversal reflectStick, and half-sums stickLeft/stickRight, stickDelta(reflectStick c) = -stickDelta(c), and symmetric configurations satisfy stickDelta c = 0 while non-palindromic balanced configurations witness that stickDelta c = 0 does not recover full reflection symmetry. Under the supplied 4-element carrier FourPhase with stepFour and sheetParity, stepFour has exact period 4 and sheetParity flips every 2 steps; however, trivial_two_step_lift_also_intertwines shows on Bool x Bool that a 2-step lift also intertwines the same base flip. Necessity of carrier size 10 and necessity of period 4 remain open in OWE-08.",
+      "statement": "DERIVED_CONDITIONALLY: Under the supplied 10-slot carrier Stick10 = Fin 10 -> Bool, spatial index reversal reflectIndex10(i) = 9 - i, configuration reversal reflect10, Hamming distance hamming10, and reflection-quotient residual reflResidual10(s, t) = min(hamming10 s t, hamming10 s (reflect10 t)), the 1-stick indicator configurations stickLeft (i = 0) and stickRight (i = 9) satisfy reflect10 stickLeft = stickRight, raw Hamming distance 2, and reflection residual 0 (stickLeft_stickRight_raw_vs_reflResidual), whereas stickLeft and stickMid (i = 1) have positive reflection residual 2 (stickLeft_stickMid_reflResidual_pos). Under the supplied 4-state carrier Fin 4 with cyclic step4 and parity readout proj2 : Fin 4 -> Bool, proj2 intertwines step4 with counterpart (proj2_intertwines_counterpart), step4 has exact period 4 (step4_period_four), and two steps project to identity on Bool while flipping the hidden sheet (step4_two_projects_to_id_but_flips_sheet); however, trivial_two_step_lift_also_intertwines shows on Bool x Bool via step4Triv that a 2-step lift also intertwines counterpart. Necessity of carrier size 10 and necessity of period 4 remain open in OWE-08.",
       "research_map_refs": [
         "N19",
         "N20"
@@ -1290,9 +1291,9 @@
       "code": "SLICE-IX-SUPPLIED-GENERATOR-TRACE-AND-RADIUS-PROFILE-COLLISION",
       "bucket": "DERIVED",
       "status_detail": "DERIVED_CONDITIONALLY",
-      "layer": "3_SEPARATION_AND_RETENTION",
+      "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
       "title": "Conditional Supplied-Rule Generator Growth, Lower Bound, and Radius-d Profile Collision (N21-N22)",
-      "statement": "DERIVED_CONDITIONALLY: Under the externally supplied two-constructor alphabet GenForm (token vs. receipt), supplied transition rules stepM and stepRefl, and external Nat-indexed iteration runRefl, shows in Lean: (1) a 2-step closure witness min_witnessed_route_closes paired with the lower-bound theorem stepM_lower_bound_two_steps over all stepM traces from empty state measured by step count; and (2) linear growth of runRefl (n elements, n-1 edges at round n >= 1) and radius-d profile collision for interior vertices paired with radius-(n-1) full separation. Endogenous acquisition/invocation of the witnessing rule remains open in OWE-07 and multi-round law/repair persistence remains open in OWE-13.",
+      "statement": "DERIVED_CONDITIONALLY: Under the externally supplied two-constructor item type MItem (tok vs. receipt in MState), supplied transition rules stepM and stepRefl on PState, and external Nat-indexed iteration reflState, shows in Lean: (1) a 2-step closure witness min_witnessed_route_closes paired with the lower-bound theorem stepM_lower_bound_two_steps over all stepM traces from empty state ⟨[], []⟩ measured by step count; and (2) linear growth of reflState n (n + 1 elements List.range (n + 1), n successor edges (k, k + 1), and n tags at round n in reflective_chain_growth, reflective_chain_is_initial_segment, reflective_chain_successor_relation), depth-1 and radius-d profile collisions for interior vertices when 1 + d <= i < j <= n - 1 - d (depth1_obstructions_are_exactly_middle_pairs, depth_d_obstruction, profileD_deep), and outrunning of any finite valued mark set (finite_marks_outrun, depth_d_outrun). Endogenous acquisition/invocation of the witnessing rule remains open in OWE-07 and multi-round law/repair persistence remains open in OWE-13.",
       "research_map_refs": [
         "N21",
         "N22",
@@ -1377,10 +1378,10 @@
         ]
       },
       "unpriced_inputs_or_admissions": [
-        "cohomological_dimension_bridge_admission"
+        "pg_r_gap_diamond_to_root_admission"
       ],
       "defines_admissions": [
-        "cohomological_dimension_bridge_admission"
+        "pg_r_gap_diamond_to_root_admission"
       ]
     },
     {
@@ -1405,10 +1406,10 @@
         ]
       },
       "unpriced_inputs_or_admissions": [
-        "operational_seed_generator_admission"
+        "pg_r_gap_genesis_to_window_admission"
       ],
       "defines_admissions": [
-        "operational_seed_generator_admission"
+        "pg_r_gap_genesis_to_window_admission"
       ]
     },
     {
@@ -1422,7 +1423,7 @@
         "N21",
         "N22"
       ],
-      "statement": "OWED: While DER-23 checks deterministic trace growth and radius-d profile collisions under the externally supplied rules stepM and stepRefl, iterating a supplied rule that appends a fresh element, tag, and edge on invocation does not derive how a purely internal system acquires or invokes that constructor without an external caller, nor does a profile collision under a chosen observation map constitute performed internal witnessing. Discharging this obligation requires deriving endogenous witness acquisition and invocation without presupposing the token/receipt constructor split or external step scheduling.",
+      "statement": "OWED: While DER-23 checks deterministic trace growth and radius-d profile collisions under the externally supplied rules stepM and stepRefl, iterating a supplied rule that appends a fresh element, tag, and edge on invocation does not derive how a purely internal system acquires or invokes that constructor without an external caller, nor does a profile collision under a chosen observation map constitute performed internal witnessing. Discharging this obligation requires deriving endogenous witness acquisition and invocation without presupposing the MItem (tok vs. receipt) constructor split or external step scheduling.",
       "artifacts": {
         "doc_refs": [
           "docs/research_map.md",
@@ -1447,7 +1448,7 @@
         "N19",
         "N20"
       ],
-      "statement": "OWED: While DER-21 checks the general profile-equality vs. mutual-comparability preorder theorem on arbitrary carrier alpha and DER-22 checks ten-stick reflection residuality and an explicit four-state cycle lift on FourPhase, DER-22 also shows in Lean that a two-step lift on Bool x Bool intertwines the same base flip. Thus reciprocal symmetry alone does not force period four, and neither the cardinality 10 of StickConfig nor the necessity of a period-4 lift is derived from primitive distinction.",
+      "statement": "OWED: While DER-21 checks the general profile-equality vs. mutual-comparability preorder theorem (ProfileEquiv vs. MutualComp) on arbitrary carrier alpha and DER-22 checks ten-stick reflection residuality (reflResidual10 on Stick10) and an explicit four-state cycle lift (step4 on Fin 4), DER-22 also shows in Lean (trivial_two_step_lift_also_intertwines) that a two-step lift on Bool x Bool (step4Triv) intertwines the same base flip. Thus reciprocal symmetry alone does not force period four, and neither the cardinality 10 of Stick10 nor the necessity of a period-4 lift is derived from primitive distinction.",
       "artifacts": {
         "python_checks": [
           "audit/2026-11-05_minimal_chain/3_regime_deletions.py"
@@ -1480,6 +1481,7 @@
       "statement": "As shown in OQ-07 and RT-11, uniform positive L1 weights are forced only when the automorphism group acts transitively on the support; on asymmetric or non-edge-transitive quotient graphs, a canonical weight assignment remains an owed bridge.",
       "artifacts": {
         "lean_file": "lean/LocalGlobalObstruction.lean",
+        "lean_module": "LocalGlobalObstruction",
         "lean_theorems": [
           "oq07_weights_not_forced_without_symmetry",
           "rt11_non_transitive_swap23_allows_unequal_weights"
@@ -1530,8 +1532,8 @@
       "id": "OWE-11",
       "code": "OQ-05-REGIME4-TRANSITION-TO-CLASS-COUNT-BRIDGE",
       "bucket": "OWED",
-      "status_detail": "UNPROVED_ADMISSION",
-      "layer": "3_SEPARATION_AND_RETENTION",
+      "status_detail": "OPEN_PROOF_OBLIGATION",
+      "layer": "6_OWED_BRIDGES",
       "title": "General Regime4 Transition-to-Class-Count Growth Bridge (OQ-05)",
       "statement": "OWED: Connecting actual Regime4 transitions in MinimalSeparation.lean to the arithmetic bound QuotRefRun (m <= n - 1) requires five components not yet established in general: (1) a fixed finite carrier {0, ..., n - 1} with an explicit equivalence-class counting function on collapsed4 r; (2) a transition condition on form addition that preserves every prior separation; (3) separation of at least one previously collapsed pair; (4) a general theorem deriving strict class-count growth c + 1 <= c' from (1)-(3) for arbitrary n; and (5) a functorial bridge mapping valid Regime4 transition sequences to QuotRefRun.",
       "research_map_refs": [
@@ -1562,8 +1564,8 @@
       "id": "OWE-12",
       "code": "OQ-08-LEGACY-REPRESENTED-HORIZON-BRIDGE",
       "bucket": "OWED",
-      "status_detail": "UNPROVED_ADMISSION",
-      "layer": "3_SEPARATION_AND_RETENTION",
+      "status_detail": "OPEN_PROOF_OBLIGATION",
+      "layer": "6_OWED_BRIDGES",
       "title": "Source-Level Bridge Between Prose WDP-CH01-D03 and Pinned Legacy Represented/Horizon (OQ-08)",
       "statement": "OWED: While DER-12 shows in Lean commutation between simplified models (WDPWorld and HWorld) and DER-19 shows both the 4 concrete guard-discrepancy regressions and commutation for the adapted 5-gate FullWDPWorld model, the prose ledger specification WDP-CH01-D03 in theory_of_finite_quantum_mechanics (witnessed_difference_programme.md:513-530, commit e45ed2e133920aa3790af8c5e072ee9829898490) does not define data-subset views, view novelty, increaseB separation checks, or augLicensed gating from 19L57G1/Represented.lean and Horizon.lean (commit 45bb09864f9b52ed5ecf66e977ca81f0ed623de7). Establishing a non-adapted source-level equivalence remains open.",
       "research_map_refs": [
@@ -1593,10 +1595,10 @@
       "id": "OWE-13",
       "code": "N22-MULTI-ROUND-LAW-AND-REPAIR-PERSISTENCE-BRIDGE",
       "bucket": "OWED",
-      "status_detail": "UNPROVED_ADMISSION",
-      "layer": "3_SEPARATION_AND_RETENTION",
+      "status_detail": "OPEN_PROOF_OBLIGATION",
+      "layer": "6_OWED_BRIDGES",
       "title": "Multi-Round Law Formation, Retention Capacity Scaling, and Repair Persistence (N22)",
-      "statement": "OWED: DER-23 shows that under a fixed observation radius d, interior vertices in the deterministic reflective chain runRefl suffer profile collisions once n >= 2d + 3, and full separation requires observation radius d >= n - 1. Deriving an endogenous multi-round retention/repair mechanism whose memory capacity scales with round depth without external parameter tuning remains open.",
+      "statement": "OWED: DER-23 shows that under a fixed observation radius d, interior vertices in the deterministic reflective chain reflState n (with n + 1 elements and n edges) suffer profileD collisions once 1 + d <= i < j <= n - 1 - d (depth_d_obstruction), and any fixed finite valued mark set is outrun at round m + 1 (finite_marks_outrun, depth_d_outrun). Deriving an endogenous multi-round retention/repair mechanism whose memory capacity scales with round depth without external parameter tuning remains open.",
       "research_map_refs": [
         "N22"
       ],
@@ -2433,7 +2435,7 @@
       "from": "DER-09",
       "to": "DER-21",
       "kind": "derives",
-      "note": "Single-bit retention capacity constraints specialize to quotient class separation bounds under profileEq."
+      "note": "Quotient refinement collapseMap and fine-inside-coarse retention bounds extend DER-09 retention laws under ProfileEquiv."
     },
     {
       "from": "DER-04",
@@ -2457,7 +2459,7 @@
       "from": "DER-21",
       "to": "DER-23",
       "kind": "derives",
-      "note": "Profile equivalence specializes to bounded-radius observation profiles along runRefl chains."
+      "note": "Profile equivalence specializes to bounded-radius observation profiles (profile1, profile2, profileD) along reflState chains."
     },
     {
       "from": "DER-06",
@@ -2475,7 +2477,7 @@
       "from": "DER-06",
       "to": "OWE-13",
       "kind": "motivates_bridge",
-      "note": "Radius-d interior profile collisions in runRefl isolate the open multi-round retention scaling and repair persistence obligation."
+      "note": "Radius-d interior profile collisions in reflState isolate the open multi-round retention scaling and repair persistence obligation."
     }
   ],
   "admissions_catalog": {
@@ -2488,8 +2490,8 @@
     "M1_carrier_multiplicity": "OWE-04",
     "M2_indexed_context_family": "OWE-04",
     "M3_step_history_dynamics": "OWE-04",
-    "cohomological_dimension_bridge_admission": "OWE-05",
-    "operational_seed_generator_admission": "OWE-06",
+    "pg_r_gap_diamond_to_root_admission": "OWE-05",
+    "pg_r_gap_genesis_to_window_admission": "OWE-06",
     "operational_witness_acquisition_invocation_admission": "OWE-07",
     "ten_stick_carrier_and_period_four_necessity_admission": "OWE-08",
     "canonical_admissibility_pricing_functional_admission": "OWE-09",
