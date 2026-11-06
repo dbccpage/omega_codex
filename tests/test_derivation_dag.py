@@ -22,11 +22,11 @@ class DerivationDagTests(unittest.TestCase):
         summary = validator.validate_dag_data(self.data, root=ROOT)
         self.assertTrue(summary["valid"])
         self.assertEqual(summary["total_nodes"], 46)
-        self.assertEqual(summary["total_edges"], 102)
-        self.assertEqual(summary["requires_admission_edges"], 50)
-        self.assertEqual(summary["bucket_counts"], {"DERIVED": 23, "OWED": 13, "IMAGINED": 10})
+        self.assertEqual(summary["total_edges"], 104)
+        self.assertEqual(summary["requires_admission_edges"], 51)
+        self.assertEqual(summary["bucket_counts"], {"DERIVED": 24, "OWED": 12, "IMAGINED": 10})
         self.assertEqual(summary["lean_modules_verified"], 9)
-        self.assertEqual(summary["total_lean_theorems"], 314)
+        self.assertEqual(summary["total_lean_theorems"], 350)
 
     def test_claim_hygiene_violations_fail_closed(self) -> None:
         for bad_word in ("proves", "guarantees", "impossible", "universal", "obviously", "metaphysics", "ontology"):
@@ -118,19 +118,19 @@ class DerivationDagTests(unittest.TestCase):
     def test_derived_conditionally_without_bridge_provider_fails_closed(self) -> None:
         mutated = copy.deepcopy(self.data)
         for node in mutated["nodes"]:
-            if node["id"] == "DER-08":
+            if node["id"] == "DER-12":
                 node["unpriced_inputs_or_admissions"] = [
                     "S0_lean_core_host",
-                    "M2_indexed_context_family",
-                    "M3_step_history_dynamics",
+                    "S4_retention_state_bit",
+                    "S5_additive_cost_target",
                 ]
                 break
         mutated["edges"] = [
             e
             for e in mutated["edges"]
-            if not (e["from"] == "OWE-11" and e["to"] == "DER-08" and e["kind"] == "requires_admission")
+            if not (e["from"] == "OWE-12" and e["to"] == "DER-12" and e["kind"] == "requires_admission")
         ]
-        with self.assertRaisesRegex(ValueError, "DERIVED_CONDITIONALLY node DER-08 must depend on at least one OWED OPEN_PROOF_OBLIGATION"):
+        with self.assertRaisesRegex(ValueError, "DERIVED_CONDITIONALLY node DER-12 must depend on at least one OWED OPEN_PROOF_OBLIGATION"):
             validator.validate_dag_data(mutated, root=ROOT)
 
     def test_removing_all_requires_admission_edges_fails_closed(self) -> None:

@@ -10,11 +10,11 @@
   },
   "buckets": {
     "DERIVED": {
-      "count": 23,
+      "count": 24,
       "definition": "Checked in Lean 4.33.0 (constructive core, zero sorry, zero Classical.choice, zero Mathlib, allowed axioms restricted to propext and Quot.sound) and/or stdlib Python check scripts with source-bound verification receipts in docs/."
     },
     "OWED": {
-      "count": 13,
+      "count": 12,
       "definition": "Explicitly priced host substrate admissions (S0-S5), unfreezing mechanism choices (M1-M3), and open bridge obligations where a claim in the historical or target chain requires a premise not forced by prior derived nodes alone."
     },
     "IMAGINED": {
@@ -51,7 +51,7 @@
       "module": "MinimalSeparation",
       "source": "lean/MinimalSeparation.lean",
       "receipt": "docs/minimal_separation_verification.json",
-      "theorems_checked": 29
+      "theorems_checked": 65
     },
     {
       "module": "RetentionAndRefusal",
@@ -633,16 +633,16 @@
     {
       "id": "DER-08",
       "code": "OQ-05-RT-09-MULTI-ROUND-CLOSURE",
-      "title": "Conditional Quotient-Refinement Round Bound Under Assumed Class-Count Growth (OQ-05)",
+      "title": "Quotient-Refinement Round Bound and Explicit-vs-Derived Accounting Gap (OQ-05 / RT-09)",
       "bucket": "DERIVED",
-      "status_detail": "DERIVED_CONDITIONALLY",
+      "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
       "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
       "research_map_refs": [
         "N12",
         "OQ-05",
         "RT-09"
       ],
-      "statement": "DERIVED_CONDITIONALLY: On a fixed finite carrier of size n (r.items = n fixed), any QuotRefRun sequence whose transitions satisfy the assumed per-step class-count growth premise c + 1 <= c' satisfies c0 + m <= n and m <= n - 1 when 1 <= c0 (quotient_refinement_bound, quotient_refinement_from_one). Includes an n = 3 fresh-form existence witness (rt09_fresh_form_strictly_refines_all_pairs) and preserves the existing-form re-collapse counterexample (rt09_unrequested_pair_recollapse_witness) where appending a duplicate form can re-collapse an unrequested pair. Does not establish that arbitrary Regime4 transitions satisfy c + 1 <= c'; that general transition-to-class-count bridge remains open in OWE-11.",
+      "statement": "On a fixed finite carrier of size n (r.data = n fixed), any QuotRefRun sequence whose transitions satisfy per-step class-count growth c + 1 <= c' satisfies c0 + m <= n and m <= n - 1 when 1 <= c0 (quotient_refinement_bound, quotient_refinement_from_one), strictly below the explicit pair-demand bound n*(n - 1)/2 for n >= 3 (explicit_pair_round_bound, strict_gap_for_n_ge_3). Includes an n = 3 fresh-form existence witness (rt09_fresh_form_strictly_refines_all_pairs) and preserves the existing-form re-collapse counterexample (rt09_unrequested_pair_recollapse_witness) where appending an instance of an existing form can re-collapse an unrequested pair; connected to general Regime4 transitions by DER-24.",
       "artifacts": {
         "lean_file": "lean/MinimalSeparation.lean",
         "lean_theorems": [
@@ -667,8 +667,7 @@
       "unpriced_inputs_or_admissions": [
         "S0_lean_core_host",
         "M2_indexed_context_family",
-        "M3_step_history_dynamics",
-        "regime4_strict_class_count_growth_admission"
+        "M3_step_history_dynamics"
       ],
       "defines_admissions": []
     },
@@ -1359,6 +1358,77 @@
       "defines_admissions": []
     },
     {
+      "id": "DER-24",
+      "code": "OQ-05-REGIME4-TRANSITION-TO-CLASS-COUNT-BRIDGE",
+      "bucket": "DERIVED",
+      "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
+      "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
+      "title": "General Regime4 Transition-to-Class-Count Growth Bridge and Fresh-Unary Refinement Bound (OQ-05 / RT-09)",
+      "statement": "Discharges the general Regime4 transition-to-class-count growth bridge (formerly OWE-11) in Lean 4.33.0 across all five components: (1) finite-carrier context enumeration (allSlotOptions4, allSlotLists4, allWfCtxs4, mem_allWfCtxs4_iff) and constructive boolean equivalence collapsed4Bool (collapsed4_iff_collapsed4Bool, separable4_iff_collapsed4Bool_false); (2) canonical least-element class representative counting on {0, ..., n - 1} (hasEarlierEquiv4, isRep4, classCount4, regimeClassCount4, classCount4_strict_mono_of_witness); (3) constructive canonical representative extraction (BoolEquivOn4, exists_rep_of_equiv4, StrictRefinementOn4, exists_new_rep_of_strictRefinementOn4, strict_refinement_classCount4_inc); (4) general StrictRegimeTransition4 class-count growth (regime4_strict_class_count_growth) and concrete fresh-unary form transitions (freshUnaryDelta4, stepFreshUnary4, applyDelta4_freshUnaryDelta4, stepFreshUnary4_strict_transition, stepFreshUnary4_class_count_growth); and (5) functorial bridge from m-step RegimeRefinementRun4 sequences to QuotRefRun (regimeRefinementRun4_to_quotRefRun, regimeRefinementRun4_round_bound m <= r.data - 1) and the RT-09 class-count comparison (rt09_class_count_comparison).",
+      "research_map_refs": [
+        "N16",
+        "OQ-05",
+        "RT-09"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M2_indexed_context_family",
+        "M3_step_history_dynamics"
+      ],
+      "artifacts": {
+        "lean_file": "lean/MinimalSeparation.lean",
+        "lean_module": "MinimalSeparation",
+        "receipt_json": "docs/minimal_separation_verification.json",
+        "lean_theorems": [
+          "mem_foldr_append_iff",
+          "mem_allSlotOptions4_iff",
+          "mem_allSlotLists4_iff",
+          "mem_allWfCtxs4_iff",
+          "list_all_eq_true_iff4",
+          "list_all_eq_false_iff4",
+          "derivable4Bool_beq_eq_true_iff",
+          "derivable4Bool_beq_eq_false_iff",
+          "collapsed4_iff_collapsed4Bool",
+          "separable4_iff_collapsed4Bool_false",
+          "hasEarlierEquiv4_iff",
+          "hasEarlierEquiv4_eq_false_iff",
+          "isRep4_iff",
+          "isRep4_eq_false_iff",
+          "classCount4_le",
+          "classCount4_pos_of_pos",
+          "classCount4_mono_of_imp",
+          "classCount4_strict_mono_of_witness",
+          "collapsed4Bool_boolEquivOn4",
+          "exists_rep_of_equiv4_aux",
+          "exists_rep_of_equiv4",
+          "isRep4_imp_of_refines",
+          "exists_new_rep_of_strictRefinementOn4",
+          "strict_refinement_classCount4_inc",
+          "regimeClassCount4_le",
+          "regimeClassCount4_pos",
+          "strictRegimeTransition4_to_strictRefinementOn4",
+          "regime4_strict_class_count_growth",
+          "getD_append_last4",
+          "mem_insertNew4_iff",
+          "applyDelta4_freshUnaryDelta4",
+          "stepFreshUnary4_strict_transition",
+          "stepFreshUnary4_class_count_growth",
+          "regimeRefinementRun4_to_quotRefRun",
+          "regimeRefinementRun4_round_bound",
+          "rt09_class_count_comparison"
+        ],
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md",
+          "docs/research_map.md"
+        ]
+      },
+      "defines_admissions": []
+    },
+    {
       "id": "OWE-05",
       "code": "PG-R-GAP-DIAMOND-TO-ROOT",
       "title": "Pre-Genesis Diamond-to-Root Bridge Obligation",
@@ -1527,38 +1597,6 @@
       "defines_admissions": [
         "infinite_completion_admission"
       ]
-    },
-    {
-      "id": "OWE-11",
-      "code": "OQ-05-REGIME4-TRANSITION-TO-CLASS-COUNT-BRIDGE",
-      "bucket": "OWED",
-      "status_detail": "OPEN_PROOF_OBLIGATION",
-      "layer": "6_OWED_BRIDGES",
-      "title": "General Regime4 Transition-to-Class-Count Growth Bridge (OQ-05)",
-      "statement": "OWED: Connecting actual Regime4 transitions in MinimalSeparation.lean to the arithmetic bound QuotRefRun (m <= n - 1) requires five components not yet established in general: (1) a fixed finite carrier {0, ..., n - 1} with an explicit equivalence-class counting function on collapsed4 r; (2) a transition condition on form addition that preserves every prior separation; (3) separation of at least one previously collapsed pair; (4) a general theorem deriving strict class-count growth c + 1 <= c' from (1)-(3) for arbitrary n; and (5) a functorial bridge mapping valid Regime4 transition sequences to QuotRefRun.",
-      "research_map_refs": [
-        "N16",
-        "OQ-05",
-        "RT-09"
-      ],
-      "unpriced_inputs_or_admissions": [
-        "regime4_strict_class_count_growth_admission"
-      ],
-      "defines_admissions": [
-        "regime4_strict_class_count_growth_admission"
-      ],
-      "artifacts": {
-        "lean_file": null,
-        "lean_module": null,
-        "receipt_json": null,
-        "lean_theorems": [],
-        "python_checks": [
-          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"
-        ],
-        "doc_refs": [
-          "audit/2026-11-05_minimal_chain/8_open.md"
-        ]
-      }
     },
     {
       "id": "OWE-12",
@@ -1970,12 +2008,6 @@
       "note": "Node DER-08 requires explicit admission(s) provided by OWE-04."
     },
     {
-      "from": "OWE-11",
-      "to": "DER-08",
-      "kind": "requires_admission",
-      "note": "Node DER-08 requires explicit admission(s) provided by OWE-11."
-    },
-    {
       "from": "OWE-01",
       "to": "DER-09",
       "kind": "requires_admission",
@@ -2166,6 +2198,18 @@
       "to": "DER-23",
       "kind": "requires_admission",
       "note": "Node DER-23 requires explicit admission(s) provided by OWE-13."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-24",
+      "kind": "requires_admission",
+      "note": "Node DER-24 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-24",
+      "kind": "requires_admission",
+      "note": "Node DER-24 requires explicit admission(s) provided by OWE-04."
     },
     {
       "from": "DER-01",
@@ -2463,9 +2507,15 @@
     },
     {
       "from": "DER-06",
-      "to": "OWE-11",
-      "kind": "motivates_bridge",
-      "note": "Conditional QuotRefRun arithmetic bound isolates the missing general Regime4 class-count growth bridge."
+      "to": "DER-24",
+      "kind": "derives",
+      "note": "Exact well-formed context enumeration allWfCtxs4 and boolean equivalence collapsed4Bool bridge Regime4 strict refinement to class-count growth."
+    },
+    {
+      "from": "DER-24",
+      "to": "DER-08",
+      "kind": "derives",
+      "note": "Discharges OQ-05 general Regime4 transition-to-class-count growth bridge and RegimeRefinementRun4 round bound k + 1 <= r0.data."
     },
     {
       "from": "DER-09",
@@ -2496,7 +2546,6 @@
     "ten_stick_carrier_and_period_four_necessity_admission": "OWE-08",
     "canonical_admissibility_pricing_functional_admission": "OWE-09",
     "infinite_completion_admission": "OWE-10",
-    "regime4_strict_class_count_growth_admission": "OWE-11",
     "wdp_ch01_d03_full_represented_world_bridge_admission": "OWE-12",
     "multi_round_law_and_repair_persistence_admission": "OWE-13",
     "higher_simplicial_carrier_admission": "IMG-01",

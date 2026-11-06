@@ -1,5 +1,6 @@
 import PrimitiveDifference
 import ZeroEquivalence
+import MinimalSeparation
 
 /-!
 # Open Questions `OQ-05` through `OQ-08` (`8_open.md`)
@@ -9,11 +10,16 @@ Pinned commits:
   B (theory_of_finite_quantum_mechanics): e45ed2e133920aa3790af8c5e072ee9829898490
   omega_codex (baseline): e21b785626ff8d0231a53409c76fe4e7a57cd59d
 
-This self-contained Lean 4 module checks:
-- `OQ-05` (`DERIVED_CONDITIONALLY` in `DER-08`): conditional arithmetic round bound
-  `oq05_quotient_refinement_from_one` assuming per-step class-count growth `c + 1 ≤ c'`
-  on a fixed finite carrier (`r.data = n` fixed), plus the `n = 3` unary witness.
-  The general `Regime4` transition-to-class-count bridge remains `OWED` (`OWE-11`).
+This Lean 4 module checks:
+- `OQ-05` (`DER-08` + `DER-24`): arithmetic round bound
+  `oq05_quotient_refinement_from_one` from per-step class-count growth `c + 1 ≤ c'`
+  on a fixed finite carrier (`r.data = n` fixed), the `n = 3` unary witness, and the
+  discharged general `Regime4` transition-to-class-count growth bridge (`DER-24`,
+  formerly `OWE-11`): `collapsed4Bool`, `classCount4`, `regimeClassCount4`,
+  `StrictRegimeTransition4`, `regime4_strict_class_count_growth`,
+  `stepFreshUnary4_strict_transition`, `stepFreshUnary4_class_count_growth`,
+  `regimeRefinementRun4_to_quotRefRun`, `regimeRefinementRun4_round_bound`, and
+  `rt09_class_count_comparison`.
 - `OQ-06` (`DER-10`): choice-free `oq06_history_report_criterion_fin` via `decodeFin`.
 - `OQ-07` (`DER-14`): `oq07_weights_not_forced_without_symmetry` and
   `oq07_transitive_symmetry_forces_equal_weights`.
@@ -30,6 +36,7 @@ namespace MinimalChainAuditOQ05To08
 
 open OmegaCodex.PrimitiveDifference
 open OmegaCodex.ZeroEquivalence
+open OmegaCodex.MinimalSeparation hiding ExplicitQRun QuotRefRun
 
 /-! =========================================================================
     SECTION 1: OQ-05 — Conditional Multi-Round Bound & Explicit `Q` vs `Q_der`
@@ -163,10 +170,9 @@ theorem oq05_explicit_pair_round_bound {n q0 m : Nat}
   | nil q hcap => omega
   | step hinc _ ih => omega
 
-/-- Conditional quotient-refinement run (`QuotRefRun n c m`): assumes by explicit hypothesis
-(`hinc : c + 1 ≤ c'`) that each round increments the class count `c` by at least `1` up to
-a fixed carrier capacity `n`. Connecting actual `Regime4` transitions to this premise
-remains an open bridge (`OWE-11`). -/
+/-- Quotient-refinement run (`QuotRefRun n c m`): increments the class count `c` by at least `1`
+each round up to a fixed carrier capacity `n`. Connected to general `Regime4` transitions via
+`regime4_strict_class_count_growth` and `regimeRefinementRun4_to_quotRefRun` (`DER-24`, formerly `OWE-11`). -/
 inductive QuotRefRun (n : Nat) : Nat → Nat → Prop where
   | nil (c : Nat) (hcap : c ≤ n) : QuotRefRun n c 0
   | step {c c' m : Nat} (hinc : c + 1 ≤ c') (hrest : QuotRefRun n c' m) :
@@ -222,6 +228,44 @@ theorem oq05_n3_unary_splits_two_pairs :
       | tail _ h => cases h
     subst hs
     decide
+
+/-- **OQ-05 General `Regime4` Transition-to-Class-Count Growth Bridge (`DER-24`, formerly `OWE-11`):**
+Decidable equivalence `collapsed4Bool` over finite well-formed contexts `allWfCtxs4`,
+canonical class-representative counter `regimeClassCount4`, strict refinement growth
+`regime4_strict_class_count_growth`, constructive fresh-unary transition
+`stepFreshUnary4_strict_transition`, and multi-round bound `regimeRefinementRun4_round_bound`. -/
+theorem oq05_collapsed4_iff_collapsed4Bool (r : Regime4) (d d' : Nat) :
+    collapsed4 r d d' ↔ collapsed4Bool r d d' = true :=
+  collapsed4_iff_collapsed4Bool r d d'
+
+theorem oq05_separable4_iff_collapsed4Bool_false (r : Regime4) (d d' : Nat) :
+    separable4 r d d' ↔ collapsed4Bool r d d' = false :=
+  separable4_iff_collapsed4Bool_false r d d'
+
+theorem oq05_regime4_strict_class_count_growth {r s : Regime4}
+    (h : StrictRegimeTransition4 r s) :
+    regimeClassCount4 r + 1 ≤ regimeClassCount4 s ∧
+    regimeClassCount4 s ≤ s.data :=
+  regime4_strict_class_count_growth h
+
+theorem oq05_stepFreshUnary4_class_count_growth (r : Regime4)
+    (hwf : ∀ p ∈ r.insts, p.1 < r.forms.length)
+    {target other : Nat} (ht : target < r.data) (ho : other < r.data)
+    (hcol : collapsed4 r target other) (hne : target ≠ other) :
+    regimeClassCount4 r + 1 ≤ regimeClassCount4 (stepFreshUnary4 r target) ∧
+    regimeClassCount4 (stepFreshUnary4 r target) ≤ r.data :=
+  stepFreshUnary4_class_count_growth r hwf ht ho hcol hne
+
+theorem oq05_regimeRefinementRun4_round_bound {r : Regime4} {m : Nat}
+    (hdata : 1 ≤ r.data) (hrun : RegimeRefinementRun4 r m) :
+    m ≤ r.data - 1 :=
+  regimeRefinementRun4_round_bound hdata hrun
+
+theorem oq05_rt09_class_count_comparison :
+    regimeClassCount4 R3_round1 = 2 ∧
+    regimeClassCount4 R3_round2_recollapse = 2 ∧
+    regimeClassCount4 R3_round2_fresh = 3 :=
+  rt09_class_count_comparison
 
 
 /-! =========================================================================
@@ -279,7 +323,7 @@ theorem fiber_const_implies_decodeFin_exact {Hist V S : Type} [DecidableEq V]
 
 /-- **OQ-06 Main Theorem (`oq06_history_report_criterion_fin`):** Constructive equivalence
 between report factorizability on a finite history list `H` and fiber constancy of `state`
-with respect to `report`, proved with zero `Classical.choice`, zero `propext`, and zero `Quot.sound`. -/
+with respect to `report`, derived with zero `Classical.choice`, zero `propext`, and zero `Quot.sound`. -/
 theorem oq06_history_report_criterion_fin {Hist V S : Type} [DecidableEq V]
     (H : List Hist) (report : Hist → V) (state : Hist → S) (defaultS : S) :
     (∃ decode : V → S, ∀ h ∈ H, decode (report h) = state h) ↔
@@ -516,9 +560,16 @@ end MinimalChainAuditOQ05To08
 #print axioms MinimalChainAuditOQ05To08.oq05_quotient_refinement_from_one
 #print axioms MinimalChainAuditOQ05To08.oq05_strict_gap_for_n_ge_3
 #print axioms MinimalChainAuditOQ05To08.oq05_n3_unary_splits_two_pairs
+#print axioms MinimalChainAuditOQ05To08.oq05_collapsed4_iff_collapsed4Bool
+#print axioms MinimalChainAuditOQ05To08.oq05_separable4_iff_collapsed4Bool_false
+#print axioms MinimalChainAuditOQ05To08.oq05_regime4_strict_class_count_growth
+#print axioms MinimalChainAuditOQ05To08.oq05_stepFreshUnary4_class_count_growth
+#print axioms MinimalChainAuditOQ05To08.oq05_regimeRefinementRun4_round_bound
+#print axioms MinimalChainAuditOQ05To08.oq05_rt09_class_count_comparison
 #print axioms MinimalChainAuditOQ05To08.oq06_history_report_criterion_fin
 #print axioms MinimalChainAuditOQ05To08.oq07_weights_not_forced_without_symmetry
 #print axioms MinimalChainAuditOQ05To08.oq07_transitive_symmetry_forces_equal_weights
 #print axioms MinimalChainAuditOQ05To08.oq08_refinement_commutes_at_zero_adm_ret_cost
 #print axioms MinimalChainAuditOQ05To08.oq08_trace_commutes_at_zero_adm_ret_cost
 #print axioms MinimalChainAuditOQ05To08.oq08_five_gate_strictly_finer_when_adm_priced
+

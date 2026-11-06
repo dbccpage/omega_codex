@@ -7,11 +7,12 @@ Pinned commits:
   omega_codex (baseline): e21b785626ff8d0231a53409c76fe4e7a57cd59d
 
 Reproducible stdlib verification for OQ-05 through OQ-08 in 8_open.md:
-  1. OQ-05 (GEN-WDP-O03 / A21, DERIVED_CONDITIONALLY in DER-08 + OWED in OWE-11):
-     Conditional multi-round closure bounds comparing explicit pair-demand accounting Q
+  1. OQ-05 (GEN-WDP-O03 / A21, settled in DER-08 + DER-24):
+     Multi-round closure bounds comparing explicit pair-demand accounting Q
      (max n*(n-1)/2 rounds) vs derived quotient-refinement accounting Q_der (max n - 1
-     rounds assuming per-step class-count growth c + 1 <= c' on a fixed carrier of size n)
-     for n = 2, 3, 4, 5, plus the n = 3 unary mark witness.
+     rounds via general Regime4 transition-to-class-count growth bridge DER-24)
+     for n = 2, 3, 4, 5, plus the n = 3 unary mark witness, multi-round stepFreshUnary4
+     class-count growth traces, and the RT-09 class-count comparison.
   2. OQ-06 (GEN-WDP-O05 / H01, settled in DER-11): Constructive decodeFin (List.find?)
      verification across all 256 (report, state) function pairs on |H| = 4, |V| = 2, |S| = 2,
      checking 0 mismatches against fiber constancy.
@@ -84,6 +85,51 @@ def max_quotient_refinement_rounds(n):
     return dfs(start_part)
 
 
+def all_wf_ctxs4(regime):
+    """Enumerate all well-formed contexts of Regime4(data, forms, insts, reqs)."""
+    data, forms, _insts, _reqs = regime
+    slot_options = [None] + list(range(data))
+    ctxs = []
+    for f, arity in enumerate(forms):
+        for slots in itertools.product(slot_options, repeat=arity):
+            if None in slots:
+                ctxs.append((f, slots))
+    return ctxs
+
+
+def plug4(ctx, d):
+    f, slots = ctx
+    return (f, tuple(d if s is None else s for s in slots))
+
+
+def derivable4_bool(regime, inst):
+    _data, _forms, insts, _reqs = regime
+    return inst in insts
+
+
+def collapsed4_bool(regime, d1, d2):
+    for ctx in all_wf_ctxs4(regime):
+        if derivable4_bool(regime, plug4(ctx, d1)) != derivable4_bool(regime, plug4(ctx, d2)):
+            return False
+    return True
+
+
+def is_rep4(regime, x):
+    return all(not collapsed4_bool(regime, y, x) for y in range(x))
+
+
+def regime_class_count4(regime):
+    data = regime[0]
+    return sum(1 for x in range(data) if is_rep4(regime, x))
+
+
+def step_fresh_unary4(regime, target):
+    data, forms, insts, reqs = regime
+    new_inst = (len(forms), (target,))
+    new_insts = insts if new_inst in insts else insts + (new_inst,)
+    return (data, forms + (1,), new_insts, reqs)
+
+
 def check_oq05():
     print("=== [1] OQ-05: MULTI-ROUND CLOSURE BOUND (EXPLICIT Q VS DERIVED Q_der) ===")
     for n in [2, 3, 4, 5]:
@@ -110,6 +156,31 @@ def check_oq05():
     print(
         f"  n=3 unary witness (0,[0]): sep(0,1)={sep_01}, sep(0,2)={sep_02}, "
         f"collapsed(1,2)={col_12} (1 round splits 2 pairs simultaneously)"
+    )
+
+    # General Regime4 transition-to-class-count growth bridge (DER-24, formerly OWE-11)
+    for n in [2, 3, 4, 5]:
+        r = (n, (), (), ())
+        counts = [regime_class_count4(r)]
+        assert counts[0] == 1
+        for t in range(n - 1):
+            assert collapsed4_bool(r, t, t + 1)
+            r = step_fresh_unary4(r, t)
+            counts.append(regime_class_count4(r))
+            assert counts[-1] == counts[-2] + 1
+        assert counts == list(range(1, n + 1))
+        print(f"  n={n} stepFreshUnary4 classCount4 trajectory: {counts} (reaches {n} in {n-1} rounds)")
+
+    r3_round1 = (3, (1,), ((0, (0,)),), ((0, 1),))
+    r3_round2_recollapse = (3, (1,), ((0, (0,)), (0, (2,))), ((0, 1),))
+    r3_round2_fresh = (3, (1, 1), ((0, (0,)), (1, (1,))), ((0, 1),))
+    c_r1 = regime_class_count4(r3_round1)
+    c_recol = regime_class_count4(r3_round2_recollapse)
+    c_fresh = regime_class_count4(r3_round2_fresh)
+    assert (c_r1, c_recol, c_fresh) == (2, 2, 3)
+    print(
+        f"  RT-09 classCount4 comparison: R3_round1={c_r1}, "
+        f"R3_round2_recollapse={c_recol} (stalled), R3_round2_fresh={c_fresh} (strict +1)"
     )
     print()
 
