@@ -242,11 +242,12 @@ Pasted output:
   3. `fiber_const_implies_decodeFin_exact`: By induction on `H : List Hist`, if `report head == report h` is `true`, fiber constancy gives `state head = state h`; if `false`, then `h ≠ head`, so `h ∈ tail` and the induction hypothesis gives `decodeFin tail ... (report h) = state h`.
   4. `oq06_history_report_criterion_fin` combines both directions with **zero axioms** (`does not depend on any axioms`).
 
-### 11.3 `OQ-07` (`L1-R-RESIDUAL-TO-WEIGHTS` / `A32`) — Positive $\ell_1$ Weights: Non-Forcing Without Symmetry vs Forcing Under Transitive Edge Symmetry
-- **Tag:** `Derived` + `Witnessed`
-- **Full derivation (`11_oq05_to_oq08.lean:357-440`):**
+### 11.3 `OQ-07` (`L1-R-RESIDUAL-TO-WEIGHTS` / `A32`, `DER-14` & `DER-27` / `OWE-09`) — Positive $\ell_1$ Weights: Non-Forcing Without Symmetry vs Orbit-Decomposed and Transitive Symmetry Forcing
+- **Tag:** `Derived` + `Witnessed` (`DER-14`, `DER-27`, narrowing `OWE-09`)
+- **Full derivation (`11_oq05_to_oq08.lean:357-440`, `LocalGlobalObstruction.lean:154-205, 344-530`):**
   1. `oq07_weights_not_forced_without_symmetry`: On the 3-edge cycle with constraint $v_1 + v_2 + v_3 = 1$ ($v \in \mathbb{Z}^3$), for $w = (1, 2, 2)$, $J_w(1, 0, 0) = 1$ while every $v \ne (1, 0, 0)$ with $v_1 + v_2 + v_3 = 1$ satisfies $J_w(v) \ge 2$; for $w' = (2, 1, 2)$, $J_{w'}(0, 1, 0) = 1$ while every $v \ne (0, 1, 0)$ with $v_1 + v_2 + v_3 = 1$ satisfies $J_{w'}(v) \ge 2$. Thus positive weights are `Not forced` without symmetry (`Supplied`).
   2. `oq07_transitive_symmetry_forces_equal_weights`: If $J_w(\text{rotEdge}(v)) = J_w(v)$ for all valid repairs $v$, evaluating at $(1, 0, 0)$ gives $w_3 = w_1$ and evaluating at $(0, 1, 0)$ gives $w_1 = w_2$, forcing $w_1 = w_2 = w_3$ (`does not depend on any axioms`).
+  3. **Orbit-decomposed weight characterization (`DER-27`, `LocalGlobalObstruction.lean:344-530`):** On 3-edge cochains, `swap23_invariant_iff_orbit_constant`, `swap23_invariant_cost_decomposition`, `swap12_invariant_iff_orbit_constant`, and `three_edge_symmetry_weight_hierarchy` establish that invariance under `swapEdge23` holds iff $w_2 = w_3$ (yielding the 2-orbit decomposition $w_1|v_1| + w_2(|v_2| + |v_3|)$), invariance under `swapEdge12` holds iff $w_1 = w_2$, and joint invariance under both transpositions holds iff $w_1 = w_2 = w_3$. For general $n$-edge cochains (`weightedL1Gen`, `unweightedL1Gen`, `unitCochain`, `iterEdge`), `weightedL1Gen_unitCochain`, `symmetry_forces_step_equal_weights_general`, `symmetry_forces_orbit_equal_weights_general`, `uniform_weights_factor_l1_general`, and `transitive_action_forces_uniform_weights_general` show that invariance under any edge map $\sigma$ forces $w(\sigma^k(e)) = w(e)$ along every $\sigma$-orbit, and transitive $\sigma$-action forces uniform weights $w(e) = w(0)$ and scalar factoring $\|v\|_{1,w} = w(0)\|v\|_1$, narrowing `OWE-09` to selecting positive scalar weights $w_{\mathcal{O}} > 0$ across distinct automorphism orbits and continuous $\mathbb{Q}/\mathbb{R}$ cochain extensions.
 
 ### 11.4 `OQ-08` (`GEN-WDP-O04` / `A30, A31`) — Simplified-Model Commutation (`DER-12`), Discrepancy Regressions (`DER-19`), and Open Legacy Bridge (`OWE-12`)
 - **Tag:** `DERIVED_CONDITIONALLY` (`DER-12`) + `DERIVED` (`DER-19` regressions) + `OWED` (`OWE-12`)
@@ -322,11 +323,12 @@ Pasted output:
   decodeFin exact on all h in H:       60 / 256
   Mismatches (fiber_const != decodeFin): 0
 
-=== [3] OQ-07: POSITIVE L1 WEIGHTS (NON-FORCING VS SYMMETRY FORCING) ===
+=== [3] OQ-07 / DER-27: POSITIVE L1 WEIGHTS & ORBIT-DECOMPOSED SYMMETRY HIERARCHY ===
   Valid repairs in [-3..3]^3 with v1+v2+v3=1: 36
   w=(1,2,2): min=1, unique minimizer=[(1, 0, 0)], min on v!=(1,0,0) is 2
   w=(2,1,2): min=1, unique minimizer=[(0, 1, 0)], min on v!=(0,1,0) is 2
-  Cyclic-invariant weights in {1..4}^3: 4 / 64 (matches w1==w2==w3: True)
+  3-edge symmetry hierarchy in {1..4}^3: swap23=16/64 (w2==w3), swap12=16/64 (w1==w2), S3/cyclic=4/64 (w1==w2==w3)
+  4-edge general orbit constancy in {1..3}^4: 2-orbit=9/81, transitive 4-cycle=3/81
 
 === [4] OQ-08: STATE-REFINEMENT MORPHISM (SIMPLIFIED WDPWorld VS HWorld) ===
   Zero adm/ret cost (0,0,0,1): traces(len<=3)=155, commutation mismatches=0

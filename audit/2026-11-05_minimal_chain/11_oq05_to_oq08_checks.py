@@ -296,8 +296,35 @@ def rot_edge(v):
     return (v[1], v[2], v[0])
 
 
+def swap_edge23(v):
+    return (v[0], v[2], v[1])
+
+
+def swap_edge12(v):
+    return (v[1], v[0], v[2])
+
+
+def weighted_l1_gen(w, v, n):
+    return sum(w[k] * abs(v[k]) for k in range(n))
+
+
+def unweighted_l1_gen(v, n):
+    return sum(abs(v[k]) for k in range(n))
+
+
+def unit_cochain(e, n):
+    return tuple(1 if i == e else 0 for i in range(n))
+
+
+def iter_edge(sigma, k, x):
+    curr = x
+    for _ in range(k):
+        curr = sigma[curr]
+    return curr
+
+
 def check_oq07():
-    print("=== [3] OQ-07: POSITIVE L1 WEIGHTS (NON-FORCING VS SYMMETRY FORCING) ===")
+    print("=== [3] OQ-07 / DER-27: POSITIVE L1 WEIGHTS & ORBIT-DECOMPOSED SYMMETRY HIERARCHY ===")
     valid_repairs = [
         (v1, v2, v3)
         for v1, v2, v3 in itertools.product(range(-3, 4), repeat=3)
@@ -317,23 +344,87 @@ def check_oq07():
     assert argmins_w1 == [(1, 0, 0)] and min_w1 == 1 and second_min_w1 == 2
     assert argmins_w2 == [(0, 1, 0)] and min_w2 == 1 and second_min_w2 == 2
 
-    # Test all positive weight triples in {1..4}^3 for cyclic edge-permutation invariance
+    # Test all positive weight triples in {1..4}^3 for cyclic and involution edge symmetries
     all_weights = list(itertools.product(range(1, 5), repeat=3))
     cyc_invariant = [
         w for w in all_weights
         if all(weighted_l1(w, rot_edge(v)) == weighted_l1(w, v) for v in valid_repairs)
     ]
+    swap23_invariant = [
+        w for w in all_weights
+        if all(weighted_l1(w, swap_edge23(v)) == weighted_l1(w, v) for v in valid_repairs)
+    ]
+    swap12_invariant = [
+        w for w in all_weights
+        if all(weighted_l1(w, swap_edge12(v)) == weighted_l1(w, v) for v in valid_repairs)
+    ]
+    both_swaps_invariant = [
+        w for w in all_weights
+        if all(
+            weighted_l1(w, swap_edge12(v)) == weighted_l1(w, v)
+            and weighted_l1(w, swap_edge23(v)) == weighted_l1(w, v)
+            for v in valid_repairs
+        )
+    ]
     equal_weights = [w for w in all_weights if w[0] == w[1] == w[2]]
+    orbit23_weights = [w for w in all_weights if w[1] == w[2]]
+    orbit12_weights = [w for w in all_weights if w[0] == w[1]]
     assert cyc_invariant == equal_weights
+    assert swap23_invariant == orbit23_weights and len(swap23_invariant) == 16
+    assert swap12_invariant == orbit12_weights and len(swap12_invariant) == 16
+    assert both_swaps_invariant == equal_weights and len(both_swaps_invariant) == 4
+
+    for w in orbit23_weights:
+        for v in valid_repairs:
+            assert weighted_l1(w, v) == w[0] * abs(v[0]) + w[1] * (abs(v[1]) + abs(v[2]))
+
+    # General n-edge orbit-constancy and transitive uniformity on n = 4
+    n4 = 4
+    weights4 = list(itertools.product(range(1, 4), repeat=n4))
+    sigma_2orb = (1, 0, 3, 2)  # two 2-edge orbits {0, 1} and {2, 3}
+    sigma_cyc4 = (1, 2, 3, 0)  # single transitive 4-edge orbit {0, 1, 2, 3}
+
+    inv_2orb = [
+        w for w in weights4
+        if all(
+            weighted_l1_gen(w, unit_cochain(sigma_2orb[e], n4), n4)
+            == weighted_l1_gen(w, unit_cochain(e, n4), n4)
+            for e in range(n4)
+        )
+    ]
+    expected_2orb = [w for w in weights4 if w[0] == w[1] and w[2] == w[3]]
+    assert inv_2orb == expected_2orb and len(inv_2orb) == 9
+
+    inv_cyc4 = [
+        w for w in weights4
+        if all(
+            weighted_l1_gen(w, unit_cochain(sigma_cyc4[e], n4), n4)
+            == weighted_l1_gen(w, unit_cochain(e, n4), n4)
+            for e in range(n4)
+        )
+    ]
+    expected_cyc4 = [w for w in weights4 if w[0] == w[1] == w[2] == w[3]]
+    assert inv_cyc4 == expected_cyc4 and len(inv_cyc4) == 3
+
+    for w in expected_cyc4:
+        for e in range(n4):
+            assert any(iter_edge(sigma_cyc4, k, 0) == e for k in range(n4))
+        for v in itertools.product(range(-1, 2), repeat=n4):
+            assert weighted_l1_gen(w, v, n4) == w[0] * unweighted_l1_gen(v, n4)
 
     print(f"  Valid repairs in [-3..3]^3 with v1+v2+v3=1: {len(valid_repairs)}")
     print(f"  w=(1,2,2): min={min_w1}, unique minimizer={argmins_w1}, min on v!=(1,0,0) is {second_min_w1}")
     print(f"  w=(2,1,2): min={min_w2}, unique minimizer={argmins_w2}, min on v!=(0,1,0) is {second_min_w2}")
     print(
-        f"  Cyclic-invariant weights in {{1..4}}^3: {len(cyc_invariant)} / {len(all_weights)} "
-        f"(matches w1==w2==w3: {cyc_invariant == equal_weights})"
+        f"  3-edge symmetry hierarchy in {{1..4}}^3: swap23={len(swap23_invariant)}/64 (w2==w3), "
+        f"swap12={len(swap12_invariant)}/64 (w1==w2), S3/cyclic={len(cyc_invariant)}/64 (w1==w2==w3)"
+    )
+    print(
+        f"  4-edge general orbit constancy in {{1..3}}^4: 2-orbit={len(inv_2orb)}/81, "
+        f"transitive 4-cycle={len(inv_cyc4)}/81"
     )
     print()
+
 
 
 # ============================================================================

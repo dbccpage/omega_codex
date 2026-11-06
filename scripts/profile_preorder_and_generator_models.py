@@ -471,6 +471,92 @@ def check_reflective_generator_and_depth_d():
     }
 
 
+def backward_hit(i, d):
+    return i if i <= d else None
+
+
+def forward_hit(n, i, d):
+    return (n - i) if n <= i + d else None
+
+
+def graph_profile_d(n, i, d):
+    return (backward_hit(i, d), forward_hit(n, i, d))
+
+
+def adaptive_radius(state):
+    return len(state["tags"]) // 2
+
+
+def compress_below(f_map, n_idx, x):
+    return f_map[x] if f_map[x] < f_map[n_idx] else f_map[x] - 1
+
+
+def check_multi_round_capacity_and_adaptive_horizon():
+    # 1. Exact iff threshold n <= 2 * d + 2 for graph_profile_d across d = 0..4, n = 0..14
+    max_separated_n_by_d = {}
+    for d in range(5):
+        for n in range(15):
+            colliding = [
+                (i, j)
+                for i in range(n + 1)
+                for j in range(i + 1, n + 1)
+                if graph_profile_d(n, i, d) == graph_profile_d(n, j, d)
+            ]
+            separates_all = len(colliding) == 0
+            if separates_all != (n <= 2 * d + 2):
+                raise ValueError(f"Threshold iff failed at d={d}, n={n}")
+            if n >= 2 * d + 3:
+                if (d + 1, d + 2) not in colliding:
+                    raise ValueError(f"Missing deep collision (d+1, d+2) at d={d}, n={n}")
+                if graph_profile_d(n, d + 1, d) != (None, None) or graph_profile_d(n, d + 2, d) != (None, None):
+                    raise ValueError(f"Expected (None, None) deep profile at d={d}, n={n}")
+        max_separated_n_by_d[d] = 2 * d + 2
+
+    # 2. Endogenous adaptive radius len(tags) // 2 retains full separation for all n = 0..16
+    adaptive_radii = {}
+    for n in range(17):
+        state = refl_state(n)
+        d_adapt = adaptive_radius(state)
+        if d_adapt != n // 2 or not (n <= 2 * d_adapt + 2):
+            raise ValueError(f"Adaptive radius bound failed at n={n}")
+        for i in range(n + 1):
+            for j in range(i + 1, n + 1):
+                if graph_profile_d(n, i, d_adapt) == graph_profile_d(n, j, d_adapt):
+                    raise ValueError(f"Adaptive radius collision at n={n}, ({i}, {j})")
+        adaptive_radii[n] = d_adapt
+
+    # 3. Constructive finite pigeonhole / compress_below and 2^k binary memory capacity lower bound
+    pigeonhole_summary = {}
+    for k, n_hist in ((1, 2), (2, 4)):
+        sub_m = n_hist - 1
+        sub_injective_count = 0
+        for f_tuple in product(range(sub_m), repeat=n_hist):
+            if len(set(f_tuple)) == n_hist:
+                sub_injective_count += 1
+        if sub_injective_count != 0:
+            raise ValueError(f"Unexpected injective map for N={n_hist}, M={sub_m}")
+
+        eq_injective_count = 0
+        for f_tuple in product(range(n_hist), repeat=n_hist):
+            if len(set(f_tuple)) == n_hist:
+                eq_injective_count += 1
+                compressed = tuple(compress_below(f_tuple, n_hist - 1, x) for x in range(n_hist - 1))
+                if any(y >= n_hist - 1 or y < 0 for y in compressed) or len(set(compressed)) != n_hist - 1:
+                    raise ValueError(f"compress_below failed on {f_tuple}")
+        pigeonhole_summary[k] = {
+            "histories": n_hist,
+            "injective_at_2k_minus_1": sub_injective_count,
+            "injective_at_2k": eq_injective_count,
+        }
+
+    return {
+        "max_separated_n_by_d": max_separated_n_by_d,
+        "adaptive_radii": adaptive_radii,
+        "all_adaptive_rounds_separated": True,
+        "pigeonhole_capacity_checks": pigeonhole_summary,
+    }
+
+
 def run_all_checks():
     return {
         "profile_preorder_hierarchy": check_profile_preorder_hierarchy(3),
@@ -479,8 +565,10 @@ def run_all_checks():
         "four_step_lift": check_four_step_lift(),
         "two_sheet_holonomy_census": check_two_sheet_holonomy_census(),
         "reflective_generator_and_depth_d": check_reflective_generator_and_depth_d(),
+        "multi_round_capacity_and_adaptive_horizon": check_multi_round_capacity_and_adaptive_horizon(),
     }
 
 
 if __name__ == "__main__":
     print(json.dumps(run_all_checks(), indent=2))
+

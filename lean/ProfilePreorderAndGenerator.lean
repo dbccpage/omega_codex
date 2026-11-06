@@ -1069,4 +1069,158 @@ theorem radius_one_agrees_with_sealed_depth2 (n i j : Nat)
   · rintro ⟨hleft, hcenter, hright⟩
     exact ⟨hcenter, hleft, hright⟩
 
+/-! ## Section 5: Multi-Round Retention Capacity Scaling and Adaptive Radius-`d` Persistence (`DER-26` / `OWE-13`, `N22`) -/
+
+/-- Backward endpoint distance within radius `d` along `reflState n`:
+    returns `some i` when `0` lies within `d` predecessor steps of `i`. -/
+def backwardHit (i d : Nat) : Option Nat :=
+  if i ≤ d then some i else none
+
+/-- Forward endpoint distance within radius `d` along `reflState n`:
+    returns `some (n - i)` when `n` lies within `d` successor steps of `i`. -/
+def forwardHit (n i d : Nat) : Option Nat :=
+  if n ≤ i + d then some (n - i) else none
+
+/-- Bidirectional radius-`d` endpoint-distance profile on `{0, ..., n}`. -/
+def graphProfileD (n i d : Nat) : Option Nat × Option Nat :=
+  (backwardHit i d, forwardHit n i d)
+
+/-- Whenever `n ≥ 2 * d + 3`, the deep-interior vertices `d + 1` and `d + 2`
+    both miss both endpoints at radius `d` (`graphProfileD = (none, none)`) and collide. -/
+theorem graphProfileD_obstruction_of_ge (d n : Nat) (hn : 2 * d + 3 ≤ n) :
+    graphProfileD n (d + 1) d = (none, none) ∧
+    graphProfileD n (d + 2) d = (none, none) ∧
+    graphProfileD n (d + 1) d = graphProfileD n (d + 2) d ∧
+    d + 1 ≠ d + 2 ∧ d + 2 ≤ n := by
+  have h1b : ¬ (d + 1 ≤ d) := by omega
+  have h1f : ¬ (n ≤ d + 1 + d) := by omega
+  have h2b : ¬ (d + 2 ≤ d) := by omega
+  have h2f : ¬ (n ≤ d + 2 + d) := by omega
+  have hp1 : graphProfileD n (d + 1) d = (none, none) := by
+    simp [graphProfileD, backwardHit, forwardHit, h1b, h1f]
+  have hp2 : graphProfileD n (d + 2) d = (none, none) := by
+    simp [graphProfileD, backwardHit, forwardHit, h2b, h2f]
+  exact ⟨hp1, hp2, hp1.trans hp2.symm, by omega, by omega⟩
+
+/-- Whenever `n ≤ 2 * d + 2`, the radius-`d` endpoint-distance profile is
+    injective across all vertices `i, j ≤ n`. -/
+theorem graphProfileD_inj_of_le {n d i j : Nat}
+    (hn : n ≤ 2 * d + 2) (hi : i ≤ n) (hj : j ≤ n)
+    (heq : graphProfileD n i d = graphProfileD n j d) :
+    i = j := by
+  have hb : backwardHit i d = backwardHit j d := congrArg Prod.fst heq
+  have hf : forwardHit n i d = forwardHit n j d := congrArg Prod.snd heq
+  unfold backwardHit at hb
+  unfold forwardHit at hf
+  by_cases hid : i ≤ d <;> by_cases hjd : j ≤ d
+  · simp [hid, hjd] at hb
+    exact hb
+  · simp [hid, hjd] at hb
+  · simp [hid, hjd] at hb
+  · by_cases hin : n ≤ i + d <;> by_cases hjn : n ≤ j + d
+    · simp [hin, hjn] at hf
+      omega
+    · simp [hin, hjn] at hf
+    · simp [hin, hjn] at hf
+    · omega
+
+/-- Exact necessary and sufficient threshold for radius-`d` separation on `{0, ..., n}`:
+    `graphProfileD` separates all pairs `i, j ≤ n` if and only if `n ≤ 2 * d + 2`. -/
+theorem graphProfileD_separates_all_iff (n d : Nat) :
+    (∀ i ≤ n, ∀ j ≤ n, graphProfileD n i d = graphProfileD n j d → i = j) ↔
+      n ≤ 2 * d + 2 := by
+  constructor
+  · intro hsep
+    by_cases hle : n ≤ 2 * d + 2
+    · exact hle
+    · have obs := graphProfileD_obstruction_of_ge d n (by omega)
+      have heq : d + 1 = d + 2 :=
+        hsep (d + 1) (by omega) (d + 2) obs.2.2.2.2 obs.2.2.1
+      exact absurd heq obs.2.2.2.1
+  · intro hle i hi j hj heq
+    exact graphProfileD_inj_of_le hle hi hj heq
+
+/-- Endogenous adaptive observation radius read directly from the state's
+    internal tag store `s.tags.length / 2` without external round parameters. -/
+def adaptiveRadius (s : PState) : Nat :=
+  s.tags.length / 2
+
+/-- For every round `n`, `reflState n` has `n` tags, so `adaptiveRadius (reflState n) = n / 2`
+    satisfies the separation threshold `n ≤ 2 * adaptiveRadius (reflState n) + 2`. -/
+theorem adaptiveRadius_reflState_bound (n : Nat) :
+    n ≤ 2 * adaptiveRadius (reflState n) + 2 := by
+  have htags : (reflState n).tags.length = n := by
+    rw [reflective_chain_tags, List.length_map, List.length_range]
+  unfold adaptiveRadius
+  rw [htags]
+  omega
+
+/-- With the endogenous adaptive radius `adaptiveRadius (reflState n)`,
+    `graphProfileD` retains full pairwise separation across `{0, ..., n}` at every round `n`. -/
+theorem adaptive_radius_retains_full_separation_all_rounds (n i j : Nat)
+    (hi : i ≤ n) (hj : j ≤ n)
+    (heq : graphProfileD n i (adaptiveRadius (reflState n)) =
+           graphProfileD n j (adaptiveRadius (reflState n))) :
+    i = j :=
+  graphProfileD_inj_of_le (adaptiveRadius_reflState_bound n) hi hj heq
+
+/-- Shifted compression map removing value `f n` by decrementing values above `f n`. -/
+def compressBelow (f : Nat → Nat) (n x : Nat) : Nat :=
+  if f x < f n then f x else f x - 1
+
+/-- Constructive finite pigeonhole / injection bound: if `f` maps `{0, ..., N - 1}`
+    injectively into `{0, ..., M - 1}`, then `N ≤ M`. -/
+theorem pigeonhole_inj_le :
+    ∀ (N M : Nat) (f : Nat → Nat),
+      (∀ x < N, f x < M) →
+      (∀ x < N, ∀ y < N, f x = f y → x = y) →
+      N ≤ M
+  | 0, _, _, _, _ => Nat.zero_le _
+  | k + 1, M, f, hbound, hinj => by
+    have hfk : f k < M := hbound k (by omega)
+    have hsub : k ≤ M - 1 := by
+      apply pigeonhole_inj_le k (M - 1) (compressBelow f k)
+      · intro x hx
+        have hfx : f x < M := hbound x (by omega)
+        have hne : f x ≠ f k := fun heq =>
+          absurd (hinj x (by omega) k (by omega) heq) (by omega)
+        by_cases hlt : f x < f k
+        · simp [compressBelow, hlt]
+          omega
+        · simp [compressBelow, hlt]
+          omega
+      · intro x hx y hy heq
+        have hnex : f x ≠ f k := fun h =>
+          absurd (hinj x (by omega) k (by omega) h) (by omega)
+        have hney : f y ≠ f k := fun h =>
+          absurd (hinj y (by omega) k (by omega) h) (by omega)
+        by_cases hltX : f x < f k <;> by_cases hltY : f y < f k
+        · simp [compressBelow, hltX, hltY] at heq
+          exact hinj x (by omega) y (by omega) heq
+        · simp [compressBelow, hltX, hltY] at heq
+          omega
+        · simp [compressBelow, hltX, hltY] at heq
+          omega
+        · simp [compressBelow, hltX, hltY] at heq
+          exact hinj x (by omega) y (by omega) (by omega)
+    omega
+
+/-- Any `k`-round binary history encoder that separates all `2 ^ k` histories
+    within a memory carrier of size `mCard` requires `2 ^ k ≤ mCard`. -/
+theorem multi_round_memory_capacity_lower_bound (k mCard : Nat) (encode : Nat → Nat)
+    (hbound : ∀ h < 2 ^ k, encode h < mCard)
+    (hinj : ∀ h1 < 2 ^ k, ∀ h2 < 2 ^ k, encode h1 = encode h2 → h1 = h2) :
+    2 ^ k ≤ mCard :=
+  pigeonhole_inj_le (2 ^ k) mCard encode hbound hinj
+
+/-- Any memory carrier with `mCard < 2 ^ k` states fails to injectively separate
+    all `2 ^ k` binary histories of length `k`. -/
+theorem multi_round_memory_collision_of_lt_pow2 (k mCard : Nat) (encode : Nat → Nat)
+    (hbound : ∀ h < 2 ^ k, encode h < mCard)
+    (hlt : mCard < 2 ^ k) :
+    ¬ (∀ h1 < 2 ^ k, ∀ h2 < 2 ^ k, encode h1 = encode h2 → h1 = h2) := by
+  intro hinj
+  have hle := multi_round_memory_capacity_lower_bound k mCard encode hbound hinj
+  omega
+
 end OmegaCodex.ProfilePreorderAndGenerator

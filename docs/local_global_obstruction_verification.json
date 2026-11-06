@@ -1,14 +1,14 @@
 {
   "verified": true,
   "source": "lean/LocalGlobalObstruction.lean",
-  "source_sha256": "94af141b57e173351dc8daf911df248e74c032597e931259a9a99338958b14e6",
+  "source_sha256": "c98497a43c2073fb0b55499aad2be7daca24e0fb23ba4bc640fcf46d50a44f70",
   "direct_imports": {
     "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
     "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
   },
   "toolchain": "leanprover/lean4:v4.33.0",
   "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
-  "theorems_checked": 20,
+  "theorems_checked": 30,
   "allowed_axioms": [
     "Quot.sound",
     "propext"
@@ -59,7 +59,47 @@
     "selection_is_possible_naturality_is_not": [],
     "untwisted_triangle_glues_uniquely": [],
     "twisted_triangle_pairwise_solvable_no_global": [],
-    "faithful_network_descent_forces_trivial_loops": []
+    "faithful_network_descent_forces_trivial_loops": [],
+    "swap23_invariant_iff_orbit_constant": [
+      "propext",
+      "Quot.sound"
+    ],
+    "swap23_invariant_cost_decomposition": [
+      "propext",
+      "Quot.sound"
+    ],
+    "swap12_invariant_iff_orbit_constant": [
+      "propext",
+      "Quot.sound"
+    ],
+    "three_edge_symmetry_weight_hierarchy": [
+      "propext",
+      "Quot.sound"
+    ],
+    "weightedL1Gen_unitCochain_Zero_of_ge": [
+      "propext",
+      "Quot.sound"
+    ],
+    "weightedL1Gen_unitCochain": [
+      "propext",
+      "Quot.sound"
+    ],
+    "symmetry_forces_step_equal_weights_general": [
+      "propext",
+      "Quot.sound"
+    ],
+    "symmetry_forces_orbit_equal_weights_general": [
+      "propext",
+      "Quot.sound"
+    ],
+    "uniform_weights_factor_l1_general": [
+      "propext",
+      "Quot.sound"
+    ],
+    "transitive_action_forces_uniform_weights_general": [
+      "propext",
+      "Quot.sound"
+    ]
   },
   "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
 }

@@ -6,11 +6,11 @@
     "supports": "A deterministic, machine-auditable inventory of which derivation nodes are checked by Lean 4.33.0 and stdlib Python in this repository (DERIVED), which premises or bridge steps remain supplied admissions or open proof obligations (OWED), and which downstream mathematical or physical stages are planned future targets (IMAGINED).",
     "does_not_support": "Any claim that OWED or IMAGINED nodes are derived, any claim of zero-input creation from nothing, or any physical validation beyond the finite algebraic models checked in the cited files.",
     "narrowest_defensible_claim": "All nodes in bucket DERIVED resolve to existing Lean 4.33.0 theorems (checked under allowed axioms propext and Quot.sound) and/or stdlib Python check scripts in this checkout, and all dependencies on OWED premises are explicitly typed as edges in the acyclic graph.",
-    "next_test_needed": "Constructive discharge or minimal-premise reduction of the OWED bridge nodes, starting with OWE-07 (internal witnessing invocation), OWE-08 (endogenous sheet-flip holonomy forcing and n = 10 vs. minimal n = 3 stick carrier selection), and OWE-09 (residual-to-positive-weights bridge)."
+    "next_test_needed": "Constructive discharge or minimal-premise reduction of the OWED bridge nodes, starting with OWE-07 (internal witnessing invocation), OWE-08 (endogenous sheet-flip holonomy forcing and n = 10 vs. minimal n = 3 stick carrier selection), OWE-09 (cross-orbit weight ratio selection on non-transitive quotients), and OWE-13 (endogenous non-supplied rule acquisition and repair persistence)."
   },
   "buckets": {
     "DERIVED": {
-      "count": 25,
+      "count": 27,
       "definition": "Checked in Lean 4.33.0 (constructive core, zero sorry, zero Classical.choice, zero Mathlib, allowed axioms restricted to propext and Quot.sound) and/or stdlib Python check scripts with source-bound verification receipts in docs/."
     },
     "OWED": {
@@ -63,7 +63,7 @@
       "module": "LocalGlobalObstruction",
       "source": "lean/LocalGlobalObstruction.lean",
       "receipt": "docs/local_global_obstruction_verification.json",
-      "theorems_checked": 20
+      "theorems_checked": 30
     },
     {
       "module": "InternalMetatheory",
@@ -75,7 +75,7 @@
       "module": "ProfilePreorderAndGenerator",
       "source": "lean/ProfilePreorderAndGenerator.lean",
       "receipt": "docs/profile_preorder_and_generator_verification.json",
-      "theorems_checked": 76
+      "theorems_checked": 84
     }
   ],
   "nodes": [
@@ -1292,7 +1292,7 @@
       "status_detail": "DERIVED_CONDITIONALLY",
       "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
       "title": "Conditional Supplied-Rule Generator Growth, Lower Bound, and Radius-d Profile Collision (N21-N22)",
-      "statement": "DERIVED_CONDITIONALLY: Under the externally supplied two-constructor item type MItem (tok vs. receipt in MState), supplied transition rules stepM and stepRefl on PState, and external Nat-indexed iteration reflState, shows in Lean: (1) a 2-step closure witness min_witnessed_route_closes paired with the lower-bound theorem stepM_lower_bound_two_steps over all stepM traces from empty state ⟨[], []⟩ measured by step count; and (2) linear growth of reflState n (n + 1 elements List.range (n + 1), n successor edges (k, k + 1), and n tags at round n in reflective_chain_growth, reflective_chain_is_initial_segment, reflective_chain_successor_relation), depth-1 and radius-d profile collisions for interior vertices when 1 + d <= i < j <= n - 1 - d (depth1_obstructions_are_exactly_middle_pairs, depth_d_obstruction, profileD_deep), and outrunning of any finite valued mark set (finite_marks_outrun, depth_d_outrun). Endogenous acquisition/invocation of the witnessing rule remains open in OWE-07 and multi-round law/repair persistence remains open in OWE-13.",
+      "statement": "DERIVED_CONDITIONALLY: Under the externally supplied two-constructor item type MItem (tok vs. receipt in MState), supplied transition rules stepM and stepRefl on PState, and external Nat-indexed iteration reflState, shows in Lean: (1) a 2-step closure witness min_witnessed_route_closes paired with the lower-bound theorem stepM_lower_bound_two_steps over all stepM traces from empty state ⟨[], []⟩ measured by step count; and (2) linear growth of reflState n (n + 1 elements List.range (n + 1), n successor edges (k, k + 1), and n tags at round n in reflective_chain_growth, reflective_chain_is_initial_segment, reflective_chain_successor_relation), depth-1 and radius-d profile collisions for interior vertices when 1 + d <= i < j <= n - 1 - d (depth1_obstructions_are_exactly_middle_pairs, depth_d_obstruction, profileD_deep), and outrunning of any finite valued mark set (finite_marks_outrun, depth_d_outrun). Together with the exact radius-d separation threshold (n <= 2 * d + 2), endogenous tag-count adaptive horizon (adaptiveRadius), and 2^k binary memory capacity lower bound in DER-26, endogenous acquisition/invocation of the witnessing rule remains open in OWE-07 and endogenous non-supplied rule acquisition/repair without external PState structure remains open in OWE-13.",
       "research_map_refs": [
         "N21",
         "N22",
@@ -1475,6 +1475,94 @@
       "defines_admissions": []
     },
     {
+      "id": "DER-26",
+      "code": "SLICE-XI-MULTI-ROUND-CAPACITY-SCALING-AND-ADAPTIVE-HORIZON",
+      "bucket": "DERIVED",
+      "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
+      "layer": "3_POST_SEAL_SEPARATION_AND_RETENTION",
+      "title": "Exact Radius-d Separation Threshold, Endogenous Tag-Count Adaptive Horizon, and 2^k Memory Capacity Scaling (N22)",
+      "statement": "Along the reflective chain reflState n on {0, ..., n}, the bidirectional radius-d endpoint-distance profile graphProfileD n i d = (backwardHit i d, forwardHit n i d) exhibits deep-interior collision at d + 1 != d + 2 whenever n >= 2 * d + 3 (graphProfileD_obstruction_of_ge) and is injective on {0, ..., n} whenever n <= 2 * d + 2 (graphProfileD_inj_of_le), yielding the exact iff threshold graphProfileD_separates_all_iff (separation of all pairs i, j <= n holds iff n <= 2 * d + 2). Reading the internal tag store length directly via adaptiveRadius s = s.tags.length / 2 without external round parameters satisfies n <= 2 * adaptiveRadius (reflState n) + 2 (adaptiveRadius_reflState_bound) and retains full pairwise separation at every round n (adaptive_radius_retains_full_separation_all_rounds). For general multi-round binary history retention, the constructive finite pigeonhole theorem (compressBelow, pigeonhole_inj_le) establishes that any encoder separating all 2^k histories of length k within a memory carrier of size mCard requires 2^k <= mCard (multi_round_memory_capacity_lower_bound), with mandatory collision whenever mCard < 2^k (multi_round_memory_collision_of_lt_pow2).",
+      "research_map_refs": [
+        "N22"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M2_indexed_context_family",
+        "M3_step_history_dynamics"
+      ],
+      "artifacts": {
+        "lean_file": "lean/ProfilePreorderAndGenerator.lean",
+        "lean_module": "ProfilePreorderAndGenerator",
+        "receipt_json": "docs/profile_preorder_and_generator_verification.json",
+        "lean_theorems": [
+          "graphProfileD_obstruction_of_ge",
+          "graphProfileD_inj_of_le",
+          "graphProfileD_separates_all_iff",
+          "adaptiveRadius_reflState_bound",
+          "adaptive_radius_retains_full_separation_all_rounds",
+          "pigeonhole_inj_le",
+          "multi_round_memory_capacity_lower_bound",
+          "multi_round_memory_collision_of_lt_pow2"
+        ],
+        "python_checks": [
+          "scripts/profile_preorder_and_generator_models.py",
+          "tests/test_profile_preorder_and_generator.py"
+        ],
+        "doc_refs": [
+          "docs/research_map.md",
+          "dag/README.md"
+        ]
+      },
+      "defines_admissions": []
+    },
+    {
+      "id": "DER-27",
+      "code": "SLICE-XII-ORBIT-DECOMPOSED-COCHAIN-WEIGHTS-GENERAL",
+      "bucket": "DERIVED",
+      "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
+      "layer": "4_LOCAL_GLOBAL_AND_L1_GEOMETRY",
+      "title": "Orbit-Decomposed Automorphism-Invariant L1 Cochain Weights on 3-Edge and General n-Edge Cochains (OQ-07 / RT-11)",
+      "statement": "On 3-edge cochains with validRepair (v1 + v2 + v3 = 1), invariance of weightedL1 w under swapEdge23 holds iff w.2.1 = w.2.2 (swap23_invariant_iff_orbit_constant), decomposing the L1 cost into two independent orbit weights w.1 * |v1| + w.2.1 * (|v2| + |v3|) (swap23_invariant_cost_decomposition); invariance under swapEdge12 holds iff w.1 = w.2.1 (swap12_invariant_iff_orbit_constant); and the three-regime symmetry hierarchy (three_edge_symmetry_weight_hierarchy) shows that 1-generator involutions leave a 2-parameter orbit family while joint swapEdge12 and swapEdge23 invariance (generating S3) forces w.1 = w.2.1 = w.2.2. On general n-edge cochains, evaluating weightedL1Gen w on the Kronecker delta unitCochain e extracts w e for e < n (weightedL1Gen_unitCochain_Zero_of_ge, weightedL1Gen_unitCochain), so unit-cochain invariance under any edge map sigma : Nat -> Nat preserving {0, ..., n - 1} forces step constancy w (sigma e) = w e (symmetry_forces_step_equal_weights_general) and constancy across every sigma-orbit w (iterEdge sigma k e) = w e (symmetry_forces_orbit_equal_weights_general). Whenever w is uniform (w e = w0 for e < n), weightedL1Gen w v n factors as w0 * unweightedL1Gen v n (uniform_weights_factor_l1_general), and any action transitive from 0 forces w e = w 0 for all e < n together with global L1 factoring (transitive_action_forces_uniform_weights_general).",
+      "research_map_refs": [
+        "N29",
+        "N30",
+        "OQ-07",
+        "RT-11"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "S5_additive_cost_target"
+      ],
+      "artifacts": {
+        "lean_file": "lean/LocalGlobalObstruction.lean",
+        "lean_module": "LocalGlobalObstruction",
+        "receipt_json": "docs/local_global_obstruction_verification.json",
+        "lean_theorems": [
+          "swap23_invariant_iff_orbit_constant",
+          "swap23_invariant_cost_decomposition",
+          "swap12_invariant_iff_orbit_constant",
+          "three_edge_symmetry_weight_hierarchy",
+          "weightedL1Gen_unitCochain_Zero_of_ge",
+          "weightedL1Gen_unitCochain",
+          "symmetry_forces_step_equal_weights_general",
+          "symmetry_forces_orbit_equal_weights_general",
+          "uniform_weights_factor_l1_general",
+          "transitive_action_forces_uniform_weights_general"
+        ],
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py",
+          "tests/test_orbit_decomposed_l1_weights.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md",
+          "docs/research_map.md",
+          "dag/README.md"
+        ]
+      },
+      "defines_admissions": []
+    },
+    {
       "id": "OWE-05",
       "code": "PG-R-GAP-DIAMOND-TO-ROOT",
       "title": "Pre-Genesis Diamond-to-Root Bridge Obligation",
@@ -1585,7 +1673,7 @@
     {
       "id": "OWE-09",
       "code": "L1-R-RESIDUAL-TO-WEIGHTS",
-      "title": "Residual Quotient to Canonical Positive Cochain Weights Bridge",
+      "title": "Cross-Orbit Positive Cochain Weight Ratio Selection on Non-Transitive Quotients (OQ-07 / RT-11)",
       "bucket": "OWED",
       "status_detail": "OPEN_PROOF_OBLIGATION",
       "layer": "6_OWED_BRIDGES",
@@ -1595,15 +1683,20 @@
         "OQ-07",
         "RT-11"
       ],
-      "statement": "As shown in OQ-07 and RT-11, uniform positive L1 weights are forced only when the automorphism group acts transitively on the support; on asymmetric or non-edge-transitive quotient graphs, a canonical weight assignment remains an owed bridge.",
+      "statement": "OWED: While DER-14 checks 3-edge cyclic symmetry vs. swapEdge23 and DER-27 establishes both the 3-edge symmetry hierarchy (swap23_invariant_iff_orbit_constant, swap23_invariant_cost_decomposition, three_edge_symmetry_weight_hierarchy) and general n-edge orbit constancy and transitive uniformity (symmetry_forces_orbit_equal_weights_general, transitive_action_forces_uniform_weights_general), automorphism invariance forces weights to be constant on each edge orbit without fixing the ratio between distinct orbits when the automorphism group has two or more edge orbits. Selecting a canonical cross-orbit weight ratio on non-edge-transitive quotient graphs without an external pricing admission remains open.",
       "artifacts": {
         "lean_file": "lean/LocalGlobalObstruction.lean",
         "lean_module": "LocalGlobalObstruction",
         "lean_theorems": [
           "oq07_weights_not_forced_without_symmetry",
-          "rt11_non_transitive_swap23_allows_unequal_weights"
+          "rt11_non_transitive_swap23_allows_unequal_weights",
+          "swap23_invariant_iff_orbit_constant",
+          "swap23_invariant_cost_decomposition"
         ],
         "receipt_json": "docs/local_global_obstruction_verification.json",
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py"
+        ],
         "doc_refs": [
           "docs/research_map.md",
           "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md"
@@ -1651,12 +1744,12 @@
       "bucket": "OWED",
       "status_detail": "OPEN_PROOF_OBLIGATION",
       "layer": "6_OWED_BRIDGES",
-      "title": "Source-Level Bridge Between Prose WDP-CH01-D03 and Pinned Legacy Represented/Horizon (OQ-08)",
-      "statement": "OWED: While DER-12 shows in Lean commutation between simplified models (WDPWorld and HWorld) and DER-19 shows both the 4 concrete guard-discrepancy regressions and commutation for the adapted 5-gate FullWDPWorld model, the prose ledger specification WDP-CH01-D03 in theory_of_finite_quantum_mechanics (witnessed_difference_programme.md:513-530, commit e45ed2e133920aa3790af8c5e072ee9829898490) does not define data-subset views, view novelty, increaseB separation checks, or augLicensed gating from 19L57G1/Represented.lean and Horizon.lean (commit 45bb09864f9b52ed5ecf66e977ca81f0ed623de7). Establishing a non-adapted source-level equivalence remains open.",
       "research_map_refs": [
         "N17",
         "OQ-08"
       ],
+      "title": "Source-Level Bridge Between Prose WDP-CH01-D03 and Pinned Legacy Represented/Horizon (OQ-08)",
+      "statement": "OWED: While DER-12 shows in Lean commutation between simplified models (WDPWorld and HWorld) and DER-19 shows both the 4 concrete guard-discrepancy regressions and commutation for the adapted 5-gate FullWDPWorld model, the prose ledger specification WDP-CH01-D03 in theory_of_finite_quantum_mechanics (witnessed_difference_programme.md:513-530, commit e45ed2e133920aa3790af8c5e072ee9829898490) does not define data-subset views, view novelty, increaseB separation checks, or augLicensed gating from 19L57G1/Represented.lean and Horizon.lean (commit 45bb09864f9b52ed5ecf66e977ca81f0ed623de7). Establishing a non-adapted source-level equivalence remains open.",
       "unpriced_inputs_or_admissions": [
         "wdp_ch01_d03_full_represented_world_bridge_admission"
       ],
@@ -1682,8 +1775,8 @@
       "bucket": "OWED",
       "status_detail": "OPEN_PROOF_OBLIGATION",
       "layer": "6_OWED_BRIDGES",
-      "title": "Multi-Round Law Formation, Retention Capacity Scaling, and Repair Persistence (N22)",
-      "statement": "OWED: DER-23 shows that under a fixed observation radius d, interior vertices in the deterministic reflective chain reflState n (with n + 1 elements and n edges) suffer profileD collisions once 1 + d <= i < j <= n - 1 - d (depth_d_obstruction), and any fixed finite valued mark set is outrun at round m + 1 (finite_marks_outrun, depth_d_outrun). Deriving an endogenous multi-round retention/repair mechanism whose memory capacity scales with round depth without external parameter tuning remains open.",
+      "title": "Endogenous Non-Supplied Multi-Round Rule Acquisition and Repair Persistence (N22)",
+      "statement": "OWED: While DER-23 checks fixed-radius profileD collisions along reflState n and DER-26 establishes the exact radius-d separation threshold n <= 2 * d + 2 (graphProfileD_separates_all_iff), full separation across all rounds under the endogenous tag-count horizon adaptiveRadius s = s.tags.length / 2 on PState (adaptive_radius_retains_full_separation_all_rounds), and the constructive 2^k binary memory capacity lower bound (pigeonhole_inj_le, multi_round_memory_capacity_lower_bound, multi_round_memory_collision_of_lt_pow2), adaptiveRadius reads the supplied PState tag store populated by stepRefl. Deriving endogenous multi-round rule acquisition and repair persistence without presupposing the supplied PState/stepRefl structure remains open.",
       "research_map_refs": [
         "N22"
       ],
@@ -1698,7 +1791,9 @@
         "lean_module": null,
         "receipt_json": null,
         "lean_theorems": [],
-        "python_checks": [],
+        "python_checks": [
+          "scripts/profile_preorder_and_generator_models.py"
+        ],
         "doc_refs": [
           "docs/research_map.md"
         ]
@@ -2271,6 +2366,30 @@
       "note": "Node DER-25 requires explicit admission(s) provided by OWE-04."
     },
     {
+      "from": "OWE-01",
+      "to": "DER-26",
+      "kind": "requires_admission",
+      "note": "Node DER-26 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-26",
+      "kind": "requires_admission",
+      "note": "Node DER-26 requires explicit admission(s) provided by OWE-04."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-27",
+      "kind": "requires_admission",
+      "note": "Node DER-27 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-27",
+      "kind": "requires_admission",
+      "note": "Node DER-27 requires explicit admission(s) provided by OWE-03."
+    },
+    {
       "from": "DER-01",
       "to": "DER-02",
       "kind": "derives",
@@ -2599,6 +2718,54 @@
       "to": "OWE-08",
       "kind": "motivates_bridge",
       "note": "Exact period-4 iff sheet-flip holonomy and minimal n = 3 stick threshold isolate the remaining open questions in OWE-08: forcing non-trivial holonomy over trivial holonomy and selecting n = 10 over n = 3."
+    },
+    {
+      "from": "DER-03",
+      "to": "DER-26",
+      "kind": "derives",
+      "note": "Binary 2^k tree counting and finite injection bounds underpin multi-round memory capacity scaling."
+    },
+    {
+      "from": "DER-06",
+      "to": "DER-26",
+      "kind": "derives",
+      "note": "Minimal separation regime hierarchy frames multi-round retention capacity and adaptive radius separation."
+    },
+    {
+      "from": "DER-21",
+      "to": "DER-26",
+      "kind": "derives",
+      "note": "Profile quotient separation specializes to graphProfileD endpoint-distance profiles and adaptiveRadius."
+    },
+    {
+      "from": "DER-26",
+      "to": "DER-23",
+      "kind": "derives",
+      "note": "Exact n <= 2 * d + 2 separation threshold and adaptiveRadius complement the fixed-radius collision theorems in DER-23."
+    },
+    {
+      "from": "DER-26",
+      "to": "OWE-13",
+      "kind": "motivates_bridge",
+      "note": "Exact radius-d threshold, adaptiveRadius separation on PState, and 2^k capacity scaling isolate the remaining OWE-13 obligation: endogenous rule/repair persistence without supplied PState structure."
+    },
+    {
+      "from": "DER-13",
+      "to": "DER-27",
+      "kind": "derives",
+      "note": "Simplicial cochain complexes frame general n-edge weightedL1Gen and unitCochain evaluation."
+    },
+    {
+      "from": "DER-14",
+      "to": "DER-27",
+      "kind": "derives",
+      "note": "Extends 3-edge cyclic vs. swapEdge23 weight analysis to exact orbit-constancy iff characterizations and general n-edge cochains."
+    },
+    {
+      "from": "DER-27",
+      "to": "OWE-09",
+      "kind": "motivates_bridge",
+      "note": "General orbit-constancy and transitive uniformity theorems isolate the remaining OWE-09 obligation: selecting cross-orbit weight ratios when >= 2 edge orbits exist."
     },
     {
       "from": "DER-09",

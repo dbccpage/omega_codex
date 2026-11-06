@@ -132,10 +132,60 @@ class CompilableMutationTests(unittest.TestCase):
                 with self.subTest(label=label), patch.object(checker, "ROOT", root):
                     (root / "lean/ProfilePreorderAndGenerator.lean").write_bytes(source.encode("utf-8"))
                     actual = checker.check("ProfilePreorderAndGenerator")
-                    self.assertEqual(actual["theorems_checked"], 75 if label == "remove" else 76)
+                    self.assertEqual(actual["theorems_checked"], 83 if label == "remove" else 84)
                     with self.assertRaises(RuntimeError):
                         checker.verify_receipt(actual, expected, "ProfilePreorderAndGenerator")
+
+    def test_local_global_der27_theorem_removal_and_weakening_are_rejected(self):
+        expected = json.loads(
+            (ROOT / checker.RECEIPTS["LocalGlobalObstruction"]).read_text(encoding="utf-8")
+        )
+        original = (ROOT / "lean/LocalGlobalObstruction.lean").read_text(encoding="utf-8")
+        target_decl = (
+            "/-- General transitive uniformity theorem: if `σ` acts transitively on `{0, ..., n - 1}`\n"
+            "    from `0` and leaves `weightedL1Gen w` invariant on unit cochains, then all `n` edge\n"
+            "    weights equal `w 0` and `weightedL1Gen w v n = w 0 * unweightedL1Gen v n` for every cochain `v`. -/\n"
+            "theorem transitive_action_forces_uniform_weights_general (w : Nat → Nat) (σ : Nat → Nat) (n : Nat)\n"
+            "    (hpos : 1 ≤ n)\n"
+            "    (hclosed : ∀ e < n, σ e < n)\n"
+            "    (hinv : ∀ e < n, weightedL1Gen w (unitCochain (σ e)) n = weightedL1Gen w (unitCochain e) n)\n"
+            "    (htrans : ∀ e < n, ∃ k : Nat, iterEdge σ k 0 = e) :\n"
+            "    (∀ e < n, w e = w 0) ∧\n"
+            "    (∀ v : Nat → Int, weightedL1Gen w v n = w 0 * unweightedL1Gen v n) := by\n"
+            "  have horb := symmetry_forces_orbit_equal_weights_general w σ n hclosed hinv\n"
+            "  have hunif : ∀ e < n, w e = w 0 := by\n"
+            "    intro e he\n"
+            "    rcases htrans e he with ⟨k, hk⟩\n"
+            "    have hk0 := (horb k 0 (by omega)).2\n"
+            "    rw [← hk]\n"
+            "    exact hk0\n"
+            "  exact ⟨hunif, fun v => uniform_weights_factor_l1_general w v n (w 0) hunif⟩\n"
+        )
+        self.assertIn(target_decl, original)
+        variants = {
+            "remove": original.replace(target_decl, "", 1),
+            "weaken": original.replace(
+                target_decl,
+                "theorem transitive_action_forces_uniform_weights_general : (0 : Nat) < 1 := by omega\n",
+                1,
+            ),
+        }
+        with tempfile.TemporaryDirectory(prefix="omega-lgo-mutation-") as temporary:
+            root = Path(temporary)
+            (root / "lean").mkdir()
+            for name in ("lean-toolchain", "lakefile.toml", "lake-manifest.json"):
+                shutil.copyfile(ROOT / name, root / name)
+            for source in (ROOT / "lean").glob("*.lean"):
+                shutil.copyfile(source, root / "lean" / source.name)
+            for label, source in variants.items():
+                with self.subTest(label=label), patch.object(checker, "ROOT", root):
+                    (root / "lean/LocalGlobalObstruction.lean").write_bytes(source.encode("utf-8"))
+                    actual = checker.check("LocalGlobalObstruction")
+                    self.assertEqual(actual["theorems_checked"], 29 if label == "remove" else 30)
+                    with self.assertRaises(RuntimeError):
+                        checker.verify_receipt(actual, expected, "LocalGlobalObstruction")
 
 
 if __name__ == "__main__":
     unittest.main()
+

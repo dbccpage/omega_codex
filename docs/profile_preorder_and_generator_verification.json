@@ -1,14 +1,14 @@
 {
   "verified": true,
   "source": "lean/ProfilePreorderAndGenerator.lean",
-  "source_sha256": "df0db31e93aec36e793e6bf2adbccfb3dc70ea9ee8d216bdabb738bc3f712660",
+  "source_sha256": "391438ca5524909a7d8dd2e10f3fe16f4e439ea0b5999578d90787e5143192bd",
   "direct_imports": {
     "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
     "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
   },
   "toolchain": "leanprover/lean4:v4.33.0",
   "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
-  "theorems_checked": 76,
+  "theorems_checked": 84,
   "allowed_axioms": [
     "Quot.sound",
     "propext"
@@ -201,6 +201,38 @@
       "Quot.sound"
     ],
     "radius_one_agrees_with_sealed_depth2": [
+      "propext",
+      "Quot.sound"
+    ],
+    "graphProfileD_obstruction_of_ge": [
+      "propext",
+      "Quot.sound"
+    ],
+    "graphProfileD_inj_of_le": [
+      "propext",
+      "Quot.sound"
+    ],
+    "graphProfileD_separates_all_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "adaptiveRadius_reflState_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "adaptive_radius_retains_full_separation_all_rounds": [
+      "propext",
+      "Quot.sound"
+    ],
+    "pigeonhole_inj_le": [
+      "propext",
+      "Quot.sound"
+    ],
+    "multi_round_memory_capacity_lower_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "multi_round_memory_collision_of_lt_pow2": [
       "propext",
       "Quot.sound"
     ]
