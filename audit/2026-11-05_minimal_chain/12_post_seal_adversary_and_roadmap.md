@@ -299,14 +299,14 @@ def decodeFin [DecidableEq V] (H : List Hist) (report : Hist → V) (state : His
 
 # Part B — Complete `AGENTS.md`-Compliant Reconstruction Roadmap & Next-Slice Proposal for `omega_codex/lean/`
 
-## B.1 Full 5-Slice Core Architecture & Dependency DAG
+## B.1 Full 6-Slice Core Architecture & Dependency DAG
 
 The existing `omega_codex/lean/` baseline consists of three verified root files (0 `sorry`, 0 custom `axiom`):
 - [`PrimitiveDifference.lean`](file:///C:/Users/a343o/source/repos/omega_codex/lean/PrimitiveDifference.lean) (149 lines)
 - [`MirrorNonIdentification.lean`](file:///C:/Users/a343o/source/repos/omega_codex/lean/MirrorNonIdentification.lean) (160 lines)
 - [`ZeroEquivalence.lean`](file:///C:/Users/a343o/source/repos/omega_codex/lean/ZeroEquivalence.lean) (561 lines)
 
-Every surviving theorem from `19L57G1` (both the 27-file `A/lean4/Derivation/` chain and the 18 post-seal research folders) and from `B/wdp` (Chapters 1–4, 6, 10) reconstructs into **five Lean 4.33.0 slices** in `omega_codex/lean/`:
+Every surviving theorem from `19L57G1` (both the 27-file `A/lean4/Derivation/` chain and the 18 post-seal research folders), from `B/wdp` (Chapters 1–4, 6, 10), and from `docs/research_map.md` (`N19`–`N25`) reconstructs into **six Lean 4.33.0 slices** in `omega_codex/lean/`:
 
 ```mermaid
 flowchart TD
@@ -319,6 +319,7 @@ flowchart TD
   S3["Slice 3: RetentionAndRefusal.lean<br/>5-mode Refusal hierarchy, OQ-03 16/1024 & 4/1024 memory packets,<br/>OQ-06 choice-free decodeFin, ClosureSymmetry/ResidualClosure, OQ-08 5-gate Horizon"]
   S4["Slice 4: LocalGlobalObstruction.lean<br/>OQ-02 d0/d1 coboundaries & L1 defect, BoundaryCancellation d^2=0,<br/>OQ-07 positive L1 weights, NaturalSections, ObserverDescent & FidelityClosure"]
   S5["Slice 5: InternalMetatheory.lean<br/>Constitution 64-guard initiality, NoOutside panel_equiv,<br/>InterpreterBoundary diagonal tower_persists, WDP-CH06-P01 acyclic reachability"]
+  S6["Slice 6: ProfilePreorderAndGenerator.lean<br/>ProfileEquiv <-> MutualComp preorder bridge, QuotientRetention,<br/>N19-N20 two-sheet holonomy & n=3 stick threshold, N21-N22 reflective chain"]
 
   PD --> MN
   PD --> ZE
@@ -333,9 +334,11 @@ flowchart TD
   S1 --> S5
   S2 --> S5
   S3 --> S5
+  S1 --> S6
+  ZE --> S6
 ```
 
-### Complete Mapping of Surviving Legacy Artifacts (`19L57G1` & `B/wdp`) to Slices 1–5
+### Complete Mapping of Surviving Legacy Artifacts (`19L57G1` & `B/wdp`) to Slices 1–6
 
 | Target Slice in `omega_codex/lean/` | Imports | Reconstructed Legacy Sources (`A = 19L57G1`, `B = wdp` / Tasks 9–11) | Key Theorems & Pruned Legacy Debt |
 | :--- | :--- | :--- | :--- |
@@ -344,6 +347,7 @@ flowchart TD
 | **Slice 3:** `RetentionAndRefusal.lean` | `TorsorAndOperations`, `ZeroEquivalence` | `A/Refusal.lean:1-291`, `A/Compression.lean:1-843`, `A/ObsDescent.lean:245-305`, `A/ClosureSymmetry.lean:1-199`, `A/ResidualClosure.lean:1-159`, `A/Horizon.lean:1-334`, `9_oq01_to_oq04.lean:472-643` (`OQ-03`), `11_oq05_to_oq08.lean:294-350` (`OQ-06`), `447-570` (`OQ-08`), `B/wdp` Ch 1 (`WDP-CH01-T05`, `P06`, `D03`) & Ch 4 (`WDP-CH04-P01`, `T02`) | Reconstructs the 5-mode refusal hierarchy (`silent_eq_meta`, `nonreify_carrier_bound`, `reifyUntagged_eq_occurrence`, `tag_separates`, `tagged_state_not_swap_invariant`), `OQ-03` (`oq03_retains_iff_four_conditions`: `16 / 1024` general vs `4 / 1024` drift-free `C2'`), `OQ-06` choice-free `decodeFin` (`oq06_history_report_criterion_fin`, on-image uniqueness vs off-image non-uniqueness, and `classConstant_iff_fiberConstant_all`), `closure_failure_iff_internal_symmetry_break`, `common_refinement_closes_current_obstruction`, and `OQ-08` 5-gate priced boundary refinement (`oq08_refinement_commutes_at_zero_adm_ret_cost`, `oq08_five_gate_strictly_finer_when_adm_priced`, `Run.no_return`). |
 | **Slice 4:** `LocalGlobalObstruction.lean` | `TorsorAndOperations`, `ZeroEquivalence` | `9_oq01_to_oq04.lean:700-804` (`OQ-02`), `11_oq05_to_oq08.lean:357-440` (`OQ-07`), `A/PresentationNaturality.lean:1-343`, `A/NaturalSections.lean:1-381`, `A/FidelityClosure.lean:140-190`, `A/research/g011_boundary_cancellation/lean/BoundaryCancellation.lean:1-225`, `A/research/g012_weight_profile/lean/WeightProfile.lean:1-153`, `A/research/g014_observer_descent/lean/ObserverDescent.lean:1-146`, `B/wdp` Ch 2 (`WDP-CH02-P01`..`T06`) & Ch 3 (`WDP-CH03-P01`..`T03`) | Reconstructs `OQ-02` (`d1 ∘ d0 = 0` over $\mathbb{F}_2$ and signed $\mathbb{Z}$, `oq02_vortex_not_in_im_d0`, `oq02_vortex_l1_defect_pos`), general simplicial coboundary `d2_zero_unrestricted` ($d^2 = 0$ via deletion-order involution and `signless_countermodel`), `OQ-07` (`oq07_weights_not_forced_without_symmetry`, `oq07_transitive_symmetry_forces_equal_weights`, `profile_iff_ray`), `PresentationNaturality` + `NaturalSections` (`natural_section_exists_iff_fixed_pair`, `carrier_fixed_not_sufficient_for_natural_section` on `\|X\| = 3`), `ObserverDescent` reduced to the 3-locus `Bool` triangle cover (`L01, L12, L20`), and `faithful_network_descent_forces_trivial_loops`. |
 | **Slice 5:** `InternalMetatheory.lean` | `TorsorAndOperations`, `MinimalSeparation`, `RetentionAndRefusal` | `A/Constitution.lean:1-344`, `A/Initiality.lean:1-271`, `A/NoOutside.lean:1-383`, `A/InterpreterBoundary.lean:1-344`, `B/wdp` Ch 6 (`WDP-CH06-P01`, `T02`) & Ch 10 (`WDP-CH10-T03`) | Reconstructs `Constitution` + `Initiality` (`allDescs_complete`, `interp_describe`, `unique_compliant` across all 64 subsets of the 6 constitutional guards, `extension_retract` onto `d20`), `NoOutside` (`effectual_outside_dichotomy`, `panel_equiv`, `reentry_preserves_counts`), `InterpreterBoundary` (`tower_persists` diagonal non-exhaustion for any finite evaluator `E`, `evalOpt` self-application), and `WDP-CH06-P01` (acyclic transition graph $\Rightarrow$ strict partial order reachability). |
+| **Slice 6:** `ProfilePreorderAndGenerator.lean` | `TorsorAndOperations`, `ZeroEquivalence` | `docs/research_map.md` (`N19`–`N25`), `A/RefusalFrontier.lean`, `A/MinimalWitnessedRoute.lean` | Formalizes profile-equality vs. mutual-comparability preorder equivalence and two-level quotient retention (`DER-21`); ten-stick reflection residual and 4-step vs. 2-step phase-lift comparison (`DER-22`); exact two-sheet holonomy characterization of period-4 vs. period-2 base-intertwining lifts on `Bool × Bool` (`period_four_iff_no_two_step_fixed_point`, `period_four_iff_sheet_flip_holonomy`, `fin4_sheet_equivariant_bijection`) and minimal `n = 3` carrier threshold (`Stick3` vs. `Stick1`, `Stick2`) for 1-stick reflection residuality (`n1_reflResidual_eq_hamming`, `n2_single_sticks_mirror_collapse_but_zero_residual`, `n3_minimal_single_stick_reflection_witness`, `DER-25`, narrowing `OWE-08`); and conditional supplied-rule `stepM`/`stepRefl` 2-step closure and radius-$d$ profile collision (`DER-23`). |
 
 ---
 

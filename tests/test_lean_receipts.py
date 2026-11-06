@@ -94,6 +94,48 @@ class CompilableMutationTests(unittest.TestCase):
                     # Deliberate regeneration can accept drift, but needs mathematical review.
                     checker.verify_receipt(actual, copy.deepcopy(actual), "ZeroEquivalence")
 
+    def test_profile_preorder_der25_theorem_removal_and_weakening_are_rejected(self):
+        expected = json.loads(
+            (ROOT / checker.RECEIPTS["ProfilePreorderAndGenerator"]).read_text(encoding="utf-8")
+        )
+        original = (ROOT / "lean/ProfilePreorderAndGenerator.lean").read_text(encoding="utf-8")
+        target_decl = (
+            "/-- At `n = 3`, 1-stick configurations simultaneously witness mirror collapse\n"
+            "    (`hamming3 stick3Left stick3Right = 2`, `reflResidual3 stick3Left stick3Right = 0`)\n"
+            "    and positive non-mirror reflection residual\n"
+            "    (`hamming3 stick3Left stick3Mid = 2`, `reflResidual3 stick3Left stick3Mid = 2`),\n"
+            "    establishing `n = 3` as the minimal 1-stick carrier threshold (`N19`). -/\n"
+            "theorem n3_minimal_single_stick_reflection_witness :\n"
+            "    hamming3 stick3Left stick3Right = 2 ∧\n"
+            "    reflResidual3 stick3Left stick3Right = 0 ∧\n"
+            "    hamming3 stick3Left stick3Mid = 2 ∧\n"
+            "    reflResidual3 stick3Left stick3Mid = 2 := by\n"
+            "  decide\n"
+        )
+        self.assertIn(target_decl, original)
+        variants = {
+            "remove": original.replace(target_decl, "", 1),
+            "weaken_with_omega": original.replace(
+                target_decl,
+                "theorem n3_minimal_single_stick_reflection_witness : (0 : Nat) < 1 := by omega\n",
+                1,
+            ),
+        }
+        with tempfile.TemporaryDirectory(prefix="omega-profile-mutation-") as temporary:
+            root = Path(temporary)
+            (root / "lean").mkdir()
+            for name in ("lean-toolchain", "lakefile.toml", "lake-manifest.json"):
+                shutil.copyfile(ROOT / name, root / name)
+            for source in (ROOT / "lean").glob("*.lean"):
+                shutil.copyfile(source, root / "lean" / source.name)
+            for label, source in variants.items():
+                with self.subTest(label=label), patch.object(checker, "ROOT", root):
+                    (root / "lean/ProfilePreorderAndGenerator.lean").write_bytes(source.encode("utf-8"))
+                    actual = checker.check("ProfilePreorderAndGenerator")
+                    self.assertEqual(actual["theorems_checked"], 75 if label == "remove" else 76)
+                    with self.assertRaises(RuntimeError):
+                        checker.verify_receipt(actual, expected, "ProfilePreorderAndGenerator")
+
 
 if __name__ == "__main__":
     unittest.main()

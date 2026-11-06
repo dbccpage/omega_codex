@@ -1,14 +1,14 @@
 {
   "verified": true,
   "source": "lean/ProfilePreorderAndGenerator.lean",
-  "source_sha256": "9b8d3c31c1d3356d185645d8a7ef9927cb31516943bfe8689c5fd808de055b73",
+  "source_sha256": "df0db31e93aec36e793e6bf2adbccfb3dc70ea9ee8d216bdabb738bc3f712660",
   "direct_imports": {
     "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
     "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
   },
   "toolchain": "leanprover/lean4:v4.33.0",
   "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
-  "theorems_checked": 64,
+  "theorems_checked": 76,
   "allowed_axioms": [
     "Quot.sound",
     "propext"
@@ -51,30 +51,27 @@
       "Quot.sound"
     ],
     "coarse_zero_coexists_with_fine_nonzero": [],
-    "reflectIndex10_involutive": [
-      "propext",
-      "Quot.sound"
-    ],
-    "reflect10_involutive": [
-      "propext",
-      "Quot.sound"
-    ],
-    "stickLeft_reflect_eq_stickRight": [
-      "propext",
-      "Quot.sound"
-    ],
-    "stickLeft_stickRight_raw_vs_reflResidual": [
-      "propext",
-      "Quot.sound"
-    ],
-    "stickLeft_stickMid_reflResidual_pos": [
-      "propext",
-      "Quot.sound"
-    ],
+    "reflectIndex10_involutive": [],
+    "reflect10_involutive": [],
+    "stickLeft_reflect_eq_stickRight": [],
+    "stickLeft_stickRight_raw_vs_reflResidual": [],
+    "stickLeft_stickMid_reflResidual_pos": [],
     "proj2_intertwines_counterpart": [],
     "step4_two_projects_to_id_but_flips_sheet": [],
     "step4_period_four": [],
     "trivial_two_step_lift_also_intertwines": [],
+    "two_step_base_returns_of_intertwines": [],
+    "odd_steps_not_fixed_of_intertwines": [],
+    "two_step_fiber_holonomy_dichotomy": [],
+    "period_two_iff_trivial_sheet_holonomy": [],
+    "no_two_step_fixed_iff_sheet_flip_holonomy": [],
+    "period_four_iff_no_two_step_fixed_point": [],
+    "period_four_iff_sheet_flip_holonomy": [],
+    "step4Sheet_has_sheet_flip_holonomy_and_period_four": [],
+    "fin4_sheet_equivariant_bijection": [],
+    "n1_reflResidual_eq_hamming": [],
+    "n2_single_sticks_mirror_collapse_but_zero_residual": [],
+    "n3_minimal_single_stick_reflection_witness": [],
     "stepM_lower_bound_two_steps": [
       "propext"
     ],

@@ -6,11 +6,11 @@
     "supports": "A deterministic, machine-auditable inventory of which derivation nodes are checked by Lean 4.33.0 and stdlib Python in this repository (DERIVED), which premises or bridge steps remain supplied admissions or open proof obligations (OWED), and which downstream mathematical or physical stages are planned future targets (IMAGINED).",
     "does_not_support": "Any claim that OWED or IMAGINED nodes are derived, any claim of zero-input creation from nothing, or any physical validation beyond the finite algebraic models checked in the cited files.",
     "narrowest_defensible_claim": "All nodes in bucket DERIVED resolve to existing Lean 4.33.0 theorems (checked under allowed axioms propext and Quot.sound) and/or stdlib Python check scripts in this checkout, and all dependencies on OWED premises are explicitly typed as edges in the acyclic graph.",
-    "next_test_needed": "Constructive discharge or minimal-premise reduction of the OWED bridge nodes, starting with OWE-07 (internal witnessing invocation), OWE-08 (profile preorder and ten-stick reflection), and OWE-09 (residual-to-positive-weights bridge)."
+    "next_test_needed": "Constructive discharge or minimal-premise reduction of the OWED bridge nodes, starting with OWE-07 (internal witnessing invocation), OWE-08 (endogenous sheet-flip holonomy forcing and n = 10 vs. minimal n = 3 stick carrier selection), and OWE-09 (residual-to-positive-weights bridge)."
   },
   "buckets": {
     "DERIVED": {
-      "count": 24,
+      "count": 25,
       "definition": "Checked in Lean 4.33.0 (constructive core, zero sorry, zero Classical.choice, zero Mathlib, allowed axioms restricted to propext and Quot.sound) and/or stdlib Python check scripts with source-bound verification receipts in docs/."
     },
     "OWED": {
@@ -75,7 +75,7 @@
       "module": "ProfilePreorderAndGenerator",
       "source": "lean/ProfilePreorderAndGenerator.lean",
       "receipt": "docs/profile_preorder_and_generator_verification.json",
-      "theorems_checked": 64
+      "theorems_checked": 76
     }
   ],
   "nodes": [
@@ -1248,7 +1248,7 @@
       "status_detail": "DERIVED_CONDITIONALLY",
       "layer": "2_SEAL_AND_ZERO_EQUIVALENCE",
       "title": "Conditional Ten-Stick Reflection Residual and Four-Step vs. Two-Step Phase Lift Models (N19-N20)",
-      "statement": "DERIVED_CONDITIONALLY: Under the supplied 10-slot carrier Stick10 = Fin 10 -> Bool, spatial index reversal reflectIndex10(i) = 9 - i, configuration reversal reflect10, Hamming distance hamming10, and reflection-quotient residual reflResidual10(s, t) = min(hamming10 s t, hamming10 s (reflect10 t)), the 1-stick indicator configurations stickLeft (i = 0) and stickRight (i = 9) satisfy reflect10 stickLeft = stickRight, raw Hamming distance 2, and reflection residual 0 (stickLeft_stickRight_raw_vs_reflResidual), whereas stickLeft and stickMid (i = 1) have positive reflection residual 2 (stickLeft_stickMid_reflResidual_pos). Under the supplied 4-state carrier Fin 4 with cyclic step4 and parity readout proj2 : Fin 4 -> Bool, proj2 intertwines step4 with counterpart (proj2_intertwines_counterpart), step4 has exact period 4 (step4_period_four), and two steps project to identity on Bool while flipping the hidden sheet (step4_two_projects_to_id_but_flips_sheet); however, trivial_two_step_lift_also_intertwines shows on Bool x Bool via step4Triv that a 2-step lift also intertwines counterpart. Necessity of carrier size 10 and necessity of period 4 remain open in OWE-08.",
+      "statement": "DERIVED_CONDITIONALLY: Under the supplied 10-slot carrier Stick10 = Fin 10 -> Bool, spatial index reversal reflectIndex10(i) = 9 - i, configuration reversal reflect10, Hamming distance hamming10, and reflection-quotient residual reflResidual10(s, t) = min(hamming10 s t, hamming10 s (reflect10 t)), the 1-stick indicator configurations stickLeft (i = 0) and stickRight (i = 9) satisfy reflect10 stickLeft = stickRight, raw Hamming distance 2, and reflection residual 0 (stickLeft_stickRight_raw_vs_reflResidual), whereas stickLeft and stickMid (i = 1) have positive reflection residual 2 (stickLeft_stickMid_reflResidual_pos). Under the supplied 4-state carrier Fin 4 with cyclic step4 and parity readout proj2 : Fin 4 -> Bool, proj2 intertwines step4 with counterpart (proj2_intertwines_counterpart), step4 has exact period 4 (step4_period_four), and two steps project to identity on Bool while flipping the hidden sheet (step4_two_projects_to_id_but_flips_sheet); however, trivial_two_step_lift_also_intertwines shows on Bool x Bool via step4Triv that a 2-step lift also intertwines counterpart. Together with the exact two-sheet holonomy characterization and minimal n = 3 1-stick threshold in DER-25, endogenous forcing of non-trivial sheet-flip holonomy over trivial holonomy and the unforced choice of carrier size 10 over minimal n = 3 remain open in OWE-08.",
       "research_map_refs": [
         "N19",
         "N20"
@@ -1429,6 +1429,52 @@
       "defines_admissions": []
     },
     {
+      "id": "DER-25",
+      "code": "SLICE-X-HOLONOMY-PERIOD-FOUR-AND-STICK-THRESHOLD-CHARACTERIZATION",
+      "bucket": "DERIVED",
+      "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
+      "layer": "2_SEAL_AND_ZERO_EQUIVALENCE",
+      "title": "Exact Period-4 Two-Sheet Holonomy Characterization and Minimal n = 3 Reflection-Residual Carrier Threshold (N19-N20)",
+      "statement": "For any base-intertwining lift step : Bool x Bool -> Bool x Bool satisfying IntertwinesCounterpart step ((step s).1 = counterpart s.1), two steps restore the visible base coordinate (two_step_base_returns_of_intertwines), odd steps have no fixed points (odd_steps_not_fixed_of_intertwines), and the 2-step map at every state s either fixes s or flips the hidden sheet to (s.1, counterpart s.2) (two_step_fiber_holonomy_dichotomy). Consequently, step has period 2 everywhere iff its 2-step sheet holonomy is trivial everywhere (period_two_iff_trivial_sheet_holonomy), and step has exact period 4 everywhere iff it has no 2-step fixed points (period_four_iff_no_two_step_fixed_point) iff its 2-step fiber holonomy flips the hidden sheet everywhere (period_four_iff_sheet_flip_holonomy, no_two_step_fixed_iff_sheet_flip_holonomy). The canonical sheet-coupled lift step4Sheet satisfies sheet-flip holonomy and period 4 (step4Sheet_has_sheet_flip_holonomy_and_period_four) and is equivariantly isomorphic to (Fin 4, step4, proj2) via fin4ToSheet and sheetToFin4 (fin4_sheet_equivariant_bijection). For n-slot binary stick reflection (N19), n = 1 has reflResidual1 = hamming1 with no mirror collapse (n1_reflResidual_eq_hamming), n = 2 exhibits 1-stick mirror collapse (hamming2 = 2, reflResidual2 = 0) but zero reflection residual on all 1-stick pairs (n2_single_sticks_mirror_collapse_but_zero_residual), and n = 3 (Stick3) is the minimal carrier threshold where 1-stick configurations simultaneously exhibit mirror collapse (reflResidual3 stick3Left stick3Right = 0 at hamming3 = 2) and positive reflection residual (reflResidual3 stick3Left stick3Mid = 2 at hamming3 = 2, n3_minimal_single_stick_reflection_witness).",
+      "research_map_refs": [
+        "N19",
+        "N20"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M2_indexed_context_family",
+        "M3_step_history_dynamics"
+      ],
+      "artifacts": {
+        "lean_file": "lean/ProfilePreorderAndGenerator.lean",
+        "lean_module": "ProfilePreorderAndGenerator",
+        "receipt_json": "docs/profile_preorder_and_generator_verification.json",
+        "lean_theorems": [
+          "two_step_base_returns_of_intertwines",
+          "odd_steps_not_fixed_of_intertwines",
+          "two_step_fiber_holonomy_dichotomy",
+          "period_two_iff_trivial_sheet_holonomy",
+          "no_two_step_fixed_iff_sheet_flip_holonomy",
+          "period_four_iff_no_two_step_fixed_point",
+          "period_four_iff_sheet_flip_holonomy",
+          "step4Sheet_has_sheet_flip_holonomy_and_period_four",
+          "fin4_sheet_equivariant_bijection",
+          "n1_reflResidual_eq_hamming",
+          "n2_single_sticks_mirror_collapse_but_zero_residual",
+          "n3_minimal_single_stick_reflection_witness"
+        ],
+        "python_checks": [
+          "scripts/profile_preorder_and_generator_models.py",
+          "tests/test_profile_preorder_and_generator.py"
+        ],
+        "doc_refs": [
+          "docs/research_map.md",
+          "dag/README.md"
+        ]
+      },
+      "defines_admissions": []
+    },
+    {
       "id": "OWE-05",
       "code": "PG-R-GAP-DIAMOND-TO-ROOT",
       "title": "Pre-Genesis Diamond-to-Root Bridge Obligation",
@@ -1510,7 +1556,7 @@
     {
       "id": "OWE-08",
       "code": "N19-N20-TEN-STICK-REFLECTION-AND-FOUR-STEP-LIFT",
-      "title": "Ten-Stick Carrier Necessity and Period-Four Lift Necessity Beyond Reciprocal Symmetry (N19-N20)",
+      "title": "Endogenous Sheet-Flip Holonomy Forcing and Ten-Stick Carrier Selection Beyond Minimal n = 3 (N19-N20)",
       "bucket": "OWED",
       "status_detail": "OPEN_PROOF_OBLIGATION",
       "layer": "6_OWED_BRIDGES",
@@ -1518,10 +1564,11 @@
         "N19",
         "N20"
       ],
-      "statement": "OWED: While DER-21 checks the general profile-equality vs. mutual-comparability preorder theorem (ProfileEquiv vs. MutualComp) on arbitrary carrier alpha and DER-22 checks ten-stick reflection residuality (reflResidual10 on Stick10) and an explicit four-state cycle lift (step4 on Fin 4), DER-22 also shows in Lean (trivial_two_step_lift_also_intertwines) that a two-step lift on Bool x Bool (step4Triv) intertwines the same base flip. Thus reciprocal symmetry alone does not force period four, and neither the cardinality 10 of Stick10 nor the necessity of a period-4 lift is derived from primitive distinction.",
+      "statement": "OWED: While DER-21 checks the general profile-equality vs. mutual-comparability preorder theorem (ProfileEquiv vs. MutualComp), DER-22 checks ten-stick reflection residuality (Stick10) and the 4-state cycle lift (Fin 4 vs. step4Triv), and DER-25 establishes the exact iff characterization of period-4 lifts on Bool x Bool via 2-step sheet-flip holonomy (period_four_iff_sheet_flip_holonomy) together with the minimal n = 3 carrier threshold for 1-stick reflection residuality (n3_minimal_single_stick_reflection_witness vs. n = 1, 2), reciprocal symmetry on Bool alone admits both trivial 2-step holonomy (step4Triv, period 2) and non-trivial sheet-flip holonomy (step4Sheet, period 4). Thus endogenous forcing of non-trivial 2-step sheet-flip holonomy over trivial holonomy and any forcing of carrier size n = 10 over the minimal n = 3 threshold remain open.",
       "artifacts": {
         "python_checks": [
-          "audit/2026-11-05_minimal_chain/3_regime_deletions.py"
+          "audit/2026-11-05_minimal_chain/3_regime_deletions.py",
+          "scripts/profile_preorder_and_generator_models.py"
         ],
         "doc_refs": [
           "docs/research_map.md",
@@ -2212,6 +2259,18 @@
       "note": "Node DER-24 requires explicit admission(s) provided by OWE-04."
     },
     {
+      "from": "OWE-01",
+      "to": "DER-25",
+      "kind": "requires_admission",
+      "note": "Node DER-25 requires explicit admission(s) provided by OWE-01."
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-25",
+      "kind": "requires_admission",
+      "note": "Node DER-25 requires explicit admission(s) provided by OWE-04."
+    },
+    {
       "from": "DER-01",
       "to": "DER-02",
       "kind": "derives",
@@ -2377,7 +2436,7 @@
       "from": "DER-03",
       "to": "OWE-08",
       "kind": "motivates_bridge",
-      "note": "Radix 2^t counting motivates profile preorder and ten-stick reflection bridges."
+      "note": "Radix 2^t counting motivates the remaining OWE-08 bridge (endogenous sheet-flip holonomy forcing and n = 10 vs. minimal n = 3 stick carrier selection)."
     },
     {
       "from": "DER-14",
@@ -2516,6 +2575,30 @@
       "to": "DER-08",
       "kind": "derives",
       "note": "Discharges OQ-05 general Regime4 transition-to-class-count growth bridge and RegimeRefinementRun4 round bound m <= r.data - 1."
+    },
+    {
+      "from": "DER-04",
+      "to": "DER-25",
+      "kind": "derives",
+      "note": "Two-element counterpart involution and C2 torsor parity underpin the two-sheet fiber holonomy dichotomy and n = 1, 2, 3 reflection threshold theorems."
+    },
+    {
+      "from": "DER-21",
+      "to": "DER-25",
+      "kind": "derives",
+      "note": "Profile quotient retention frames the minimal n = 3 1-stick reflection residuality threshold and two-sheet holonomy characterization."
+    },
+    {
+      "from": "DER-25",
+      "to": "DER-22",
+      "kind": "derives",
+      "note": "Exact two-sheet holonomy characterization (period_four_iff_sheet_flip_holonomy) and minimal n = 3 stick threshold contextualize the conditional Fin 4 and Stick10 models."
+    },
+    {
+      "from": "DER-25",
+      "to": "OWE-08",
+      "kind": "motivates_bridge",
+      "note": "Exact period-4 iff sheet-flip holonomy and minimal n = 3 stick threshold isolate the remaining open questions in OWE-08: forcing non-trivial holonomy over trivial holonomy and selecting n = 10 over n = 3."
     },
     {
       "from": "DER-09",
