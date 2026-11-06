@@ -99,7 +99,7 @@ class CompilableMutationTests(unittest.TestCase):
             (ROOT / checker.RECEIPTS["ProfilePreorderAndGenerator"]).read_text(encoding="utf-8")
         )
         original = (ROOT / "lean/ProfilePreorderAndGenerator.lean").read_text(encoding="utf-8")
-        target_decl = (
+        target_decl_der25 = (
             "/-- At `n = 3`, 1-stick configurations simultaneously witness mirror collapse\n"
             "    (`hamming3 stick3Left stick3Right = 2`, `reflResidual3 stick3Left stick3Right = 0`)\n"
             "    and positive non-mirror reflection residual\n"
@@ -112,12 +112,30 @@ class CompilableMutationTests(unittest.TestCase):
             "    reflResidual3 stick3Left stick3Mid = 2 := by\n"
             "  decide\n"
         )
-        self.assertIn(target_decl, original)
+        target_decl_der26 = (
+            "/-- Any memory carrier with `mCard < 2 ^ k` states fails to injectively separate\n"
+            "    all `2 ^ k` binary histories of length `k`. -/\n"
+            "theorem multi_round_memory_collision_of_lt_pow2 (k mCard : Nat) (encode : Nat → Nat)\n"
+            "    (hbound : ∀ h < 2 ^ k, encode h < mCard)\n"
+            "    (hlt : mCard < 2 ^ k) :\n"
+            "    ¬ (∀ h1 < 2 ^ k, ∀ h2 < 2 ^ k, encode h1 = encode h2 → h1 = h2) := by\n"
+            "  intro hinj\n"
+            "  have hle := multi_round_memory_capacity_lower_bound k mCard encode hbound hinj\n"
+            "  omega\n"
+        )
+        self.assertIn(target_decl_der25, original)
+        self.assertIn(target_decl_der26, original)
         variants = {
-            "remove": original.replace(target_decl, "", 1),
-            "weaken_with_omega": original.replace(
-                target_decl,
+            "remove_der25": original.replace(target_decl_der25, "", 1),
+            "weaken_der25_with_omega": original.replace(
+                target_decl_der25,
                 "theorem n3_minimal_single_stick_reflection_witness : (0 : Nat) < 1 := by omega\n",
+                1,
+            ),
+            "remove_der26": original.replace(target_decl_der26, "", 1),
+            "weaken_der26_to_true": original.replace(
+                target_decl_der26,
+                "theorem multi_round_memory_collision_of_lt_pow2 : True := True.intro\n",
                 1,
             ),
         }
@@ -132,7 +150,15 @@ class CompilableMutationTests(unittest.TestCase):
                 with self.subTest(label=label), patch.object(checker, "ROOT", root):
                     (root / "lean/ProfilePreorderAndGenerator.lean").write_bytes(source.encode("utf-8"))
                     actual = checker.check("ProfilePreorderAndGenerator")
-                    self.assertEqual(actual["theorems_checked"], 83 if label == "remove" else 84)
+                    self.assertEqual(
+                        actual["theorems_checked"],
+                        83 if label.startswith("remove") else 84,
+                    )
+                    if label == "weaken_der26_to_true":
+                        self.assertEqual(
+                            actual["dependencies"]["multi_round_memory_collision_of_lt_pow2"],
+                            [],
+                        )
                     with self.assertRaises(RuntimeError):
                         checker.verify_receipt(actual, expected, "ProfilePreorderAndGenerator")
 
@@ -156,7 +182,7 @@ class CompilableMutationTests(unittest.TestCase):
             "  have hunif : ∀ e < n, w e = w 0 := by\n"
             "    intro e he\n"
             "    rcases htrans e he with ⟨k, hk⟩\n"
-            "    have hk0 := (horb k 0 (by omega)).2\n"
+            "    have hk0 := (horb k 0 hpos).2\n"
             "    rw [← hk]\n"
             "    exact hk0\n"
             "  exact ⟨hunif, fun v => uniform_weights_factor_l1_general w v n (w 0) hunif⟩\n"
@@ -182,10 +208,20 @@ class CompilableMutationTests(unittest.TestCase):
                     (root / "lean/LocalGlobalObstruction.lean").write_bytes(source.encode("utf-8"))
                     actual = checker.check("LocalGlobalObstruction")
                     self.assertEqual(actual["theorems_checked"], 29 if label == "remove" else 30)
+                    if label == "weaken":
+                        self.assertEqual(
+                            expected["dependencies"]["transitive_action_forces_uniform_weights_general"],
+                            [],
+                        )
+                        self.assertEqual(
+                            set(actual["dependencies"]["transitive_action_forces_uniform_weights_general"]),
+                            {"propext", "Quot.sound"},
+                        )
                     with self.assertRaises(RuntimeError):
                         checker.verify_receipt(actual, expected, "LocalGlobalObstruction")
 
 
 if __name__ == "__main__":
     unittest.main()
+
 

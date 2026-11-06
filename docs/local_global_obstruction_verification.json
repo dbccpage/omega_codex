@@ -1,7 +1,7 @@
 {
   "verified": true,
   "source": "lean/LocalGlobalObstruction.lean",
-  "source_sha256": "c98497a43c2073fb0b55499aad2be7daca24e0fb23ba4bc640fcf46d50a44f70",
+  "source_sha256": "a205cfb227a44c5d47c7f1e7295729ed459a0139fbd395a93f1356700219f49e",
   "direct_imports": {
     "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
     "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
@@ -60,46 +60,16 @@
     "untwisted_triangle_glues_uniquely": [],
     "twisted_triangle_pairwise_solvable_no_global": [],
     "faithful_network_descent_forces_trivial_loops": [],
-    "swap23_invariant_iff_orbit_constant": [
-      "propext",
-      "Quot.sound"
-    ],
-    "swap23_invariant_cost_decomposition": [
-      "propext",
-      "Quot.sound"
-    ],
-    "swap12_invariant_iff_orbit_constant": [
-      "propext",
-      "Quot.sound"
-    ],
-    "three_edge_symmetry_weight_hierarchy": [
-      "propext",
-      "Quot.sound"
-    ],
-    "weightedL1Gen_unitCochain_Zero_of_ge": [
-      "propext",
-      "Quot.sound"
-    ],
-    "weightedL1Gen_unitCochain": [
-      "propext",
-      "Quot.sound"
-    ],
-    "symmetry_forces_step_equal_weights_general": [
-      "propext",
-      "Quot.sound"
-    ],
-    "symmetry_forces_orbit_equal_weights_general": [
-      "propext",
-      "Quot.sound"
-    ],
-    "uniform_weights_factor_l1_general": [
-      "propext",
-      "Quot.sound"
-    ],
-    "transitive_action_forces_uniform_weights_general": [
-      "propext",
-      "Quot.sound"
-    ]
+    "swap23_invariant_iff_orbit_constant": [],
+    "swap23_invariant_cost_decomposition": [],
+    "swap12_invariant_iff_orbit_constant": [],
+    "three_edge_symmetry_weight_hierarchy": [],
+    "weightedL1Gen_unitCochain_Zero_of_ge": [],
+    "weightedL1Gen_unitCochain": [],
+    "symmetry_forces_step_equal_weights_general": [],
+    "symmetry_forces_orbit_equal_weights_general": [],
+    "uniform_weights_factor_l1_general": [],
+    "transitive_action_forces_uniform_weights_general": []
   },
   "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
 }

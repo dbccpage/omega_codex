@@ -379,8 +379,8 @@ theorem swap23_invariant_iff_orbit_constant (w : Weight3) :
   · intro heq ⟨v1, v2, v3⟩ _
     dsimp at heq
     subst heq
-    simp only [weightedL1, swapEdge23]
-    omega
+    dsimp [weightedL1, swapEdge23]
+    rw [Nat.add_assoc, Nat.add_comm (w2 * v3.natAbs) (w2 * v2.natAbs), ← Nat.add_assoc]
 
 /-- Under `swapEdge23` orbit constancy (`w.2.1 = w.2.2`), the weighted L1 cost decomposes
     into the two automorphism orbits `{1}` and `{2, 3}` with two independent orbit weights. -/
@@ -391,8 +391,8 @@ theorem swap23_invariant_cost_decomposition (w : Weight3) (v : Cochain3)
   rcases v with ⟨v1, v2, v3⟩
   dsimp at horb
   subst horb
-  simp only [weightedL1, Nat.mul_add]
-  omega
+  dsimp [weightedL1]
+  rw [Nat.mul_add, ← Nat.add_assoc]
 
 /-- Exact 2-orbit characterization under `swapEdge12`: invariance of `weightedL1 w`
     across all valid repairs holds if and only if `w.1 = w.2.1`. -/
@@ -408,8 +408,8 @@ theorem swap12_invariant_iff_orbit_constant (w : Weight3) :
   · intro heq ⟨v1, v2, v3⟩ _
     dsimp at heq
     subst heq
-    simp only [weightedL1, swapEdge12]
-    omega
+    dsimp [weightedL1, swapEdge12]
+    rw [Nat.add_comm (w1 * v2.natAbs) (w1 * v1.natAbs)]
 
 /-- Three-regime symmetry hierarchy on 3-edge cochains:
     (1) `swapEdge23` invariance forces `w2 = w3` (2 orbits `{1}`, `{2, 3}`);
@@ -459,21 +459,32 @@ theorem weightedL1Gen_unitCochain_Zero_of_ge (w : Nat → Nat) (n e : Nat) (hle 
   induction n with
   | zero => rfl
   | succ k ih =>
-    have hne : k ≠ e := by omega
-    simp [weightedL1Gen, unitCochain, hne, ih (by omega)]
+    have hne : k ≠ e := Nat.ne_of_lt hle
+    have hk0 : weightedL1Gen w (unitCochain e) k = 0 := ih (Nat.le_of_succ_le hle)
+    dsimp [weightedL1Gen, unitCochain]
+    rw [if_neg hne, hk0]
+    change 0 + w k * 0 = 0
+    rw [Nat.mul_zero, Nat.add_zero]
 
 /-- Evaluating `weightedL1Gen w` on `unitCochain e` for `e < n` extracts the exact edge weight `w e`. -/
 theorem weightedL1Gen_unitCochain (w : Nat → Nat) {n e : Nat} (he : e < n) :
     weightedL1Gen w (unitCochain e) n = w e := by
   induction n with
-  | zero => omega
+  | zero => exact absurd he (Nat.not_lt_zero e)
   | succ k ih =>
     by_cases hke : k = e
     · subst hke
       have h0 := weightedL1Gen_unitCochain_Zero_of_ge w k k (Nat.le_refl k)
-      simp [weightedL1Gen, unitCochain, h0]
-    · have hek : e < k := by omega
-      simp [weightedL1Gen, unitCochain, hke, ih hek]
+      dsimp [weightedL1Gen, unitCochain]
+      rw [if_pos rfl, h0]
+      change 0 + w k * 1 = w k
+      rw [Nat.mul_one, Nat.zero_add]
+    · have hek : e < k := Nat.lt_of_le_of_ne (Nat.le_of_lt_succ he) (Ne.symm hke)
+      have ihk := ih hek
+      dsimp [weightedL1Gen, unitCochain]
+      rw [if_neg hke, ihk]
+      change w e + w k * 0 = w e
+      rw [Nat.mul_zero, Nat.add_zero]
 
 /-- If an edge map `σ` preserves `{0, ..., n - 1}` and leaves `weightedL1Gen w` invariant
     on unit cochains, then `w` is invariant under a single step of `σ` (`w (σ e) = w e`). -/
@@ -484,8 +495,7 @@ theorem symmetry_forces_step_equal_weights_general (w : Nat → Nat) (σ : Nat �
   intro e he
   have h1 := weightedL1Gen_unitCochain w (hclosed e he)
   have h2 := weightedL1Gen_unitCochain w he
-  have h3 := hinv e he
-  omega
+  exact h1.symm.trans ((hinv e he).trans h2)
 
 /-- Orbit-constancy theorem on `n` edges: if `σ` preserves `{0, ..., n - 1}` and leaves
     `weightedL1Gen w` invariant on unit cochains, then `w` is constant along every
@@ -514,12 +524,15 @@ theorem uniform_weights_factor_l1_general (w : Nat → Nat) (v : Nat → Int) (n
     (hunif : ∀ e < n, w e = w0) :
     weightedL1Gen w v n = w0 * unweightedL1Gen v n := by
   induction n with
-  | zero => simp [weightedL1Gen, unweightedL1Gen]
+  | zero =>
+    change 0 = w0 * 0
+    rw [Nat.mul_zero]
   | succ k ih =>
-    have hk : w k = w0 := hunif k (by omega)
+    have hk : w k = w0 := hunif k (Nat.lt_succ_self k)
     have ihk : weightedL1Gen w v k = w0 * unweightedL1Gen v k :=
-      ih (fun e he => hunif e (by omega))
-    simp only [weightedL1Gen, unweightedL1Gen, ihk, hk, Nat.mul_add]
+      ih (fun e he => hunif e (Nat.lt_succ_of_lt he))
+    dsimp [weightedL1Gen, unweightedL1Gen]
+    rw [ihk, hk, Nat.mul_add]
 
 /-- General transitive uniformity theorem: if `σ` acts transitively on `{0, ..., n - 1}`
     from `0` and leaves `weightedL1Gen w` invariant on unit cochains, then all `n` edge
@@ -535,9 +548,10 @@ theorem transitive_action_forces_uniform_weights_general (w : Nat → Nat) (σ :
   have hunif : ∀ e < n, w e = w 0 := by
     intro e he
     rcases htrans e he with ⟨k, hk⟩
-    have hk0 := (horb k 0 (by omega)).2
+    have hk0 := (horb k 0 hpos).2
     rw [← hk]
     exact hk0
   exact ⟨hunif, fun v => uniform_weights_factor_l1_general w v n (w 0) hunif⟩
 
 end OmegaCodex.LocalGlobalObstruction
+
