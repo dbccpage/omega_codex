@@ -97,6 +97,42 @@ class DerivationDagTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "lean_module 'InternalMetatheory' does not match 'PrimitiveDifference'"):
             validator.validate_dag_data(mutated, root=ROOT)
 
+    def test_missing_lean_module_fails_closed(self) -> None:
+        mutated = copy.deepcopy(self.data)
+        for node in mutated["nodes"]:
+            if node["id"] == "DER-01":
+                node["artifacts"].pop("lean_module", None)
+                break
+        with self.assertRaisesRegex(ValueError, "lean_module None does not match 'PrimitiveDifference'"):
+            validator.validate_dag_data(mutated, root=ROOT)
+
+    def test_derived_without_s0_host_admission_fails_closed(self) -> None:
+        mutated = copy.deepcopy(self.data)
+        for node in mutated["nodes"]:
+            if node["id"] == "DER-01":
+                node["unpriced_inputs_or_admissions"] = ["S1_off_diagonal_pair_witness"]
+                break
+        with self.assertRaisesRegex(ValueError, "DERIVED node DER-01 must declare 'S0_lean_core_host'"):
+            validator.validate_dag_data(mutated, root=ROOT)
+
+    def test_derived_conditionally_without_bridge_provider_fails_closed(self) -> None:
+        mutated = copy.deepcopy(self.data)
+        for node in mutated["nodes"]:
+            if node["id"] == "DER-08":
+                node["unpriced_inputs_or_admissions"] = [
+                    "S0_lean_core_host",
+                    "M2_indexed_context_family",
+                    "M3_step_history_dynamics",
+                ]
+                break
+        mutated["edges"] = [
+            e
+            for e in mutated["edges"]
+            if not (e["from"] == "OWE-11" and e["to"] == "DER-08" and e["kind"] == "requires_admission")
+        ]
+        with self.assertRaisesRegex(ValueError, "DERIVED_CONDITIONALLY node DER-08 must depend on at least one OWED OPEN_PROOF_OBLIGATION"):
+            validator.validate_dag_data(mutated, root=ROOT)
+
     def test_removing_all_requires_admission_edges_fails_closed(self) -> None:
         """Codex reproducer #2: removing all requires_admission edges must fail closed."""
         mutated = copy.deepcopy(self.data)

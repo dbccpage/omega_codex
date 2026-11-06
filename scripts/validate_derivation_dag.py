@@ -266,7 +266,7 @@ def validate_dag_data(
                     f"(expects receipt {inv_src_entry['receipt']!r}) vs receipt_json={receipt_json!r} "
                     f"(bound to source {inv_rec_entry['source']!r})"
                 )
-            if lean_module is not None and lean_module != inv_src_entry["module"]:
+            if not lean_module or not isinstance(lean_module, str) or lean_module != inv_src_entry["module"]:
                 raise ValueError(
                     f"Node {nid} lean_module {lean_module!r} does not match {inv_src_entry['module']!r}"
                 )
@@ -299,6 +299,10 @@ def validate_dag_data(
             if not (has_lean or has_py):
                 raise ValueError(
                     f"DERIVED node {nid} must bind to verified Lean theorems or Python check scripts"
+                )
+            if "S0_lean_core_host" not in adm_list:
+                raise ValueError(
+                    f"DERIVED node {nid} must declare 'S0_lean_core_host' in unpriced_inputs_or_admissions"
                 )
 
         node_by_id[nid] = node
@@ -348,6 +352,15 @@ def validate_dag_data(
                 )
             if provider_id != nid and provider_bucket == "OWED":
                 required_admission_providers[nid].add(provider_id)
+        if node.get("status_detail") == "DERIVED_CONDITIONALLY":
+            has_bridge_provider = any(
+                node_by_id[pid].get("status_detail") == "OPEN_PROOF_OBLIGATION"
+                for pid in required_admission_providers[nid]
+            )
+            if not has_bridge_provider:
+                raise ValueError(
+                    f"DERIVED_CONDITIONALLY node {nid} must depend on at least one OWED OPEN_PROOF_OBLIGATION bridge node"
+                )
 
     # Surjective theorem coverage across all receipts in lean_inventory
     for entry in data["lean_inventory"]:

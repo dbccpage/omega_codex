@@ -6,21 +6,24 @@ Pinned commits:
   B (theory_of_finite_quantum_mechanics): e45ed2e133920aa3790af8c5e072ee9829898490
   omega_codex (baseline): e21b785626ff8d0231a53409c76fe4e7a57cd59d
 
-Reproducible stdlib verification for settling OQ-05 through OQ-08 in 8_open.md:
-  1. OQ-05 (GEN-WDP-O03 / A21): Multi-round closure bounds comparing explicit
-     pair-demand accounting Q (max n*(n-1)/2 rounds) vs derived quotient-refinement
-     accounting Q_der (max n - 1 rounds) for n = 2, 3, 4, 5, plus the n = 3 unary
-     mark witness and ZeroEquivalence kernel check.
-  2. OQ-06 (GEN-WDP-O05 / H01): Constructive decodeFin (List.find?) verification
-     across all 256 (report, state) function pairs on |H| = 4, |V| = 2, |S| = 2,
+Reproducible stdlib verification for OQ-05 through OQ-08 in 8_open.md:
+  1. OQ-05 (GEN-WDP-O03 / A21, DERIVED_CONDITIONALLY in DER-08 + OWED in OWE-11):
+     Conditional multi-round closure bounds comparing explicit pair-demand accounting Q
+     (max n*(n-1)/2 rounds) vs derived quotient-refinement accounting Q_der (max n - 1
+     rounds assuming per-step class-count growth c + 1 <= c' on a fixed carrier of size n)
+     for n = 2, 3, 4, 5, plus the n = 3 unary mark witness.
+  2. OQ-06 (GEN-WDP-O05 / H01, settled in DER-11): Constructive decodeFin (List.find?)
+     verification across all 256 (report, state) function pairs on |H| = 4, |V| = 2, |S| = 2,
      checking 0 mismatches against fiber constancy.
-  3. OQ-07 (L1-R-RESIDUAL-TO-WEIGHTS / A32): 3-edge cycle repair optimization on
-     [-3..3]^3 with v1 + v2 + v3 = 1 under asymmetric weights w = (1, 2, 2) and
-     w' = (2, 1, 2), and verification that cyclic edge-permutation invariance
-     holds iff w1 = w2 = w3.
-  4. OQ-08 (GEN-WDP-O04 / A30, A31): State-refinement morphism projToHorizon from
-     the 5-gate WDP span (WDP-CH01-D03) to the 1-gate Horizon world across all
-     event sequences of length <= 3 at costs (0,0,0,1), (0,1,0,1), and (0,0,1,1).
+  3. OQ-07 (L1-R-RESIDUAL-TO-WEIGHTS / A32, settled in DER-14): 3-edge cycle repair
+     optimization on [-3..3]^3 with v1 + v2 + v3 = 1 under asymmetric weights w = (1, 2, 2)
+     and w' = (2, 1, 2), and verification that cyclic edge-permutation invariance holds
+     iff w1 = w2 = w3.
+  4. OQ-08 (GEN-WDP-O04 / A30, A31, DERIVED_CONDITIONALLY in DER-12 + regressions in
+     DER-19 + OWED in OWE-12): Simplified-model commutation between WDPWorld and HWorld
+     across all event sequences of length <= 3 at costs (0,0,0,1), (0,1,0,1), and (0,0,1,1),
+     followed by the 4 concrete guard-discrepancy regressions between simplified
+     stepHWorldGuarded and pinned legacy Represented.World.
 """
 
 import itertools
@@ -329,7 +332,7 @@ def step_represented_add_view(w, col):
 
 
 def check_oq08():
-    print("=== [4] OQ-08: STATE-REFINEMENT MORPHISM (SIMPLIFIED VS FULL REPRESENTED GUARDS) ===")
+    print("=== [4] OQ-08: STATE-REFINEMENT MORPHISM (SIMPLIFIED WDPWorld VS HWorld) ===")
     events = [
         ("admitTok", 0),
         ("admitTok", 1),
@@ -393,7 +396,13 @@ def check_oq08():
     assert not aug_ok_b(2, ((0,),), (1,))
     assert step_represented_add_view(w_nosep, (1,)) == w_nosep
     assert step_hworld_guarded(hw_nosep, ("addView", 1)) == ((0, 1), ((0, 1),), (0, 1), 0)
-    print("  All 4 Represented.World vs simplified HWorld guard regressions verified.")
+
+    print("\n=== [5] OQ-08: GUARD DISCREPANCY REGRESSIONS (stepHWorldGuarded VS LEGACY Represented.World) ===")
+    print("  (1) Singleton data=[0], addView [0]: HWorld views=[0] (budget=0) vs Represented views=[] (budget=1, increaseB=False)")
+    print("  (2) Duplicate view [1]:              HWorld views=[1] (budget=0) vs Represented views=[[1]] (budget=1, novel=False)")
+    print("  (3) Disabled augLicensed=False:      HWorld views=[1] (budget=0) vs Represented views=[] (budget=1, licensed=False)")
+    print("  (4) Novel view [1] with 0 new sep:   HWorld views=[0, 1] (budget=0) vs Represented views=[[0]] (budget=1, increaseB=False)")
+
 
 
 if __name__ == "__main__":
