@@ -122,6 +122,30 @@ class OrbitDecomposedL1WeightsTests(unittest.TestCase):
             for v in range(4):
                 self.assertEqual((v,) in mapped, v in vs)
 
+        # Event embedding embed_hev and unconditional admitTok / require / setBudget commutation
+        self.assertEqual(checks.embed_hev(("admitTok", 5)), ("admitTok", 5))
+        self.assertEqual(checks.embed_hev(("require", 0, 1)), ("require", 0, 1))
+        self.assertEqual(checks.embed_hev(("addView", 2)), ("addView", (2,)))
+        self.assertEqual(checks.embed_hev(("setBudget", 3)), ("setBudget", 3))
+        for hw_base in (
+            ((), (), (), 0),
+            ((10, 20), ((0, 1),), (0,), 1),
+        ):
+            for licensed in (False, True):
+                for hev in (
+                    ("admitTok", 10),   # duplicate token
+                    ("admitTok", 30),   # novel token
+                    ("require", 0, 0),  # diagonal self-pair rejected
+                    ("require", 0, 1),  # valid or duplicate pair
+                    ("require", 0, 5),  # out-of-bounds index rejected
+                    ("setBudget", 0),
+                    ("setBudget", 4),
+                ):
+                    self.assertEqual(
+                        checks.embed_hworld(checks.step_hworld_guarded(hw_base, hev), licensed),
+                        checks.step_represented_world(checks.embed_hworld(hw_base, licensed), checks.embed_hev(hev)),
+                    )
+
         # Novel, separating, licensed addView commutes even when budget == 0 or v >= len(toks)
         for budget in (0, 1, 2):
             hw = ((10, 20), ((0, 1),), (), budget)

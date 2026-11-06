@@ -1,7 +1,7 @@
 {
   "verified": true,
   "source": "lean/TorsorAndOperations.lean",
-  "source_sha256": "31075824461ac020eeed8ee24a13a87022631953d9a2f43a81ed60b49653dcb0",
+  "source_sha256": "c65bf75f2f14c79b9a336d1945e0b5972848e882f13170fef9bddbe3ab0b82eb",
   "direct_imports": {
     "lean/PrimitiveDifference.lean": "8ea8cc47eae4bedcc2a0e00b6af257313918b2165a159f85f54f866da03d41c8",
     "lean/MirrorNonIdentification.lean": "a215d0b339497db9c5af7c7aaa711c54487c35cb535468303a74382c2da94ad5"
@@ -67,12 +67,8 @@
     "transposePair_fixed_iff_diagonal": [],
     "pairToFin3_surjective": [],
     "pairToFin3_kernel_iff": [],
-    "pairToFin3_intertwines_swap3_and_offer12": [
-      "propext"
-    ],
-    "pairToFin3Dual_intertwines_swap3": [
-      "propext"
-    ]
+    "pairToFin3_intertwines_swap3_and_offer12": [],
+    "pairToFin3Dual_intertwines_swap3": []
   },
   "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
 }

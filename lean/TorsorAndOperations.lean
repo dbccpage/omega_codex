@@ -431,11 +431,13 @@ def swap3 : Fin 3 → Fin 3
   | ⟨0, _⟩ => ⟨0, by decide⟩
   | ⟨1, _⟩ => ⟨2, by decide⟩
   | ⟨2, _⟩ => ⟨1, by decide⟩
+  | ⟨n + 3, h⟩ => False.elim (Nat.not_lt_of_ge (Nat.succ_le_succ (Nat.succ_le_succ (Nat.succ_le_succ (Nat.zero_le n)))) h)
 
 def offer12 : Fin 3 → Bool
   | ⟨0, _⟩ => false
   | ⟨1, _⟩ => true
   | ⟨2, _⟩ => true
+  | ⟨n + 3, h⟩ => False.elim (Nat.not_lt_of_ge (Nat.succ_le_succ (Nat.succ_le_succ (Nat.succ_le_succ (Nat.zero_le n)))) h)
 
 /-- SymmetryFloor comparison on `Fin 3` (`10_post_seal_checks.py` [1]):
 every deterministic `swap3`-equivariant endomap fixes `0`, whereas the

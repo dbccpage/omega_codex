@@ -846,7 +846,21 @@ theorem singleton_view_bounded_eq (n v : Nat) :
     is equivalent to `v ∈ vs`. -/
 theorem singleton_view_mem_map_iff (vs : List Nat) (v : Nat) :
     ([v] : View) ∈ vs.map (fun u => [u]) ↔ v ∈ vs := by
-  simp
+  induction vs with
+  | nil =>
+      constructor
+      · intro h; cases h
+      · intro h; cases h
+  | cons u rest ih =>
+      constructor
+      · intro h
+        cases h with
+        | head => exact List.Mem.head rest
+        | tail _ hmem => exact List.Mem.tail u (ih.mp hmem)
+      · intro h
+        cases h with
+        | head => exact List.Mem.head (rest.map (fun u => [u]))
+        | tail _ hmem => exact List.Mem.tail [u] (ih.mpr hmem)
 
 /-- Under `embedHWorld`, `stepHWorldGuarded` commutes unconditionally with
     `Represented.step` on `.admitTok`, `.require`, and `.setBudget`. -/

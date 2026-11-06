@@ -3,7 +3,7 @@
   "source": "lean/LocalGlobalObstruction.lean",
   "source_sha256": "cbfc21e395e4b77d3b03faa6b4c12363edc4ef09ca66301e450b0ad7bae5516d",
   "direct_imports": {
-    "lean/TorsorAndOperations.lean": "31075824461ac020eeed8ee24a13a87022631953d9a2f43a81ed60b49653dcb0",
+    "lean/TorsorAndOperations.lean": "c65bf75f2f14c79b9a336d1945e0b5972848e882f13170fef9bddbe3ab0b82eb",
     "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
   },
   "toolchain": "leanprover/lean4:v4.33.0",
