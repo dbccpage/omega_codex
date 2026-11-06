@@ -3,7 +3,7 @@
   "source": "lean/ProfilePreorderAndGenerator.lean",
   "source_sha256": "391438ca5524909a7d8dd2e10f3fe16f4e439ea0b5999578d90787e5143192bd",
   "direct_imports": {
-    "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
+    "lean/TorsorAndOperations.lean": "31075824461ac020eeed8ee24a13a87022631953d9a2f43a81ed60b49653dcb0",
     "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
   },
   "toolchain": "leanprover/lean4:v4.33.0",

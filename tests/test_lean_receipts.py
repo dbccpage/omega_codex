@@ -187,12 +187,38 @@ class CompilableMutationTests(unittest.TestCase):
             "    exact hk0\n"
             "  exact ⟨hunif, fun v => uniform_weights_factor_l1_general w v n (w 0) hunif⟩\n"
         )
+        target_der30 = (
+            "/-- Exactness of the unsigned `𝔽₂` triangle cochain complex (`ker d₁ = im d₀` on `Δ²`),\n"
+            "    with canonical basepoint-0 primitive `primTriangleF2`. -/\n"
+            "theorem triangle_f2_exact_iff (h : Cochain1F2) :\n"
+            "    (d1UnsignedF2 h = false ↔ d0UnsignedF2 (primTriangleF2 h) = h) ∧\n"
+            "    (d1UnsignedF2 h = false ↔ ∃ c : Cochain0F2, d0UnsignedF2 c = h) := by\n"
+            "  have h1 : d1UnsignedF2 h = false ↔ d0UnsignedF2 (primTriangleF2 h) = h := by\n"
+            "    cases h with\n"
+            "    | mk e01 rest =>\n"
+            "      cases rest with\n"
+            "      | mk e12 e02 =>\n"
+            "        cases e01 <;> cases e12 <;> cases e02 <;> decide\n"
+            "  refine ⟨h1, ?_⟩\n"
+            "  constructor\n"
+            "  · intro hd1\n"
+            "    exact ⟨primTriangleF2 h, h1.mp hd1⟩\n"
+            "  · rintro ⟨c, rfl⟩\n"
+            "    exact oq02_unsigned_f2_complex_holds c\n"
+        )
         self.assertIn(target_decl, original)
+        self.assertIn(target_der30, original)
         variants = {
             "remove": original.replace(target_decl, "", 1),
             "weaken": original.replace(
                 target_decl,
                 "theorem transitive_action_forces_uniform_weights_general : (0 : Nat) < 1 := by omega\n",
+                1,
+            ),
+            "remove_der30": original.replace(target_der30, "", 1),
+            "weaken_der30": original.replace(
+                target_der30,
+                "theorem triangle_f2_exact_iff : (0 : Nat) < 1 := by omega\n",
                 1,
             ),
         }
@@ -207,7 +233,10 @@ class CompilableMutationTests(unittest.TestCase):
                 with self.subTest(label=label), patch.object(checker, "ROOT", root):
                     (root / "lean/LocalGlobalObstruction.lean").write_bytes(source.encode("utf-8"))
                     actual = checker.check("LocalGlobalObstruction")
-                    self.assertEqual(actual["theorems_checked"], 29 if label == "remove" else 30)
+                    self.assertEqual(
+                        actual["theorems_checked"],
+                        35 if label.startswith("remove") else 36,
+                    )
                     if label == "weaken":
                         self.assertEqual(
                             expected["dependencies"]["transitive_action_forces_uniform_weights_general"],
@@ -215,6 +244,15 @@ class CompilableMutationTests(unittest.TestCase):
                         )
                         self.assertEqual(
                             set(actual["dependencies"]["transitive_action_forces_uniform_weights_general"]),
+                            {"propext", "Quot.sound"},
+                        )
+                    if label == "weaken_der30":
+                        self.assertEqual(
+                            expected["dependencies"]["triangle_f2_exact_iff"],
+                            [],
+                        )
+                        self.assertEqual(
+                            set(actual["dependencies"]["triangle_f2_exact_iff"]),
                             {"propext", "Quot.sound"},
                         )
                     with self.assertRaises(RuntimeError):

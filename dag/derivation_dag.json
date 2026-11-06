@@ -10,7 +10,7 @@
   },
   "buckets": {
     "DERIVED": {
-      "count": 27,
+      "count": 30,
       "definition": "Checked in Lean 4.33.0 (constructive core, zero sorry, zero Classical.choice, zero Mathlib, allowed axioms restricted to propext and Quot.sound) and/or stdlib Python check scripts with source-bound verification receipts in docs/."
     },
     "OWED": {
@@ -45,7 +45,7 @@
       "module": "TorsorAndOperations",
       "source": "lean/TorsorAndOperations.lean",
       "receipt": "docs/torsor_and_operations_verification.json",
-      "theorems_checked": 36
+      "theorems_checked": 42
     },
     {
       "module": "MinimalSeparation",
@@ -63,13 +63,13 @@
       "module": "LocalGlobalObstruction",
       "source": "lean/LocalGlobalObstruction.lean",
       "receipt": "docs/local_global_obstruction_verification.json",
-      "theorems_checked": 30
+      "theorems_checked": 36
     },
     {
       "module": "InternalMetatheory",
       "source": "lean/InternalMetatheory.lean",
       "receipt": "docs/internal_metatheory_verification.json",
-      "theorems_checked": 29
+      "theorems_checked": 35
     },
     {
       "module": "ProfilePreorderAndGenerator",
@@ -808,7 +808,7 @@
         "RT-06",
         "RT-12"
       ],
-      "statement": "DERIVED_CONDITIONALLY: Shows in Lean exact commutation between two simplified models (WDPWorld and HWorld via stepWDPWorld/stepHWorld in oq08_refinement_commutes_at_zero_adm_ret_cost and stepWDPWorldGuarded/stepHWorldGuarded in rt12_guarded_refinement_commutes_at_zero_adm_ret_cost) at cSup = 0, cAdm = 0, cRet = 0, cEv = 1, where stepHWorldGuarded checks 1 <= w.budget and carrier index v < w.toks.length. This simplified model omits three augmentation guards present in pinned legacy Represented.World (19L57G1/Represented.lean:105-120): view novelty !(decide (c in w.views)), strict separation increase increaseB w c, and augmentation licensing w.augLicensed. Concrete discrepancy regressions and adapted FullWDPWorld commutation are recorded in DER-19; the full source-level bridge from prose WDP-CH01-D03 to legacy Represented/Horizon remains open in OWE-12.",
+      "statement": "In a simplified horizon model (WDPWorld / HWorld) that omits Represented.World guard conditions, guarded refinement steps commute with projection at c_adm = c_ret = 0 (rt12_guarded_refinement_commutes_at_zero_adm_ret_cost); DER-19 and DER-28 establish the 4 concrete guard-discrepancy regressions, adapted 5-gate FullWDPWorld single-step and multi-step replay commutation, and exact singleton-view HWorld-to-Represented guard equivalence (embedHWorld_addView_accepted_iff), while non-singleton multi-locus prose WDP-CH01-D03 alignment remains OWED (OWE-12).",
       "artifacts": {
         "lean_file": "lean/RetentionAndRefusal.lean",
         "lean_theorems": [
@@ -1123,7 +1123,7 @@
         "RT-11",
         "RT-12"
       ],
-      "statement": "Audit check suites and Lean 4.33.0 regressions across OQ-01 through OQ-08 and RT-01 through RT-12, including four concrete OQ-08 guard-discrepancy regressions between simplified stepHWorldGuarded and pinned legacy Represented.World (singleton non-separating view addView [0] on data=[0], duplicate view rejection, disabled augmentation license rejection, and novel view with zero new separation rejection) and adapted 5-gate FullWDPWorld commutation with Represented.step at zero admission/retention cost. OQ-05 is discharged in DER-08 and DER-24 (formerly OWE-11), while OQ-08 remains DERIVED_CONDITIONALLY in DER-12 with its unconstructed source bridge tracked in OWE-12.",
+      "statement": "Exhibits 4 concrete regressions where legacy Represented.World refuses an addView event accepted by simplified HWorld (oq08_singleton_discrepancy_regression, oq08_duplicate_view_regression, oq08_disabled_license_regression, oq08_no_new_separation_regression) and shows that an adapted 5-gate FullWDPWorld commutes at c_adm = c_ret = 0 (oq08_full_guard_refinement_commutes_at_zero_adm_ret_cost; extended to multi-step traces and exact singleton-view guard equivalence in DER-28).",
       "artifacts": {
         "python_checks": [
           "audit/2026-11-05_minimal_chain/2_mark_checks.py",
@@ -1563,6 +1563,135 @@
       "defines_admissions": []
     },
     {
+      "id": "DER-28",
+      "code": "SLICE-XIII-SINGLETON-VIEW-EMBEDDING-AND-FULL-REPLAY-BRIDGE",
+      "bucket": "DERIVED",
+      "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
+      "layer": "5_INTERNAL_METATHEORY",
+      "title": "FullWDPWorld Multi-Step Trace Replay Commutation and Exact Singleton-View HWorld-to-Represented Guard Equivalence",
+      "statement": "Establishes multi-step trace commutation between FullWDPWorld and pinned legacy Represented.World replay at zero admission/retention cost (oq08_full_guard_trace_commutes_at_zero_adm_ret_cost), constructs the singleton-view embedding embedHWorld : HWorld -> Bool -> World and event map embedHEv : HEv -> Event (singleton_view_bounded_eq, singleton_view_mem_map_iff), shows unconditional commutation on admitTok, require, and setBudget events (embedHWorld_commutes_admit_require_budget), and characterizes exact addView step agreement iff v notin hw.views, increaseB (embedHWorld hw licensed) [v] = true, and licensed = true (embedHWorld_addView_commutes_of_novel_separating_licensed, embedHWorld_addView_accepted_iff), narrowing OWE-12 to non-singleton multi-locus views and prose-level cost-accounting reconciliation.",
+      "research_map_refs": [
+        "N17",
+        "OQ-08",
+        "RT-12"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "S4_retention_state_bit",
+        "S5_additive_cost_target"
+      ],
+      "artifacts": {
+        "lean_file": "lean/InternalMetatheory.lean",
+        "lean_module": "InternalMetatheory",
+        "receipt_json": "docs/internal_metatheory_verification.json",
+        "lean_theorems": [
+          "oq08_full_guard_trace_commutes_at_zero_adm_ret_cost",
+          "singleton_view_bounded_eq",
+          "singleton_view_mem_map_iff",
+          "embedHWorld_commutes_admit_require_budget",
+          "embedHWorld_addView_commutes_of_novel_separating_licensed",
+          "embedHWorld_addView_accepted_iff"
+        ],
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py",
+          "tests/test_orbit_decomposed_l1_weights.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md",
+          "docs/research_map.md",
+          "dag/README.md"
+        ]
+      },
+      "defines_admissions": []
+    },
+    {
+      "id": "DER-29",
+      "code": "SLICE-XIV-PAIR-QUOTIENT-MULTIPLICITY-AND-SYMMETRY-FLOOR-BRIDGE",
+      "bucket": "DERIVED",
+      "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
+      "layer": "1_PRE_SEAL_MARK_AND_TORSOR",
+      "title": "Endogenous Pair-Quotient Multiplicity Bridge (Bool × Bool → Fin 3) and S2Bool × S2Bool Symmetry-Floor Intertwiners",
+      "statement": "Constructs the 4-element pair space Bool x Bool with diagonal S2Bool action diagSwap and coordinate exchange transposePair (diagSwap_involutive_and_free, transposePair_fixed_iff_diagonal) and exhibits two canonical surjective 3-class quotients pairToFin3 and pairToFin3Dual onto Fin 3 (pairToFin3_surjective, pairToFin3_kernel_iff) that collapse the diagonal or off-diagonal orbit to the fixed point 0 of swap3 and intertwine diagSwap / transposePair with swap3 and offer12 (pairToFin3_intertwines_swap3_and_offer12, pairToFin3Dual_intertwines_swap3), narrowing OWE-06 to non-quotient single-copy carrier extension beyond 2 elements without product formation.",
+      "research_map_refs": [
+        "N10",
+        "N12",
+        "N16"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "S2_symmetric_closure"
+      ],
+      "artifacts": {
+        "lean_file": "lean/TorsorAndOperations.lean",
+        "lean_module": "TorsorAndOperations",
+        "receipt_json": "docs/torsor_and_operations_verification.json",
+        "lean_theorems": [
+          "diagSwap_involutive_and_free",
+          "transposePair_fixed_iff_diagonal",
+          "pairToFin3_surjective",
+          "pairToFin3_kernel_iff",
+          "pairToFin3_intertwines_swap3_and_offer12",
+          "pairToFin3Dual_intertwines_swap3"
+        ],
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py",
+          "tests/test_orbit_decomposed_l1_weights.py"
+        ],
+        "doc_refs": [
+          "docs/research_map.md",
+          "dag/README.md"
+        ]
+      },
+      "defines_admissions": []
+    },
+    {
+      "id": "DER-30",
+      "code": "SLICE-XV-SIMPLICIAL-COCHAIN-EXACTNESS-AND-PRIMAL-DUAL-L1-MIN",
+      "bucket": "DERIVED",
+      "status_detail": "LEAN4_AND_PYTHON_VERIFIED",
+      "layer": "4_LOCAL_GLOBAL_AND_L1_GEOMETRY",
+      "title": "Triangle and Tetrahedron Simplicial Cochain Exactness (ker d1 = im d0 on Δ², ker d2 = im d1 on Δ³) and Primal-Dual L1 Minimum Defect Theorem",
+      "statement": "Establishes exactness of the simplicial cochain complexes on the 2-simplex Delta^2 over F2 and Z (ker d1 = im d0 via explicit rooted primitives primTriangleF2 and primTriangleInt in triangle_f2_exact_iff and triangle_int_exact_iff) and on the 3-simplex tetrahedron Delta^3 over Z (ker d2 = im d1 via primTet1Int in tet_int_exact_iff), and establishes the primal-dual L1 minimum defect theorem on Delta^2 showing that d1SignedCycInt is gauge-invariant across all 0-cochain shifts (d1SignedCycInt_residual_invariant), |d1 h| lower-bounds ||h - d0 c||_1 for every c in C^0 (triangle_l1_weak_duality_bound), and c* = primTriangleInt h attains ||h - d0 c*||_1 = |d1 h| with zero duality gap (triangle_l1_strong_duality_attained), narrowing OWE-10 and grounding IMG-01.",
+      "research_map_refs": [
+        "N26",
+        "N27",
+        "N28",
+        "N30",
+        "OQ-02",
+        "RT-04"
+      ],
+      "unpriced_inputs_or_admissions": [
+        "S0_lean_core_host",
+        "M1_carrier_multiplicity",
+        "S5_additive_cost_target"
+      ],
+      "artifacts": {
+        "lean_file": "lean/LocalGlobalObstruction.lean",
+        "lean_module": "LocalGlobalObstruction",
+        "receipt_json": "docs/local_global_obstruction_verification.json",
+        "lean_theorems": [
+          "triangle_f2_exact_iff",
+          "triangle_int_exact_iff",
+          "tet_int_exact_iff",
+          "d1SignedCycInt_residual_invariant",
+          "triangle_l1_weak_duality_bound",
+          "triangle_l1_strong_duality_attained"
+        ],
+        "python_checks": [
+          "audit/2026-11-05_minimal_chain/11_oq05_to_oq08_checks.py",
+          "tests/test_orbit_decomposed_l1_weights.py"
+        ],
+        "doc_refs": [
+          "audit/2026-11-05_minimal_chain/8_open.md",
+          "audit/2026-11-05_minimal_chain/12_post_seal_adversary_and_roadmap.md",
+          "docs/research_map.md",
+          "dag/README.md"
+        ]
+      },
+      "defines_admissions": []
+    },
+    {
       "id": "OWE-05",
       "code": "PG-R-GAP-DIAMOND-TO-ROOT",
       "title": "Pre-Genesis Diamond-to-Root Bridge Obligation",
@@ -1599,7 +1728,7 @@
         "N10",
         "N12"
       ],
-      "statement": "Moving from the sealed 2-position mark S2Bool to a finite multi-element window Fin n (n >= 3) requires an explicit multiplicity admission (M1) or iterated product construction (M2/M3) rather than emerging from S2Bool alone.",
+      "statement": "In lean/TorsorAndOperations.lean (DER-29), the 4-element pair space Bool x Bool under the diagonal S2Bool action diagSwap and coordinate exchange transposePair admits two canonical surjective 3-class quotients pairToFin3 and pairToFin3Dual onto Fin 3 (pairToFin3_surjective, pairToFin3_kernel_iff) that intertwine diagSwap and transposePair with swap3 and offer12 (pairToFin3_intertwines_swap3_and_offer12, pairToFin3Dual_intertwines_swap3). Generating a 3-element carrier from a single unpointed Bool copy without forming pairs Bool x Bool or supplying an external index type remains an explicit unfreezing admission (M1).",
       "artifacts": {
         "python_checks": [
           "audit/2026-11-05_minimal_chain/4_frozen_checks.py"
@@ -1721,7 +1850,7 @@
         "N25",
         "N26"
       ],
-      "statement": "The historical profile preorder / unconditional closure claims (N23, N25, N26) and any downstream continuum real completeness require explicit ordering, closure-policy, or infinite completion admissions beyond finite counting and rational defect ratios.",
+      "statement": "In lean/LocalGlobalObstruction.lean (DER-13 and DER-30), triangle and tetrahedron coboundaries satisfy d1 o d0 = 0 and d2 o d1 = 0, every cocycle on Delta^2 (over F2 and Z) and Delta^3 (over Z) is a coboundary via explicit rooted primitives (triangle_f2_exact_iff, triangle_int_exact_iff, tet_int_exact_iff), and the primal-dual L1 minimum gauge residual on Delta^2 satisfies min_{c in C^0} ||h - d0 c||_1 = |d1 h| attained at primTriangleInt h (triangle_l1_weak_duality_bound, triangle_l1_strong_duality_attained). Endogenous emergence of the simplicial incidence complex without pre-declaring the 3-vertex/4-vertex carrier and primal-dual L1 certification on multi-triangle 2-complexes remain OWED.",
       "artifacts": {
         "python_checks": [
           "audit/2026-11-05_minimal_chain/5_forcing_checks.py"
@@ -1749,7 +1878,7 @@
         "OQ-08"
       ],
       "title": "Source-Level Bridge Between Prose WDP-CH01-D03 and Pinned Legacy Represented/Horizon (OQ-08)",
-      "statement": "OWED: While DER-12 shows in Lean commutation between simplified models (WDPWorld and HWorld) and DER-19 shows both the 4 concrete guard-discrepancy regressions and commutation for the adapted 5-gate FullWDPWorld model, the prose ledger specification WDP-CH01-D03 in theory_of_finite_quantum_mechanics (witnessed_difference_programme.md:513-530, commit e45ed2e133920aa3790af8c5e072ee9829898490) does not define data-subset views, view novelty, increaseB separation checks, or augLicensed gating from 19L57G1/Represented.lean and Horizon.lean (commit 45bb09864f9b52ed5ecf66e977ca81f0ed623de7). Establishing a non-adapted source-level equivalence remains open.",
+      "statement": "In lean/InternalMetatheory.lean (DER-19 and DER-28), adapted 5-gate FullWDPWorld commutes with Represented.replay over arbitrary finite event traces at c_adm = c_ret = 0 (oq08_full_guard_trace_commutes_at_zero_adm_ret_cost), and the singleton-view embedding embedHWorld : HWorld -> Bool -> World commutes unconditionally on admitTok, require, and setBudget (embedHWorld_commutes_admit_require_budget) and commutes on addView v (for 1 <= budget and v < toks.length) iff v notin hw.views, increaseB (embedHWorld hw licensed) [v] = true, and licensed = true (embedHWorld_addView_accepted_iff). Reconciling non-singleton multi-locus views and prose WDP-CH01-D03 positive admission/retention cost accounting with legacy Represented.World remains OWED.",
       "unpriced_inputs_or_admissions": [
         "wdp_ch01_d03_full_represented_world_bridge_admission"
       ],
@@ -1811,7 +1940,7 @@
         "N28",
         "N30"
       ],
-      "statement": "Generalize the 2-simplex triangle and 3-simplex tetrahedron boundary theorems in LocalGlobalObstruction.lean to arbitrary k-dimensional semi-simplicial complexes, non-abelian Cech 1-cocycles, and exact primal-dual L1 minimal repair witnesses.",
+      "statement": "Building on the verified Delta^2 (over F2 and Z) and Delta^3 (over Z) cochain exactness and Delta^2 primal-dual L1 minimum defect theorems in DER-30 (triangle_f2_exact_iff, triangle_int_exact_iff, tet_int_exact_iff, triangle_l1_weak_duality_bound, triangle_l1_strong_duality_attained), construct arbitrary k-simplex cochain complexes (k >= 3) and general multi-simplex L1 primal-dual minimum-defect certifiers for WDP compatibility tables.",
       "artifacts": {
         "doc_refs": [
           "audit/2026-11-05_minimal_chain/10_post_seal_inventory.md",
@@ -2778,6 +2907,102 @@
       "to": "OWE-13",
       "kind": "motivates_bridge",
       "note": "Radius-d interior profile collisions in reflState isolate the open multi-round retention scaling and repair persistence obligation."
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-28",
+      "note": "Uses Lean 4 core types, Bool, Nat, and List for FullWDPWorld replay and singleton-view embedding",
+      "kind": "requires_admission"
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-28",
+      "note": "Uses S4 retention state bit and S5 additive cost target for FullWDPWorld and embedHWorld",
+      "kind": "requires_admission"
+    },
+    {
+      "from": "DER-09",
+      "to": "DER-28",
+      "note": "RetentionAndRefusal HWorld and WDPWorld semantics ground the singleton-view embedding embedHWorld into Represented.World",
+      "kind": "derives"
+    },
+    {
+      "from": "DER-19",
+      "to": "DER-28",
+      "note": "Single-step FullWDPWorld commutation and 4 guard regressions lift to multi-step trace replay commutation and exact embedHWorld addView guard iff",
+      "kind": "derives"
+    },
+    {
+      "from": "DER-28",
+      "to": "OWE-12",
+      "note": "Exact singleton-view guard equivalence (v notin hw.views, increaseB = true, licensed = true) narrows OWE-12 to non-singleton multi-locus views",
+      "kind": "motivates_bridge"
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-29",
+      "note": "Uses Lean 4 core Bool x Bool and Fin 3 types for endogenous pair-quotient multiplicity",
+      "kind": "requires_admission"
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-29",
+      "note": "Uses S2 symmetric closure on Bool x Bool to quotient diagonal/off-diagonal C2 orbits onto Fin 3",
+      "kind": "requires_admission"
+    },
+    {
+      "from": "DER-02",
+      "to": "DER-29",
+      "note": "S2Bool and C2 torsor action induce the 4-element pair space Bool x Bool with diagSwap and transposePair",
+      "kind": "derives"
+    },
+    {
+      "from": "DER-03",
+      "to": "DER-29",
+      "note": "SymmetryFloor swap3 and offer12 on Fin 3 are intertwined by the endogenous pair quotients pairToFin3 and pairToFin3Dual",
+      "kind": "derives"
+    },
+    {
+      "from": "DER-29",
+      "to": "OWE-06",
+      "note": "Endogenous Bool x Bool -> Fin 3 pair quotient narrows OWE-06 to non-product single-copy carrier generation beyond 2 elements",
+      "kind": "motivates_bridge"
+    },
+    {
+      "from": "OWE-01",
+      "to": "DER-30",
+      "note": "Uses Lean 4 core Bool, Int, and Nat arithmetic for simplicial cochain exactness and L1 duality",
+      "kind": "requires_admission"
+    },
+    {
+      "from": "OWE-03",
+      "to": "DER-30",
+      "note": "Uses S5 additive L1 norm target for primal-dual minimum defect on Delta^2",
+      "kind": "requires_admission"
+    },
+    {
+      "from": "OWE-04",
+      "to": "DER-30",
+      "note": "Uses M1 carrier multiplicity (3-vertex triangle Delta^2 and 4-vertex tetrahedron Delta^3)",
+      "kind": "requires_admission"
+    },
+    {
+      "from": "DER-13",
+      "to": "DER-30",
+      "note": "Triangle and tetrahedron coboundaries d0/d1/d2 extend to exactness (ker d1 = im d0, ker d2 = im d1) and primal-dual L1 minimum defect",
+      "kind": "derives"
+    },
+    {
+      "from": "DER-30",
+      "to": "OWE-10",
+      "note": "Explicit rooted cochain primitives and L1 strong duality on Delta^2/Delta^3 narrow OWE-10 to endogenous simplicial complex emergence",
+      "kind": "motivates_bridge"
+    },
+    {
+      "from": "DER-30",
+      "to": "IMG-01",
+      "note": "Delta^2/Delta^3 cochain exactness and Delta^2 primal-dual L1 minimum defect ground higher-complex L1 dual witness certification",
+      "kind": "extends_to"
     }
   ],
   "admissions_catalog": {

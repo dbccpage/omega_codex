@@ -85,6 +85,123 @@ class OrbitDecomposedL1WeightsTests(unittest.TestCase):
                         w[0] * checks.unweighted_l1_gen(v, n5),
                     )
 
+    def test_der28_singleton_view_embedding_and_full_guard_replay(self):
+        # Boundary case: empty event trace []
+        w0_full = ((), (), (), (), (), 1, True, (), 0)
+        self.assertEqual(
+            checks.proj_to_represented_world(w0_full),
+            checks.replay_represented_world((), checks.proj_to_represented_world(w0_full)),
+        )
+
+        # Multi-step trace covering all 8 Event constructors at horizonSpecializationCosts = (0,0,0,1)
+        all_eight_trace = [
+            ("admitTok", 10),
+            ("admitTok", 20),
+            ("require", 0, 1),
+            ("setBudget", 2),
+            ("addView", (0,)),
+            ("mark", (0,), 1),
+            ("refuse", 0, 1),
+            ("note", 42),
+            ("setAugLicense", False),
+        ]
+        wf = w0_full
+        for ev in all_eight_trace:
+            wf = checks.step_full_wdp_world((0, 0, 0, 1), wf, ev)
+        self.assertEqual(
+            checks.proj_to_represented_world(wf),
+            checks.replay_represented_world(all_eight_trace, checks.proj_to_represented_world(w0_full)),
+        )
+
+        # Singleton view carrier bound & membership equivalences (including empty list / n=0)
+        for n in range(4):
+            for v in range(4):
+                self.assertEqual(all(p < n for p in (v,)), v < n)
+        for vs in ((), (0,), (1, 2), (0, 1, 2)):
+            mapped = tuple((u,) for u in vs)
+            for v in range(4):
+                self.assertEqual((v,) in mapped, v in vs)
+
+        # Novel, separating, licensed addView commutes even when budget == 0 or v >= len(toks)
+        for budget in (0, 1, 2):
+            hw = ((10, 20), ((0, 1),), (), budget)
+            for v in (0, 1, 2):
+                if v < len(hw[0]):
+                    self.assertTrue(checks.increase_b(len(hw[0]), checks.embed_hworld(hw, True)[1], (v,)))
+                lhs = checks.embed_hworld(checks.step_hworld_guarded(hw, ("addView", v)), True)
+                rhs = checks.step_represented_world(checks.embed_hworld(hw, True), ("addView", (v,)))
+                self.assertEqual(lhs, rhs)
+
+        # Exact iff characterization when budget >= 1 and v < len(toks)
+        hw_cases = [
+            ((10,), (), (), 1),            # singleton carrier: increaseB is False
+            ((10, 20), ((0, 1),), (), 1),  # novel separating view
+            ((10, 20), ((0, 1),), (0,), 1),  # v=0 duplicate, v=1 no new separation
+        ]
+        for hw in hw_cases:
+            for licensed in (False, True):
+                for v in range(len(hw[0])):
+                    lhs = checks.embed_hworld(checks.step_hworld_guarded(hw, ("addView", v)), licensed)
+                    rhs = checks.step_represented_world(checks.embed_hworld(hw, licensed), ("addView", (v,)))
+                    expected = (
+                        (v not in hw[2])
+                        and checks.increase_b(len(hw[0]), checks.embed_hworld(hw, licensed)[1], (v,))
+                        and licensed
+                    )
+                    self.assertEqual(lhs == rhs, expected)
+
+    def test_der29_pair_quotient_multiplicity_and_symmetry_floor(self):
+        pairs = list(itertools.product((False, True), repeat=2))
+        self.assertEqual({checks.pair_to_fin3(p) for p in pairs}, {0, 1, 2})
+        self.assertEqual({checks.pair_to_fin3_dual(p) for p in pairs}, {0, 1, 2})
+        for p in pairs:
+            self.assertEqual(checks.diag_swap(checks.diag_swap(p)), p)
+            self.assertNotEqual(checks.diag_swap(p), p)
+            self.assertEqual(checks.diag_swap(p)[0] ^ checks.diag_swap(p)[1], p[0] ^ p[1])
+            self.assertEqual(checks.transpose_pair(checks.transpose_pair(p)), p)
+            self.assertEqual(checks.transpose_pair(p) == p, not (p[0] ^ p[1]))
+            self.assertEqual(checks.pair_to_fin3(checks.diag_swap(p)), checks.swap3(checks.pair_to_fin3(p)))
+            self.assertEqual(checks.pair_to_fin3(checks.transpose_pair(p)), checks.swap3(checks.pair_to_fin3(p)))
+            self.assertEqual(checks.offer12(checks.pair_to_fin3(p)), p[0] ^ p[1])
+            self.assertEqual(checks.pair_to_fin3_dual(checks.diag_swap(p)), checks.swap3(checks.pair_to_fin3_dual(p)))
+            self.assertEqual(checks.pair_to_fin3_dual(checks.transpose_pair(p)), checks.pair_to_fin3_dual(p))
+            self.assertEqual(checks.offer12(checks.pair_to_fin3_dual(p)), not (p[0] ^ p[1]))
+            for q in pairs:
+                self.assertEqual(
+                    checks.pair_to_fin3(p) == checks.pair_to_fin3(q),
+                    p == q or ((not (p[0] ^ p[1])) and (not (q[0] ^ q[1]))),
+                )
+
+    def test_der30_simplicial_cochain_exactness_and_primal_dual_l1_min(self):
+        # F2 triangle exactness on all 8 cochains
+        for h_f2 in itertools.product((False, True), repeat=3):
+            closed = not checks.d1_unsigned_f2(h_f2)
+            self.assertEqual(closed, checks.d0_unsigned_f2(checks.prim_triangle_f2(h_f2)) == h_f2)
+            self.assertEqual(
+                closed,
+                any(checks.d0_unsigned_f2(c) == h_f2 for c in itertools.product((False, True), repeat=3)),
+            )
+
+        # Z triangle exactness and primal-dual L1 minimum defect (including 0, positive, negative curl)
+        for h_int in ((0, 0, 0), (1, 1, 1), (-2, -3, 1), (3, -1, 2), (-1, 4, 3)):
+            d1_val = checks.d1_signed_cyc_int(h_int)
+            self.assertEqual(d1_val == 0, checks.d0_signed_int(checks.prim_triangle_int(h_int)) == h_int)
+            res_prim = checks.residual_cochain1_int(h_int, checks.prim_triangle_int(h_int))
+            self.assertEqual(res_prim, (0, d1_val, 0))
+            self.assertEqual(checks.norm_l1(res_prim), abs(d1_val))
+            for c_int in itertools.product(range(-3, 4), repeat=3):
+                res = checks.residual_cochain1_int(h_int, c_int)
+                self.assertEqual(checks.d1_signed_cyc_int(res), d1_val)
+                self.assertLessEqual(abs(d1_val), checks.norm_l1(res))
+
+        # Z tetrahedron 2-cochain exactness (ker d2 == im d1)
+        for f_tet in ((0, 0, 0, 0), (2, 3, 2, 1), (1, 1, 1, 1), (-2, 1, -1, 2), (5, 2, -1, 3)):
+            d2_val = checks.d2_tet_signed(f_tet)
+            self.assertEqual(d2_val == 0, checks.d1_tet_signed(checks.prim_tet1_int(f_tet)) == f_tet)
+            if d2_val != 0:
+                for h_tet in itertools.product(range(-1, 2), repeat=6):
+                    self.assertNotEqual(checks.d1_tet_signed(h_tet), f_tet)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -353,12 +353,12 @@ for equivalences. The preorder's directed `not E` is distinct from symmetric cla
 inequality. The review approves the argument but requests a separate formalization
 slice; none of these proposed new theorems is marked checked here.
 
-### Minimal-chain reconstruction, OQ-05 class-count bridge, N19-N20 holonomy/stick-threshold, N22 retention scaling, and OQ-07 orbit-weight refresh
+### Minimal-chain reconstruction, OQ-05 class-count bridge, N19-N20 holonomy/stick-threshold, N22 retention scaling, OQ-07 orbit weights, OQ-08 singleton-view embedding, pair-quotient Fin 3 multiplicity, and Δ²/Δ³ cochain exactness refresh
 
 Nine Lean 4.33.0 modules now build in `lean/` (`PrimitiveDifference`,
 `MirrorNonIdentification`, `ZeroEquivalence`, `TorsorAndOperations`,
 `MinimalSeparation`, `RetentionAndRefusal`, `LocalGlobalObstruction`,
-`InternalMetatheory`, and `ProfilePreorderAndGenerator`), covering 380 checked
+`InternalMetatheory`, and `ProfilePreorderAndGenerator`), covering 398 checked
 theorem declarations across nine verification receipts in `docs/*_verification.json`
 with allowed axioms restricted to `propext` and `Quot.sound` (zero `Classical.choice`,
 zero `sorry`). In `lean/MinimalSeparation.lean`, exact well-formed context
@@ -396,8 +396,6 @@ characterization (`swap23_invariant_iff_orbit_constant`,
 `three_edge_symmetry_weight_hierarchy`, `weightedL1Gen_unitCochain`,
 `symmetry_forces_step_equal_weights_general`,
 `symmetry_forces_orbit_equal_weights_general`, `uniform_weights_factor_l1_general`,
-`transitive_action_forces_uniform_weights_general`), narrowing `OWE-09` in
-[`dag/derivation_dag.json`](../dag/derivation_dag.json) (49 nodes, 122 directed
-edges, 57 `requires_admission` edges).
+`transitive_action_forces_uniform_weights_general`), narrowing `OWE-09`; and Section 6 (`DER-30`) establishes simplicial cochain exactness on $\Delta^2$ over $\mathbb{F}_2$ and $\mathbb{Z}$ (`triangle_f2_exact_iff`, `triangle_int_exact_iff`) and on $\Delta^3$ over $\mathbb{Z}$ (`tet_int_exact_iff`) together with the primal–dual $L^1$ minimum defect theorem $\min_{c \in C^0} \|h - d_0 c\|_1 = |d_1 h|$ on $\Delta^2$ (`d1SignedCycInt_residual_invariant`, `triangle_l1_weak_duality_bound`, `triangle_l1_strong_duality_attained`), narrowing `OWE-10` and grounding `IMG-01`. In `lean/TorsorAndOperations.lean` (`DER-29`), Section 7 constructs the 4-element pair space `Bool × Bool` with `diagSwap` and `transposePair` (`diagSwap_involutive_and_free`, `transposePair_fixed_iff_diagonal`) and exhibits surjective 3-class quotients `pairToFin3` and `pairToFin3Dual` onto `Fin 3` (`pairToFin3_surjective`, `pairToFin3_kernel_iff`) intertwining `swap3` and `offer12` (`pairToFin3_intertwines_swap3_and_offer12`, `pairToFin3Dual_intertwines_swap3`), narrowing `OWE-06`. In `lean/InternalMetatheory.lean` (`DER-28`), Section 6 establishes multi-step `FullWDPWorld` trace replay commutation (`oq08_full_guard_trace_commutes_at_zero_adm_ret_cost`) and the singleton-view embedding `embedHWorld : HWorld → Bool → World` with exact `addView` guard equivalence (`embedHWorld_commutes_admit_require_budget`, `embedHWorld_addView_commutes_of_novel_separating_licensed`, `embedHWorld_addView_accepted_iff`), narrowing `OWE-12` in [`dag/derivation_dag.json`](../dag/derivation_dag.json) (52 nodes, 138 directed edges, 64 `requires_admission` edges).
 
 

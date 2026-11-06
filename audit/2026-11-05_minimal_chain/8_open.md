@@ -258,7 +258,7 @@ Pasted output:
      - `oq08_duplicate_view_regression`: When `views` already contains `[1]` at `budget=1`, `Represented.step` rejects a duplicate `addView [1]` (`!(decide (c ∈ w.views)) = false`) and preserves `budget=1`, whereas `stepHWorldGuarded` deduplicates `views` via `insertNewNat` to `[1]` and debits `budget` from `1` to `0`.
      - `oq08_disabled_license_regression`: When `augLicensed = false`, `Represented.step` rejects `addView [1]`, whereas `stepHWorldGuarded` has no license field and accepts `addView 1`.
      - `oq08_no_new_separation_regression`: On `data=[0, 1]` with `views=[[0]]` (so `(0, 1)` is already separated), `Represented.step` rejects novel `addView [1]` because `increaseB` is `false`, whereas `stepHWorldGuarded` accepts `addView 1`.
-  3. **Adapted 5-gate commutation (`oq08_full_guard_refinement_commutes_at_zero_adm_ret_cost` in `InternalMetatheory.lean:790-804`) and remaining `OWED` bridge (`OWE-12`):** Adapting the 5-gate state `FullWDPWorld` to include `augLicensed`, novelty, and `increaseB` restores commutation with `Represented.step` at zero admission/retention cost, but prose `WDP-CH01-D03` (`B/wdp/wdp.md:513-530`, commit `e45ed2e133920aa3790af8c5e072ee9829898490`) does not specify those `Represented.World` structures. Therefore the source-level bridge between prose `WDP-CH01-D03` and legacy `Represented`/`Horizon` remains `OWED` in `OWE-12`.
+  3. **Adapted 5-gate commutation (`oq08_full_guard_refinement_commutes_at_zero_adm_ret_cost` in `InternalMetatheory.lean:790-804`) and remaining `OWED` bridge (`OWE-12`):** Adapting the 5-gate state `FullWDPWorld` to include `augLicensed`, novelty, and `increaseB` restores commutation with `Represented.step` at zero admission/retention cost, but prose `WDP-CH01-D03` (`B/wdp/wdp.md:513-530`, commit `e45ed2e133920aa3790af8c5e072ee9829898490`) does not specify those `Represented.World` structures. Section 6 (`DER-28`) extends this to multi-step trace replay (`oq08_full_guard_trace_commutes_at_zero_adm_ret_cost`) and the singleton-view embedding `embedHWorld : HWorld → Bool → World`, showing that `addView v` commutes (for `1 ≤ hw.budget`, `v < hw.toks.length`) iff `v ∉ hw.views ∧ increaseB (embedHWorld hw licensed) [v] = true ∧ licensed = true` (`embedHWorld_addView_accepted_iff`), narrowing `OWE-12` to non-singleton multi-locus views and positive $c_{\text{adm}}/c_{\text{ret}}$ prose `WDP-CH01-D03` reconciliation.
 
 ---
 
@@ -340,5 +340,10 @@ Pasted output:
   (2) Duplicate view [1]:              HWorld views=[1] (budget=0) vs Represented views=[[1]] (budget=1, novel=False)
   (3) Disabled augLicensed=False:      HWorld views=[1] (budget=0) vs Represented views=[] (budget=1, licensed=False)
   (4) Novel view [1] with 0 new sep:   HWorld views=[0, 1] (budget=0) vs Represented views=[[0]] (budget=1, increaseB=False)
+
+=== [6] DER-28 / DER-29 / DER-30: EMBEDDING GUARD IFF, PAIR QUOTIENT Fin 3, & COCHAIN EXACTNESS / L1 DUALITY ===
+  DER-28 FullWDPWorld replay traces(len<=3)=258 (mismatches=0), addView guard-iff cases=20 (mismatches=0)
+  DER-29 Bool x Bool -> Fin 3: surjectivity, kernel iff, and diagSwap/transposePair swap3 intertwiners verified on all 4x4 pairs
+  DER-30 Exactness & L1 duality: F2=8/8, Z-triangle=125 (min ||h-d0 c||_1 == |d1 h|), Z-tetrahedron=81 (ker d2 == im d1)
 ```
 

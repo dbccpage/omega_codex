@@ -1,15 +1,15 @@
 {
   "verified": true,
   "source": "lean/InternalMetatheory.lean",
-  "source_sha256": "1bb426804d1671c0318c4e991ef1557f1cbc510779b84e8828622dd1d34142bd",
+  "source_sha256": "2b27bb8c31da5da51bbbef1a7c83067a38d0c9b00bdd8f483df0ee187b5f741c",
   "direct_imports": {
-    "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
+    "lean/TorsorAndOperations.lean": "31075824461ac020eeed8ee24a13a87022631953d9a2f43a81ed60b49653dcb0",
     "lean/MinimalSeparation.lean": "909c6e2e1d9102d92d5352ba05990a9d17e888166ab4709b32b34d900504530f",
     "lean/RetentionAndRefusal.lean": "2734680344a49f7066e784cc9380f43518edb8ec4173f3d898d20d3ed69675bc"
   },
   "toolchain": "leanprover/lean4:v4.33.0",
   "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
-  "theorems_checked": 29,
+  "theorems_checked": 35,
   "allowed_axioms": [
     "Quot.sound",
     "propext"
@@ -103,6 +103,27 @@
       "Quot.sound"
     ],
     "oq08_full_guard_refinement_commutes_at_zero_adm_ret_cost": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_full_guard_trace_commutes_at_zero_adm_ret_cost": [
+      "propext",
+      "Quot.sound"
+    ],
+    "singleton_view_bounded_eq": [],
+    "singleton_view_mem_map_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "embedHWorld_commutes_admit_require_budget": [
+      "propext",
+      "Quot.sound"
+    ],
+    "embedHWorld_addView_commutes_of_novel_separating_licensed": [
+      "propext",
+      "Quot.sound"
+    ],
+    "embedHWorld_addView_accepted_iff": [
       "propext",
       "Quot.sound"
     ]

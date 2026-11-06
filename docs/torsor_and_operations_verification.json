@@ -1,14 +1,14 @@
 {
   "verified": true,
   "source": "lean/TorsorAndOperations.lean",
-  "source_sha256": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
+  "source_sha256": "31075824461ac020eeed8ee24a13a87022631953d9a2f43a81ed60b49653dcb0",
   "direct_imports": {
     "lean/PrimitiveDifference.lean": "8ea8cc47eae4bedcc2a0e00b6af257313918b2165a159f85f54f866da03d41c8",
     "lean/MirrorNonIdentification.lean": "a215d0b339497db9c5af7c7aaa711c54487c35cb535468303a74382c2da94ad5"
   },
   "toolchain": "leanprover/lean4:v4.33.0",
   "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
-  "theorems_checked": 36,
+  "theorems_checked": 42,
   "allowed_axioms": [
     "propext"
   ],
@@ -61,6 +61,16 @@
     "equivariant_fixed_point_preserved": [],
     "equivariant_family_invariant": [],
     "swap3_deterministic_vs_multi_offer": [
+      "propext"
+    ],
+    "diagSwap_involutive_and_free": [],
+    "transposePair_fixed_iff_diagonal": [],
+    "pairToFin3_surjective": [],
+    "pairToFin3_kernel_iff": [],
+    "pairToFin3_intertwines_swap3_and_offer12": [
+      "propext"
+    ],
+    "pairToFin3Dual_intertwines_swap3": [
       "propext"
     ]
   },

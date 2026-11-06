@@ -610,9 +610,355 @@ def check_oq08():
 
 
 
+
+
+# ============================================================================
+# SECTION 6: DER-28, DER-29, DER-30 -- Singleton-View Embedding & Full-Guard
+# Replay (OWE-12), Pair-Quotient Multiplicity (OWE-06), and Cochain Exactness
+# & Primal-Dual L1 Minimum Defect (OWE-10 / IMG-01)
+# ============================================================================
+
+def req_ok_b(data_len, reqs, i, j):
+    return (i != j) and (i < data_len) and (j < data_len) and ((i, j) not in reqs)
+
+
+def mark_apply_views(views, v, p):
+    return tuple((p,) + c if c == v else c for c in views)
+
+
+def preserves_b(views, views_next, reqs):
+    return all((not sat_b(views, r)) or sat_b(views_next, r) for r in reqs)
+
+
+def discharges_some_b(views, views_next, reqs):
+    return any((r in reqs and not sat_b(views, r)) and sat_b(views_next, r) for r in reqs)
+
+
+def mark_ok_b(data_len, views, reqs, v, p):
+    if not (v in views and p < data_len and p not in v):
+        return False
+    views_next = mark_apply_views(views, v, p)
+    return discharges_some_b(views, views_next, reqs) and preserves_b(views, views_next, reqs)
+
+
+def obstructed_b(data_len, views, reqs, r):
+    if not (r in reqs and not sat_b(views, r)):
+        return False
+    menu = [(v, p) for v in views for p in range(data_len)]
+    return all(
+        not (mark_ok_b(data_len, views, reqs, v, p) and sat_b(mark_apply_views(views, v, p), r))
+        for v, p in menu
+    )
+
+
+def step_represented_world(w, ev):
+    data, views, reqs, refusals, budget, aug_licensed, notes = w
+    kind = ev[0]
+    if kind == "admitTok":
+        t = ev[1]
+        return w if t in data else (data + (t,), views, reqs, refusals, budget, aug_licensed, notes)
+    if kind == "require":
+        i, j = ev[1], ev[2]
+        if req_ok_b(len(data), reqs, i, j):
+            return (data, views, reqs + ((i, j),), refusals, budget, aug_licensed, notes)
+        return w
+    if kind == "mark":
+        v, p = ev[1], ev[2]
+        if mark_ok_b(len(data), views, reqs, v, p) and budget > 0:
+            return (data, mark_apply_views(views, v, p), reqs, refusals, budget - 1, aug_licensed, notes)
+        return w
+    if kind == "addView":
+        c = ev[1]
+        return step_represented_add_view(w, c)
+    if kind == "refuse":
+        i, j = ev[1], ev[2]
+        if obstructed_b(len(data), views, reqs, (i, j)) and (i, j) not in refusals:
+            return (data, views, reqs, refusals + ((i, j),), budget, aug_licensed, notes)
+        return w
+    if kind == "note":
+        return (data, views, reqs, refusals, budget, aug_licensed, notes + (ev[1],))
+    if kind == "setBudget":
+        return (data, views, reqs, refusals, ev[1], aug_licensed, notes)
+    if kind == "setAugLicense":
+        return (data, views, reqs, refusals, budget, ev[1], notes)
+    raise ValueError(f"Unknown event: {ev}")
+
+
+def replay_represented_world(evs, w):
+    curr = w
+    for ev in evs:
+        curr = step_represented_world(curr, ev)
+    return curr
+
+
+def proj_to_represented_world(w_full):
+    _, adm, views, ret, refusals, ledger, aug_licensed, notes, _ = w_full
+    return (adm, views, ret, refusals, ledger, aug_licensed, notes)
+
+
+def step_full_wdp_world(costs, w_full, ev):
+    c_sup, c_adm, c_ret, c_ev = costs
+    sup, adm, views, ret, refusals, ledger, aug_licensed, notes, receipts = w_full
+    pw = proj_to_represented_world(w_full)
+    kind = ev[0]
+    if kind == "admitTok":
+        t = ev[1]
+        cost = c_sup + c_adm
+        if ledger >= cost:
+            adm_next = adm if t in adm else adm + (t,)
+            return (sup + (t,), adm_next, views, ret, refusals, ledger - cost, aug_licensed, notes, receipts)
+        return w_full
+    if kind == "require":
+        i, j = ev[1], ev[2]
+        if ledger >= c_ret and req_ok_b(len(adm), ret, i, j):
+            return (sup, adm, views, ret + ((i, j),), refusals, ledger - c_ret, aug_licensed, notes, receipts)
+        return w_full
+    if kind == "mark":
+        v, p = ev[1], ev[2]
+        if mark_ok_b(len(adm), views, ret, v, p) and ledger >= c_ev:
+            return (
+                sup,
+                adm,
+                mark_apply_views(views, v, p),
+                ret,
+                refusals,
+                ledger - c_ev,
+                aug_licensed,
+                notes,
+                receipts + 1,
+            )
+        return w_full
+    if kind == "addView":
+        c = ev[1]
+        if aug_ok_b(len(adm), views, c) and aug_licensed and ledger >= c_ev:
+            return (sup, adm, views + (c,), ret, refusals, ledger - c_ev, aug_licensed, notes, receipts + 1)
+        return w_full
+    if kind == "refuse":
+        i, j = ev[1], ev[2]
+        if obstructed_b(len(adm), views, ret, (i, j)) and (i, j) not in refusals:
+            return (sup, adm, views, ret, refusals + ((i, j),), ledger, aug_licensed, notes, receipts)
+        return w_full
+    if kind == "note":
+        return (sup, adm, views, ret, refusals, ledger, aug_licensed, notes + (ev[1],), receipts)
+    if kind == "setBudget":
+        return (sup, adm, views, ret, refusals, ev[1], aug_licensed, notes, receipts)
+    if kind == "setAugLicense":
+        return (sup, adm, views, ret, refusals, ledger, ev[1], notes, receipts)
+    raise ValueError(f"Unknown event: {ev}")
+
+
+def embed_hworld(hw, licensed):
+    toks, reqs, views, budget = hw
+    return (toks, tuple((v,) for v in views), reqs, (), budget, licensed, ())
+
+
+def embed_hev(hev):
+    kind = hev[0]
+    if kind == "addView":
+        return ("addView", (hev[1],))
+    return hev
+
+
+def diag_swap(p):
+    return (not p[0], not p[1])
+
+
+def transpose_pair(p):
+    return (p[1], p[0])
+
+
+def pair_to_fin3(p):
+    if p in ((False, False), (True, True)):
+        return 0
+    return 1 if p == (False, True) else 2
+
+
+def pair_to_fin3_dual(p):
+    if p in ((False, True), (True, False)):
+        return 0
+    return 1 if p == (False, False) else 2
+
+
+def swap3(k):
+    return 0 if k == 0 else (2 if k == 1 else 1)
+
+
+def offer12(k):
+    return k in (1, 2)
+
+
+def d0_unsigned_f2(c):
+    v0, v1, v2 = c
+    return (v0 ^ v1, v1 ^ v2, v0 ^ v2)
+
+
+def d1_unsigned_f2(h):
+    e01, e12, e02 = h
+    return (e01 ^ e12) ^ e02
+
+
+def prim_triangle_f2(h):
+    e01, _, e02 = h
+    return (False, e01, e02)
+
+
+def d0_signed_int(c):
+    v0, v1, v2 = c
+    return (v1 - v0, v2 - v1, v2 - v0)
+
+
+def d1_signed_cyc_int(h):
+    e01, e12, e02 = h
+    return e01 + e12 - e02
+
+
+def prim_triangle_int(h):
+    e01, _, e02 = h
+    return (0, e01, e02)
+
+
+def residual_cochain1_int(h, c):
+    d01, d12, d02 = d0_signed_int(c)
+    return (h[0] - d01, h[1] - d12, h[2] - d02)
+
+
+def norm_l1(h):
+    return abs(h[0]) + abs(h[1]) + abs(h[2])
+
+
+def d1_tet_signed(h):
+    e01, e02, e03, e12, e13, e23 = h
+    return (e23 - e13 + e12, e23 - e03 + e02, e13 - e03 + e01, e12 - e02 + e01)
+
+
+def d2_tet_signed(f):
+    f123, f023, f013, f012 = f
+    return f123 - f023 + f013 - f012
+
+
+def prim_tet1_int(f):
+    _, f023, f013, f012 = f
+    return (0, 0, 0, f012, f013, f023)
+
+
+def check_der28_der29_der30():
+    # DER-28: FullWDPWorld multi-step replay & singleton-view embedding guard equivalence
+    horizon_costs = (0, 0, 0, 1)
+    rep_events = [
+        ("admitTok", 0),
+        ("admitTok", 1),
+        ("require", 0, 1),
+        ("addView", (0,)),
+        ("mark", (0,), 1),
+        ("refuse", 0, 1),
+        ("note", 7),
+        ("setBudget", 1),
+        ("setAugLicense", False),
+    ]
+    w0_full = ((), (), (), (), (), 1, True, (), 0)
+    full_traces = 0
+    for length in range(1, 4):
+        for trace in itertools.product(rep_events[:6], repeat=length):
+            full_traces += 1
+            wf = w0_full
+            for ev in trace:
+                wf = step_full_wdp_world(horizon_costs, wf, ev)
+            assert proj_to_represented_world(wf) == replay_represented_world(
+                trace, proj_to_represented_world(w0_full)
+            )
+
+    # Check singleton-view embedding guard equivalence across HWorld states
+    hworld_samples = [
+        ((0,), (), (), 1),
+        ((0, 1), ((0, 1),), (), 1),
+        ((0, 1), ((0, 1),), (0,), 1),
+        ((0, 1), ((0, 1),), (1,), 1),
+        ((0, 1, 2), ((0, 2),), (1,), 2),
+    ]
+    add_view_cases = 0
+    for hw in hworld_samples:
+        for licensed in (False, True):
+            for t in (0, 1, 2):
+                assert embed_hworld(step_hworld_guarded(hw, ("admitTok", t)), licensed) == step_represented_world(
+                    embed_hworld(hw, licensed), ("admitTok", t)
+                )
+            for i, j in ((0, 0), (0, 1), (1, 2)):
+                assert embed_hworld(step_hworld_guarded(hw, ("require", i, j)), licensed) == step_represented_world(
+                    embed_hworld(hw, licensed), ("require", i, j)
+                )
+            for b in (0, 2):
+                assert embed_hworld(step_hworld_guarded(hw, ("setBudget", b)), licensed) == step_represented_world(
+                    embed_hworld(hw, licensed), ("setBudget", b)
+                )
+            for v in range(len(hw[0])):
+                if hw[3] >= 1:
+                    add_view_cases += 1
+                    lhs = embed_hworld(step_hworld_guarded(hw, ("addView", v)), licensed)
+                    rhs = step_represented_world(embed_hworld(hw, licensed), ("addView", (v,)))
+                    cond = (
+                        (v not in hw[2])
+                        and increase_b(len(hw[0]), embed_hworld(hw, licensed)[1], (v,))
+                        and licensed
+                    )
+                    assert (lhs == rhs) == cond
+
+    # DER-29: Pair-quotient multiplicity bridge Bool x Bool -> Fin 3
+    pairs = list(itertools.product((False, True), repeat=2))
+    assert {pair_to_fin3(p) for p in pairs} == {0, 1, 2}
+    assert {pair_to_fin3_dual(p) for p in pairs} == {0, 1, 2}
+    for p in pairs:
+        assert diag_swap(diag_swap(p)) == p and diag_swap(p) != p
+        assert (diag_swap(p)[0] ^ diag_swap(p)[1]) == (p[0] ^ p[1])
+        assert transpose_pair(transpose_pair(p)) == p
+        assert (transpose_pair(p) == p) == (not (p[0] ^ p[1]))
+        assert pair_to_fin3(diag_swap(p)) == swap3(pair_to_fin3(p))
+        assert pair_to_fin3(transpose_pair(p)) == swap3(pair_to_fin3(p))
+        assert offer12(pair_to_fin3(p)) == (p[0] ^ p[1])
+        assert pair_to_fin3_dual(diag_swap(p)) == swap3(pair_to_fin3_dual(p))
+        assert pair_to_fin3_dual(transpose_pair(p)) == pair_to_fin3_dual(p)
+        assert offer12(pair_to_fin3_dual(p)) == (not (p[0] ^ p[1]))
+        for q in pairs:
+            assert (pair_to_fin3(p) == pair_to_fin3(q)) == (
+                p == q or ((not (p[0] ^ p[1])) and (not (q[0] ^ q[1])))
+            )
+
+    # DER-30: Triangle F2/Z & Tetrahedron Z exactness + Primal-Dual L1 min defect
+    for h_f2 in itertools.product((False, True), repeat=3):
+        is_closed = not d1_unsigned_f2(h_f2)
+        assert is_closed == (d0_unsigned_f2(prim_triangle_f2(h_f2)) == h_f2)
+        assert is_closed == any(
+            d0_unsigned_f2(c) == h_f2 for c in itertools.product((False, True), repeat=3)
+        )
+
+    int_tri_tested = 0
+    for h_int in itertools.product(range(-2, 3), repeat=3):
+        int_tri_tested += 1
+        d1_val = d1_signed_cyc_int(h_int)
+        assert (d1_val == 0) == (d0_signed_int(prim_triangle_int(h_int)) == h_int)
+        res_prim = residual_cochain1_int(h_int, prim_triangle_int(h_int))
+        assert res_prim == (0, d1_val, 0)
+        assert norm_l1(res_prim) == abs(d1_val)
+        for c_int in itertools.product(range(-2, 3), repeat=3):
+            res = residual_cochain1_int(h_int, c_int)
+            assert d1_signed_cyc_int(res) == d1_val
+            assert abs(d1_val) <= norm_l1(res)
+
+    int_tet_tested = 0
+    for f_tet in itertools.product(range(-1, 2), repeat=4):
+        int_tet_tested += 1
+        d2_val = d2_tet_signed(f_tet)
+        assert (d2_val == 0) == (d1_tet_signed(prim_tet1_int(f_tet)) == f_tet)
+
+    print("\n=== [6] DER-28 / DER-29 / DER-30: EMBEDDING GUARD IFF, PAIR QUOTIENT Fin 3, & COCHAIN EXACTNESS / L1 DUALITY ===")
+    print(f"  DER-28 FullWDPWorld replay traces(len<=3)={full_traces} (mismatches=0), addView guard-iff cases={add_view_cases} (mismatches=0)")
+    print("  DER-29 Bool x Bool -> Fin 3: surjectivity, kernel iff, and diagSwap/transposePair swap3 intertwiners verified on all 4x4 pairs")
+    print(f"  DER-30 Exactness & L1 duality: F2=8/8, Z-triangle={int_tri_tested} (min ||h-d0 c||_1 == |d1 h|), Z-tetrahedron={int_tet_tested} (ker d2 == im d1)")
+
+
 if __name__ == "__main__":
     check_oq05()
     check_oq06()
     check_oq07()
     check_oq08()
+    check_der28_der29_der30()
 

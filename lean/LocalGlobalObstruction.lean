@@ -553,5 +553,125 @@ theorem transitive_action_forces_uniform_weights_general (w : Nat → Nat) (σ :
     exact hk0
   exact ⟨hunif, fun v => uniform_weights_factor_l1_general w v n (w 0) hunif⟩
 
-end OmegaCodex.LocalGlobalObstruction
+/-! ## Section 6: Simplicial Cochain Exactness on Δ² / Δ³ & Primal–Dual L1 Minimum Defect (`DER-30` / `OWE-10` & `IMG-01`) -/
 
+def primTriangleF2 (h : Cochain1F2) : Cochain0F2 :=
+  let (e01, _, e02) := h
+  (false, e01, e02)
+
+/-- Exactness of the unsigned `𝔽₂` triangle cochain complex (`ker d₁ = im d₀` on `Δ²`),
+    with canonical basepoint-0 primitive `primTriangleF2`. -/
+theorem triangle_f2_exact_iff (h : Cochain1F2) :
+    (d1UnsignedF2 h = false ↔ d0UnsignedF2 (primTriangleF2 h) = h) ∧
+    (d1UnsignedF2 h = false ↔ ∃ c : Cochain0F2, d0UnsignedF2 c = h) := by
+  have h1 : d1UnsignedF2 h = false ↔ d0UnsignedF2 (primTriangleF2 h) = h := by
+    cases h with
+    | mk e01 rest =>
+      cases rest with
+      | mk e12 e02 =>
+        cases e01 <;> cases e12 <;> cases e02 <;> decide
+  refine ⟨h1, ?_⟩
+  constructor
+  · intro hd1
+    exact ⟨primTriangleF2 h, h1.mp hd1⟩
+  · rintro ⟨c, rfl⟩
+    exact oq02_unsigned_f2_complex_holds c
+
+def primTriangleInt (h : Cochain1Int) : Cochain0Int :=
+  let (e01, _, e02) := h
+  (0, e01, e02)
+
+/-- Exactness of the signed `ℤ` triangle cochain complex (`ker d₁ = im d₀` on `Δ²`),
+    with canonical basepoint-0 primitive `primTriangleInt`. -/
+theorem triangle_int_exact_iff (h : Cochain1Int) :
+    (d1SignedCycInt h = 0 ↔ d0SignedInt (primTriangleInt h) = h) ∧
+    (d1SignedCycInt h = 0 ↔ ∃ c : Cochain0Int, d0SignedInt c = h) := by
+  have h1 : d1SignedCycInt h = 0 ↔ d0SignedInt (primTriangleInt h) = h := by
+    rcases h with ⟨e01, e12, e02⟩
+    dsimp [d1SignedCycInt, d0SignedInt, primTriangleInt]
+    constructor
+    · intro hd1
+      have h12 : e02 - e01 = e12 := by omega
+      have h01 : e01 - 0 = e01 := Int.sub_zero e01
+      have h02 : e02 - 0 = e02 := Int.sub_zero e02
+      rw [h01, h12, h02]
+    · intro heq
+      have h12 : e02 - e01 = e12 := congrArg (fun p : Cochain1Int => p.2.1) heq
+      omega
+  refine ⟨h1, ?_⟩
+  constructor
+  · intro hd1
+    exact ⟨primTriangleInt h, h1.mp hd1⟩
+  · rintro ⟨⟨v0, v1, v2⟩, rfl⟩
+    exact oq02_signed_cyc_int_complex_holds v0 v1 v2
+
+def primTet1Int (f : Tet2Int) : Tet1Int :=
+  let (_, f023, f013, f012) := f
+  (0, 0, 0, f012, f013, f023)
+
+/-- Exactness of the signed `ℤ` 3-simplex (tetrahedron) 2-cochain complex
+    (`ker d₂ᵀᵉᵗ = im d₁ᵀᵉᵗ` on `Δ³`), with canonical star-gauge primitive `primTet1Int`. -/
+theorem tet_int_exact_iff (f : Tet2Int) :
+    (d2TetSigned f = 0 ↔ d1TetSigned (primTet1Int f) = f) ∧
+    (d2TetSigned f = 0 ↔ ∃ h : Tet1Int, d1TetSigned h = f) := by
+  have h1 : d2TetSigned f = 0 ↔ d1TetSigned (primTet1Int f) = f := by
+    rcases f with ⟨f123, f023, f013, f012⟩
+    dsimp [d2TetSigned, d1TetSigned, primTet1Int]
+    constructor
+    · intro hd2
+      have h123 : f023 - f013 + f012 = f123 := by omega
+      have h023 : f023 - 0 + 0 = f023 := by omega
+      have h013 : f013 - 0 + 0 = f013 := by omega
+      have h012 : f012 - 0 + 0 = f012 := by omega
+      rw [h123, h023, h013, h012]
+    · intro heq
+      have h123 : f023 - f013 + f012 = f123 := congrArg Prod.fst heq
+      omega
+  refine ⟨h1, ?_⟩
+  constructor
+  · intro hd2
+    exact ⟨primTet1Int f, h1.mp hd2⟩
+  · rintro ⟨h, rfl⟩
+    exact boundary_cancellation_tet_signed h
+
+def residualCochain1Int (h : Cochain1Int) (c : Cochain0Int) : Cochain1Int :=
+  let (e01, e12, e02) := h
+  let (d01, d12, d02) := d0SignedInt c
+  (e01 - d01, e12 - d12, e02 - d02)
+
+/-- Gauge invariance of the triangle coboundary `d1SignedCycInt` under subtracting
+    any 0-cochain coboundary `d0SignedInt c`. -/
+theorem d1SignedCycInt_residual_invariant (h : Cochain1Int) (c : Cochain0Int) :
+    d1SignedCycInt (residualCochain1Int h c) = d1SignedCycInt h := by
+  rcases h with ⟨e01, e12, e02⟩
+  rcases c with ⟨v0, v1, v2⟩
+  simp only [d1SignedCycInt, residualCochain1Int, d0SignedInt]
+  omega
+
+/-- Weak L1 duality on `Δ²`: for every 1-cochain `h` and 0-cochain `c`, the L1 norm
+    of the residual `h - d₀ c` is bounded below by `|d₁ h|`. -/
+theorem triangle_l1_weak_duality_bound (h : Cochain1Int) (c : Cochain0Int) :
+    (d1SignedCycInt h).natAbs ≤ normL1 (residualCochain1Int h c) := by
+  rw [← d1SignedCycInt_residual_invariant h c]
+  rcases residualCochain1Int h c with ⟨r01, r12, r02⟩
+  simp only [d1SignedCycInt, normL1]
+  omega
+
+/-- Strong L1 duality on `Δ²`: the canonical primitive `primTriangleInt h` attains the
+    exact lower bound `|d₁ h|`, concentrating the entire residual defect on edge `(1, 2)`. -/
+theorem triangle_l1_strong_duality_attained (h : Cochain1Int) :
+    residualCochain1Int h (primTriangleInt h) = (0, d1SignedCycInt h, 0) ∧
+    normL1 (residualCochain1Int h (primTriangleInt h)) = (d1SignedCycInt h).natAbs := by
+  have hres : residualCochain1Int h (primTriangleInt h) = (0, d1SignedCycInt h, 0) := by
+    rcases h with ⟨e01, e12, e02⟩
+    dsimp [residualCochain1Int, primTriangleInt, d0SignedInt, d1SignedCycInt]
+    have h1 : e01 - (e01 - 0) = 0 := by omega
+    have h2 : e12 - (e02 - e01) = e01 + e12 - e02 := by omega
+    have h3 : e02 - (e02 - 0) = 0 := by omega
+    rw [h1, h2, h3]
+  refine ⟨hres, ?_⟩
+  rw [hres]
+  simp only [normL1]
+  omega
+
+end OmegaCodex.LocalGlobalObstruction

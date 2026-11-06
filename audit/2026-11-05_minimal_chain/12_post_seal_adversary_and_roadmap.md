@@ -179,6 +179,11 @@ EXIT_10_PY=0
   (2) Duplicate view [1]:              HWorld views=[1] (budget=0) vs Represented views=[[1]] (budget=1, novel=False)
   (3) Disabled augLicensed=False:      HWorld views=[1] (budget=0) vs Represented views=[] (budget=1, licensed=False)
   (4) Novel view [1] with 0 new sep:   HWorld views=[0, 1] (budget=0) vs Represented views=[[0]] (budget=1, increaseB=False)
+
+=== [6] DER-28 / DER-29 / DER-30: EMBEDDING GUARD IFF, PAIR QUOTIENT Fin 3, & COCHAIN EXACTNESS / L1 DUALITY ===
+  DER-28 FullWDPWorld replay traces(len<=3)=258 (mismatches=0), addView guard-iff cases=20 (mismatches=0)
+  DER-29 Bool x Bool -> Fin 3: surjectivity, kernel iff, and diagSwap/transposePair swap3 intertwiners verified on all 4x4 pairs
+  DER-30 Exactness & L1 duality: F2=8/8, Z-triangle=125 (min ||h-d0 c||_1 == |d1 h|), Z-tetrahedron=81 (ker d2 == im d1)
 EXIT_11_PY=0
 ```
 
