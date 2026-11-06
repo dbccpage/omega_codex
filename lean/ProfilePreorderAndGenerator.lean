@@ -296,7 +296,7 @@ abbrev Stick10 := Fin 10 → Bool
 
 /-- Reversed index `9 - i` on `Fin 10`. -/
 def reflectIndex10 (i : Fin 10) : Fin 10 :=
-  ⟨9 - i.val, by omega⟩
+  ⟨9 - i.val, Nat.sub_lt_succ 9 i.val⟩
 
 /-- Spatial reversal of a 10-stick configuration. -/
 def reflect10 (s : Stick10) (i : Fin 10) : Bool :=
@@ -304,9 +304,8 @@ def reflect10 (s : Stick10) (i : Fin 10) : Bool :=
 
 theorem reflectIndex10_involutive (i : Fin 10) :
     reflectIndex10 (reflectIndex10 i) = i := by
-  ext
-  simp [reflectIndex10]
-  omega
+  revert i
+  decide
 
 theorem reflect10_involutive (s : Stick10) (i : Fin 10) :
     reflect10 (reflect10 s) i = s i := by
@@ -553,7 +552,7 @@ abbrev Stick2 := Fin 2 → Bool
 abbrev Stick3 := Fin 3 → Bool
 
 def reflectIndex1 (i : Fin 1) : Fin 1 :=
-  ⟨0 - i.val, by omega⟩
+  ⟨0 - i.val, Nat.sub_lt_succ 0 i.val⟩
 
 def reflect1 (s : Stick1) (i : Fin 1) : Bool :=
   s (reflectIndex1 i)
@@ -568,7 +567,7 @@ def reflResidual1 (s1 s2 : Stick1) : Nat :=
   Nat.min (hamming1 s1 s2) (hamming1 s1 (reflect1 s2))
 
 def reflectIndex2 (i : Fin 2) : Fin 2 :=
-  ⟨1 - i.val, by omega⟩
+  ⟨1 - i.val, Nat.sub_lt_succ 1 i.val⟩
 
 def reflect2 (s : Stick2) (i : Fin 2) : Bool :=
   s (reflectIndex2 i)
@@ -586,7 +585,7 @@ def singleStick2 (k : Fin 2) : Stick2 :=
   fun i => decide (i.val = k.val)
 
 def reflectIndex3 (i : Fin 3) : Fin 3 :=
-  ⟨2 - i.val, by omega⟩
+  ⟨2 - i.val, Nat.sub_lt_succ 2 i.val⟩
 
 def reflect3 (s : Stick3) (i : Fin 3) : Bool :=
   s (reflectIndex3 i)
@@ -611,8 +610,11 @@ def stick3Right : Stick3 := singleStick3 ⟨2, by decide⟩
     equals raw Hamming distance everywhere (no mirror collapse occurs). -/
 theorem n1_reflResidual_eq_hamming (s1 s2 : Stick1) :
     reflResidual1 s1 s2 = hamming1 s1 s2 := by
-  change Nat.min (hamming1 s1 s2) (hamming1 s1 s2) = hamming1 s1 s2
-  exact Nat.min_self (hamming1 s1 s2)
+  let i0 : Fin 1 := ⟨0, by decide⟩
+  change (match s1 i0 != s2 i0 with | true => [i0] | false => []).length.min
+      (match s1 i0 != s2 i0 with | true => [i0] | false => []).length =
+    (match s1 i0 != s2 i0 with | true => [i0] | false => []).length
+  cases (s1 i0 != s2 i0) <;> rfl
 
 /-- At `n = 2`, distinct 1-stick configurations collapse under reflection
     (`hamming2 = 2` and `reflResidual2 = 0`), and every pair of 1-stick

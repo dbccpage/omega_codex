@@ -6,7 +6,7 @@
     "supports": "A deterministic, machine-auditable inventory of which derivation nodes are checked by Lean 4.33.0 and stdlib Python in this repository (DERIVED), which premises or bridge steps remain supplied admissions or open proof obligations (OWED), and which downstream mathematical or physical stages are planned future targets (IMAGINED).",
     "does_not_support": "Any claim that OWED or IMAGINED nodes are derived, any claim of zero-input creation from nothing, or any physical validation beyond the finite algebraic models checked in the cited files.",
     "narrowest_defensible_claim": "All nodes in bucket DERIVED resolve to existing Lean 4.33.0 theorems (checked under allowed axioms propext and Quot.sound) and/or stdlib Python check scripts in this checkout, and all dependencies on OWED premises are explicitly typed as edges in the acyclic graph.",
-    "next_test_needed": "Constructive discharge or minimal-premise reduction of the OWED bridge nodes, starting with OWE-07 (internal witnessing invocation), OWE-08 (profile preorder and ten-stick reflection), and OWE-09 (residual-to-positive-weights bridge)."
+    "next_test_needed": "Constructive discharge or minimal-premise reduction of the OWED bridge nodes, starting with OWE-07 (internal witnessing invocation), OWE-08 (endogenous sheet-flip holonomy forcing and n = 10 vs. minimal n = 3 stick carrier selection), and OWE-09 (residual-to-positive-weights bridge)."
   },
   "buckets": {
     "DERIVED": {
@@ -2436,7 +2436,7 @@
       "from": "DER-03",
       "to": "OWE-08",
       "kind": "motivates_bridge",
-      "note": "Radix 2^t counting motivates profile preorder and ten-stick reflection bridges."
+      "note": "Radix 2^t counting motivates the remaining OWE-08 bridge (endogenous sheet-flip holonomy forcing and n = 10 vs. minimal n = 3 stick carrier selection)."
     },
     {
       "from": "DER-14",

@@ -299,14 +299,14 @@ def decodeFin [DecidableEq V] (H : List Hist) (report : Hist → V) (state : His
 
 # Part B — Complete `AGENTS.md`-Compliant Reconstruction Roadmap & Next-Slice Proposal for `omega_codex/lean/`
 
-## B.1 Full 5-Slice Core Architecture & Dependency DAG
+## B.1 Full 6-Slice Core Architecture & Dependency DAG
 
 The existing `omega_codex/lean/` baseline consists of three verified root files (0 `sorry`, 0 custom `axiom`):
 - [`PrimitiveDifference.lean`](file:///C:/Users/a343o/source/repos/omega_codex/lean/PrimitiveDifference.lean) (149 lines)
 - [`MirrorNonIdentification.lean`](file:///C:/Users/a343o/source/repos/omega_codex/lean/MirrorNonIdentification.lean) (160 lines)
 - [`ZeroEquivalence.lean`](file:///C:/Users/a343o/source/repos/omega_codex/lean/ZeroEquivalence.lean) (561 lines)
 
-Every surviving theorem from `19L57G1` (both the 27-file `A/lean4/Derivation/` chain and the 18 post-seal research folders) and from `B/wdp` (Chapters 1–4, 6, 10) reconstructs into **five Lean 4.33.0 slices** in `omega_codex/lean/`:
+Every surviving theorem from `19L57G1` (both the 27-file `A/lean4/Derivation/` chain and the 18 post-seal research folders), from `B/wdp` (Chapters 1–4, 6, 10), and from `docs/research_map.md` (`N19`–`N25`) reconstructs into **six Lean 4.33.0 slices** in `omega_codex/lean/`:
 
 ```mermaid
 flowchart TD
@@ -319,6 +319,7 @@ flowchart TD
   S3["Slice 3: RetentionAndRefusal.lean<br/>5-mode Refusal hierarchy, OQ-03 16/1024 & 4/1024 memory packets,<br/>OQ-06 choice-free decodeFin, ClosureSymmetry/ResidualClosure, OQ-08 5-gate Horizon"]
   S4["Slice 4: LocalGlobalObstruction.lean<br/>OQ-02 d0/d1 coboundaries & L1 defect, BoundaryCancellation d^2=0,<br/>OQ-07 positive L1 weights, NaturalSections, ObserverDescent & FidelityClosure"]
   S5["Slice 5: InternalMetatheory.lean<br/>Constitution 64-guard initiality, NoOutside panel_equiv,<br/>InterpreterBoundary diagonal tower_persists, WDP-CH06-P01 acyclic reachability"]
+  S6["Slice 6: ProfilePreorderAndGenerator.lean<br/>ProfileEquiv <-> MutualComp preorder bridge, QuotientRetention,<br/>N19-N20 two-sheet holonomy & n=3 stick threshold, N21-N22 reflective chain"]
 
   PD --> MN
   PD --> ZE
@@ -333,9 +334,11 @@ flowchart TD
   S1 --> S5
   S2 --> S5
   S3 --> S5
+  S1 --> S6
+  ZE --> S6
 ```
 
-### Complete Mapping of Surviving Legacy Artifacts (`19L57G1` & `B/wdp`) to Slices 1–5
+### Complete Mapping of Surviving Legacy Artifacts (`19L57G1` & `B/wdp`) to Slices 1–6
 
 | Target Slice in `omega_codex/lean/` | Imports | Reconstructed Legacy Sources (`A = 19L57G1`, `B = wdp` / Tasks 9–11) | Key Theorems & Pruned Legacy Debt |
 | :--- | :--- | :--- | :--- |

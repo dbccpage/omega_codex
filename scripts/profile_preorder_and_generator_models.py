@@ -6,9 +6,11 @@ Checks:
    - IsPreorder holds on 29 relations; on all 29, ProfileEquiv == MutualComp.
    - Equivalence holds on 5 relations; on all 5, ProfileEquiv == MutualComp == E.
 2. Quotient retention and symmetry multiplicity on finite setoids (N25).
-3. Ten-stick reflection involution, raw Hamming vs. reflection residual, and Burnside
-   orbit census across all 1024 configurations in {0, 1}^10 (N19).
-4. Four-step cyclic lift vs. two-step trivial lift over visible C2 counterpart (N20).
+3. Ten-stick reflection involution, raw Hamming vs. reflection residual, Burnside
+   orbit census across all 1024 configurations in {0, 1}^10, and minimal n = 3
+   carrier threshold across n in {1, 2, 3, 4, 10} for 1-stick residuality (N19, DER-25).
+4. Four-step cyclic lift vs. two-step trivial lift and complete 16-map two-sheet
+   holonomy census over visible C2 counterpart (N20, DER-25).
 5. One-token refusal-reification bridge, reflective chain endogenous obstruction
    generation, repair strategy classification, and radius-d outrun thresholds (N21-N22).
 """
@@ -169,7 +171,7 @@ def check_ten_stick_reflection():
 
 def check_stick_carrier_threshold():
     by_n = {}
-    for n in (1, 2, 3):
+    for n in (1, 2, 3, 4, 10):
         configs = list(product((0, 1), repeat=n))
         single_sticks = [
             tuple(1 if i == k else 0 for i in range(n))
@@ -227,6 +229,13 @@ def check_stick_carrier_threshold():
         or by_n[3]["max_single_stick_residual"] != 2
     ):
         raise ValueError("n=3 must be the minimal threshold with mirror collapse (0,2) and residual 2 on (0,1)")
+    for n_hi in (4, 10):
+        if (
+            not by_n[n_hi]["has_single_stick_mirror_collapse"]
+            or not by_n[n_hi]["has_positive_single_stick_residual"]
+            or by_n[n_hi]["max_single_stick_residual"] != 2
+        ):
+            raise ValueError(f"n={n_hi} must exhibit both 1-stick mirror collapse and positive residual 2")
 
     minimal_both_n = min(
         n
@@ -247,6 +256,8 @@ def check_two_sheet_holonomy_census():
     intertwining_maps = 0
     period_two_maps = []
     period_four_maps = []
+    four_step_return_maps = []
+    pointwise_non_return_witness_maps = 0
 
     for sheet_bits in product((False, True), repeat=4):
         table = {
@@ -293,6 +304,10 @@ def check_two_sheet_holonomy_census():
             raise ValueError("period_four_iff_sheet_flip_holonomy mismatch")
         if is_period_four:
             period_four_maps.append(sheet_bits)
+        if all(step(step(step(step(s)))) == s for s in states):
+            four_step_return_maps.append(sheet_bits)
+        if any(step(step(s)) != s and step(step(step(step(s)))) != s for s in states):
+            pointwise_non_return_witness_maps += 1
 
     # step4Triv: (False,False)->(True,False), (True,False)->(False,False), (False,True)->(True,True), (True,True)->(False,True) -> bits (False, False, True, True)
     # step4FlipBoth: bits (True, True, False, False)
@@ -307,6 +322,11 @@ def check_two_sheet_holonomy_census():
         raise ValueError(f"Unexpected period-2 maps: {period_two_maps}")
     if period_four_maps != expected_period_four:
         raise ValueError(f"Unexpected period-4 maps: {period_four_maps}")
+    if len(four_step_return_maps) != 4 or pointwise_non_return_witness_maps != 12:
+        raise ValueError(
+            f"Expected 4 global 4-step-return maps and 12 pointwise non-return maps, got "
+            f"{len(four_step_return_maps)} and {pointwise_non_return_witness_maps}"
+        )
 
     # Verify equivariant bijection between (Fin 4, step4, proj2) and (Bool x Bool, step4Sheet, fst)
     def fin4_to_sheet(x):
@@ -334,6 +354,8 @@ def check_two_sheet_holonomy_census():
         "total_intertwining_maps": intertwining_maps,
         "period_two_count": len(period_two_maps),
         "period_four_count": len(period_four_maps),
+        "four_step_return_count": len(four_step_return_maps),
+        "pointwise_non_return_witness_count": pointwise_non_return_witness_maps,
         "mixed_non_bijective_count": intertwining_maps - len(period_two_maps) - len(period_four_maps),
         "all_satisfy_dichotomy": True,
         "all_match_period_two_iff": True,
