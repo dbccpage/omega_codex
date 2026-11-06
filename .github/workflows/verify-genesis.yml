@@ -19,6 +19,8 @@ jobs:
           fetch-depth: 0
       - name: Verify preserved record
         run: python3 scripts/verify_genesis_record.py
+      - name: Validate derivation DAG
+        run: python3 scripts/validate_derivation_dag.py
       - name: Test corruption and answer misassociation
         run: python3 -m unittest discover -s tests -v
 
@@ -42,6 +44,11 @@ jobs:
           python3 scripts/check_primitive_difference.py --verify-receipt
           python3 scripts/check_primitive_difference.py --module MirrorNonIdentification --verify-receipt
           python3 scripts/check_primitive_difference.py --module ZeroEquivalence --verify-receipt
+          python3 scripts/check_primitive_difference.py --module TorsorAndOperations --verify-receipt
+          python3 scripts/check_primitive_difference.py --module MinimalSeparation --verify-receipt
+          python3 scripts/check_primitive_difference.py --module RetentionAndRefusal --verify-receipt
+          python3 scripts/check_primitive_difference.py --module LocalGlobalObstruction --verify-receipt
+          python3 scripts/check_primitive_difference.py --module InternalMetatheory --verify-receipt
       - name: Prove receipt gate rejects compilable theorem removal and weakening
         env:
           OMEGA_TEST_LEAN_MUTATIONS: "1"

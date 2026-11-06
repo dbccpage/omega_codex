@@ -1,0 +1,111 @@
+{
+  "verified": true,
+  "source": "lean/InternalMetatheory.lean",
+  "source_sha256": "1bb426804d1671c0318c4e991ef1557f1cbc510779b84e8828622dd1d34142bd",
+  "direct_imports": {
+    "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
+    "lean/MinimalSeparation.lean": "d3827b170ed51e35b823c2db9152d02bf9cf6c597a1d39a629f0d2ac9f5ae829",
+    "lean/RetentionAndRefusal.lean": "2734680344a49f7066e784cc9380f43518edb8ec4173f3d898d20d3ed69675bc"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 29,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "support_determines": [
+      "propext",
+      "Quot.sound"
+    ],
+    "support_determines_replay": [
+      "propext",
+      "Quot.sound"
+    ],
+    "interp_describe": [
+      "propext",
+      "Quot.sound"
+    ],
+    "allDescs_length": [],
+    "allDescs_complete": [
+      "propext"
+    ],
+    "d20_unique_compliant": [
+      "propext",
+      "Quot.sound"
+    ],
+    "guard_independence_six_countermodels": [
+      "propext",
+      "Quot.sound"
+    ],
+    "extension_retract_to_U0": [
+      "propext",
+      "Quot.sound"
+    ],
+    "effectual_outside_dichotomy": [
+      "propext",
+      "Quot.sound"
+    ],
+    "panel_equiv": [
+      "propext",
+      "Quot.sound"
+    ],
+    "unapplied_outside_leaves_separable_unchanged": [
+      "propext"
+    ],
+    "panel_reentry_preserves_counts": [
+      "propext"
+    ],
+    "diagNeg_differs_at_self": [],
+    "diagonal_non_exhaustion": [],
+    "tower_persists_at_every_stage": [
+      "propext"
+    ],
+    "lt_maxNote_of_mem": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tower_persists": [
+      "propext",
+      "Quot.sound"
+    ],
+    "evalOpt_typed_refusal_and_embedding": [
+      "propext",
+      "Quot.sound"
+    ],
+    "strict_measure_irrefl": [],
+    "strict_measure_asymm": [],
+    "strict_measure_plus_lt": [],
+    "strict_measure_no_return": [],
+    "regime4Measure_newDatum_lt": [
+      "propext",
+      "Quot.sound"
+    ],
+    "regime4Measure_newForm_lt": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_singleton_discrepancy_regression": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_duplicate_view_regression": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_disabled_license_regression": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_no_new_separation_regression": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_full_guard_refinement_commutes_at_zero_adm_ret_cost": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

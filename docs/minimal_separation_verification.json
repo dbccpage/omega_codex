@@ -1,0 +1,128 @@
+{
+  "verified": true,
+  "source": "lean/MinimalSeparation.lean",
+  "source_sha256": "d3827b170ed51e35b823c2db9152d02bf9cf6c597a1d39a629f0d2ac9f5ae829",
+  "direct_imports": {
+    "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
+    "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 29,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "separable4_not_collapsed4": [
+      "propext"
+    ],
+    "separableWithRules_implies_separable4": [
+      "propext"
+    ],
+    "ctxKernel4_zeroRel_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "collapsed4_iff_all_ctxKernel4_zero": [
+      "propext",
+      "Quot.sound"
+    ],
+    "collapsed4_equivalence": [
+      "propext"
+    ],
+    "collapsed4_of_no_insts": [
+      "propext"
+    ],
+    "no_insts_no_separation4": [
+      "propext"
+    ],
+    "applyDelta4_pair": [
+      "propext",
+      "Quot.sound"
+    ],
+    "collapsed4_fresh_datum_imp": [
+      "propext",
+      "Quot.sound"
+    ],
+    "getD_append_left4": [
+      "propext"
+    ],
+    "collapsed4_fresh_form_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "separable4_perm_invariant": [
+      "propext",
+      "Quot.sound"
+    ],
+    "cost1_insufficient_general": [
+      "propext"
+    ],
+    "genesis_mark_not_separable4": [
+      "propext",
+      "Quot.sound"
+    ],
+    "mu2_unique_general": [
+      "propext",
+      "Quot.sound"
+    ],
+    "mu2_unique_F_general": [
+      "propext",
+      "Quot.sound"
+    ],
+    "phiLinear4_strict": [
+      "propext",
+      "Quot.sound"
+    ],
+    "pow_pos_of_pos4": [
+      "propext",
+      "Quot.sound"
+    ],
+    "phiSingleHole4_strict": [
+      "propext",
+      "Quot.sound"
+    ],
+    "pow_succ_gap4": [
+      "propext",
+      "Quot.sound"
+    ],
+    "phiMultiHole4_strict": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rt01_zero_unary_weight_three_item_countermodel": [
+      "propext",
+      "Quot.sound"
+    ],
+    "explicit_pair_round_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "quotient_refinement_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "quotient_refinement_from_one": [
+      "propext",
+      "Quot.sound"
+    ],
+    "strict_gap_for_n_ge_3": [
+      "propext",
+      "Quot.sound"
+    ],
+    "n3_unary_splits_two_pairs": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rt09_unrequested_pair_recollapse_witness": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rt09_fresh_form_strictly_refines_all_pairs": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

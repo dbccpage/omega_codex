@@ -26,6 +26,23 @@ class ReceiptTests(unittest.TestCase):
             axioms.reverse()
         checker.verify_receipt(linux, self.receipt, "ZeroEquivalence")
 
+    def test_all_registered_receipts_match_source_hashes_and_schema(self):
+        import hashlib
+        self.assertEqual(set(checker.MODULES.keys()), set(checker.RECEIPTS.keys()))
+        for module in checker.MODULES:
+            with self.subTest(module=module):
+                rel_source = f"lean/{module}.lean"
+                receipt_path = ROOT / checker.RECEIPTS[module]
+                self.assertTrue(receipt_path.exists(), f"Missing receipt for {module}")
+                receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+                self.assertEqual(receipt["source"], rel_source)
+                self.assertEqual(
+                    receipt["source_sha256"],
+                    hashlib.sha256((ROOT / rel_source).read_bytes()).hexdigest(),
+                )
+                self.assertEqual(receipt["theorems_checked"], len(receipt["dependencies"]))
+                checker.verify_receipt(copy.deepcopy(receipt), receipt, module)
+
     def test_contract_changes_fail_closed(self):
         mutations = {
             "source": lambda r: r.update(source="lean/PrimitiveDifference.lean"),
