@@ -1,0 +1,67 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/FaithfulRepresentation.lean",
+  "source_sha256": "a977fc152a6f39580f59249096d4e3e011189829453f142d6f8da2dfeb5b0fdf",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 20,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "transported_sound": [],
+    "every_history_sound": [],
+    "solution_iff_certificate": [],
+    "reflected_exhaustion": [],
+    "soundness_does_not_give_coverage": [],
+    "scan_sound": [
+      "propext"
+    ],
+    "scan_none_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "finite_exhaustion": [
+      "propext",
+      "Quot.sound"
+    ],
+    "enumeration_prefix_contains": [
+      "propext",
+      "Quot.sound"
+    ],
+    "fair_certificate_eventually_tested": [],
+    "fair_finite_prefix_discovery": [
+      "propext",
+      "Quot.sound"
+    ],
+    "faithful_fair_search_complete": [
+      "propext",
+      "Quot.sound"
+    ],
+    "interleave_retains": [
+      "propext"
+    ],
+    "interleave_length_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "reentry_invariants": [
+      "propext",
+      "Quot.sound"
+    ],
+    "reentry_budget_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "changed_anchor_refused": [],
+    "reentry_cannot_reset": [
+      "propext",
+      "Quot.sound"
+    ],
+    "whole_space_repair_does_not_solve": [],
+    "realized_repair_is_sound": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

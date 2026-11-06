@@ -1,0 +1,29 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/FunctionalClassification.lean",
+  "source_sha256": "b05a0472fe59d5d1130692ad0fd9a1c2b17cfcf8ed77873889f542ca552e1e40",
+  "direct_imports": {
+    "lean/WitnessedDifference/BehavioralQuotient.lean": "b8608fca2299b2f6c1922b71d900ed8768fdf95bc814362540ad1f1915f50fb1"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 11,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "no_blind_spot_linked": [],
+    "linked_stability": [],
+    "composed_report_linked": [],
+    "calibrated_linkage": [],
+    "linked_blind_spot": [],
+    "faithful_without_tolerance": [],
+    "injective_report_behavioral_minimal": [],
+    "identity_run": [],
+    "inactive_behavior_iff_report": [],
+    "singleton_identity": [],
+    "singleton_no_blind_spot": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

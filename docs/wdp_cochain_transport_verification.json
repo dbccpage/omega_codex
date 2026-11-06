@@ -1,0 +1,19 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/CochainTransport.lean",
+  "source_sha256": "6cf8d0cc8b4288d487fbcdf7fdaa47356fe84e01a32830f69b6ae246c4f9d031",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 4,
+  "allowed_axioms": [
+    "propext"
+  ],
+  "dependencies": {
+    "repair_transport": [],
+    "composed_square": [],
+    "retraction_reflects_repair": [],
+    "homotopy_agrees_on_closed_classes": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

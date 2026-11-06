@@ -1,0 +1,66 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/DyadicPresentation.lean",
+  "source_sha256": "1aa5ba6becd7851246fc00274e845f7ed8fa13af96e43b92d19842efea29fc55",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 15,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "order_positive": [
+      "propext",
+      "Quot.sound"
+    ],
+    "inclusion_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "inclusion_injective": [
+      "propext",
+      "Quot.sound"
+    ],
+    "inclusion_addition": [
+      "propext"
+    ],
+    "pairing_inclusion": [
+      "propext"
+    ],
+    "pairing_restriction": [
+      "propext"
+    ],
+    "restriction_bound": [],
+    "restriction_composition": [
+      "propext"
+    ],
+    "lower_extension_restricts": [
+      "propext"
+    ],
+    "upper_extension_restricts": [
+      "propext"
+    ],
+    "extensions_in_carrier": [
+      "propext",
+      "Quot.sound"
+    ],
+    "extensions_distinct": [
+      "propext",
+      "Quot.sound"
+    ],
+    "restriction_fiber": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tower_pairing": [
+      "propext"
+    ],
+    "no_unique_adjacent_extension": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

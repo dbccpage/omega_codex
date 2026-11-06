@@ -1,0 +1,85 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/GaussianIntQuantumReadout.lean",
+  "source_sha256": "2d7c5241bce8f100b71786f04b5736766dc639671e0ad5916ee8c8df47751534",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 24,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "gaussian_ext": [
+      "propext"
+    ],
+    "gi_square": [],
+    "gconj_involutive": [
+      "propext",
+      "Quot.sound"
+    ],
+    "int_sq_nonneg": [
+      "propext",
+      "Quot.sound"
+    ],
+    "gnorm_nonneg": [
+      "propext",
+      "Quot.sound"
+    ],
+    "parseval_two_point_identity": [
+      "propext",
+      "Quot.sound"
+    ],
+    "orientation_reversal_changes_hermitian_pairing": [
+      "propext",
+      "Quot.sound"
+    ],
+    "frobenius_nonneg": [
+      "propext",
+      "Quot.sound"
+    ],
+    "binary_projector_completeness": [],
+    "born_projector_mass_partition": [
+      "propext",
+      "Quot.sound"
+    ],
+    "unitary_and_scaled_hadamard_certificates": [],
+    "two_mul_sq": [
+      "propext"
+    ],
+    "two_mul_add_one_sq": [
+      "propext",
+      "Quot.sound"
+    ],
+    "nat_sq_parity_decomp": [
+      "propext",
+      "Quot.sound"
+    ],
+    "nat_two_mul_sq_ne_sq": [
+      "propext",
+      "Quot.sound"
+    ],
+    "int_two_mul_sq_ne_sq": [
+      "propext",
+      "Quot.sound"
+    ],
+    "xz_anticommutation": [],
+    "mub2_three_bases_orthogonality_and_unbiasedness": [],
+    "product_state_schmidt_det_zero": [
+      "propext"
+    ],
+    "bell_state_nonfactorizable": [
+      "propext",
+      "Quot.sound"
+    ],
+    "discrete_noether_charge_conserved": [
+      "propext",
+      "Quot.sound"
+    ],
+    "landauer_merger_irreversible": [],
+    "self_hosting_diagonal_obstruction": [],
+    "substrate_admissions_s1_m1_boundary": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

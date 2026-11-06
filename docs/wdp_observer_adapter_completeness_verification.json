@@ -1,0 +1,71 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/ObserverAdapterCompleteness.lean",
+  "source_sha256": "97bdac1e3919c830b55c79ba4471d65e640bdf0476c1a24f1b2d478e750a3a0e",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 27,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "unique_factorization_iff": [
+      "Quot.sound"
+    ],
+    "tuple_map_onto": [
+      "Quot.sound"
+    ],
+    "mapped_partial_eq_iff": [
+      "propext"
+    ],
+    "adapted_undefined_iff": [
+      "propext"
+    ],
+    "unique_partial_operation_adapter_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "partial_adapter_reflects_definedness": [
+      "propext"
+    ],
+    "partial_operation_family_adapter_iff": [
+      "propext"
+    ],
+    "partial_operation_family_adapter_unique": [
+      "Quot.sound"
+    ],
+    "unique_predicate_adapter_iff": [
+      "Quot.sound"
+    ],
+    "total_semantic_family_adapter_iff": [],
+    "total_semantic_family_adapter_unique": [
+      "Quot.sound"
+    ],
+    "complete_recovery_iff_injective": [
+      "Quot.sound"
+    ],
+    "joint_report_kernel_iff": [],
+    "faithful_completion_retains_joint_report": [],
+    "faithful_completion_iff_joint_fiber_constancy": [
+      "Quot.sound"
+    ],
+    "joint_completion_onto": [],
+    "joint_completion_recovers_both_fields": [],
+    "unique_joint_completion_comparison_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "indistinguishable_admitted_completions_refute_recovery": [],
+    "missing_product_field_cannot_be_recovered": [],
+    "partial_definedness_countermodel": [],
+    "partial_output_fiber_countermodel": [],
+    "predicate_truth_countermodel": [],
+    "missing_surjectivity_refutes_uniqueness": [],
+    "missing_memory_update_countermodel": [],
+    "missing_terminalizer_countermodel": [],
+    "missing_policy_countermodel": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

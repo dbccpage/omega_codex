@@ -1,0 +1,74 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/RootGaugeNormalization.lean",
+  "source_sha256": "25c407572245c872c0d04b12158f7a72d286878cb2452ac2f1e209b99abaaf3b",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 16,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "potential_at_root": [
+      "propext"
+    ],
+    "potential_after_shift": [
+      "propext"
+    ],
+    "normal_after_shift": [
+      "propext",
+      "Quot.sound"
+    ],
+    "normal_column_at_nonroot": [
+      "propext"
+    ],
+    "normal_preserves_loops": [
+      "propext",
+      "Quot.sound"
+    ],
+    "normal_preserves_two_way_sums": [
+      "propext",
+      "Quot.sound"
+    ],
+    "normal_preserves_round_sums": [
+      "propext",
+      "Quot.sound"
+    ],
+    "normal_is_idempotent": [
+      "propext",
+      "Quot.sound"
+    ],
+    "equal_normal_iff_gradient_difference": [
+      "propext",
+      "Quot.sound"
+    ],
+    "zero_normal_iff_exact_gradient": [
+      "propext",
+      "Quot.sound"
+    ],
+    "pullback_shift": [],
+    "renormalize_after_pullback": [
+      "propext",
+      "Quot.sound"
+    ],
+    "finite_obstruction_certificate_complete": [
+      "propext",
+      "Quot.sound"
+    ],
+    "finite_zero_normal_iff_exact_gradient": [
+      "propext",
+      "Quot.sound"
+    ],
+    "raising_changes_excess_by_gradient": [
+      "propext",
+      "Quot.sound"
+    ],
+    "raising_preserves_normal": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

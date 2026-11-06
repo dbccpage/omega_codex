@@ -1,0 +1,25 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/PrimitiveAdmissionFloor.lean",
+  "source_sha256": "56b04d250246d84ba7202fd037637902312501a5cc7683d5326bb45e767ac515",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 8,
+  "allowed_axioms": [
+    "propext"
+  ],
+  "dependencies": {
+    "endpoints_apart": [],
+    "no_cut_on_subsingleton": [],
+    "identification_breaks_law": [],
+    "instance_without_law_allows_singleton": [],
+    "law_without_instance_allows_singleton": [],
+    "minimum_has_two_orientations": [
+      "propext"
+    ],
+    "raw_item_cost_ties": [],
+    "declared_arity_cost_selects": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

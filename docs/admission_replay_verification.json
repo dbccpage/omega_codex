@@ -1,0 +1,98 @@
+{
+  "verified": true,
+  "source": "lean/AdmissionReplay.lean",
+  "source_sha256": "a799df3d0db87b6799ad71d445a498b85d5998fcc5be1906016213093dba8997",
+  "direct_imports": {
+    "lean/MinimalSeparation.lean": "909c6e2e1d9102d92d5352ba05990a9d17e888166ab4709b32b34d900504530f",
+    "lean/WitnessedDifference/GenesisConstruction.lean": "f1d9c3859de7ed4109600bb93ee59fa9cd3e1d1f2d9585183f8b4afa781a2904"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 25,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "replay_eq_applyDelta": [
+      "propext"
+    ],
+    "accepted_iff_history": [
+      "propext"
+    ],
+    "history_endpoint": [
+      "propext"
+    ],
+    "refusal_iff_no_history": [
+      "propext"
+    ],
+    "composed_events": [
+      "propext"
+    ],
+    "composed_cost": [
+      "propext"
+    ],
+    "endpoint_question": [
+      "propext"
+    ],
+    "history_keeps_separation": [
+      "propext"
+    ],
+    "move_step_commutes": [
+      "propext"
+    ],
+    "presented_moves_replay": [
+      "propext",
+      "Quot.sound"
+    ],
+    "literal_prefix_replay": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rooted_accepted_history": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rooted_refusal": [
+      "propext",
+      "Quot.sound"
+    ],
+    "supply_empty": [
+      "propext"
+    ],
+    "datum_changes_empty": [
+      "propext"
+    ],
+    "data_prefix_replay": [
+      "propext"
+    ],
+    "reading_initializations": [],
+    "unary_endpoints": [
+      "propext"
+    ],
+    "unary_separations": [
+      "propext",
+      "Quot.sound"
+    ],
+    "unary_prices": [
+      "propext"
+    ],
+    "invalid_order_refuses": [
+      "propext"
+    ],
+    "malformed_refuses": [
+      "propext"
+    ],
+    "same_endpoint_different_occurrences": [
+      "propext"
+    ],
+    "accepted_idle_not_refusal": [
+      "propext"
+    ],
+    "fresh_response_has_history": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

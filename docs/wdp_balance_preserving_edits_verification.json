@@ -1,0 +1,51 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/BalancePreservingEdits.lean",
+  "source_sha256": "58422bbdf911c97cac614117d023cdf1f03148fbadf1faef7bc671debbd2c205",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 10,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "gradient_balanced": [
+      "propext",
+      "Quot.sound"
+    ],
+    "cycle_add": [
+      "propext",
+      "Quot.sound"
+    ],
+    "update_outside_cycle": [
+      "propext"
+    ],
+    "update_at_first_arc": [
+      "propext",
+      "Quot.sound"
+    ],
+    "zero_unit_update_nonzero": [
+      "propext",
+      "Quot.sound"
+    ],
+    "fill_balance_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "preserved_cycle_when_entries_agree": [
+      "propext"
+    ],
+    "directed_tetrahedron_identity": [
+      "propext",
+      "Quot.sound"
+    ],
+    "seven_faces_force_eighth": [
+      "propext",
+      "Quot.sound"
+    ],
+    "three_faces_do_not_force_fourth": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

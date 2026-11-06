@@ -1,0 +1,36 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/FoundationalBridges.lean",
+  "source_sha256": "db73a2d6fb9df748ac73d6c21fe4c8aa85a92a35047f4b05ed3408ca8eed831c",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 18,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "inscription_distinct_marks_apart": [],
+    "markA_neq_markB_bool": [],
+    "binary_triangle_coboundary_zero": [],
+    "product_state_space_bound": [],
+    "finite_history_prefix_step": [],
+    "multiplicity_disjoint_additive": [],
+    "multiplicity_bounded": [],
+    "evaluation_outside_profile_iff": [
+      "propext"
+    ],
+    "mathematical_receipt_zero_authority": [],
+    "no_self_authorization": [],
+    "triangle_parity_equal_ab": [],
+    "triangle_parity_equal_bc": [],
+    "triangle_parity_equal_ac": [],
+    "triangle_parity_pairwise_distinct": [],
+    "l1_attainment_at_zero": [],
+    "zero_curvature_of_nilpotent": [],
+    "frustrated_spin_cycle_no_joint_assignment": [],
+    "deterministic_unique_successor": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

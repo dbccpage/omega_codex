@@ -1,0 +1,69 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/ComplexTensorBalancing.lean",
+  "source_sha256": "f0094c7e1e3b1a5cc5515aca0f7451d23313d42f2c5adb6afd7dde71249cc6cb",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 14,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "balance_section": [
+      "propext",
+      "Quot.sound"
+    ],
+    "twice_project_square": [
+      "propext",
+      "Quot.sound"
+    ],
+    "balance_kernel_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "j_left_square": [
+      "propext"
+    ],
+    "j_right_square": [
+      "propext"
+    ],
+    "local_structures_commute": [
+      "propext"
+    ],
+    "balance_intertwines_left": [
+      "propext",
+      "Quot.sound"
+    ],
+    "balance_intertwines_right": [
+      "propext",
+      "Quot.sound"
+    ],
+    "twice_project_formula": [
+      "propext",
+      "Quot.sound"
+    ],
+    "balance_annihilates_relation": [
+      "propext",
+      "Quot.sound"
+    ],
+    "kernel_is_relation_image": [
+      "propext",
+      "Quot.sound"
+    ],
+    "balance_left_action": [
+      "propext",
+      "Quot.sound"
+    ],
+    "balance_right_action": [
+      "propext",
+      "Quot.sound"
+    ],
+    "balance_associativity": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

@@ -1,0 +1,52 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/AdmissionCount.lean",
+  "source_sha256": "b4f03a959dcaa54967b5c2836b6a312208005352a572ab8098ad8775524082bd",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 12,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "every_step_potential_upper": [
+      "propext",
+      "Quot.sound"
+    ],
+    "every_step_mass_monotone": [
+      "propext",
+      "Quot.sound"
+    ],
+    "runs_compose": [],
+    "every_run_potential_upper": [
+      "propext",
+      "Quot.sound"
+    ],
+    "every_run_mass_monotone": [
+      "propext",
+      "Quot.sound"
+    ],
+    "from_empty_lower_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "build_terms": [],
+    "build_r": [],
+    "build_s": [],
+    "remove_r_block": [
+      "propext",
+      "Quot.sound"
+    ],
+    "build_target": [
+      "propext",
+      "Quot.sound"
+    ],
+    "potential_is_exact_aggregate_minimum": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

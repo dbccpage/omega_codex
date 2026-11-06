@@ -1,0 +1,51 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/BridgeObligationReductions.lean",
+  "source_sha256": "f17cb2e018d3da37cda4e62dab77051458f259fd305a85977809b81421114199",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 18,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "rank_le_two": [],
+    "rank_eq_two": [],
+    "endToEnd_five": [],
+    "control_only_not_discharged": [],
+    "endToEnd_iff_controls_and_no_control": [],
+    "not_endToEnd_of_not_discharged": [],
+    "bool_and_iff": [],
+    "pairDefect_preserves_and_reflects": [],
+    "pairDefect_forgets_orientation": [],
+    "internal_fixed_point_cannot_acquire_witness": [],
+    "two_state_autonomous_orbit_exhausted_by_step_two": [
+      "propext"
+    ],
+    "two_step_irreflexivity_uniquely_forces_sheet_flip": [],
+    "disjoint_three_slot_probes_plus_anchor_threshold": [
+      "propext",
+      "Quot.sound"
+    ],
+    "two_orbit_cycle_calibration_uniquely_fixes_weights": [
+      "propext",
+      "Quot.sound"
+    ],
+    "multi_locus_view_bounded_iff_all_singleton_loci": [],
+    "positive_cost_budget_compensation_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "fixed_distance_exceeds_horizon_without_rewiring": [
+      "propext",
+      "Quot.sound"
+    ],
+    "shortcut_edge_repair_restores_radius_one_visibility": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

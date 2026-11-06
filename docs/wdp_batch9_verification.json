@@ -1,0 +1,76 @@
+{
+  "verified": true,
+  "source": "lean/WitnessedDifference/WdpBatch9.lean",
+  "source_sha256": "c6ba163bf178bc458cb948476bd8f0032164e0b8b94286ea8e37a0cba10c48ba",
+  "direct_imports": {},
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 18,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "delta_events_w1_fresh_label_collision": [
+      "propext",
+      "Quot.sound"
+    ],
+    "genesis_three_axis_verdict_and_w1_collision_certificate": [
+      "propext",
+      "Quot.sound"
+    ],
+    "collapsedRung_of_no_insts": [],
+    "replay_supplies_no_op": [
+      "propext"
+    ],
+    "replay_admitDatum_growth": [
+      "propext"
+    ],
+    "rung0_inheritance_replay_and_unbounded_supply_datum_inertia": [
+      "propext"
+    ],
+    "profile_equality_renaming_invariant": [],
+    "rung2b_stake_menu_no_member_both_invariant_and_two_kinded": [
+      "propext"
+    ],
+    "insertNew_length_le": [
+      "propext"
+    ],
+    "insertNew_eq_or_succ": [
+      "propext"
+    ],
+    "stepRung_elems_le": [
+      "propext",
+      "Quot.sound"
+    ],
+    "replayRung_elems_le": [
+      "propext",
+      "Quot.sound"
+    ],
+    "forced_census_column_twelve_row_verdict_and_countermodel": [
+      "propext",
+      "Quot.sound"
+    ],
+    "hol4_d0_zero": [
+      "propext",
+      "Quot.sound"
+    ],
+    "sector_weights_sum_to_unweightedL1": [
+      "propext",
+      "Quot.sound"
+    ],
+    "unweighted_and_sumsq_do_not_determine_sector_weights": [
+      "propext",
+      "Quot.sound"
+    ],
+    "weighted_l1_unique_minimal_mass_concentration": [
+      "propext",
+      "Quot.sound"
+    ],
+    "l1_residual_sector_weights_unweighted_and_weighted_characterization": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

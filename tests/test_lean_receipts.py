@@ -31,7 +31,7 @@ class ReceiptTests(unittest.TestCase):
         self.assertEqual(set(checker.MODULES.keys()), set(checker.RECEIPTS.keys()))
         for module in checker.MODULES:
             with self.subTest(module=module):
-                rel_source = f"lean/{module}.lean"
+                rel_source = f"lean/{module.replace('.', '/')}.lean"
                 receipt_path = ROOT / checker.RECEIPTS[module]
                 self.assertTrue(receipt_path.exists(), f"Missing receipt for {module}")
                 receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
@@ -67,6 +67,21 @@ class ReceiptTests(unittest.TestCase):
 @unittest.skipUnless(os.environ.get("OMEGA_TEST_LEAN_MUTATIONS") == "1",
                      "Real Lean mutation tests run in the Lean CI job")
 class CompilableMutationTests(unittest.TestCase):
+    @staticmethod
+    def _make_temp_workspace():
+        base = ROOT / ".lake" / "mutation-tests"
+        base.mkdir(parents=True, exist_ok=True)
+        tmp = tempfile.TemporaryDirectory(prefix="omega-mutation-", dir=base)
+        root = Path(tmp.name)
+        (root / "lean" / "WitnessedDifference").mkdir(parents=True)
+        for name in ("lean-toolchain", "lakefile.toml", "lake-manifest.json"):
+            shutil.copyfile(ROOT / name, root / name)
+        for source in (ROOT / "lean").glob("*.lean"):
+            shutil.copyfile(source, root / "lean" / source.name)
+        for source in (ROOT / "lean" / "WitnessedDifference").glob("*.lean"):
+            shutil.copyfile(source, root / "lean" / "WitnessedDifference" / source.name)
+        return tmp, root
+
     def test_unused_theorem_removal_and_weakening_are_rejected(self):
         expected = json.loads((ROOT / checker.RECEIPTS["ZeroEquivalence"]).read_text(encoding="utf-8"))
         original = (ROOT / "lean/ZeroEquivalence.lean").read_text(encoding="utf-8")
@@ -77,13 +92,8 @@ class CompilableMutationTests(unittest.TestCase):
             "weaken": prefix + "theorem static_kernel_does_not_determine_terminal "
                 "(K : Kernel α β) (q : ResidualQuotient K) : True := True.intro\n\n" + end,
         }
-        with tempfile.TemporaryDirectory(prefix="omega-receipt-mutation-") as temporary:
-            root = Path(temporary)
-            (root / "lean").mkdir()
-            for name in ("lean-toolchain", "lakefile.toml", "lake-manifest.json"):
-                shutil.copyfile(ROOT / name, root / name)
-            for source in (ROOT / "lean").glob("*.lean"):
-                shutil.copyfile(source, root / "lean" / source.name)
+        tmp_ctx, root = self._make_temp_workspace()
+        with tmp_ctx:
             for label, source in variants.items():
                 with self.subTest(label=label), patch.object(checker, "ROOT", root):
                     (root / "lean/ZeroEquivalence.lean").write_bytes(source.encode("utf-8"))
@@ -139,13 +149,8 @@ class CompilableMutationTests(unittest.TestCase):
                 1,
             ),
         }
-        with tempfile.TemporaryDirectory(prefix="omega-profile-mutation-") as temporary:
-            root = Path(temporary)
-            (root / "lean").mkdir()
-            for name in ("lean-toolchain", "lakefile.toml", "lake-manifest.json"):
-                shutil.copyfile(ROOT / name, root / name)
-            for source in (ROOT / "lean").glob("*.lean"):
-                shutil.copyfile(source, root / "lean" / source.name)
+        tmp_ctx, root = self._make_temp_workspace()
+        with tmp_ctx:
             for label, source in variants.items():
                 with self.subTest(label=label), patch.object(checker, "ROOT", root):
                     (root / "lean/ProfilePreorderAndGenerator.lean").write_bytes(source.encode("utf-8"))
@@ -222,13 +227,8 @@ class CompilableMutationTests(unittest.TestCase):
                 1,
             ),
         }
-        with tempfile.TemporaryDirectory(prefix="omega-lgo-mutation-") as temporary:
-            root = Path(temporary)
-            (root / "lean").mkdir()
-            for name in ("lean-toolchain", "lakefile.toml", "lake-manifest.json"):
-                shutil.copyfile(ROOT / name, root / name)
-            for source in (ROOT / "lean").glob("*.lean"):
-                shutil.copyfile(source, root / "lean" / source.name)
+        tmp_ctx, root = self._make_temp_workspace()
+        with tmp_ctx:
             for label, source in variants.items():
                 with self.subTest(label=label), patch.object(checker, "ROOT", root):
                     (root / "lean/LocalGlobalObstruction.lean").write_bytes(source.encode("utf-8"))
@@ -306,14 +306,8 @@ class CompilableMutationTests(unittest.TestCase):
             ),
         }
 
-        with tempfile.TemporaryDirectory(prefix="omega-der28-der29-mutation-") as temporary:
-            root = Path(temporary)
-            (root / "lean").mkdir()
-            for name in ("lean-toolchain", "lakefile.toml", "lake-manifest.json"):
-                shutil.copyfile(ROOT / name, root / name)
-            for source in (ROOT / "lean").glob("*.lean"):
-                shutil.copyfile(source, root / "lean" / source.name)
-
+        tmp_ctx, root = self._make_temp_workspace()
+        with tmp_ctx:
             for label, source in torsor_variants.items():
                 with self.subTest(label=label), patch.object(checker, "ROOT", root):
                     (root / "lean/TorsorAndOperations.lean").write_bytes(source.encode("utf-8"))
@@ -351,8 +345,189 @@ class CompilableMutationTests(unittest.TestCase):
                     with self.assertRaises(RuntimeError):
                         checker.verify_receipt(actual, expected_im, "InternalMetatheory")
 
+    def test_wdp_slice_der34_to_der37_theorem_removal_and_weakening_are_rejected(self):
+        expected_fd = json.loads(
+            (ROOT / checker.RECEIPTS["WitnessedDifference.FiniteDistinction"]).read_text(encoding="utf-8")
+        )
+        orig_fd = (ROOT / "lean/WitnessedDifference/FiniteDistinction.lean").read_text(encoding="utf-8")
+        target_fd = (
+            "/-- Theorem WD2-T5 (unfactored report counterexample, §7): On `S = {0, 1}` with constant\n"
+            "observation `p = 0` and identity update `u_a(s) = s`, states `0` and `1` are related at every\n"
+            "horizon `n`, yet the unfactored report `r(s, a) = s` separates them on a one-letter word. -/\n"
+            "theorem unfactored_report_splits_r0 :\n"
+            "    let observe : Nat → Nat := fun _ => 0\n"
+            "    let update : Nat → Nat → Nat := fun s _ => s\n"
+            "    let alphabet : List Nat := [0]\n"
+            "    let unfactoredReport : Nat → Nat → Nat := fun s _ => s\n"
+            "    (∀ n : Nat, related observe update alphabet n 0 1 = true) ∧\n"
+            "      reportTrace update unfactoredReport 0 [0] ≠ reportTrace update unfactoredReport 1 [0] := by\n"
+            "  intro observe update alphabet unfactoredReport\n"
+            "  refine ⟨?_, by decide⟩\n"
+            "  intro n\n"
+            "  induction n with\n"
+            "  | zero => rfl\n"
+            "  | succ n ih =>\n"
+            "      change (true && (related observe update alphabet n 0 1 && true)) = true\n"
+            "      rw [Bool.true_and, Bool.and_true]\n"
+            "      exact ih\n"
+        )
+        self.assertIn(target_fd, orig_fd)
+        fd_variants = {
+            "remove_fd": orig_fd.replace(target_fd, "", 1),
+            "weaken_fd": orig_fd.replace(
+                target_fd,
+                "theorem unfactored_report_splits_r0 : (0 : Nat) < 1 := by omega\n",
+                1,
+            ),
+        }
+
+        expected_s25 = json.loads(
+            (ROOT / checker.RECEIPTS["WitnessedDifference.Source25PairTransport"]).read_text(encoding="utf-8")
+        )
+        orig_s25 = (ROOT / "lean/WitnessedDifference/Source25PairTransport.lean").read_text(encoding="utf-8")
+        target_s25 = (
+            "theorem every_partial_run_and_paid_trace_preserved (initial : State) (events : List Change) :\n"
+            "    execute nativeFormulaStep initial events = execute sourceStep initial events := by\n"
+            "  rw [all_declared_steps_preserved_and_reflected]\n"
+        )
+        self.assertIn(target_s25, orig_s25)
+        s25_variants = {
+            "weaken_s25_to_true": orig_s25.replace(
+                target_s25,
+                "theorem every_partial_run_and_paid_trace_preserved : True := True.intro\n",
+                1,
+            ),
+        }
+
+        tmp_ctx, root = self._make_temp_workspace()
+        with tmp_ctx:
+            for label, source in fd_variants.items():
+                with self.subTest(label=label), patch.object(checker, "ROOT", root):
+                    (root / "lean/WitnessedDifference/FiniteDistinction.lean").write_bytes(source.encode("utf-8"))
+                    actual = checker.check("WitnessedDifference.FiniteDistinction")
+                    self.assertEqual(
+                        actual["theorems_checked"],
+                        33 if label == "remove_fd" else 34,
+                    )
+                    with self.assertRaises(RuntimeError):
+                        checker.verify_receipt(actual, expected_fd, "WitnessedDifference.FiniteDistinction")
+            (root / "lean/WitnessedDifference/FiniteDistinction.lean").write_bytes(orig_fd.encode("utf-8"))
+
+            for label, source in s25_variants.items():
+                with self.subTest(label=label), patch.object(checker, "ROOT", root):
+                    (root / "lean/WitnessedDifference/Source25PairTransport.lean").write_bytes(source.encode("utf-8"))
+                    actual = checker.check("WitnessedDifference.Source25PairTransport")
+                    self.assertEqual(actual["theorems_checked"], 10)
+                    self.assertEqual(
+                        actual["dependencies"]["every_partial_run_and_paid_trace_preserved"],
+                        [],
+                    )
+                    with self.assertRaises(RuntimeError):
+                        checker.verify_receipt(actual, expected_s25, "WitnessedDifference.Source25PairTransport")
+            (root / "lean/WitnessedDifference/Source25PairTransport.lean").write_bytes(orig_s25.encode("utf-8"))
+
+            expected_obs = json.loads(
+                (ROOT / checker.RECEIPTS["WitnessedDifference.Obstruction"]).read_text(encoding="utf-8")
+            )
+            orig_obs = (ROOT / "lean/WitnessedDifference/Obstruction.lean").read_text(encoding="utf-8")
+            target_obs = (
+                "theorem observer_exact_class_stays_exact {Q R : Type}\n"
+                "    (O : Q → R) (Φ : Q → Int) (ΦO : R → Int)\n"
+                "    (lower : ∀ y r, O r = y → ΦO y ≤ Φ r)\n"
+                "    (glb : ∀ y b, (∀ r, O r = y → b ≤ Φ r) → b ≤ ΦO y)\n"
+                "    (Φ_nonneg : ∀ r, 0 ≤ Φ r) (q : Q) (hexact : Φ q = 0) :\n"
+                "    ΦO (O q) = 0 := by\n"
+                "  have hupper := lower (O q) q rfl\n"
+                "  have hlower : 0 ≤ ΦO (O q) := glb (O q) 0 (fun r _ => Φ_nonneg r)\n"
+                "  omega\n"
+            )
+            self.assertIn(target_obs, orig_obs)
+            obs_variants = {
+                "remove_obs": orig_obs.replace(target_obs, "", 1),
+                "weaken_obs": orig_obs.replace(
+                    target_obs,
+                    "theorem observer_exact_class_stays_exact : True := True.intro\n",
+                    1,
+                ),
+            }
+            for label, source in obs_variants.items():
+                with self.subTest(label=label), patch.object(checker, "ROOT", root):
+                    (root / "lean/WitnessedDifference/Obstruction.lean").write_bytes(source.encode("utf-8"))
+                    actual = checker.check("WitnessedDifference.Obstruction")
+                    self.assertEqual(
+                        actual["theorems_checked"],
+                        30 if label == "remove_obs" else 31,
+                    )
+                    with self.assertRaises(RuntimeError):
+                        checker.verify_receipt(actual, expected_obs, "WitnessedDifference.Obstruction")
+            (root / "lean/WitnessedDifference/Obstruction.lean").write_bytes(orig_obs.encode("utf-8"))
+
+            expected_bor = json.loads(
+                (ROOT / checker.RECEIPTS["WitnessedDifference.BridgeObligationReductions"]).read_text(encoding="utf-8")
+            )
+            orig_bor = (ROOT / "lean/WitnessedDifference/BridgeObligationReductions.lean").read_text(encoding="utf-8")
+            target_bor = (
+                "/-- Adding a direct shortcut/witness edge between the two endpoints reduces their\n"
+                "combinatorial graph distance to `1`, which satisfies `1 ≤ 2 * d + 2` for every\n"
+                "fixed radius `d ≥ 0`. -/\n"
+                "theorem shortcut_edge_repair_restores_radius_one_visibility (d : Nat) :\n"
+                "    let shortcutDist := 1\n"
+                "    shortcutDist ≤ 2 * d + 2 := by\n"
+                "  omega\n"
+            )
+            self.assertIn(target_bor, orig_bor)
+            bor_variants = {
+                "remove_bor": orig_bor.replace(target_bor, "", 1),
+                "weaken_bor": orig_bor.replace(
+                    target_bor,
+                    "theorem shortcut_edge_repair_restores_radius_one_visibility : True := True.intro\n",
+                    1,
+                ),
+            }
+            for label, source in bor_variants.items():
+                with self.subTest(label=label), patch.object(checker, "ROOT", root):
+                    (root / "lean/WitnessedDifference/BridgeObligationReductions.lean").write_bytes(source.encode("utf-8"))
+                    actual = checker.check("WitnessedDifference.BridgeObligationReductions")
+                    self.assertEqual(
+                        actual["theorems_checked"],
+                        17 if label == "remove_bor" else 18,
+                    )
+                    with self.assertRaises(RuntimeError):
+                        checker.verify_receipt(actual, expected_bor, "WitnessedDifference.BridgeObligationReductions")
+            (root / "lean/WitnessedDifference/BridgeObligationReductions.lean").write_bytes(orig_bor.encode("utf-8"))
+
+            expected_giq = json.loads(
+                (ROOT / checker.RECEIPTS["WitnessedDifference.GaussianIntQuantumReadout"]).read_text(encoding="utf-8")
+            )
+            orig_giq = (ROOT / "lean/WitnessedDifference/GaussianIntQuantumReadout.lean").read_text(encoding="utf-8")
+            target_giq = (
+                "/-- Discrete Noether charge conservation on a 2-vertex interval: if local continuity holds at both\n"
+                "sites (`(q0' - q0) + j01 = 0` and `(q1' - q1) - j01 = 0`), then total charge `q0' + q1' = q0 + q1`. -/\n"
+                "theorem discrete_noether_charge_conserved (q0 q1 q0' q1' j01 : Int)\n"
+                "    (h0 : (q0' - q0) + j01 = 0) (h1 : (q1' - q1) - j01 = 0) :\n"
+                "    q0' + q1' = q0 + q1 := by\n"
+                "  omega\n"
+            )
+            self.assertIn(target_giq, orig_giq)
+            giq_variants = {
+                "remove_giq": orig_giq.replace(target_giq, "", 1),
+                "weaken_giq": orig_giq.replace(
+                    target_giq,
+                    "theorem discrete_noether_charge_conserved : True := True.intro\n",
+                    1,
+                ),
+            }
+            for label, source in giq_variants.items():
+                with self.subTest(label=label), patch.object(checker, "ROOT", root):
+                    (root / "lean/WitnessedDifference/GaussianIntQuantumReadout.lean").write_bytes(source.encode("utf-8"))
+                    actual = checker.check("WitnessedDifference.GaussianIntQuantumReadout")
+                    self.assertEqual(
+                        actual["theorems_checked"],
+                        23 if label == "remove_giq" else 24,
+                    )
+                    with self.assertRaises(RuntimeError):
+                        checker.verify_receipt(actual, expected_giq, "WitnessedDifference.GaussianIntQuantumReadout")
+
 
 if __name__ == "__main__":
     unittest.main()
-
-
