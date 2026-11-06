@@ -28,6 +28,9 @@ FORBIDDEN_AXIOMS = {"Classical.choice", "sorryAx"}
 
 FORBIDDEN_PHRASES = (
     "proves",
+    "prove",
+    "proved",
+    "proving",
     "guarantees",
     "mathematically verifies",
     "fundamentally",
@@ -52,6 +55,8 @@ FORBIDDEN_REGEX = re.compile(
     re.IGNORECASE,
 )
 
+NODE_ID_REF_REGEX = re.compile(r"(?<!formerly )\b(?:OWE|DER|IMG)-\d{2}\b")
+
 
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
@@ -61,6 +66,14 @@ def check_claim_hygiene_text(text: str, context: str) -> None:
     match = FORBIDDEN_REGEX.search(text)
     if match:
         raise ValueError(f"Claim Hygiene forbidden term {match.group(0)!r} in {context}: {text!r}")
+
+
+def check_node_id_references(text: str, valid_ids: set[str], context: str) -> None:
+    for ref_id in NODE_ID_REF_REGEX.findall(text):
+        if ref_id not in valid_ids:
+            raise ValueError(
+                f"Dangling node reference {ref_id!r} in {context} (not found in DAG nodes): {text!r}"
+            )
 
 
 def validate_dag_data(
@@ -387,6 +400,11 @@ def validate_dag_data(
                 f"Bucket count mismatch for {bucket}: declared={declared}, actual={count}"
             )
 
+    valid_node_ids = set(node_by_id.keys())
+    for nid, node in node_by_id.items():
+        check_node_id_references(node["title"], valid_node_ids, f"node[{nid}].title")
+        check_node_id_references(node["statement"], valid_node_ids, f"node[{nid}].statement")
+
     # Validate edges, admission edge completeness, and acyclicity
     edges = data["edges"]
     if not isinstance(edges, list) or not edges:
@@ -415,6 +433,7 @@ def validate_dag_data(
         if not note.strip():
             raise ValueError(f"Edge ({src!r} -> {dst!r}) must have a non-empty note")
         check_claim_hygiene_text(note, f"edge[{src}->{dst}].note")
+        check_node_id_references(note, valid_node_ids, f"edge[{src}->{dst}].note")
 
         src_bucket = node_by_id[src]["bucket"]
         dst_bucket = node_by_id[dst]["bucket"]

@@ -29,12 +29,32 @@ class DerivationDagTests(unittest.TestCase):
         self.assertEqual(summary["total_lean_theorems"], 350)
 
     def test_claim_hygiene_violations_fail_closed(self) -> None:
-        for bad_word in ("proves", "guarantees", "impossible", "universal", "obviously", "metaphysics", "ontology"):
+        for bad_word in (
+            "proves",
+            "prove",
+            "proved",
+            "proving",
+            "guarantees",
+            "impossible",
+            "universal",
+            "obviously",
+            "metaphysics",
+            "ontology",
+        ):
             with self.subTest(bad_word=bad_word):
                 mutated = copy.deepcopy(self.data)
                 mutated["nodes"][0]["statement"] = f"This node {bad_word} the result."
                 with self.assertRaisesRegex(ValueError, "Claim Hygiene forbidden term"):
                     validator.validate_dag_data(mutated, root=ROOT)
+
+    def test_dangling_node_id_reference_in_statement_fails_closed(self) -> None:
+        mutated = copy.deepcopy(self.data)
+        for node in mutated["nodes"]:
+            if node["id"] == "DER-19":
+                node["statement"] += " Still tracked in OWE-11."
+                break
+        with self.assertRaisesRegex(ValueError, "Dangling node reference 'OWE-11'"):
+            validator.validate_dag_data(mutated, root=ROOT)
 
     def test_missing_theorem_in_receipt_fails_closed(self) -> None:
         mutated = copy.deepcopy(self.data)

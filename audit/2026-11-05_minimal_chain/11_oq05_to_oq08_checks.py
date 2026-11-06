@@ -123,6 +123,47 @@ def regime_class_count4(regime):
     return sum(1 for x in range(data) if is_rep4(regime, x))
 
 
+def fresh_unary_delta4(regime, target):
+    forms = regime[1]
+    return (("newForm", 1), ("newInst", len(forms), (target,)))
+
+
+def apply_item4(regime, item):
+    data, forms, insts, reqs = regime
+    tag = item[0]
+    if tag == "newDatum":
+        return (data + 1, forms, insts, reqs)
+    if tag == "newForm":
+        k = item[1]
+        if k < 1:
+            return None
+        return (data, forms + (k,), insts, reqs)
+    if tag == "newInst":
+        f, args = item[1], tuple(item[2])
+        if f >= len(forms) or len(args) != forms[f] or any(x >= data for x in args):
+            return None
+        new_inst = (f, args)
+        new_insts = insts if new_inst in insts else insts + (new_inst,)
+        return (data, forms, new_insts, reqs)
+    if tag == "newReq":
+        i, j = item[1], item[2]
+        if i >= data or j >= data or i == j:
+            return None
+        pair = (i, j)
+        new_reqs = reqs if pair in reqs else reqs + (pair,)
+        return (data, forms, insts, new_reqs)
+    return None
+
+
+def apply_delta4(regime, delta):
+    curr = regime
+    for item in delta:
+        curr = apply_item4(curr, item)
+        if curr is None:
+            return None
+    return curr
+
+
 def step_fresh_unary4(regime, target):
     data, forms, insts, reqs = regime
     new_inst = (len(forms), (target,))
@@ -165,7 +206,9 @@ def check_oq05():
         assert counts[0] == 1
         for t in range(n - 1):
             assert collapsed4_bool(r, t, t + 1)
-            r = step_fresh_unary4(r, t)
+            nxt = step_fresh_unary4(r, t)
+            assert apply_delta4(r, fresh_unary_delta4(r, t)) == nxt
+            r = nxt
             counts.append(regime_class_count4(r))
             assert counts[-1] == counts[-2] + 1
         assert counts == list(range(1, n + 1))

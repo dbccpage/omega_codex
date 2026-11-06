@@ -1123,7 +1123,7 @@
         "RT-11",
         "RT-12"
       ],
-      "statement": "Audit check suites and Lean 4.33.0 regressions across OQ-01 through OQ-08 and RT-01 through RT-12, including four concrete OQ-08 guard-discrepancy regressions between simplified stepHWorldGuarded and pinned legacy Represented.World (singleton non-separating view addView [0] on data=[0], duplicate view rejection, disabled augmentation license rejection, and novel view with zero new separation rejection) and adapted 5-gate FullWDPWorld commutation with Represented.step at zero admission/retention cost. OQ-05 and OQ-08 remain DERIVED_CONDITIONALLY in DER-08 and DER-12 with their unconstructed source bridges tracked in OWE-11 and OWE-12.",
+      "statement": "Audit check suites and Lean 4.33.0 regressions across OQ-01 through OQ-08 and RT-01 through RT-12, including four concrete OQ-08 guard-discrepancy regressions between simplified stepHWorldGuarded and pinned legacy Represented.World (singleton non-separating view addView [0] on data=[0], duplicate view rejection, disabled augmentation license rejection, and novel view with zero new separation rejection) and adapted 5-gate FullWDPWorld commutation with Represented.step at zero admission/retention cost. OQ-05 is discharged in DER-08 and DER-24 (formerly OWE-11), while OQ-08 remains DERIVED_CONDITIONALLY in DER-12 with its unconstructed source bridge tracked in OWE-12.",
       "artifacts": {
         "python_checks": [
           "audit/2026-11-05_minimal_chain/2_mark_checks.py",
@@ -2341,7 +2341,7 @@
       "from": "DER-16",
       "to": "DER-19",
       "kind": "derives",
-      "note": "Campaigns 1-3 audit synthesis consolidates all 8 Lean modules and check scripts."
+      "note": "Campaigns 1-3 audit synthesis consolidates all 9 Lean modules and check scripts."
     },
     {
       "from": "DER-17",
@@ -2515,7 +2515,7 @@
       "from": "DER-24",
       "to": "DER-08",
       "kind": "derives",
-      "note": "Discharges OQ-05 general Regime4 transition-to-class-count growth bridge and RegimeRefinementRun4 round bound k + 1 <= r0.data."
+      "note": "Discharges OQ-05 general Regime4 transition-to-class-count growth bridge and RegimeRefinementRun4 round bound m <= r.data - 1."
     },
     {
       "from": "DER-09",

@@ -20,7 +20,7 @@ This Lean 4 module checks:
   `stepFreshUnary4_strict_transition`, `stepFreshUnary4_class_count_growth`,
   `regimeRefinementRun4_to_quotRefRun`, `regimeRefinementRun4_round_bound`, and
   `rt09_class_count_comparison`.
-- `OQ-06` (`DER-10`): choice-free `oq06_history_report_criterion_fin` via `decodeFin`.
+- `OQ-06` (`DER-11`): choice-free `oq06_history_report_criterion_fin` via `decodeFin`.
 - `OQ-07` (`DER-14`): `oq07_weights_not_forced_without_symmetry` and
   `oq07_transitive_symmetry_forces_equal_weights`.
 - `OQ-08` (`DERIVED_CONDITIONALLY` in `DER-12`): simplified-model commutation
@@ -248,6 +248,18 @@ theorem oq05_regime4_strict_class_count_growth {r s : Regime4}
     regimeClassCount4 s ≤ s.data :=
   regime4_strict_class_count_growth h
 
+theorem oq05_applyDelta4_freshUnaryDelta4 (r : Regime4) {target : Nat}
+    (ht : target < r.data) :
+    applyDelta4 r (freshUnaryDelta4 r target) = some (stepFreshUnary4 r target) :=
+  applyDelta4_freshUnaryDelta4 r ht
+
+theorem oq05_stepFreshUnary4_strict_transition (r : Regime4)
+    (hwf : ∀ p ∈ r.insts, p.1 < r.forms.length)
+    {target other : Nat} (ht : target < r.data) (ho : other < r.data)
+    (hcol : collapsed4 r target other) (hne : target ≠ other) :
+    StrictRegimeTransition4 r (stepFreshUnary4 r target) :=
+  stepFreshUnary4_strict_transition r hwf ht ho hcol hne
+
 theorem oq05_stepFreshUnary4_class_count_growth (r : Regime4)
     (hwf : ∀ p ∈ r.insts, p.1 < r.forms.length)
     {target other : Nat} (ht : target < r.data) (ho : other < r.data)
@@ -255,6 +267,11 @@ theorem oq05_stepFreshUnary4_class_count_growth (r : Regime4)
     regimeClassCount4 r + 1 ≤ regimeClassCount4 (stepFreshUnary4 r target) ∧
     regimeClassCount4 (stepFreshUnary4 r target) ≤ r.data :=
   stepFreshUnary4_class_count_growth r hwf ht ho hcol hne
+
+theorem oq05_regimeRefinementRun4_to_quotRefRun {r : Regime4} {m : Nat}
+    (hrun : RegimeRefinementRun4 r m) :
+    OmegaCodex.MinimalSeparation.QuotRefRun r.data (regimeClassCount4 r) m :=
+  regimeRefinementRun4_to_quotRefRun hrun
 
 theorem oq05_regimeRefinementRun4_round_bound {r : Regime4} {m : Nat}
     (hdata : 1 ≤ r.data) (hrun : RegimeRefinementRun4 r m) :
@@ -563,7 +580,10 @@ end MinimalChainAuditOQ05To08
 #print axioms MinimalChainAuditOQ05To08.oq05_collapsed4_iff_collapsed4Bool
 #print axioms MinimalChainAuditOQ05To08.oq05_separable4_iff_collapsed4Bool_false
 #print axioms MinimalChainAuditOQ05To08.oq05_regime4_strict_class_count_growth
+#print axioms MinimalChainAuditOQ05To08.oq05_applyDelta4_freshUnaryDelta4
+#print axioms MinimalChainAuditOQ05To08.oq05_stepFreshUnary4_strict_transition
 #print axioms MinimalChainAuditOQ05To08.oq05_stepFreshUnary4_class_count_growth
+#print axioms MinimalChainAuditOQ05To08.oq05_regimeRefinementRun4_to_quotRefRun
 #print axioms MinimalChainAuditOQ05To08.oq05_regimeRefinementRun4_round_bound
 #print axioms MinimalChainAuditOQ05To08.oq05_rt09_class_count_comparison
 #print axioms MinimalChainAuditOQ05To08.oq06_history_report_criterion_fin

@@ -81,6 +81,27 @@ class OQ05Regime4ClassCountTests(unittest.TestCase):
         self.assertFalse(oq05.collapsed4_bool(r3_round2_fresh, 0, 2))
         self.assertFalse(oq05.collapsed4_bool(r3_round2_fresh, 1, 2))
 
+    def test_apply_delta4_fresh_unary_delta4_and_mixed_regime_refinement(self) -> None:
+        # Start from a regime on n=4 that already has a binary form (arity 2) separating 0 from {1, 2, 3}
+        r_bin = (4, (2,), ((0, (0, 0)),), ())
+        self.assertEqual(oq05.regime_class_count4(r_bin), 2)
+        self.assertFalse(oq05.collapsed4_bool(r_bin, 0, 1))
+        self.assertTrue(oq05.collapsed4_bool(r_bin, 1, 2))
+        self.assertTrue(oq05.collapsed4_bool(r_bin, 2, 3))
+
+        # Valid target < r.data matches step_fresh_unary4 and strictly increases class count
+        delta_1 = oq05.fresh_unary_delta4(r_bin, 1)
+        r_next = oq05.apply_delta4(r_bin, delta_1)
+        self.assertEqual(r_next, oq05.step_fresh_unary4(r_bin, 1))
+        self.assertEqual(oq05.regime_class_count4(r_next), 3)
+        self.assertFalse(oq05.collapsed4_bool(r_next, 0, 1))
+        self.assertFalse(oq05.collapsed4_bool(r_next, 1, 2))
+        self.assertTrue(oq05.collapsed4_bool(r_next, 2, 3))
+
+        # Out-of-bounds target >= r.data is rejected by apply_delta4
+        self.assertIsNone(oq05.apply_delta4(r_bin, oq05.fresh_unary_delta4(r_bin, 4)))
+        self.assertIsNone(oq05.apply_delta4(r_bin, (("newForm", 0),)))
+
 
 if __name__ == "__main__":
     unittest.main()
