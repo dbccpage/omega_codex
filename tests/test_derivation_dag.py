@@ -21,12 +21,12 @@ class DerivationDagTests(unittest.TestCase):
     def test_canonical_dag_validates(self) -> None:
         summary = validator.validate_dag_data(self.data, root=ROOT)
         self.assertTrue(summary["valid"])
-        self.assertEqual(summary["total_nodes"], 46)
-        self.assertEqual(summary["total_edges"], 104)
-        self.assertEqual(summary["requires_admission_edges"], 51)
-        self.assertEqual(summary["bucket_counts"], {"DERIVED": 24, "OWED": 12, "IMAGINED": 10})
+        self.assertEqual(summary["total_nodes"], 47)
+        self.assertEqual(summary["total_edges"], 110)
+        self.assertEqual(summary["requires_admission_edges"], 53)
+        self.assertEqual(summary["bucket_counts"], {"DERIVED": 25, "OWED": 12, "IMAGINED": 10})
         self.assertEqual(summary["lean_modules_verified"], 9)
-        self.assertEqual(summary["total_lean_theorems"], 350)
+        self.assertEqual(summary["total_lean_theorems"], 362)
 
     def test_claim_hygiene_violations_fail_closed(self) -> None:
         for bad_word in (

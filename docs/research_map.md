@@ -353,12 +353,12 @@ for equivalences. The preorder's directed `not E` is distinct from symmetric cla
 inequality. The review approves the argument but requests a separate formalization
 slice; none of these proposed new theorems is marked checked here.
 
-### Minimal-chain reconstruction and OQ-05 class-count bridge refresh
+### Minimal-chain reconstruction, OQ-05 class-count bridge, and N19-N20 holonomy/stick-threshold refresh
 
 Nine Lean 4.33.0 modules now build in `lean/` (`PrimitiveDifference`,
 `MirrorNonIdentification`, `ZeroEquivalence`, `TorsorAndOperations`,
 `MinimalSeparation`, `RetentionAndRefusal`, `LocalGlobalObstruction`,
-`InternalMetatheory`, and `ProfilePreorderAndGenerator`), covering 350 checked
+`InternalMetatheory`, and `ProfilePreorderAndGenerator`), covering 362 checked
 theorem declarations across nine verification receipts in `docs/*_verification.json`
 with allowed axioms restricted to `propext` and `Quot.sound` (zero `Classical.choice`,
 zero `sorry`). In `lean/MinimalSeparation.lean`, exact well-formed context
@@ -370,6 +370,17 @@ canonical least-element representative counting (`isRep4`, `classCount4`,
 `stepFreshUnary4_class_count_growth`) connect multi-round `RegimeRefinementRun4`
 chains to `QuotRefRun` (`regimeRefinementRun4_to_quotRefRun`,
 `regimeRefinementRun4_round_bound`, `rt09_class_count_comparison`), discharging
-`OWE-11` (`DER-24` and `DER-08`) in [`dag/derivation_dag.json`](../dag/derivation_dag.json)
-(46 nodes, 104 directed edges, 51 `requires_admission` edges).
+`OWE-11` (`DER-24` and `DER-08`). In `lean/ProfilePreorderAndGenerator.lean`
+(`DER-25`), Section 3B characterizes all base-intertwining lifts
+`step : Bool × Bool → Bool × Bool` over `counterpart` (`period_two_iff_trivial_sheet_holonomy`,
+`period_four_iff_no_two_step_fixed_point`, `period_four_iff_sheet_flip_holonomy`,
+`step4Sheet_has_sheet_flip_holonomy_and_period_four`,
+`fin4_sheet_equivariant_bijection`) and establishes that `n = 3` (`Stick3` vs.
+`Stick1`, `Stick2`) is the minimal slot count at which 1-stick indicator
+configurations exhibit both zero-residual mirror collapse and positive reflection
+residual (`n1_reflResidual_eq_hamming`,
+`n2_single_sticks_mirror_collapse_but_zero_residual`,
+`n3_minimal_single_stick_reflection_witness`), narrowing `OWE-08` in
+[`dag/derivation_dag.json`](../dag/derivation_dag.json) (47 nodes, 110 directed
+edges, 53 `requires_admission` edges).
 

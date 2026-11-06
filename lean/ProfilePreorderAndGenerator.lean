@@ -4,16 +4,16 @@ import ZeroEquivalence
 /-!
 # Profile-Preorder Bridge, Quotient Retention, Reflection Lift, and Supplied-Rule Reflective Chain (Slice 6)
 
-Formalizes four distinct conditional and relational components while keeping
+Formalizes five distinct conditional and relational components while keeping
 all supplied carrier, constructor, transition, observation, and scheduling
-assumptions explicit (`DER-21`, `DER-22`, `DER-23`), and preserving the
-unresolved operational acquisition, invocation, persistence, and period-4
-necessity obligations as `OWED` (`OWE-07`, `OWE-08`, `OWE-10`, `OWE-13`):
+assumptions explicit (`DER-21`, `DER-22`, `DER-23`, `DER-25`), and preserving the
+unresolved operational acquisition, invocation, persistence, and endogenous
+holonomy/carrier-choice obligations as `OWED` (`OWE-07`, `OWE-08`, `OWE-10`, `OWE-13`):
 
 1. **Profile equivalence vs. mutual comparability preorder bridge** (`DER-21`,
    `docs/research_map.md` lines 350–354, `docs/zero_equivalence.md` lines 211–219):
    - *Supplied*: arbitrary carrier `α : Type u` and binary relation `E : α → α → Prop` (`S0`).
-   - *Proved*: complete incoming/outgoing profile agreement `ProfileEquiv E` is
+   - *Checked in Lean*: complete incoming/outgoing profile agreement `ProfileEquiv E` is
      an equivalence relation without assuming reflexivity, symmetry, or
      transitivity of `E`; when `E` is a preorder (`IsPreorder E`), `ProfileEquiv E`
      coincides iff-wise with mutual comparability `MutualComp E x y := E x y ∧ E y x`;
@@ -26,23 +26,34 @@ necessity obligations as `OWED` (`OWE-07`, `OWE-08`, `OWE-10`, `OWE-13`):
    `QuotientRetention.lean`):
    - *Supplied*: carrier `α`, setoids `fine` and `coarse`, refinement proof `href`,
      and endomorphism `σ : α → α` (`S0`, `M2`).
-   - *Proved*: failed coarse-to-fine identification and unabsorbed internal
+   - *Checked in Lean*: failed coarse-to-fine identification and unabsorbed internal
      exchange symmetry retain distinct refined classes in the fiber of the
      canonical surjective factor map `collapseMap : Quotient fine → Quotient coarse`.
 3. **Finite ten-stick reflection (`N19`) and four-step vs. two-step lift (`N20`)**
-   (`DER-22`, `OWE-08`):
+   (`DER-22`, `DER-25`, `OWE-08`):
    - *Supplied*: 10-slot carrier `Fin 10 → Bool` with reversal `reflectIndex10`
-     and Hamming metric (`N19`), and 4-state carrier `Fin 4` with cyclic step
-     `step4` and parity projection `proj2` vs. product carrier `Bool × Bool` with
-     `step4Triv` (`N20`; admissions `S0`, `M2`, `M3`).
-   - *Proved*: `reflect10` is involutive and separates raw Hamming disagreement
+     and Hamming metric (`N19`), 1/2/3-slot carriers `Stick1`, `Stick2`, `Stick3`,
+     and 4-state carrier `Fin 4` with cyclic step `step4` and parity projection `proj2`
+     vs. product carrier `Bool × Bool` with `step4Triv` and `step4Sheet` (`N20`;
+     admissions `S0`, `M2`, `M3`).
+   - *Checked in Lean*: `reflect10` is involutive and separates raw Hamming disagreement
      (`2`) from reflection-quotient residual (`0` on mirror pair `stickLeft`/`stickRight`
      vs. `2` on non-mirror `stickLeft`/`stickMid`); `step4` intertwines visible
      `counterpart`, restores visible parity while flipping sheets at step 2, and
      closes at step 4, whereas `step4Triv` also intertwines `counterpart` with
-     period 2 (`trivial_two_step_lift_also_intertwines`).
-   - *Remains open (`OWE-08`)*: neither the 10-slot carrier nor period-4 sheet
-     coupling is forced by `S2Bool` alone (`OWE-08`).
+     period 2 (`trivial_two_step_lift_also_intertwines`). In Section 3B (`DER-25`),
+     any base-intertwining lift on `Bool × Bool` has period 4 everywhere iff it has
+     no 2-step fixed points iff its 2-step fiber holonomy flips the hidden sheet
+     everywhere (`period_four_iff_no_two_step_fixed_point`, `period_four_iff_sheet_flip_holonomy`),
+     `(Fin 4, step4, proj2)` is equivariantly isomorphic to `(Bool × Bool, step4Sheet, Prod.fst)`
+     (`fin4_sheet_equivariant_bijection`), and `n = 3` (`Stick3`) is the minimal
+     carrier threshold at which 1-stick indicator configurations exhibit both mirror
+     collapse (`reflResidual3 = 0` at `hamming3 = 2`) and positive reflection residual
+     (`reflResidual3 = 2`), compared against `n = 1` (`n1_reflResidual_eq_hamming`) and
+     `n = 2` (`n2_single_sticks_mirror_collapse_but_zero_residual`).
+   - *Remains open (`OWE-08`)*: endogenous forcing of non-trivial 2-step sheet-flip
+     holonomy over trivial holonomy on `Bool × Bool` and the unforced choice of
+     `n = 10` (`Stick10`) over the minimal `n = 3` threshold (`OWE-08`).
 4. **Supplied-rule refusal reification and reflective chain profile collisions**
    (`DER-23`, `OWE-07`, `OWE-13`, `N21`–`N22`, `RefusalFrontier.lean`,
    `Generator.lean`, `SeparationCapacity.lean`):
@@ -52,7 +63,7 @@ necessity obligations as `OWED` (`OWE-07`, `OWE-08`, `OWE-10`, `OWE-13`):
      transition `stepRefl` (which explicitly appends element `r = s.data.length`,
      tag `r`, and edge `(s.data.length - 1, r)` on invocation), iteration `reflState`,
      and observation maps `profile1`, `profile2`, `profileV`, `profileD` (`S0`, `M2`, `M3`).
-   - *Proved*: within `stepM` traces from `⟨[], []⟩` measured by presentation-step
+   - *Checked in Lean*: within `stepM` traces from `⟨[], []⟩` measured by presentation-step
      count, `0` or `1` steps leave `rel = []` (`stepM_lower_bound_two_steps`) and
      `2` steps of token `0` inhabit `rel` (`min_witnessed_route_closes`), while
      fact-level off-diagonal pairs do not force the global `Irrefl` law
@@ -375,6 +386,254 @@ theorem trivial_two_step_lift_also_intertwines (s : Bool × Bool) :
       step4Triv (step4Triv s) = s := by
   rcases s with ⟨b, sheet⟩
   cases b <;> cases sheet <;> exact ⟨rfl, rfl⟩
+
+/-! ## Section 3B: Two-Sheet Holonomy Characterization (`N20`) and Minimal `n = 3` Reflection-Residual Carrier Threshold (`N19`, `DER-25`) -/
+
+/-- A transition `step : Bool × Bool → Bool × Bool` on the two-sheeted cover
+    `Bool × Bool → Bool` intertwines `counterpart` on the visible base coordinate. -/
+def IntertwinesCounterpart (step : Bool × Bool → Bool × Bool) : Prop :=
+  ∀ s : Bool × Bool, (step s).1 = counterpart s.1
+
+/-- For any base-intertwining lift on `Bool × Bool`, two steps restore the
+    visible base coordinate `(step (step s)).1 = s.1`. -/
+theorem two_step_base_returns_of_intertwines {step : Bool × Bool → Bool × Bool}
+    (hint : IntertwinesCounterpart step) (s : Bool × Bool) :
+    (step (step s)).1 = s.1 := by
+  rw [hint (step s), hint s, counterpart_involution]
+
+/-- No base-intertwining lift on `Bool × Bool` can have a 1-step or 3-step fixed point. -/
+theorem odd_steps_not_fixed_of_intertwines {step : Bool × Bool → Bool × Bool}
+    (hint : IntertwinesCounterpart step) (s : Bool × Bool) :
+    step s ≠ s ∧ step (step (step s)) ≠ s := by
+  refine ⟨?_, ?_⟩
+  · intro heq
+    have h1 : (step s).1 = s.1 := congrArg Prod.fst heq
+    rw [hint s] at h1
+    exact counterpart_ne s.1 h1
+  · intro heq
+    have h1 : (step (step (step s))).1 = s.1 := congrArg Prod.fst heq
+    rw [hint (step (step s)), two_step_base_returns_of_intertwines hint s] at h1
+    exact counterpart_ne s.1 h1
+
+/-- Two-step fiber holonomy dichotomy: at every state `s : Bool × Bool`, after
+    two steps of a base-intertwining lift, the state either returns to `s`
+    (trivial fiber holonomy) or flips the hidden sheet to `(s.1, counterpart s.2)`. -/
+theorem two_step_fiber_holonomy_dichotomy {step : Bool × Bool → Bool × Bool}
+    (hint : IntertwinesCounterpart step) (s : Bool × Bool) :
+    step (step s) = s ∨ step (step s) = (s.1, counterpart s.2) := by
+  have hbase : (step (step s)).1 = s.1 := two_step_base_returns_of_intertwines hint s
+  rcases s with ⟨b0, sh0⟩
+  rcases hss : step (step (b0, sh0)) with ⟨b, sh⟩
+  rw [hss] at hbase
+  change b = b0 at hbase
+  subst hbase
+  cases sh <;> cases sh0
+  · exact Or.inl rfl
+  · exact Or.inr rfl
+  · exact Or.inr rfl
+  · exact Or.inl rfl
+
+/-- A base-intertwining lift on `Bool × Bool` has period 2 if and only if its
+    2-step fiber holonomy on the second coordinate is trivial everywhere. -/
+theorem period_two_iff_trivial_sheet_holonomy {step : Bool × Bool → Bool × Bool}
+    (hint : IntertwinesCounterpart step) :
+    (∀ s, step (step s) = s) ↔ (∀ s, (step (step s)).2 = s.2) := by
+  constructor
+  · intro h s
+    exact congrArg Prod.snd (h s)
+  · intro h s
+    have h1 : (step (step s)).1 = s.1 := two_step_base_returns_of_intertwines hint s
+    have h2 : (step (step s)).2 = s.2 := h s
+    rcases s with ⟨b0, sh0⟩
+    rcases hss : step (step (b0, sh0)) with ⟨b, sh⟩
+    rw [hss] at h1 h2
+    cases h1
+    cases h2
+    rfl
+
+/-- A base-intertwining lift on `Bool × Bool` has no 2-step fixed points if and
+    only if its 2-step map flips the hidden sheet everywhere. -/
+theorem no_two_step_fixed_iff_sheet_flip_holonomy {step : Bool × Bool → Bool × Bool}
+    (hint : IntertwinesCounterpart step) :
+    (∀ s, step (step s) ≠ s) ↔ (∀ s, step (step s) = (s.1, counterpart s.2)) := by
+  constructor
+  · intro hne s
+    rcases two_step_fiber_holonomy_dichotomy hint s with heq | hflip
+    · exact False.elim (hne s heq)
+    · exact hflip
+  · intro hflip s heq
+    have h2 : (step (step s)).2 = s.2 := congrArg Prod.snd heq
+    have hf2 : (step (step s)).2 = counterpart s.2 := congrArg Prod.snd (hflip s)
+    rw [h2] at hf2
+    exact counterpart_ne s.2 hf2.symm
+
+/-- Exact period-4 characterization on `Bool × Bool` (fixed-point form): any
+    base-intertwining lift has exact period 4 everywhere if and only if it has
+    no 2-step fixed points. -/
+theorem period_four_iff_no_two_step_fixed_point {step : Bool × Bool → Bool × Bool}
+    (hint : IntertwinesCounterpart step) :
+    (∀ s, step (step s) ≠ s ∧ step (step (step (step s))) = s) ↔
+      (∀ s, step (step s) ≠ s) := by
+  constructor
+  · intro h s
+    exact (h s).1
+  · intro hne s
+    have hflip : ∀ t, step (step t) = (t.1, counterpart t.2) :=
+      (no_two_step_fixed_iff_sheet_flip_holonomy hint).mp hne
+    refine ⟨hne s, ?_⟩
+    rw [hflip (step (step s)), hflip s]
+    rcases s with ⟨b, sh⟩
+    change (b, counterpart (counterpart sh)) = (b, sh)
+    rw [counterpart_involution]
+
+/-- Exact period-4 characterization on `Bool × Bool` (sheet-holonomy form): any
+    base-intertwining lift has exact period 4 everywhere if and only if its
+    2-step fiber holonomy flips the hidden sheet (`counterpart s.2`) everywhere. -/
+theorem period_four_iff_sheet_flip_holonomy {step : Bool × Bool → Bool × Bool}
+    (hint : IntertwinesCounterpart step) :
+    (∀ s, step (step s) ≠ s ∧ step (step (step (step s))) = s) ↔
+      (∀ s, (step (step s)).2 = counterpart s.2) := by
+  refine (period_four_iff_no_two_step_fixed_point hint).trans ?_
+  refine (no_two_step_fixed_iff_sheet_flip_holonomy hint).trans ?_
+  constructor
+  · intro hflip s
+    exact congrArg Prod.snd (hflip s)
+  · intro h2 s
+    have h1 : (step (step s)).1 = s.1 := two_step_base_returns_of_intertwines hint s
+    have hs2 : (step (step s)).2 = counterpart s.2 := h2 s
+    rcases s with ⟨b0, sh0⟩
+    rcases hss : step (step (b0, sh0)) with ⟨b, sh⟩
+    rw [hss] at h1 hs2
+    cases h1
+    cases hs2
+    rfl
+
+/-- Canonical sheet-coupled lift on `Bool × Bool`: flips the visible coordinate
+    every step and flips the hidden sheet when leaving `true`. -/
+def step4Sheet (s : Bool × Bool) : Bool × Bool :=
+  (counterpart s.1, if s.1 then counterpart s.2 else s.2)
+
+/-- Binary parity-and-sheet encoding `Fin 4 → Bool × Bool`. -/
+def fin4ToSheet (x : Fin 4) : Bool × Bool :=
+  (decide (x.val % 2 = 1), decide (2 ≤ x.val))
+
+/-- Inverse decoding `Bool × Bool → Fin 4`. -/
+def sheetToFin4 : Bool × Bool → Fin 4
+  | (false, false) => ⟨0, by decide⟩
+  | (true,  false) => ⟨1, by decide⟩
+  | (false, true)  => ⟨2, by decide⟩
+  | (true,  true)  => ⟨3, by decide⟩
+
+/-- `step4Sheet` intertwines `counterpart`, exhibits 2-step sheet-flip holonomy,
+    and therefore has exact period 4 everywhere on `Bool × Bool`. -/
+theorem step4Sheet_has_sheet_flip_holonomy_and_period_four :
+    IntertwinesCounterpart step4Sheet ∧
+    (∀ s, (step4Sheet (step4Sheet s)).2 = counterpart s.2) ∧
+    (∀ s, step4Sheet (step4Sheet s) ≠ s ∧
+      step4Sheet (step4Sheet (step4Sheet (step4Sheet s))) = s) := by
+  have hint : IntertwinesCounterpart step4Sheet := fun _ => rfl
+  have hflip : ∀ s, (step4Sheet (step4Sheet s)).2 = counterpart s.2 := by
+    intro ⟨b, sh⟩
+    cases b <;> cases sh <;> rfl
+  exact ⟨hint, hflip, (period_four_iff_sheet_flip_holonomy hint).mpr hflip⟩
+
+/-- `(Fin 4, step4, proj2)` is equivariantly isomorphic to `(Bool × Bool, step4Sheet, Prod.fst)`. -/
+theorem fin4_sheet_equivariant_bijection :
+    (∀ x : Fin 4, sheetToFin4 (fin4ToSheet x) = x) ∧
+    (∀ s : Bool × Bool, fin4ToSheet (sheetToFin4 s) = s) ∧
+    (∀ x : Fin 4, (fin4ToSheet x).1 = proj2 x) ∧
+    (∀ x : Fin 4, fin4ToSheet (step4 x) = step4Sheet (fin4ToSheet x)) := by
+  refine ⟨by decide, ?_, by decide, by decide⟩
+  intro ⟨b, sh⟩
+  cases b <;> cases sh <;> rfl
+
+/-- 1-slot, 2-slot, and 3-slot binary stick configurations for minimal carrier threshold analysis (`N19`). -/
+abbrev Stick1 := Fin 1 → Bool
+abbrev Stick2 := Fin 2 → Bool
+abbrev Stick3 := Fin 3 → Bool
+
+def reflectIndex1 (i : Fin 1) : Fin 1 :=
+  ⟨0 - i.val, by omega⟩
+
+def reflect1 (s : Stick1) (i : Fin 1) : Bool :=
+  s (reflectIndex1 i)
+
+def indices1 : List (Fin 1) :=
+  [⟨0, by decide⟩]
+
+def hamming1 (s1 s2 : Stick1) : Nat :=
+  (indices1.filter (fun i => s1 i != s2 i)).length
+
+def reflResidual1 (s1 s2 : Stick1) : Nat :=
+  Nat.min (hamming1 s1 s2) (hamming1 s1 (reflect1 s2))
+
+def reflectIndex2 (i : Fin 2) : Fin 2 :=
+  ⟨1 - i.val, by omega⟩
+
+def reflect2 (s : Stick2) (i : Fin 2) : Bool :=
+  s (reflectIndex2 i)
+
+def indices2 : List (Fin 2) :=
+  [⟨0, by decide⟩, ⟨1, by decide⟩]
+
+def hamming2 (s1 s2 : Stick2) : Nat :=
+  (indices2.filter (fun i => s1 i != s2 i)).length
+
+def reflResidual2 (s1 s2 : Stick2) : Nat :=
+  Nat.min (hamming2 s1 s2) (hamming2 s1 (reflect2 s2))
+
+def singleStick2 (k : Fin 2) : Stick2 :=
+  fun i => decide (i.val = k.val)
+
+def reflectIndex3 (i : Fin 3) : Fin 3 :=
+  ⟨2 - i.val, by omega⟩
+
+def reflect3 (s : Stick3) (i : Fin 3) : Bool :=
+  s (reflectIndex3 i)
+
+def indices3 : List (Fin 3) :=
+  [⟨0, by decide⟩, ⟨1, by decide⟩, ⟨2, by decide⟩]
+
+def hamming3 (s1 s2 : Stick3) : Nat :=
+  (indices3.filter (fun i => s1 i != s2 i)).length
+
+def reflResidual3 (s1 s2 : Stick3) : Nat :=
+  Nat.min (hamming3 s1 s2) (hamming3 s1 (reflect3 s2))
+
+def singleStick3 (k : Fin 3) : Stick3 :=
+  fun i => decide (i.val = k.val)
+
+def stick3Left : Stick3 := singleStick3 ⟨0, by decide⟩
+def stick3Mid : Stick3 := singleStick3 ⟨1, by decide⟩
+def stick3Right : Stick3 := singleStick3 ⟨2, by decide⟩
+
+/-- At `n = 1`, spatial reflection is the identity, so reflection residual
+    equals raw Hamming distance everywhere (no mirror collapse occurs). -/
+theorem n1_reflResidual_eq_hamming (s1 s2 : Stick1) :
+    reflResidual1 s1 s2 = hamming1 s1 s2 := by
+  change Nat.min (hamming1 s1 s2) (hamming1 s1 s2) = hamming1 s1 s2
+  exact Nat.min_self (hamming1 s1 s2)
+
+/-- At `n = 2`, distinct 1-stick configurations collapse under reflection
+    (`hamming2 = 2` and `reflResidual2 = 0`), and every pair of 1-stick
+    configurations has zero reflection residual (no positive 1-stick residual exists). -/
+theorem n2_single_sticks_mirror_collapse_but_zero_residual :
+    hamming2 (singleStick2 ⟨0, by decide⟩) (singleStick2 ⟨1, by decide⟩) = 2 ∧
+    reflResidual2 (singleStick2 ⟨0, by decide⟩) (singleStick2 ⟨1, by decide⟩) = 0 ∧
+    (∀ j k : Fin 2, reflResidual2 (singleStick2 j) (singleStick2 k) = 0) := by
+  decide
+
+/-- At `n = 3`, 1-stick configurations simultaneously witness mirror collapse
+    (`hamming3 stick3Left stick3Right = 2`, `reflResidual3 stick3Left stick3Right = 0`)
+    and positive non-mirror reflection residual
+    (`hamming3 stick3Left stick3Mid = 2`, `reflResidual3 stick3Left stick3Mid = 2`),
+    establishing `n = 3` as the minimal 1-stick carrier threshold (`N19`). -/
+theorem n3_minimal_single_stick_reflection_witness :
+    hamming3 stick3Left stick3Right = 2 ∧
+    reflResidual3 stick3Left stick3Right = 0 ∧
+    hamming3 stick3Left stick3Mid = 2 ∧
+    reflResidual3 stick3Left stick3Mid = 2 := by
+  decide
 
 /-! ## Section 4: One-Token Refusal Reification, Reflective Chain, and Depth-`d` Outrun (`OWE-07`, `N21`–`N22`) -/
 

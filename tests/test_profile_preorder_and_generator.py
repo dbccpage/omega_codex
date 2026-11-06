@@ -64,6 +64,38 @@ class ProfilePreorderAndGeneratorTests(unittest.TestCase):
         self.assertTrue(res["four_steps_period_four"])
         self.assertTrue(res["trivial_lift_period_two"])
 
+    def test_two_sheet_holonomy_census_across_all_16_intertwining_maps(self):
+        res = models.check_two_sheet_holonomy_census()
+        self.assertEqual(res["total_intertwining_maps"], 16)
+        self.assertEqual(res["period_two_count"], 2)
+        self.assertEqual(res["period_four_count"], 2)
+        self.assertEqual(res["mixed_non_bijective_count"], 12)
+        self.assertTrue(res["all_satisfy_dichotomy"])
+        self.assertTrue(res["all_match_period_two_iff"])
+        self.assertTrue(res["all_match_period_four_iff"])
+        self.assertTrue(res["fin4_sheet_equivariant_bijection"])
+
+    def test_stick_carrier_threshold_n1_n2_n3(self):
+        res = models.check_stick_carrier_threshold()
+        self.assertEqual(res["minimal_threshold_n"], 3)
+        by_n = res["by_n"]
+        self.assertTrue(by_n[1]["all_residual_eq_hamming"])
+        self.assertFalse(by_n[1]["has_single_stick_mirror_collapse"])
+        self.assertFalse(by_n[1]["has_positive_single_stick_residual"])
+
+        self.assertFalse(by_n[2]["all_residual_eq_hamming"])
+        self.assertTrue(by_n[2]["has_single_stick_mirror_collapse"])
+        self.assertEqual(by_n[2]["mirror_collapse_pairs"], [(0, 1)])
+        self.assertFalse(by_n[2]["has_positive_single_stick_residual"])
+        self.assertEqual(by_n[2]["max_single_stick_residual"], 0)
+
+        self.assertFalse(by_n[3]["all_residual_eq_hamming"])
+        self.assertTrue(by_n[3]["has_single_stick_mirror_collapse"])
+        self.assertEqual(by_n[3]["mirror_collapse_pairs"], [(0, 2)])
+        self.assertTrue(by_n[3]["has_positive_single_stick_residual"])
+        self.assertEqual(by_n[3]["positive_residual_pairs"], [(0, 1), (1, 2)])
+        self.assertEqual(by_n[3]["max_single_stick_residual"], 2)
+
     def test_reflective_generator_and_depth_d_thresholds(self):
         res = models.check_reflective_generator_and_depth_d()
         self.assertEqual(res["one_token_bridge_carrier_size"], 2)
