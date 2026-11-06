@@ -802,4 +802,161 @@ theorem oq08_full_guard_refinement_commutes_at_zero_adm_ret_cost
   | setBudget n => rfl
   | setAugLicense b => rfl
 
+/-! ## Section 6: Singleton-View Embedding, Exact Guard Equivalence, and Full-Guard Multi-Step Replay Bridge (`DER-28` / `OWE-12`) -/
+
+/-- Multi-step trace commutation for `FullWDPWorld`: at `horizonSpecializationCosts = ⟨0, 0, 0, 1⟩`,
+    folding `stepFullWDPWorld` over any event trace `evs : List Event` commutes with
+    `projToRepresentedWorld` and `Represented.replay`. -/
+theorem oq08_full_guard_trace_commutes_at_zero_adm_ret_cost
+    (w : FullWDPWorld) (evs : List Event) :
+    projToRepresentedWorld (evs.foldl (stepFullWDPWorld horizonSpecializationCosts) w) =
+      replay evs (projToRepresentedWorld w) := by
+  induction evs generalizing w with
+  | nil => rfl
+  | cons ev rest ih =>
+      simp only [List.foldl_cons, replay]
+      rw [ih (stepFullWDPWorld horizonSpecializationCosts w ev)]
+      unfold replay
+      rw [oq08_full_guard_refinement_commutes_at_zero_adm_ret_cost w ev]
+
+/-- Canonical singleton-view embedding of `HWorld` into `Represented.World`. -/
+def embedHWorld (hw : HWorld) (licensed : Bool) : World :=
+  { data        := hw.toks
+    views       := hw.views.map (fun v => [v])
+    reqs        := hw.reqs
+    refusals    := []
+    budget      := hw.budget
+    augLicensed := licensed
+    notes       := [] }
+
+/-- Canonical event embedding from `HEv` into `Represented.Event` mapping `.addView v`
+    to the singleton view `.addView [v]`. -/
+def embedHEv : HEv → Event
+  | .admitTok t  => .admitTok t
+  | .require i j => .require i j
+  | .addView v   => .addView [v]
+  | .setBudget b => .setBudget b
+
+/-- For a singleton view `[v]`, the list-all carrier bound reduces to `decide (v < n)`. -/
+theorem singleton_view_bounded_eq (n v : Nat) :
+    ([v] : View).all (fun p => decide (p < n)) = decide (v < n) := by
+  exact Bool.and_true (decide (v < n))
+
+/-- Membership of `[v]` in the singleton-mapped view list `vs.map (fun u => [u])`
+    is equivalent to `v ∈ vs`. -/
+theorem singleton_view_mem_map_iff (vs : List Nat) (v : Nat) :
+    ([v] : View) ∈ vs.map (fun u => [u]) ↔ v ∈ vs := by
+  induction vs with
+  | nil =>
+      constructor
+      · intro h; cases h
+      · intro h; cases h
+  | cons u rest ih =>
+      constructor
+      · intro h
+        cases h with
+        | head => exact List.Mem.head rest
+        | tail _ hmem => exact List.Mem.tail u (ih.mp hmem)
+      · intro h
+        cases h with
+        | head => exact List.Mem.head (rest.map (fun u => [u]))
+        | tail _ hmem => exact List.Mem.tail [u] (ih.mpr hmem)
+
+/-- Under `embedHWorld`, `stepHWorldGuarded` commutes unconditionally with
+    `Represented.step` on `.admitTok`, `.require`, and `.setBudget`. -/
+theorem embedHWorld_commutes_admit_require_budget
+    (hw : HWorld) (licensed : Bool) (t i j b : Nat) :
+    embedHWorld (stepHWorldGuarded hw (.admitTok t)) licensed =
+      step (embedHWorld hw licensed) (.admitTok t) ∧
+    embedHWorld (stepHWorldGuarded hw (.require i j)) licensed =
+      step (embedHWorld hw licensed) (.require i j) ∧
+    embedHWorld (stepHWorldGuarded hw (.setBudget b)) licensed =
+      step (embedHWorld hw licensed) (.setBudget b) := by
+  refine ⟨?_, ?_, rfl⟩
+  · by_cases ht : t ∈ hw.toks <;>
+      simp [stepHWorldGuarded, step, embedHWorld, ht]
+  · by_cases hi : i < hw.toks.length <;>
+      by_cases hj : j < hw.toks.length <;>
+        by_cases hij : i = j <;>
+          by_cases hr : (i, j) ∈ hw.reqs <;>
+            simp [stepHWorldGuarded, step, reqOkB, embedHWorld, hi, hj, hij, hr]
+
+/-- When `v ∉ hw.views`, `increaseB (embedHWorld hw true) [v] = true`, and `licensed = true`,
+    `embedHWorld` commutes with `.addView v` across all budget and carrier-bound regimes. -/
+theorem embedHWorld_addView_commutes_of_novel_separating_licensed
+    (hw : HWorld) (v : Nat)
+    (hnov : v ∉ hw.views)
+    (hinc : increaseB (embedHWorld hw true) [v] = true) :
+    embedHWorld (stepHWorldGuarded hw (.addView v)) true =
+      step (embedHWorld hw true) (.addView [v]) := by
+  have hmem : ([v] : View) ∉ (embedHWorld hw true).views := by
+    change ([v] : View) ∉ hw.views.map (fun u => [u])
+    rw [singleton_view_mem_map_iff]
+    exact hnov
+  have haug : augOkB (embedHWorld hw true) [v] = decide (v < hw.toks.length) := by
+    unfold augOkB
+    rw [show (embedHWorld hw true).data = hw.toks from rfl]
+    rw [singleton_view_bounded_eq, hinc, decide_eq_false hmem]
+    simp
+  have hpos : (1 ≤ hw.budget) = (0 < hw.budget) := rfl
+  dsimp only [step]
+  rw [haug]
+  by_cases hb : 0 < hw.budget <;>
+    by_cases hv : v < hw.toks.length <;>
+      simp [stepHWorldGuarded, augApply, insertNewNat, embedHWorld,
+        hnov, hb, hv, hpos]
+
+/-- Exact guard equivalence for `.addView v` when `1 ≤ hw.budget` and `v < hw.toks.length`:
+    `embedHWorld` commutes with `stepHWorldGuarded` and `Represented.step` if and only if
+    the three extra `Represented.World` guards (`v ∉ hw.views`, `increaseB = true`, and
+    `licensed = true`) all hold. -/
+theorem embedHWorld_addView_accepted_iff
+    (hw : HWorld) (licensed : Bool) (v : Nat)
+    (hbud : 1 ≤ hw.budget) (hbnd : v < hw.toks.length) :
+    (embedHWorld (stepHWorldGuarded hw (.addView v)) licensed =
+      step (embedHWorld hw licensed) (.addView [v])) ↔
+    (v ∉ hw.views ∧ increaseB (embedHWorld hw licensed) [v] = true ∧ licensed = true) := by
+  have hstepH : stepHWorldGuarded hw (.addView v) =
+      { hw with views := insertNewNat hw.views v, budget := hw.budget - 1 } := by
+    simp [stepHWorldGuarded, hbud, hbnd]
+  rw [hstepH]
+  constructor
+  · intro heq
+    by_cases hnov : v ∈ hw.views
+    · have hmem : ([v] : View) ∈ (embedHWorld hw licensed).views := by
+        simp [embedHWorld, hnov]
+      have haug : augOkB (embedHWorld hw licensed) [v] = false := by
+        simp [augOkB, hmem]
+      have hstep : step (embedHWorld hw licensed) (.addView [v]) = embedHWorld hw licensed := by
+        simp [step, haug]
+      rw [hstep] at heq
+      have hbud_eq : (embedHWorld { hw with views := insertNewNat hw.views v, budget := hw.budget - 1 } licensed).budget =
+          (embedHWorld hw licensed).budget := congrArg World.budget heq
+      simp only [embedHWorld] at hbud_eq
+      omega
+    · cases hinc : increaseB (embedHWorld hw licensed) [v]
+      · have haug : augOkB (embedHWorld hw licensed) [v] = false := by
+          simp [augOkB, hinc]
+        have hstep : step (embedHWorld hw licensed) (.addView [v]) = embedHWorld hw licensed := by
+          simp [step, haug]
+        rw [hstep] at heq
+        have hbud_eq : (embedHWorld { hw with views := insertNewNat hw.views v, budget := hw.budget - 1 } licensed).budget =
+            (embedHWorld hw licensed).budget := congrArg World.budget heq
+        simp only [embedHWorld] at hbud_eq
+        omega
+      · cases hlic : licensed
+        · subst hlic
+          have hstep : step (embedHWorld hw false) (.addView [v]) = embedHWorld hw false := by
+            simp [step, embedHWorld]
+          rw [hstep] at heq
+          have hbud_eq : (embedHWorld { hw with views := insertNewNat hw.views v, budget := hw.budget - 1 } false).budget =
+              (embedHWorld hw false).budget := congrArg World.budget heq
+          simp only [embedHWorld] at hbud_eq
+          omega
+        · exact ⟨hnov, rfl, rfl⟩
+  · rintro ⟨hnov, hinc, rfl⟩
+    have hcomm := embedHWorld_addView_commutes_of_novel_separating_licensed hw v hnov hinc
+    rw [hstepH] at hcomm
+    exact hcomm
+
 end OmegaCodex.InternalMetatheory

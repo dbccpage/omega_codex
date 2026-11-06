@@ -99,7 +99,7 @@ class CompilableMutationTests(unittest.TestCase):
             (ROOT / checker.RECEIPTS["ProfilePreorderAndGenerator"]).read_text(encoding="utf-8")
         )
         original = (ROOT / "lean/ProfilePreorderAndGenerator.lean").read_text(encoding="utf-8")
-        target_decl = (
+        target_decl_der25 = (
             "/-- At `n = 3`, 1-stick configurations simultaneously witness mirror collapse\n"
             "    (`hamming3 stick3Left stick3Right = 2`, `reflResidual3 stick3Left stick3Right = 0`)\n"
             "    and positive non-mirror reflection residual\n"
@@ -112,12 +112,30 @@ class CompilableMutationTests(unittest.TestCase):
             "    reflResidual3 stick3Left stick3Mid = 2 := by\n"
             "  decide\n"
         )
-        self.assertIn(target_decl, original)
+        target_decl_der26 = (
+            "/-- Any memory carrier with `mCard < 2 ^ k` states fails to injectively separate\n"
+            "    all `2 ^ k` binary histories of length `k`. -/\n"
+            "theorem multi_round_memory_collision_of_lt_pow2 (k mCard : Nat) (encode : Nat → Nat)\n"
+            "    (hbound : ∀ h < 2 ^ k, encode h < mCard)\n"
+            "    (hlt : mCard < 2 ^ k) :\n"
+            "    ¬ (∀ h1 < 2 ^ k, ∀ h2 < 2 ^ k, encode h1 = encode h2 → h1 = h2) := by\n"
+            "  intro hinj\n"
+            "  have hle := multi_round_memory_capacity_lower_bound k mCard encode hbound hinj\n"
+            "  omega\n"
+        )
+        self.assertIn(target_decl_der25, original)
+        self.assertIn(target_decl_der26, original)
         variants = {
-            "remove": original.replace(target_decl, "", 1),
-            "weaken_with_omega": original.replace(
-                target_decl,
+            "remove_der25": original.replace(target_decl_der25, "", 1),
+            "weaken_der25_with_omega": original.replace(
+                target_decl_der25,
                 "theorem n3_minimal_single_stick_reflection_witness : (0 : Nat) < 1 := by omega\n",
+                1,
+            ),
+            "remove_der26": original.replace(target_decl_der26, "", 1),
+            "weaken_der26_to_true": original.replace(
+                target_decl_der26,
+                "theorem multi_round_memory_collision_of_lt_pow2 : True := True.intro\n",
                 1,
             ),
         }
@@ -132,10 +150,209 @@ class CompilableMutationTests(unittest.TestCase):
                 with self.subTest(label=label), patch.object(checker, "ROOT", root):
                     (root / "lean/ProfilePreorderAndGenerator.lean").write_bytes(source.encode("utf-8"))
                     actual = checker.check("ProfilePreorderAndGenerator")
-                    self.assertEqual(actual["theorems_checked"], 75 if label == "remove" else 76)
+                    self.assertEqual(
+                        actual["theorems_checked"],
+                        83 if label.startswith("remove") else 84,
+                    )
+                    if label == "weaken_der26_to_true":
+                        self.assertEqual(
+                            actual["dependencies"]["multi_round_memory_collision_of_lt_pow2"],
+                            [],
+                        )
                     with self.assertRaises(RuntimeError):
                         checker.verify_receipt(actual, expected, "ProfilePreorderAndGenerator")
+
+    def test_local_global_der27_theorem_removal_and_weakening_are_rejected(self):
+        expected = json.loads(
+            (ROOT / checker.RECEIPTS["LocalGlobalObstruction"]).read_text(encoding="utf-8")
+        )
+        original = (ROOT / "lean/LocalGlobalObstruction.lean").read_text(encoding="utf-8")
+        target_decl = (
+            "/-- General transitive uniformity theorem: if `σ` acts transitively on `{0, ..., n - 1}`\n"
+            "    from `0` and leaves `weightedL1Gen w` invariant on unit cochains, then all `n` edge\n"
+            "    weights equal `w 0` and `weightedL1Gen w v n = w 0 * unweightedL1Gen v n` for every cochain `v`. -/\n"
+            "theorem transitive_action_forces_uniform_weights_general (w : Nat → Nat) (σ : Nat → Nat) (n : Nat)\n"
+            "    (hpos : 1 ≤ n)\n"
+            "    (hclosed : ∀ e < n, σ e < n)\n"
+            "    (hinv : ∀ e < n, weightedL1Gen w (unitCochain (σ e)) n = weightedL1Gen w (unitCochain e) n)\n"
+            "    (htrans : ∀ e < n, ∃ k : Nat, iterEdge σ k 0 = e) :\n"
+            "    (∀ e < n, w e = w 0) ∧\n"
+            "    (∀ v : Nat → Int, weightedL1Gen w v n = w 0 * unweightedL1Gen v n) := by\n"
+            "  have horb := symmetry_forces_orbit_equal_weights_general w σ n hclosed hinv\n"
+            "  have hunif : ∀ e < n, w e = w 0 := by\n"
+            "    intro e he\n"
+            "    rcases htrans e he with ⟨k, hk⟩\n"
+            "    have hk0 := (horb k 0 hpos).2\n"
+            "    rw [← hk]\n"
+            "    exact hk0\n"
+            "  exact ⟨hunif, fun v => uniform_weights_factor_l1_general w v n (w 0) hunif⟩\n"
+        )
+        target_der30 = (
+            "/-- Exactness of the unsigned `𝔽₂` triangle cochain complex (`ker d₁ = im d₀` on `Δ²`),\n"
+            "    with canonical basepoint-0 primitive `primTriangleF2`. -/\n"
+            "theorem triangle_f2_exact_iff (h : Cochain1F2) :\n"
+            "    (d1UnsignedF2 h = false ↔ d0UnsignedF2 (primTriangleF2 h) = h) ∧\n"
+            "    (d1UnsignedF2 h = false ↔ ∃ c : Cochain0F2, d0UnsignedF2 c = h) := by\n"
+            "  have h1 : d1UnsignedF2 h = false ↔ d0UnsignedF2 (primTriangleF2 h) = h := by\n"
+            "    cases h with\n"
+            "    | mk e01 rest =>\n"
+            "      cases rest with\n"
+            "      | mk e12 e02 =>\n"
+            "        cases e01 <;> cases e12 <;> cases e02 <;> decide\n"
+            "  refine ⟨h1, ?_⟩\n"
+            "  constructor\n"
+            "  · intro hd1\n"
+            "    exact ⟨primTriangleF2 h, h1.mp hd1⟩\n"
+            "  · rintro ⟨c, rfl⟩\n"
+            "    exact oq02_unsigned_f2_complex_holds c\n"
+        )
+        self.assertIn(target_decl, original)
+        self.assertIn(target_der30, original)
+        variants = {
+            "remove": original.replace(target_decl, "", 1),
+            "weaken": original.replace(
+                target_decl,
+                "theorem transitive_action_forces_uniform_weights_general : (0 : Nat) < 1 := by omega\n",
+                1,
+            ),
+            "remove_der30": original.replace(target_der30, "", 1),
+            "weaken_der30": original.replace(
+                target_der30,
+                "theorem triangle_f2_exact_iff : (0 : Nat) < 1 := by omega\n",
+                1,
+            ),
+        }
+        with tempfile.TemporaryDirectory(prefix="omega-lgo-mutation-") as temporary:
+            root = Path(temporary)
+            (root / "lean").mkdir()
+            for name in ("lean-toolchain", "lakefile.toml", "lake-manifest.json"):
+                shutil.copyfile(ROOT / name, root / name)
+            for source in (ROOT / "lean").glob("*.lean"):
+                shutil.copyfile(source, root / "lean" / source.name)
+            for label, source in variants.items():
+                with self.subTest(label=label), patch.object(checker, "ROOT", root):
+                    (root / "lean/LocalGlobalObstruction.lean").write_bytes(source.encode("utf-8"))
+                    actual = checker.check("LocalGlobalObstruction")
+                    self.assertEqual(
+                        actual["theorems_checked"],
+                        35 if label.startswith("remove") else 36,
+                    )
+                    if label == "weaken":
+                        self.assertEqual(
+                            expected["dependencies"]["transitive_action_forces_uniform_weights_general"],
+                            [],
+                        )
+                        self.assertEqual(
+                            set(actual["dependencies"]["transitive_action_forces_uniform_weights_general"]),
+                            {"propext", "Quot.sound"},
+                        )
+                    if label == "weaken_der30":
+                        self.assertEqual(
+                            expected["dependencies"]["triangle_f2_exact_iff"],
+                            [],
+                        )
+                        self.assertEqual(
+                            set(actual["dependencies"]["triangle_f2_exact_iff"]),
+                            {"propext", "Quot.sound"},
+                        )
+                    with self.assertRaises(RuntimeError):
+                        checker.verify_receipt(actual, expected, "LocalGlobalObstruction")
+
+    def test_torsor_der29_and_internal_metatheory_der28_mutations_are_rejected(self):
+        expected_torsor = json.loads(
+            (ROOT / checker.RECEIPTS["TorsorAndOperations"]).read_text(encoding="utf-8")
+        )
+        orig_torsor = (ROOT / "lean/TorsorAndOperations.lean").read_text(encoding="utf-8")
+        target_der29 = (
+            "/-- `pairToFin3` intertwines both `diagSwap` and `transposePair` on `Bool × Bool` with\n"
+            "    the canonical `Fin 3` symmetry `swap3`, and pulls back the 2-element invariant offer\n"
+            "    `offer12` to the primitive difference classifier `difference p.1 p.2`. -/\n"
+            "theorem pairToFin3_intertwines_swap3_and_offer12 (p : Bool × Bool) :\n"
+            "    pairToFin3 (diagSwap p) = swap3 (pairToFin3 p) ∧\n"
+            "    pairToFin3 (transposePair p) = swap3 (pairToFin3 p) ∧\n"
+            "    offer12 (pairToFin3 p) = difference p.1 p.2 := by\n"
+            "  cases p with\n"
+            "  | mk x y =>\n"
+            "      cases x <;> cases y <;> exact ⟨rfl, rfl, rfl⟩\n"
+        )
+        self.assertIn(target_der29, orig_torsor)
+        torsor_variants = {
+            "remove_der29": orig_torsor.replace(target_der29, "", 1),
+            "weaken_der29": orig_torsor.replace(
+                target_der29,
+                "theorem pairToFin3_intertwines_swap3_and_offer12 : (false = false ↔ true = true) := by simp\n",
+                1,
+            ),
+        }
+
+        expected_im = json.loads(
+            (ROOT / checker.RECEIPTS["InternalMetatheory"]).read_text(encoding="utf-8")
+        )
+        orig_im = (ROOT / "lean/InternalMetatheory.lean").read_text(encoding="utf-8")
+        target_der28 = (
+            "/-- For a singleton view `[v]`, the list-all carrier bound reduces to `decide (v < n)`. -/\n"
+            "theorem singleton_view_bounded_eq (n v : Nat) :\n"
+            "    ([v] : View).all (fun p => decide (p < n)) = decide (v < n) := by\n"
+            "  exact Bool.and_true (decide (v < n))\n"
+        )
+        self.assertIn(target_der28, orig_im)
+        im_variants = {
+            "weaken_der28": orig_im.replace(
+                target_der28,
+                "theorem singleton_view_bounded_eq (n v : Nat) :\n"
+                "    ([v] : View).all (fun p => decide (p < n)) = decide (v < n) := by\n"
+                "  simp\n",
+                1,
+            ),
+        }
+
+        with tempfile.TemporaryDirectory(prefix="omega-der28-der29-mutation-") as temporary:
+            root = Path(temporary)
+            (root / "lean").mkdir()
+            for name in ("lean-toolchain", "lakefile.toml", "lake-manifest.json"):
+                shutil.copyfile(ROOT / name, root / name)
+            for source in (ROOT / "lean").glob("*.lean"):
+                shutil.copyfile(source, root / "lean" / source.name)
+
+            for label, source in torsor_variants.items():
+                with self.subTest(label=label), patch.object(checker, "ROOT", root):
+                    (root / "lean/TorsorAndOperations.lean").write_bytes(source.encode("utf-8"))
+                    actual = checker.check("TorsorAndOperations")
+                    self.assertEqual(
+                        actual["theorems_checked"],
+                        41 if label == "remove_der29" else 42,
+                    )
+                    if label == "weaken_der29":
+                        self.assertEqual(
+                            expected_torsor["dependencies"]["pairToFin3_intertwines_swap3_and_offer12"],
+                            [],
+                        )
+                        self.assertEqual(
+                            actual["dependencies"]["pairToFin3_intertwines_swap3_and_offer12"],
+                            ["propext"],
+                        )
+                    with self.assertRaises(RuntimeError):
+                        checker.verify_receipt(actual, expected_torsor, "TorsorAndOperations")
+            (root / "lean/TorsorAndOperations.lean").write_bytes(orig_torsor.encode("utf-8"))
+
+            for label, source in im_variants.items():
+                with self.subTest(label=label), patch.object(checker, "ROOT", root):
+                    (root / "lean/InternalMetatheory.lean").write_bytes(source.encode("utf-8"))
+                    actual = checker.check("InternalMetatheory")
+                    self.assertEqual(actual["theorems_checked"], 35)
+                    self.assertEqual(
+                        expected_im["dependencies"]["singleton_view_bounded_eq"],
+                        [],
+                    )
+                    self.assertIn(
+                        "propext",
+                        actual["dependencies"]["singleton_view_bounded_eq"],
+                    )
+                    with self.assertRaises(RuntimeError):
+                        checker.verify_receipt(actual, expected_im, "InternalMetatheory")
 
 
 if __name__ == "__main__":
     unittest.main()
+
+

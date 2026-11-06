@@ -353,12 +353,12 @@ for equivalences. The preorder's directed `not E` is distinct from symmetric cla
 inequality. The review approves the argument but requests a separate formalization
 slice; none of these proposed new theorems is marked checked here.
 
-### Minimal-chain reconstruction, OQ-05 class-count bridge, and N19-N20 holonomy/stick-threshold refresh
+### Minimal-chain reconstruction, OQ-05 class-count bridge, N19-N20 holonomy/stick-threshold, N22 retention scaling, OQ-07 orbit weights, OQ-08 singleton-view embedding, pair-quotient Fin 3 multiplicity, and Δ²/Δ³ cochain exactness refresh
 
 Nine Lean 4.33.0 modules now build in `lean/` (`PrimitiveDifference`,
 `MirrorNonIdentification`, `ZeroEquivalence`, `TorsorAndOperations`,
 `MinimalSeparation`, `RetentionAndRefusal`, `LocalGlobalObstruction`,
-`InternalMetatheory`, and `ProfilePreorderAndGenerator`), covering 362 checked
+`InternalMetatheory`, and `ProfilePreorderAndGenerator`), covering 398 checked
 theorem declarations across nine verification receipts in `docs/*_verification.json`
 with allowed axioms restricted to `propext` and `Quot.sound` (zero `Classical.choice`,
 zero `sorry`). In `lean/MinimalSeparation.lean`, exact well-formed context
@@ -371,7 +371,7 @@ canonical least-element representative counting (`isRep4`, `classCount4`,
 chains to `QuotRefRun` (`regimeRefinementRun4_to_quotRefRun`,
 `regimeRefinementRun4_round_bound`, `rt09_class_count_comparison`), discharging
 `OWE-11` (`DER-24` and `DER-08`). In `lean/ProfilePreorderAndGenerator.lean`
-(`DER-25`), Section 3B characterizes all base-intertwining lifts
+(`DER-25` and `DER-26`), Section 3B characterizes all base-intertwining lifts
 `step : Bool × Bool → Bool × Bool` over `counterpart` (`period_two_iff_trivial_sheet_holonomy`,
 `period_four_iff_no_two_step_fixed_point`, `period_four_iff_sheet_flip_holonomy`,
 `step4Sheet_has_sheet_flip_holonomy_and_period_four`,
@@ -380,7 +380,22 @@ chains to `QuotRefRun` (`regimeRefinementRun4_to_quotRefRun`,
 configurations exhibit both zero-residual mirror collapse and positive reflection
 residual (`n1_reflResidual_eq_hamming`,
 `n2_single_sticks_mirror_collapse_but_zero_residual`,
-`n3_minimal_single_stick_reflection_witness`), narrowing `OWE-08` in
-[`dag/derivation_dag.json`](../dag/derivation_dag.json) (47 nodes, 110 directed
-edges, 53 `requires_admission` edges).
+`n3_minimal_single_stick_reflection_witness`), narrowing `OWE-08`; Section 5
+(`DER-26`) establishes the exact radius-`d` separation threshold `n ≤ 2 * d + 2`
+(`graphProfileD_obstruction_of_ge`, `graphProfileD_inj_of_le`,
+`graphProfileD_separates_all_iff`), the endogenous tag-count adaptive horizon
+`adaptiveRadius (s : PState) := s.tags.length / 2`
+(`adaptiveRadius_reflState_bound`, `adaptive_radius_retains_full_separation_all_rounds`),
+and the constructive finite pigeonhole / $2^k$ memory capacity lower bound
+(`pigeonhole_inj_le`, `multi_round_memory_capacity_lower_bound`,
+`multi_round_memory_collision_of_lt_pow2`), narrowing `OWE-13`. In
+`lean/LocalGlobalObstruction.lean` (`DER-27`), Section 5 establishes the 3-edge
+and general $n$-edge orbit-decomposed automorphism-invariant $L^1$ cochain weight
+characterization (`swap23_invariant_iff_orbit_constant`,
+`swap23_invariant_cost_decomposition`, `swap12_invariant_iff_orbit_constant`,
+`three_edge_symmetry_weight_hierarchy`, `weightedL1Gen_unitCochain`,
+`symmetry_forces_step_equal_weights_general`,
+`symmetry_forces_orbit_equal_weights_general`, `uniform_weights_factor_l1_general`,
+`transitive_action_forces_uniform_weights_general`), narrowing `OWE-09`; and Section 6 (`DER-30`) establishes simplicial cochain exactness on $\Delta^2$ over $\mathbb{F}_2$ and $\mathbb{Z}$ (`triangle_f2_exact_iff`, `triangle_int_exact_iff`) and on $\Delta^3$ over $\mathbb{Z}$ (`tet_int_exact_iff`) together with the primal–dual $L^1$ minimum defect theorem $\min_{c \in C^0} \|h - d_0 c\|_1 = |d_1 h|$ on $\Delta^2$ (`d1SignedCycInt_residual_invariant`, `triangle_l1_weak_duality_bound`, `triangle_l1_strong_duality_attained`), narrowing `OWE-10` and grounding `IMG-01`. In `lean/TorsorAndOperations.lean` (`DER-29`), Section 7 constructs the 4-element pair space `Bool × Bool` with `diagSwap` and `transposePair` (`diagSwap_involutive_and_free`, `transposePair_fixed_iff_diagonal`) and exhibits surjective 3-class quotients `pairToFin3` and `pairToFin3Dual` onto `Fin 3` (`pairToFin3_surjective`, `pairToFin3_kernel_iff`) intertwining `swap3` and `offer12` (`pairToFin3_intertwines_swap3_and_offer12`, `pairToFin3Dual_intertwines_swap3`), narrowing `OWE-06`. In `lean/InternalMetatheory.lean` (`DER-28`), Section 6 establishes multi-step `FullWDPWorld` trace replay commutation (`oq08_full_guard_trace_commutes_at_zero_adm_ret_cost`) and the singleton-view embedding `embedHWorld : HWorld → Bool → World` with exact `addView` guard equivalence (`embedHWorld_commutes_admit_require_budget`, `embedHWorld_addView_commutes_of_novel_separating_licensed`, `embedHWorld_addView_accepted_iff`), narrowing `OWE-12` in [`dag/derivation_dag.json`](../dag/derivation_dag.json) (52 nodes, 138 directed edges, 64 `requires_admission` edges).
+
 

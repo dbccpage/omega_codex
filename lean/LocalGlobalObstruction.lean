@@ -355,4 +355,323 @@ theorem faithful_network_descent_forces_trivial_loops {X1 X2 Y : Type}
     fun x => (h21 (e12 x)).trans (h12 x)
   exact ⟨hloop, fun hinj x => hinj (hloop x)⟩
 
+/-! ## Section 5: Orbit-Decomposed Automorphism-Invariant L1 Cochain Weights (`DER-27` / `OWE-09`, `OQ-07` / `RT-11`) -/
+
+/-- Involution swapping edges 1 and 2 on a 3-edge cochain while fixing edge 3. -/
+def swapEdge12 : Cochain3 → Cochain3
+  | (v1, v2, v3) => (v2, v1, v3)
+
+/-- Third standard unit 3-edge cochain `(0, 0, 1)`. -/
+def basis3 : Cochain3 := (0, 0, 1)
+
+/-- Exact 2-orbit characterization under `swapEdge23`: invariance of `weightedL1 w`
+    across all valid repairs (`v1 + v2 + v3 = 1`) holds if and only if `w` is
+    constant on the 2-edge orbit `{2, 3}` (`w.2.1 = w.2.2`), leaving `w.1` unconstrained. -/
+theorem swap23_invariant_iff_orbit_constant (w : Weight3) :
+    (∀ v : Cochain3, validRepair v → weightedL1 w (swapEdge23 v) = weightedL1 w v) ↔
+      w.2.1 = w.2.2 := by
+  rcases w with ⟨w1, w2, w3⟩
+  constructor
+  · intro hinv
+    have h2 : weightedL1 (w1, w2, w3) (swapEdge23 basis2) = weightedL1 (w1, w2, w3) basis2 :=
+      hinv basis2 (by decide)
+    simpa [weightedL1, swapEdge23, basis2] using h2.symm
+  · intro heq ⟨v1, v2, v3⟩ _
+    dsimp at heq
+    subst heq
+    dsimp [weightedL1, swapEdge23]
+    rw [Nat.add_assoc, Nat.add_comm (w2 * v3.natAbs) (w2 * v2.natAbs), ← Nat.add_assoc]
+
+/-- Under `swapEdge23` orbit constancy (`w.2.1 = w.2.2`), the weighted L1 cost decomposes
+    into the two automorphism orbits `{1}` and `{2, 3}` with two independent orbit weights. -/
+theorem swap23_invariant_cost_decomposition (w : Weight3) (v : Cochain3)
+    (horb : w.2.1 = w.2.2) :
+    weightedL1 w v = w.1 * v.1.natAbs + w.2.1 * (v.2.1.natAbs + v.2.2.natAbs) := by
+  rcases w with ⟨w1, w2, w3⟩
+  rcases v with ⟨v1, v2, v3⟩
+  dsimp at horb
+  subst horb
+  dsimp [weightedL1]
+  rw [Nat.mul_add, ← Nat.add_assoc]
+
+/-- Exact 2-orbit characterization under `swapEdge12`: invariance of `weightedL1 w`
+    across all valid repairs holds if and only if `w.1 = w.2.1`. -/
+theorem swap12_invariant_iff_orbit_constant (w : Weight3) :
+    (∀ v : Cochain3, validRepair v → weightedL1 w (swapEdge12 v) = weightedL1 w v) ↔
+      w.1 = w.2.1 := by
+  rcases w with ⟨w1, w2, w3⟩
+  constructor
+  · intro hinv
+    have h1 : weightedL1 (w1, w2, w3) (swapEdge12 basis1) = weightedL1 (w1, w2, w3) basis1 :=
+      hinv basis1 (by decide)
+    simpa [weightedL1, swapEdge12, basis1] using h1.symm
+  · intro heq ⟨v1, v2, v3⟩ _
+    dsimp at heq
+    subst heq
+    dsimp [weightedL1, swapEdge12]
+    rw [Nat.add_comm (w1 * v2.natAbs) (w1 * v1.natAbs)]
+
+/-- Three-regime symmetry hierarchy on 3-edge cochains:
+    (1) `swapEdge23` invariance forces `w2 = w3` (2 orbits `{1}`, `{2, 3}`);
+    (2) `swapEdge12` invariance forces `w1 = w2` (2 orbits `{1, 2}`, `{3}`);
+    (3) joint `swapEdge12` and `swapEdge23` invariance (generating `S_3`) forces `w1 = w2 = w3` (1 transitive orbit). -/
+theorem three_edge_symmetry_weight_hierarchy (w : Weight3) :
+    ((∀ v : Cochain3, validRepair v → weightedL1 w (swapEdge23 v) = weightedL1 w v) ↔
+      w.2.1 = w.2.2) ∧
+    ((∀ v : Cochain3, validRepair v → weightedL1 w (swapEdge12 v) = weightedL1 w v) ↔
+      w.1 = w.2.1) ∧
+    ((∀ v : Cochain3, validRepair v →
+        weightedL1 w (swapEdge12 v) = weightedL1 w v ∧
+        weightedL1 w (swapEdge23 v) = weightedL1 w v) ↔
+      (w.1 = w.2.1 ∧ w.2.1 = w.2.2)) := by
+  refine ⟨swap23_invariant_iff_orbit_constant w,
+          swap12_invariant_iff_orbit_constant w, ?_⟩
+  constructor
+  · intro hboth
+    exact ⟨(swap12_invariant_iff_orbit_constant w).mp (fun v hv => (hboth v hv).1),
+           (swap23_invariant_iff_orbit_constant w).mp (fun v hv => (hboth v hv).2)⟩
+  · rintro ⟨h12, h23⟩ v hv
+    exact ⟨(swap12_invariant_iff_orbit_constant w).mpr h12 v hv,
+           (swap23_invariant_iff_orbit_constant w).mpr h23 v hv⟩
+
+/-- General `n`-edge weighted L1 norm summing `w k * |v k|` over edges `0 ≤ k < n`. -/
+def weightedL1Gen (w : Nat → Nat) (v : Nat → Int) : Nat → Nat
+  | 0 => 0
+  | k + 1 => weightedL1Gen w v k + w k * (v k).natAbs
+
+/-- General `n`-edge unweighted L1 norm summing `|v k|` over edges `0 ≤ k < n`. -/
+def unweightedL1Gen (v : Nat → Int) : Nat → Nat
+  | 0 => 0
+  | k + 1 => unweightedL1Gen v k + (v k).natAbs
+
+/-- Kronecker delta unit 1-cochain supported at edge `e`. -/
+def unitCochain (e i : Nat) : Int :=
+  if i = e then 1 else 0
+
+/-- `k`-fold iteration of an edge endomorphism `σ : Nat → Nat`. -/
+def iterEdge (σ : Nat → Nat) : Nat → Nat → Nat
+  | 0, x => x
+  | k + 1, x => σ (iterEdge σ k x)
+
+/-- Below edge index `e` (`n ≤ e`), the prefix sum `weightedL1Gen w (unitCochain e) n` vanishes. -/
+theorem weightedL1Gen_unitCochain_Zero_of_ge (w : Nat → Nat) (n e : Nat) (hle : n ≤ e) :
+    weightedL1Gen w (unitCochain e) n = 0 := by
+  induction n with
+  | zero => rfl
+  | succ k ih =>
+    have hne : k ≠ e := Nat.ne_of_lt hle
+    have hk0 : weightedL1Gen w (unitCochain e) k = 0 := ih (Nat.le_of_succ_le hle)
+    dsimp [weightedL1Gen, unitCochain]
+    rw [if_neg hne, hk0]
+    change 0 + w k * 0 = 0
+    rw [Nat.mul_zero, Nat.add_zero]
+
+/-- Evaluating `weightedL1Gen w` on `unitCochain e` for `e < n` extracts the exact edge weight `w e`. -/
+theorem weightedL1Gen_unitCochain (w : Nat → Nat) {n e : Nat} (he : e < n) :
+    weightedL1Gen w (unitCochain e) n = w e := by
+  induction n with
+  | zero => exact absurd he (Nat.not_lt_zero e)
+  | succ k ih =>
+    by_cases hke : k = e
+    · subst hke
+      have h0 := weightedL1Gen_unitCochain_Zero_of_ge w k k (Nat.le_refl k)
+      dsimp [weightedL1Gen, unitCochain]
+      rw [if_pos rfl, h0]
+      change 0 + w k * 1 = w k
+      rw [Nat.mul_one, Nat.zero_add]
+    · have hek : e < k := Nat.lt_of_le_of_ne (Nat.le_of_lt_succ he) (Ne.symm hke)
+      have ihk := ih hek
+      dsimp [weightedL1Gen, unitCochain]
+      rw [if_neg hke, ihk]
+      change w e + w k * 0 = w e
+      rw [Nat.mul_zero, Nat.add_zero]
+
+/-- If an edge map `σ` preserves `{0, ..., n - 1}` and leaves `weightedL1Gen w` invariant
+    on unit cochains, then `w` is invariant under a single step of `σ` (`w (σ e) = w e`). -/
+theorem symmetry_forces_step_equal_weights_general (w : Nat → Nat) (σ : Nat → Nat) (n : Nat)
+    (hclosed : ∀ e < n, σ e < n)
+    (hinv : ∀ e < n, weightedL1Gen w (unitCochain (σ e)) n = weightedL1Gen w (unitCochain e) n) :
+    ∀ e < n, w (σ e) = w e := by
+  intro e he
+  have h1 := weightedL1Gen_unitCochain w (hclosed e he)
+  have h2 := weightedL1Gen_unitCochain w he
+  exact h1.symm.trans ((hinv e he).trans h2)
+
+/-- Orbit-constancy theorem on `n` edges: if `σ` preserves `{0, ..., n - 1}` and leaves
+    `weightedL1Gen w` invariant on unit cochains, then `w` is constant along every
+    `σ`-orbit (`w (iterEdge σ k e) = w e` for all `k : Nat` and `e < n`). -/
+theorem symmetry_forces_orbit_equal_weights_general (w : Nat → Nat) (σ : Nat → Nat) (n : Nat)
+    (hclosed : ∀ e < n, σ e < n)
+    (hinv : ∀ e < n, weightedL1Gen w (unitCochain (σ e)) n = weightedL1Gen w (unitCochain e) n) :
+    ∀ k : Nat, ∀ e < n, iterEdge σ k e < n ∧ w (iterEdge σ k e) = w e := by
+  have hstep := symmetry_forces_step_equal_weights_general w σ n hclosed hinv
+  intro k
+  induction k with
+  | zero =>
+    intro e he
+    exact ⟨he, rfl⟩
+  | succ m ih =>
+    intro e he
+    rcases ih e he with ⟨hm_lt, hm_eq⟩
+    refine ⟨hclosed (iterEdge σ m e) hm_lt, ?_⟩
+    calc
+      w (σ (iterEdge σ m e)) = w (iterEdge σ m e) := hstep (iterEdge σ m e) hm_lt
+      _ = w e := hm_eq
+
+/-- Whenever `w` is uniform (`w e = w0` for all `e < n`), `weightedL1Gen w v n`
+    factors as `w0 * unweightedL1Gen v n`. -/
+theorem uniform_weights_factor_l1_general (w : Nat → Nat) (v : Nat → Int) (n w0 : Nat)
+    (hunif : ∀ e < n, w e = w0) :
+    weightedL1Gen w v n = w0 * unweightedL1Gen v n := by
+  induction n with
+  | zero =>
+    change 0 = w0 * 0
+    rw [Nat.mul_zero]
+  | succ k ih =>
+    have hk : w k = w0 := hunif k (Nat.lt_succ_self k)
+    have ihk : weightedL1Gen w v k = w0 * unweightedL1Gen v k :=
+      ih (fun e he => hunif e (Nat.lt_succ_of_lt he))
+    dsimp [weightedL1Gen, unweightedL1Gen]
+    rw [ihk, hk, Nat.mul_add]
+
+/-- General transitive uniformity theorem: if `σ` acts transitively on `{0, ..., n - 1}`
+    from `0` and leaves `weightedL1Gen w` invariant on unit cochains, then all `n` edge
+    weights equal `w 0` and `weightedL1Gen w v n = w 0 * unweightedL1Gen v n` for every cochain `v`. -/
+theorem transitive_action_forces_uniform_weights_general (w : Nat → Nat) (σ : Nat → Nat) (n : Nat)
+    (hpos : 1 ≤ n)
+    (hclosed : ∀ e < n, σ e < n)
+    (hinv : ∀ e < n, weightedL1Gen w (unitCochain (σ e)) n = weightedL1Gen w (unitCochain e) n)
+    (htrans : ∀ e < n, ∃ k : Nat, iterEdge σ k 0 = e) :
+    (∀ e < n, w e = w 0) ∧
+    (∀ v : Nat → Int, weightedL1Gen w v n = w 0 * unweightedL1Gen v n) := by
+  have horb := symmetry_forces_orbit_equal_weights_general w σ n hclosed hinv
+  have hunif : ∀ e < n, w e = w 0 := by
+    intro e he
+    rcases htrans e he with ⟨k, hk⟩
+    have hk0 := (horb k 0 hpos).2
+    rw [← hk]
+    exact hk0
+  exact ⟨hunif, fun v => uniform_weights_factor_l1_general w v n (w 0) hunif⟩
+
+/-! ## Section 6: Simplicial Cochain Exactness on Δ² / Δ³ & Primal–Dual L1 Minimum Defect (`DER-30` / `OWE-10` & `IMG-01`) -/
+
+def primTriangleF2 (h : Cochain1F2) : Cochain0F2 :=
+  let (e01, _, e02) := h
+  (false, e01, e02)
+
+/-- Exactness of the unsigned `𝔽₂` triangle cochain complex (`ker d₁ = im d₀` on `Δ²`),
+    with canonical basepoint-0 primitive `primTriangleF2`. -/
+theorem triangle_f2_exact_iff (h : Cochain1F2) :
+    (d1UnsignedF2 h = false ↔ d0UnsignedF2 (primTriangleF2 h) = h) ∧
+    (d1UnsignedF2 h = false ↔ ∃ c : Cochain0F2, d0UnsignedF2 c = h) := by
+  have h1 : d1UnsignedF2 h = false ↔ d0UnsignedF2 (primTriangleF2 h) = h := by
+    cases h with
+    | mk e01 rest =>
+      cases rest with
+      | mk e12 e02 =>
+        cases e01 <;> cases e12 <;> cases e02 <;> decide
+  refine ⟨h1, ?_⟩
+  constructor
+  · intro hd1
+    exact ⟨primTriangleF2 h, h1.mp hd1⟩
+  · rintro ⟨c, rfl⟩
+    exact oq02_unsigned_f2_complex_holds c
+
+def primTriangleInt (h : Cochain1Int) : Cochain0Int :=
+  let (e01, _, e02) := h
+  (0, e01, e02)
+
+/-- Exactness of the signed `ℤ` triangle cochain complex (`ker d₁ = im d₀` on `Δ²`),
+    with canonical basepoint-0 primitive `primTriangleInt`. -/
+theorem triangle_int_exact_iff (h : Cochain1Int) :
+    (d1SignedCycInt h = 0 ↔ d0SignedInt (primTriangleInt h) = h) ∧
+    (d1SignedCycInt h = 0 ↔ ∃ c : Cochain0Int, d0SignedInt c = h) := by
+  have h1 : d1SignedCycInt h = 0 ↔ d0SignedInt (primTriangleInt h) = h := by
+    rcases h with ⟨e01, e12, e02⟩
+    dsimp [d1SignedCycInt, d0SignedInt, primTriangleInt]
+    constructor
+    · intro hd1
+      have h12 : e02 - e01 = e12 := by omega
+      have h01 : e01 - 0 = e01 := Int.sub_zero e01
+      have h02 : e02 - 0 = e02 := Int.sub_zero e02
+      rw [h01, h12, h02]
+    · intro heq
+      have h12 : e02 - e01 = e12 := congrArg (fun p : Cochain1Int => p.2.1) heq
+      omega
+  refine ⟨h1, ?_⟩
+  constructor
+  · intro hd1
+    exact ⟨primTriangleInt h, h1.mp hd1⟩
+  · rintro ⟨⟨v0, v1, v2⟩, rfl⟩
+    exact oq02_signed_cyc_int_complex_holds v0 v1 v2
+
+def primTet1Int (f : Tet2Int) : Tet1Int :=
+  let (_, f023, f013, f012) := f
+  (0, 0, 0, f012, f013, f023)
+
+/-- Exactness of the signed `ℤ` 3-simplex (tetrahedron) 2-cochain complex
+    (`ker d₂ᵀᵉᵗ = im d₁ᵀᵉᵗ` on `Δ³`), with canonical star-gauge primitive `primTet1Int`. -/
+theorem tet_int_exact_iff (f : Tet2Int) :
+    (d2TetSigned f = 0 ↔ d1TetSigned (primTet1Int f) = f) ∧
+    (d2TetSigned f = 0 ↔ ∃ h : Tet1Int, d1TetSigned h = f) := by
+  have h1 : d2TetSigned f = 0 ↔ d1TetSigned (primTet1Int f) = f := by
+    rcases f with ⟨f123, f023, f013, f012⟩
+    dsimp [d2TetSigned, d1TetSigned, primTet1Int]
+    constructor
+    · intro hd2
+      have h123 : f023 - f013 + f012 = f123 := by omega
+      have h023 : f023 - 0 + 0 = f023 := by omega
+      have h013 : f013 - 0 + 0 = f013 := by omega
+      have h012 : f012 - 0 + 0 = f012 := by omega
+      rw [h123, h023, h013, h012]
+    · intro heq
+      have h123 : f023 - f013 + f012 = f123 := congrArg Prod.fst heq
+      omega
+  refine ⟨h1, ?_⟩
+  constructor
+  · intro hd2
+    exact ⟨primTet1Int f, h1.mp hd2⟩
+  · rintro ⟨h, rfl⟩
+    exact boundary_cancellation_tet_signed h
+
+def residualCochain1Int (h : Cochain1Int) (c : Cochain0Int) : Cochain1Int :=
+  let (e01, e12, e02) := h
+  let (d01, d12, d02) := d0SignedInt c
+  (e01 - d01, e12 - d12, e02 - d02)
+
+/-- Gauge invariance of the triangle coboundary `d1SignedCycInt` under subtracting
+    any 0-cochain coboundary `d0SignedInt c`. -/
+theorem d1SignedCycInt_residual_invariant (h : Cochain1Int) (c : Cochain0Int) :
+    d1SignedCycInt (residualCochain1Int h c) = d1SignedCycInt h := by
+  rcases h with ⟨e01, e12, e02⟩
+  rcases c with ⟨v0, v1, v2⟩
+  simp only [d1SignedCycInt, residualCochain1Int, d0SignedInt]
+  omega
+
+/-- Weak L1 duality on `Δ²`: for every 1-cochain `h` and 0-cochain `c`, the L1 norm
+    of the residual `h - d₀ c` is bounded below by `|d₁ h|`. -/
+theorem triangle_l1_weak_duality_bound (h : Cochain1Int) (c : Cochain0Int) :
+    (d1SignedCycInt h).natAbs ≤ normL1 (residualCochain1Int h c) := by
+  rw [← d1SignedCycInt_residual_invariant h c]
+  rcases residualCochain1Int h c with ⟨r01, r12, r02⟩
+  simp only [d1SignedCycInt, normL1]
+  omega
+
+/-- Strong L1 duality on `Δ²`: the canonical primitive `primTriangleInt h` attains the
+    exact lower bound `|d₁ h|`, concentrating the entire residual defect on edge `(1, 2)`. -/
+theorem triangle_l1_strong_duality_attained (h : Cochain1Int) :
+    residualCochain1Int h (primTriangleInt h) = (0, d1SignedCycInt h, 0) ∧
+    normL1 (residualCochain1Int h (primTriangleInt h)) = (d1SignedCycInt h).natAbs := by
+  have hres : residualCochain1Int h (primTriangleInt h) = (0, d1SignedCycInt h, 0) := by
+    rcases h with ⟨e01, e12, e02⟩
+    dsimp [residualCochain1Int, primTriangleInt, d0SignedInt, d1SignedCycInt]
+    have h1 : e01 - (e01 - 0) = 0 := by omega
+    have h2 : e12 - (e02 - e01) = e01 + e12 - e02 := by omega
+    have h3 : e02 - (e02 - 0) = 0 := by omega
+    rw [h1, h2, h3]
+  refine ⟨hres, ?_⟩
+  rw [hres]
+  simp only [normL1]
+  omega
+
 end OmegaCodex.LocalGlobalObstruction

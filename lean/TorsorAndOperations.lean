@@ -431,11 +431,13 @@ def swap3 : Fin 3 → Fin 3
   | ⟨0, _⟩ => ⟨0, by decide⟩
   | ⟨1, _⟩ => ⟨2, by decide⟩
   | ⟨2, _⟩ => ⟨1, by decide⟩
+  | ⟨n + 3, h⟩ => False.elim (Nat.not_lt_of_ge (Nat.succ_le_succ (Nat.succ_le_succ (Nat.succ_le_succ (Nat.zero_le n)))) h)
 
 def offer12 : Fin 3 → Bool
   | ⟨0, _⟩ => false
   | ⟨1, _⟩ => true
   | ⟨2, _⟩ => true
+  | ⟨n + 3, h⟩ => False.elim (Nat.not_lt_of_ge (Nat.succ_le_succ (Nat.succ_le_succ (Nat.succ_le_succ (Nat.zero_le n)))) h)
 
 /-- SymmetryFloor comparison on `Fin 3` (`10_post_seal_checks.py` [1]):
 every deterministic `swap3`-equivariant endomap fixes `0`, whereas the
@@ -460,5 +462,95 @@ theorem swap3_deterministic_vs_multi_offer :
   | 2, _, h2 =>
       rw [h2] at hfix
       cases hfix
+
+/-! ## Section 7: Endogenous Pair-Quotient Multiplicity Bridge (`DER-29` / `OWE-06`, `S2Bool × S2Bool → Fin 3`) -/
+
+def diagSwap (p : Bool × Bool) : Bool × Bool :=
+  (counterpart p.1, counterpart p.2)
+
+def transposePair (p : Bool × Bool) : Bool × Bool :=
+  (p.2, p.1)
+
+def pairToFin3 : Bool × Bool → Fin 3
+  | (false, false) => ⟨0, by decide⟩
+  | (true,  true)  => ⟨0, by decide⟩
+  | (false, true)  => ⟨1, by decide⟩
+  | (true,  false) => ⟨2, by decide⟩
+
+def pairToFin3Dual : Bool × Bool → Fin 3
+  | (false, true)  => ⟨0, by decide⟩
+  | (true,  false) => ⟨0, by decide⟩
+  | (false, false) => ⟨1, by decide⟩
+  | (true,  true)  => ⟨2, by decide⟩
+
+/-- The diagonal `C2` action `diagSwap` on `Bool × Bool` is an involution, acts freely
+    (no fixed pairs), and preserves the binary difference classifier `difference`. -/
+theorem diagSwap_involutive_and_free (p : Bool × Bool) :
+    diagSwap (diagSwap p) = p ∧
+    diagSwap p ≠ p ∧
+    difference (diagSwap p).1 (diagSwap p).2 = difference p.1 p.2 := by
+  cases p with
+  | mk x y =>
+      cases x <;> cases y <;> decide
+
+/-- Coordinate transposition `transposePair` on `Bool × Bool` is an involution whose
+    fixed points are precisely the diagonal pairs (`difference p.1 p.2 = false`). -/
+theorem transposePair_fixed_iff_diagonal (p : Bool × Bool) :
+    transposePair (transposePair p) = p ∧
+    (transposePair p = p ↔ difference p.1 p.2 = false) := by
+  cases p with
+  | mk x y =>
+      cases x <;> cases y <;> decide
+
+/-- The endogenous quotient map `pairToFin3 : Bool × Bool → Fin 3` collapsing the
+    diagonal orbit `{(false, false), (true, true)}` to `0` while keeping the off-diagonal
+    apartness witnesses `(false, true) ↦ 1` and `(true, false) ↦ 2` distinct is surjective. -/
+theorem pairToFin3_surjective (k : Fin 3) :
+    ∃ p : Bool × Bool, pairToFin3 p = k := by
+  rcases k with ⟨val, isLt⟩
+  cases val with
+  | zero => exact ⟨(false, false), rfl⟩
+  | succ n1 =>
+    cases n1 with
+    | zero => exact ⟨(false, true), rfl⟩
+    | succ n2 =>
+      cases n2 with
+      | zero => exact ⟨(true, false), rfl⟩
+      | succ n3 =>
+        exact absurd isLt (Nat.not_lt_of_ge (Nat.succ_le_succ (Nat.succ_le_succ (Nat.succ_le_succ (Nat.zero_le n3)))))
+
+/-- Kernel characterization of `pairToFin3`: two pairs map to the same element of `Fin 3`
+    if and only if they are identical or both lie on the diagonal (`difference = false`). -/
+theorem pairToFin3_kernel_iff (p q : Bool × Bool) :
+    pairToFin3 p = pairToFin3 q ↔
+      (p = q ∨ (difference p.1 p.2 = false ∧ difference q.1 q.2 = false)) := by
+  cases p with
+  | mk x1 y1 =>
+    cases q with
+    | mk x2 y2 =>
+      cases x1 <;> cases y1 <;> cases x2 <;> cases y2 <;> decide
+
+/-- `pairToFin3` intertwines both `diagSwap` and `transposePair` on `Bool × Bool` with
+    the canonical `Fin 3` symmetry `swap3`, and pulls back the 2-element invariant offer
+    `offer12` to the primitive difference classifier `difference p.1 p.2`. -/
+theorem pairToFin3_intertwines_swap3_and_offer12 (p : Bool × Bool) :
+    pairToFin3 (diagSwap p) = swap3 (pairToFin3 p) ∧
+    pairToFin3 (transposePair p) = swap3 (pairToFin3 p) ∧
+    offer12 (pairToFin3 p) = difference p.1 p.2 := by
+  cases p with
+  | mk x y =>
+      cases x <;> cases y <;> exact ⟨rfl, rfl, rfl⟩
+
+/-- The dual quotient `pairToFin3Dual` collapsing the off-diagonal `diagSwap`-orbit
+    `{(false, true), (true, false)}` to `0` while keeping the diagonal pairs `(false, false) ↦ 1`
+    and `(true, true) ↦ 2` distinct intertwines `diagSwap` with `swap3`, is invariant under
+    `transposePair`, and pulls back `offer12` to `!difference p.1 p.2`. -/
+theorem pairToFin3Dual_intertwines_swap3 (p : Bool × Bool) :
+    pairToFin3Dual (diagSwap p) = swap3 (pairToFin3Dual p) ∧
+    pairToFin3Dual (transposePair p) = pairToFin3Dual p ∧
+    offer12 (pairToFin3Dual p) = !difference p.1 p.2 := by
+  cases p with
+  | mk x y =>
+      cases x <;> cases y <;> exact ⟨rfl, rfl, rfl⟩
 
 end OmegaCodex.TorsorAndOperations

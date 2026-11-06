@@ -118,6 +118,26 @@ class ProfilePreorderAndGeneratorTests(unittest.TestCase):
             {0: 3, 1: 5, 2: 7, 3: 9, 4: 11},
         )
 
+    def test_multi_round_capacity_and_adaptive_horizon(self):
+        res = models.check_multi_round_capacity_and_adaptive_horizon()
+        self.assertEqual(
+            res["max_separated_n_by_d"],
+            {0: 2, 1: 4, 2: 6, 3: 8, 4: 10},
+        )
+        self.assertTrue(res["all_adaptive_rounds_separated"])
+        for n in range(17):
+            self.assertEqual(res["adaptive_radii"][n], n // 2)
+            self.assertLessEqual(n, 2 * res["adaptive_radii"][n] + 2)
+        # Boundary check at n = 2*d + 2 vs n = 2*d + 3 for d = 2
+        self.assertNotEqual(models.graph_profile_d(6, 3, 2), models.graph_profile_d(6, 4, 2))
+        self.assertEqual(models.graph_profile_d(7, 3, 2), (None, None))
+        self.assertEqual(models.graph_profile_d(7, 4, 2), (None, None))
+
+        pigeon = res["pigeonhole_capacity_checks"]
+        self.assertEqual(pigeon[1], {"histories": 2, "injective_at_2k_minus_1": 0, "injective_at_2k": 2})
+        self.assertEqual(pigeon[2], {"histories": 4, "injective_at_2k_minus_1": 0, "injective_at_2k": 24})
+
 
 if __name__ == "__main__":
     unittest.main()
+

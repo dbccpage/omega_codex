@@ -3,7 +3,7 @@
   "source": "lean/MinimalSeparation.lean",
   "source_sha256": "909c6e2e1d9102d92d5352ba05990a9d17e888166ab4709b32b34d900504530f",
   "direct_imports": {
-    "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
+    "lean/TorsorAndOperations.lean": "c65bf75f2f14c79b9a336d1945e0b5972848e882f13170fef9bddbe3ab0b82eb",
     "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
   },
   "toolchain": "leanprover/lean4:v4.33.0",
