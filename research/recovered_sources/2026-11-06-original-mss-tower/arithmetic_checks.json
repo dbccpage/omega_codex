@@ -1,0 +1,76 @@
+{
+  "scope": "Exact small arithmetic checks, not replay of the lost tower",
+  "source_copies_verified": 3,
+  "table_deltas": [
+    1,
+    1,
+    1,
+    2,
+    2,
+    1,
+    2,
+    1,
+    2,
+    1
+  ],
+  "printed_formula_comparison": [
+    {
+      "n": 5,
+      "table": 9,
+      "printed_formula": 10
+    },
+    {
+      "n": 6,
+      "table": 10,
+      "printed_formula": 12
+    },
+    {
+      "n": 7,
+      "table": 12,
+      "printed_formula": 13
+    },
+    {
+      "n": 8,
+      "table": 13,
+      "printed_formula": 15
+    },
+    {
+      "n": 9,
+      "table": 15,
+      "printed_formula": 16
+    },
+    {
+      "n": 10,
+      "table": 16,
+      "printed_formula": 18
+    }
+  ],
+  "cancellative_monoid_counterexample": {
+    "generators": [
+      2,
+      3
+    ],
+    "elements_through_6": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "atoms": [
+      2,
+      3
+    ],
+    "factorizations_of_6": [
+      [
+        0,
+        2
+      ],
+      [
+        3,
+        0
+      ]
+    ]
+  }
+}

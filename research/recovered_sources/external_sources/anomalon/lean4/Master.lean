@@ -1,0 +1,14 @@
+-- 008_engine_runtime master Lean binding surface
+-- Paper: 008_engine_runtime_master.md
+-- Claim ledger: 008_engine_runtime_master_claim_ledger.md Part VI
+-- Date: 2026-07-26
+-- AuthorityEffect: None
+--
+-- LGGR I–III mechanization remains under lake libs PaperAE004/5/6
+-- (flat stems 006_ae004_*, 006_ae005_*, 006_ae006_*).
+-- See README.md and manifest.json in this directory.
+
+-- Binding markers for index generators / lean4-librarian:
+--   LGGR1 -> PaperAE004 / 006_ae004_*
+--   LGGR2 -> PaperAE005 / 006_ae005_*
+--   LGGR3 -> PaperAE006 / 006_ae006_*

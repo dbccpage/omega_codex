@@ -4,6 +4,18 @@ Omega Codex develops one reviewed piece at a time. Existing files remain in plac
 
 ## Current environment
 
+The approved finite-route slice adds the explicit `AdmissionReplay` target.
+Run `lake build AdmissionReplay`, then
+`.\.venv\Scripts\python.exe scripts/check_admission_replay.py` and
+`.\.venv\Scripts\python.exe -m unittest discover -s tests -p test_admission_replay.py -v`.
+The checker builds only this target and its dependencies, prints every adapter
+theorem's axiom dependencies into its report, runs the actual Lean walk, and
+checks independent finite outputs and rejected mutations. Use `--report PATH`
+and `--walk PATH` to save fresh evidence. On Windows hosts with a restricted
+default temporary directory, point `TEMP` and `TMP` at a writable directory
+under `.lake/` before invoking the checker. See
+[the implementation report](research/route/2026-11-06-admission-replay-report.md).
+
 - Lean: `leanprover/lean4:v4.33.0`, pinned in `lean-toolchain`.
 - Lake: the package builds `PrimitiveDifference`, `MirrorNonIdentification`, and `ZeroEquivalence` from `lean/`.
 - Dependencies: Lean core only; no Mathlib or other Lake packages.

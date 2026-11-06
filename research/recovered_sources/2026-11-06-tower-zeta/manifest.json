@@ -1,0 +1,70 @@
+{
+  "recovered": "2026-11-06",
+  "scope": "Historical source recovery only; no mathematical validation or Lean compilation",
+  "files": [
+    {
+      "source": "C:\\.ana\\rh-main\\rh-main\\mssn_tower_arithmetic_research\\03_mssn_and_arithmetic.md",
+      "local": "rh-local/03_mssn_and_arithmetic.md",
+      "bytes": 16360,
+      "sha256": "b55340336e0a7ccd862ab40772f1077ef20157626f8303baf5c6278ab22c1bab",
+      "source_revision": null,
+      "provenance": "Local snapshot; no .git directory in supplied package"
+    },
+    {
+      "source": "C:\\.ana\\rh-main\\rh-main\\mssn_tower_arithmetic_research\\infinite_symsys_mssn_towers_riemann_shadow.md",
+      "local": "rh-local/infinite_symsys_mssn_towers_riemann_shadow.md",
+      "bytes": 95871,
+      "sha256": "e3ac0b313039bb4f6112939a7798774c3d1ba5da3cd44b7f7fc4a240248f4c36",
+      "source_revision": null,
+      "provenance": "Local snapshot; no .git directory in supplied package"
+    },
+    {
+      "source": "C:\\.ana\\rh-main\\rh-main\\mssn_tower_arithmetic_research\\mss_n_tower_and_arithmetic_shadows.md",
+      "local": "rh-local/mss_n_tower_and_arithmetic_shadows.md",
+      "bytes": 16975,
+      "sha256": "1d3ab0e868d9a14d42c3c2527b7645167f20949a5ae45cad5512a4d938ab07e6",
+      "source_revision": null,
+      "provenance": "Local snapshot; no .git directory in supplied package"
+    },
+    {
+      "source": "C:\\.ana\\rh-main\\rh-main\\mssn_tower_arithmetic_research\\mssn_infinity_and_riemann_shadow.md",
+      "local": "rh-local/mssn_infinity_and_riemann_shadow.md",
+      "bytes": 98178,
+      "sha256": "aecac57e222eba29987161af83c973d5b8a427759a7cefdfc33a165eadb18fab",
+      "source_revision": null,
+      "provenance": "Local snapshot; no .git directory in supplied package"
+    },
+    {
+      "source": "C:\\.ana\\rh-main\\rh-main\\mssn_tower_arithmetic_research\\README.md",
+      "local": "rh-local/README.md",
+      "bytes": 1584,
+      "sha256": "38e7cd5afc86ebdfc2ee20d9e6462489106239174c82af631cc002fd1d9bf23b",
+      "source_revision": null,
+      "provenance": "Local snapshot; no .git directory in supplied package"
+    },
+    {
+      "source": "https://github.com/dbccpage/_anomalon_archive/blob/b3b67e3e3fda96a2827b071665c8d3516d846405/old/6f0abfc7-5625-415d-bc74-a3dd65df8382.md",
+      "local": "mssn_infinity_and_riemann_shadow.md",
+      "bytes": 94552,
+      "sha256": "010d34f07ec7eccaf4dd7df114a747a2f2854080abd1ab425e29492bf14cdccd",
+      "git_blob": "7ab7e32e3c39e2e3b9e07e00faad98650b55ace3",
+      "source_revision": "b3b67e3e3fda96a2827b071665c8d3516d846405"
+    },
+    {
+      "source": "https://github.com/dbccpage/_anomalon_archive/blob/b3b67e3e3fda96a2827b071665c8d3516d846405/old/1c9280d4-2728-4e3e-9077-58b3a69ceee9.md",
+      "local": "00_general_theory_uros_mssn_math.md",
+      "bytes": 23576,
+      "sha256": "edbd95c0c2eda4a3def0aaa8c10a5da4868996d8d4538ba30ee3cd9665a7de57",
+      "git_blob": "3aa79220e6e1916d88ef6e0b7c56a78c10e052cb",
+      "source_revision": "b3b67e3e3fda96a2827b071665c8d3516d846405"
+    },
+    {
+      "source": "https://github.com/dbccpage/_anomalon_archive/blob/b3b67e3e3fda96a2827b071665c8d3516d846405/old/f73341d8-ed59-46c8-b219-a35827042fb8.lean",
+      "local": "er007_tower_zeta.lean",
+      "bytes": 27161,
+      "sha256": "8cc5d145752d3acc7a190f32433eed6a0262c58889df206c877ce8f63edeb8b5",
+      "git_blob": "d6db7b078b0c557de06ca1db680ba5fedcce1488",
+      "source_revision": "b3b67e3e3fda96a2827b071665c8d3516d846405"
+    }
+  ]
+}

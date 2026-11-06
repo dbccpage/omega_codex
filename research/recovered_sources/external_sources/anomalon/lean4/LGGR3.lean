@@ -1,0 +1,2 @@
+-- import via lake root «006_ae006_core» (digit-leading module; built as PaperAE006)
+-- Binding only — do not treat this file as a second theorem home.

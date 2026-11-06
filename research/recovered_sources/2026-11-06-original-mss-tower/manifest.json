@@ -1,0 +1,29 @@
+{
+  "recovered": "2026-11-06",
+  "repository": "dbccpage/_anomalon_archive",
+  "revision": "b3b67e3e3fda96a2827b071665c8d3516d846405",
+  "files": [
+    {
+      "local": "36_mss8_and_beyond.md",
+      "source": "https://github.com/dbccpage/_anomalon_archive/blob/b3b67e3e3fda96a2827b071665c8d3516d846405/old/8b0b636d-79ae-4bfa-a4b8-262371e632b7.md",
+      "git_blob": "4e7f2ad8a245e7fe6a2f210cf5e0af1bf88f2730",
+      "bytes": 5588,
+      "sha256": "dbc5bdbcbb2e86ab191d8e0ffe9de8f3c42e52cd6c5915f60373849d6523f3a4"
+    },
+    {
+      "local": "omega_uros_mssn_complete_math.md",
+      "source": "https://github.com/dbccpage/_anomalon_archive/blob/b3b67e3e3fda96a2827b071665c8d3516d846405/old/cacdc267-ff06-4935-8f5f-f49e233cbee8.md",
+      "git_blob": "775eb1f0c0fd385d86ed1b040a4658bf57cd8246",
+      "bytes": 25909,
+      "sha256": "bd07004d3100e6dd65904088cc421c7e8d2e436ddbf80dc153633d605f9966d1"
+    },
+    {
+      "local": "mss_n_minimal_symbol_tower_may_2026.md",
+      "source": "https://github.com/dbccpage/_anomalon_archive/blob/b3b67e3e3fda96a2827b071665c8d3516d846405/old/1d4778b4-c5fe-4e97-a465-6c8c6ac3ec01.md",
+      "git_blob": "e4923fdc684bce3f2d9ed24201351714400f4679",
+      "bytes": 8242,
+      "sha256": "1dea43b9becc5794300d2cbb1822e96bb0b5e30299e12df477330035d4fc01c9"
+    }
+  ],
+  "scope": "Historical recovery; mathematical claims not certified. May 2026 is a document-header date, not a verified creation timestamp."
+}

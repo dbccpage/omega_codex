@@ -6,3 +6,7 @@ docs/genesis_discussion.md -text -whitespace
 # Keep theorem-source receipt hashes stable across checkouts.
 lean/*.lean text eol=lf
 lean-toolchain text eol=lf
+
+# Preserve recovered research evidence and verbatim pinned WDP source bytes.
+research/** -text -whitespace
+lean/WitnessedDifference/** -text
