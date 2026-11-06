@@ -25,6 +25,31 @@ MODULES = {
         "allowed_axioms": {"propext", "Quot.sound"},
         "imports": ("PrimitiveDifference",),
     },
+    "TorsorAndOperations": {
+        "namespace": "OmegaCodex.TorsorAndOperations.",
+        "allowed_axioms": {"propext", "Quot.sound"},
+        "imports": ("PrimitiveDifference", "MirrorNonIdentification"),
+    },
+    "MinimalSeparation": {
+        "namespace": "OmegaCodex.MinimalSeparation.",
+        "allowed_axioms": {"propext", "Quot.sound"},
+        "imports": ("TorsorAndOperations", "ZeroEquivalence"),
+    },
+    "RetentionAndRefusal": {
+        "namespace": "OmegaCodex.RetentionAndRefusal.",
+        "allowed_axioms": {"propext", "Quot.sound"},
+        "imports": ("TorsorAndOperations", "ZeroEquivalence"),
+    },
+    "LocalGlobalObstruction": {
+        "namespace": "OmegaCodex.LocalGlobalObstruction.",
+        "allowed_axioms": {"propext", "Quot.sound"},
+        "imports": ("TorsorAndOperations", "ZeroEquivalence"),
+    },
+    "InternalMetatheory": {
+        "namespace": "OmegaCodex.InternalMetatheory.",
+        "allowed_axioms": {"propext", "Quot.sound"},
+        "imports": ("TorsorAndOperations", "MinimalSeparation", "RetentionAndRefusal"),
+    },
 }
 
 
@@ -32,6 +57,11 @@ RECEIPTS = {
     "PrimitiveDifference": "docs/primitive_difference_verification.json",
     "MirrorNonIdentification": "docs/mirror_non_identification_verification.json",
     "ZeroEquivalence": "docs/zero_equivalence_verification.json",
+    "TorsorAndOperations": "docs/torsor_and_operations_verification.json",
+    "MinimalSeparation": "docs/minimal_separation_verification.json",
+    "RetentionAndRefusal": "docs/retention_and_refusal_verification.json",
+    "LocalGlobalObstruction": "docs/local_global_obstruction_verification.json",
+    "InternalMetatheory": "docs/internal_metatheory_verification.json",
 }
 
 

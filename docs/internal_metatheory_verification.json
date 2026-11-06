@@ -1,0 +1,53 @@
+{
+  "verified": true,
+  "source": "lean/InternalMetatheory.lean",
+  "source_sha256": "85f153bf66c92dba93f3b7f395bd1cd9716bc722e7567c038f05689e6b6438cc",
+  "direct_imports": {
+    "lean/TorsorAndOperations.lean": "74a482e92bccf16dce2c2afe02739f8c5676206860f290506933a8310f8f8b91",
+    "lean/MinimalSeparation.lean": "2b3651ed8547adf0b4fae34b30bf1dfde5da0e638179fbc4d5662c0d8fc9cad0",
+    "lean/RetentionAndRefusal.lean": "ec621cd7d920726a4e5e2c79deda161885d274461bfcfd9d0c981d8cc52f150b"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 14,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "d20_unique_compliant": [
+      "propext"
+    ],
+    "guard_independence_six_countermodels": [
+      "propext"
+    ],
+    "extension_retract_to_U0": [
+      "propext",
+      "Quot.sound"
+    ],
+    "unapplied_outside_leaves_separable_unchanged": [
+      "propext"
+    ],
+    "panel_reentry_preserves_counts": [
+      "propext"
+    ],
+    "diagNeg_differs_at_self": [],
+    "diagonal_non_exhaustion": [],
+    "tower_persists_at_every_stage": [
+      "propext"
+    ],
+    "strict_measure_irrefl": [],
+    "strict_measure_asymm": [],
+    "strict_measure_plus_lt": [],
+    "strict_measure_no_return": [],
+    "regime4Measure_newDatum_lt": [
+      "propext",
+      "Quot.sound"
+    ],
+    "regime4Measure_newForm_lt": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

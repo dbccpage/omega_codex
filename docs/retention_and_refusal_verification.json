@@ -1,0 +1,93 @@
+{
+  "verified": true,
+  "source": "lean/RetentionAndRefusal.lean",
+  "source_sha256": "ec621cd7d920726a4e5e2c79deda161885d274461bfcfd9d0c981d8cc52f150b",
+  "direct_imports": {
+    "lean/TorsorAndOperations.lean": "74a482e92bccf16dce2c2afe02739f8c5676206860f290506933a8310f8f8b91",
+    "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 27,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "silent_eq_metaMarker": [
+      "propext",
+      "Quot.sound"
+    ],
+    "nonreify_data_preserved_on_dup": [
+      "propext",
+      "Quot.sound"
+    ],
+    "fact_state_changes_on_dup": [
+      "propext",
+      "Quot.sound"
+    ],
+    "reifyUntagged_grows_carrier_on_dup": [
+      "propext",
+      "Quot.sound"
+    ],
+    "tag_separates_reified_modes": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq03_retaining_count_eq_16": [
+      "propext"
+    ],
+    "oq03_char_four_count_eq_16": [
+      "propext"
+    ],
+    "oq03_retains_iff_four_conditions": [
+      "propext"
+    ],
+    "oq03_drift_free_symmetric_count_eq_4": [
+      "propext"
+    ],
+    "oq03_drift_free_implies_retains": [
+      "propext"
+    ],
+    "oq03_factor_counts": [
+      "propext"
+    ],
+    "oq03_condition_independence_witnesses": [
+      "propext"
+    ],
+    "rt02_idle_drift_flips_on_two_steps": [
+      "propext"
+    ],
+    "rt02_drift_free_all_idle_steps": [
+      "propext",
+      "Quot.sound"
+    ],
+    "decode_implies_fiber_const": [],
+    "fiber_const_implies_decodeFin_exact": [],
+    "oq06_history_report_criterion_fin": [],
+    "rt10_decodeFin_order_and_default_invariant_on_image": [],
+    "rt10_decodeFin_off_image_eq_default": [],
+    "rt05_unaryCongruent_iff_fiberConstant_all": [],
+    "transpose_self_left": [
+      "propext"
+    ],
+    "transpose_involutive": [],
+    "closure_failure_iff_internal_symmetry_break": [
+      "propext"
+    ],
+    "common_refinement_closes_current_obstruction": [],
+    "oq08_refinement_commutes_at_zero_adm_ret_cost": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_trace_commutes_at_zero_adm_ret_cost": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq08_five_gate_strictly_finer_when_adm_priced": [
+      "propext",
+      "Quot.sound"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

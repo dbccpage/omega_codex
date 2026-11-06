@@ -39,6 +39,7 @@
 | `11_oq05_to_oq08.lean` | Campaign 2 (`OQ-05`–`OQ-08`) | Self-contained Lean 4 proofs settling `OQ-05` (`oq05_quotient_refinement_from_one`), `OQ-06` (`oq06_history_report_criterion_fin`), `OQ-07` (`oq07_weights_not_forced_without_symmetry`, `oq07_transitive_symmetry_forces_equal_weights`), and `OQ-08` (`oq08_refinement_commutes_at_zero_adm_ret_cost`) with zero `Classical.choice` and zero `sorry`. |
 | `11_oq05_to_oq08_checks.py` | Campaign 2 (`OQ-05`–`OQ-08`) | Reproducible Python stdlib verification for `OQ-05` through `OQ-08`. |
 | `12_post_seal_adversary_and_roadmap.md` | Campaign 3 Stage A | Red-team adversarial audit of Tasks 9–11 and `AGENTS.md`-compliant 5-slice reconstruction roadmap for `omega_codex/lean/`. |
+| `13_slices_and_dag_verification.md` | Campaign 3 Stage B | Records the 5-slice Lean 4.33.0 implementation (`TorsorAndOperations` through `InternalMetatheory`, 227 total theorems across 8 modules), resolution of `RT-01`–`RT-12`, and verification of `dag/derivation_dag.json`. |
 
 ## Prompt Summaries (One Line per Prompt)
 

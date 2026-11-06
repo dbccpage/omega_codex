@@ -1,0 +1,69 @@
+{
+  "verified": true,
+  "source": "lean/TorsorAndOperations.lean",
+  "source_sha256": "74a482e92bccf16dce2c2afe02739f8c5676206860f290506933a8310f8f8b91",
+  "direct_imports": {
+    "lean/PrimitiveDifference.lean": "8ea8cc47eae4bedcc2a0e00b6af257313918b2165a159f85f54f866da03d41c8",
+    "lean/MirrorNonIdentification.lean": "a215d0b339497db9c5af7c7aaa711c54487c35cb535468303a74382c2da94ad5"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 34,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "offdiag_nonempty_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "D2_initial_pointed": [
+      "propext"
+    ],
+    "D2_automorphism_trivial": [
+      "propext",
+      "Quot.sound"
+    ],
+    "S2_automorphism_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "c2Mul_assoc": [],
+    "c2Mul_id_left": [],
+    "c2Mul_id_right": [],
+    "c2Mul_self_inv": [],
+    "singleton_action_trivial": [],
+    "c2_collapse_homomorphism": [],
+    "c2_faithful_injective": [],
+    "c2Act_id": [],
+    "c2Act_mul": [],
+    "c2Act_faithful": [],
+    "c2Act_free": [],
+    "c2Act_transitive": [],
+    "c2Displacement_spec": [],
+    "c2Displacement_unique": [],
+    "c2Displacement_swap_invariant": [],
+    "c2Displacement_nonid_iff_S2": [],
+    "irred_empty_iff_ne": [],
+    "irred_antitone": [],
+    "merger_erases": [],
+    "indist_equivalence": [],
+    "s2_isApart": [],
+    "cotrans_not_forced_by_irrefl_symm": [],
+    "subsingleton_image_no_irrefl_witness": [],
+    "indexed_admission_requires_index_ne": [],
+    "list_expansion_requires_length_two": [],
+    "second_token_required": [],
+    "equivariant_witness_is_S2Bool": [
+      "propext",
+      "Quot.sound"
+    ],
+    "no_swap_fixed_offdiag_pair": [],
+    "equivariant_fixed_point_preserved": [],
+    "swap3_deterministic_vs_multi_offer": [
+      "propext"
+    ]
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}

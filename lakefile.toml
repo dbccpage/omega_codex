@@ -1,6 +1,15 @@
 name = "omega_codex"
 version = "0.1.0"
-defaultTargets = ["PrimitiveDifference", "MirrorNonIdentification", "ZeroEquivalence"]
+defaultTargets = [
+  "PrimitiveDifference",
+  "MirrorNonIdentification",
+  "ZeroEquivalence",
+  "TorsorAndOperations",
+  "MinimalSeparation",
+  "RetentionAndRefusal",
+  "LocalGlobalObstruction",
+  "InternalMetatheory"
+]
 
 [[lean_lib]]
 name = "PrimitiveDifference"
@@ -13,3 +22,25 @@ srcDir = "lean"
 [[lean_lib]]
 name = "ZeroEquivalence"
 srcDir = "lean"
+
+[[lean_lib]]
+name = "TorsorAndOperations"
+srcDir = "lean"
+
+[[lean_lib]]
+name = "MinimalSeparation"
+srcDir = "lean"
+
+[[lean_lib]]
+name = "RetentionAndRefusal"
+srcDir = "lean"
+
+[[lean_lib]]
+name = "LocalGlobalObstruction"
+srcDir = "lean"
+
+[[lean_lib]]
+name = "InternalMetatheory"
+srcDir = "lean"
+
+

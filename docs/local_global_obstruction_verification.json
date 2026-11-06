@@ -1,0 +1,64 @@
+{
+  "verified": true,
+  "source": "lean/LocalGlobalObstruction.lean",
+  "source_sha256": "2f9f7afa8d0ef5629f5f812402329eed023c9a0779a36d572af4f2022ae0f5ce",
+  "direct_imports": {
+    "lean/TorsorAndOperations.lean": "74a482e92bccf16dce2c2afe02739f8c5676206860f290506933a8310f8f8b91",
+    "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
+  },
+  "toolchain": "leanprover/lean4:v4.33.0",
+  "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
+  "theorems_checked": 19,
+  "allowed_axioms": [
+    "Quot.sound",
+    "propext"
+  ],
+  "dependencies": {
+    "oq02_unsigned_f2_complex_holds": [],
+    "oq02_unsigned_int_complex_fails": [],
+    "oq02_signed_cyc_int_complex_holds": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq02_signed_flip_int_complex_fails": [],
+    "oq02_vortex_not_in_im_d0": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq02_vortex_l1_defect_pos": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rt04_cyclic_to_simplicial_intertwines": [
+      "propext",
+      "Quot.sound"
+    ],
+    "boundary_cancellation_tet_signed": [
+      "propext",
+      "Quot.sound"
+    ],
+    "boundary_cancellation_tet_unsigned_fails": [],
+    "rotEdge_preserves_validRepair": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq07_weights_not_forced_without_symmetry": [
+      "propext",
+      "Quot.sound"
+    ],
+    "oq07_transitive_symmetry_forces_equal_weights": [],
+    "rt11_non_transitive_swap23_allows_unequal_weights": [
+      "propext",
+      "Quot.sound"
+    ],
+    "fixed_pair_of_natural_section": [],
+    "natural_section_exists_iff_fixed_pair": [],
+    "rt07_carrier_fixed_point_insufficient_fin3": [
+      "propext"
+    ],
+    "untwisted_triangle_glues_uniquely": [],
+    "twisted_triangle_pairwise_solvable_no_global": [],
+    "faithful_network_descent_forces_trivial_loops": []
+  },
+  "scope": "Lean core module and theorem dependency census; no legacy project build, physical execution, or global minimality claim."
+}
