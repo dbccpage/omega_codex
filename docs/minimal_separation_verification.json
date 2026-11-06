@@ -1,14 +1,14 @@
 {
   "verified": true,
   "source": "lean/MinimalSeparation.lean",
-  "source_sha256": "d3827b170ed51e35b823c2db9152d02bf9cf6c597a1d39a629f0d2ac9f5ae829",
+  "source_sha256": "909c6e2e1d9102d92d5352ba05990a9d17e888166ab4709b32b34d900504530f",
   "direct_imports": {
     "lean/TorsorAndOperations.lean": "40361dc6904167f58f5ae968373a0f87c92c09cdf5d9f7b48b60fe185a667ea1",
     "lean/ZeroEquivalence.lean": "493f9d4a76a88e0a5648052346f773ff0ad1aa2d3d6d381c4eba2e0c6eb8085d"
   },
   "toolchain": "leanprover/lean4:v4.33.0",
   "lean_version": "Lean (version 4.33.0, x86_64-w64-windows-gnu, commit d8b18978322de05a8f3dba51ef03cf5461676c17, Release)",
-  "theorems_checked": 29,
+  "theorems_checked": 65,
   "allowed_axioms": [
     "Quot.sound",
     "propext"
@@ -120,6 +120,148 @@
       "Quot.sound"
     ],
     "rt09_fresh_form_strictly_refines_all_pairs": [
+      "propext",
+      "Quot.sound"
+    ],
+    "mem_foldr_append_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "mem_allSlotOptions4_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "mem_allSlotLists4_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "mem_allWfCtxs4_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "list_all_eq_true_iff4": [
+      "propext",
+      "Quot.sound"
+    ],
+    "list_all_eq_false_iff4": [
+      "propext",
+      "Quot.sound"
+    ],
+    "derivable4Bool_beq_eq_true_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "derivable4Bool_beq_eq_false_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "collapsed4_iff_collapsed4Bool": [
+      "propext",
+      "Quot.sound"
+    ],
+    "separable4_iff_collapsed4Bool_false": [
+      "propext",
+      "Quot.sound"
+    ],
+    "hasEarlierEquiv4_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "hasEarlierEquiv4_eq_false_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "isRep4_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "isRep4_eq_false_iff": [
+      "propext",
+      "Quot.sound"
+    ],
+    "classCount4_le": [
+      "propext",
+      "Quot.sound"
+    ],
+    "classCount4_pos_of_pos": [
+      "propext",
+      "Quot.sound"
+    ],
+    "classCount4_mono_of_imp": [
+      "propext",
+      "Quot.sound"
+    ],
+    "classCount4_strict_mono_of_witness": [
+      "propext",
+      "Quot.sound"
+    ],
+    "collapsed4Bool_boolEquivOn4": [
+      "propext",
+      "Quot.sound"
+    ],
+    "exists_rep_of_equiv4_aux": [
+      "propext",
+      "Quot.sound"
+    ],
+    "exists_rep_of_equiv4": [
+      "propext",
+      "Quot.sound"
+    ],
+    "isRep4_imp_of_refines": [
+      "propext",
+      "Quot.sound"
+    ],
+    "exists_new_rep_of_strictRefinementOn4": [
+      "propext",
+      "Quot.sound"
+    ],
+    "strict_refinement_classCount4_inc": [
+      "propext",
+      "Quot.sound"
+    ],
+    "regimeClassCount4_le": [
+      "propext",
+      "Quot.sound"
+    ],
+    "regimeClassCount4_pos": [
+      "propext",
+      "Quot.sound"
+    ],
+    "strictRegimeTransition4_to_strictRefinementOn4": [
+      "propext",
+      "Quot.sound"
+    ],
+    "regime4_strict_class_count_growth": [
+      "propext",
+      "Quot.sound"
+    ],
+    "getD_append_last4": [
+      "propext"
+    ],
+    "mem_insertNew4_iff": [
+      "propext"
+    ],
+    "applyDelta4_freshUnaryDelta4": [
+      "propext",
+      "Quot.sound"
+    ],
+    "stepFreshUnary4_strict_transition": [
+      "propext",
+      "Quot.sound"
+    ],
+    "stepFreshUnary4_class_count_growth": [
+      "propext",
+      "Quot.sound"
+    ],
+    "regimeRefinementRun4_to_quotRefRun": [
+      "propext",
+      "Quot.sound"
+    ],
+    "regimeRefinementRun4_round_bound": [
+      "propext",
+      "Quot.sound"
+    ],
+    "rt09_class_count_comparison": [
       "propext",
       "Quot.sound"
     ]

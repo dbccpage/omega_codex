@@ -352,3 +352,24 @@ equality for arbitrary binary E, mutual comparability for preorders, and E itsel
 for equivalences. The preorder's directed `not E` is distinct from symmetric class
 inequality. The review approves the argument but requests a separate formalization
 slice; none of these proposed new theorems is marked checked here.
+
+### Minimal-chain reconstruction and OQ-05 class-count bridge refresh
+
+Nine Lean 4.33.0 modules now build in `lean/` (`PrimitiveDifference`,
+`MirrorNonIdentification`, `ZeroEquivalence`, `TorsorAndOperations`,
+`MinimalSeparation`, `RetentionAndRefusal`, `LocalGlobalObstruction`,
+`InternalMetatheory`, and `ProfilePreorderAndGenerator`), covering 350 checked
+theorem declarations across nine verification receipts in `docs/*_verification.json`
+with allowed axioms restricted to `propext` and `Quot.sound` (zero `Classical.choice`,
+zero `sorry`). In `lean/MinimalSeparation.lean`, exact well-formed context
+enumeration (`allWfCtxs4`), decidable collapse equivalence (`collapsed4Bool`),
+canonical least-element representative counting (`isRep4`, `classCount4`,
+`regimeClassCount4`), and strict refinement transitions (`StrictRegimeTransition4`,
+`regime4_strict_class_count_growth`, `freshUnaryDelta4`,
+`applyDelta4_freshUnaryDelta4`, `stepFreshUnary4_strict_transition`,
+`stepFreshUnary4_class_count_growth`) connect multi-round `RegimeRefinementRun4`
+chains to `QuotRefRun` (`regimeRefinementRun4_to_quotRefRun`,
+`regimeRefinementRun4_round_bound`, `rt09_class_count_comparison`), discharging
+`OWE-11` (`DER-24` and `DER-08`) in [`dag/derivation_dag.json`](../dag/derivation_dag.json)
+(46 nodes, 104 directed edges, 51 `requires_admission` edges).
+

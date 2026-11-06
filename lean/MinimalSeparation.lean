@@ -766,4 +766,631 @@ theorem rt09_fresh_form_strictly_refines_all_pairs :
          ⟨ctxUnary0_4, by decide, by decide⟩,
          ⟨ctxUnary1_4, by decide, by decide⟩⟩
 
+/-! ## Section 5: OQ-05 General Regime4 Transition-to-Class-Count Growth Bridge -/
+
+theorem mem_foldr_append_iff {α β : Type} (xs : List α) (f : α → List β) (y : β) :
+    y ∈ xs.foldr (fun x acc => f x ++ acc) [] ↔ ∃ x ∈ xs, y ∈ f x := by
+  induction xs with
+  | nil =>
+      simp only [List.foldr]
+      constructor
+      · intro h; cases h
+      · rintro ⟨_, hx, _⟩; cases hx
+  | cons a tail ih =>
+      simp only [List.foldr, List.mem_append, List.mem_cons]
+      constructor
+      · rintro (hhead | htail)
+        · exact ⟨a, Or.inl rfl, hhead⟩
+        · rcases ih.mp htail with ⟨x, hx, hy⟩
+          exact ⟨x, Or.inr hx, hy⟩
+      · rintro ⟨x, rfl | hx, hy⟩
+        · exact Or.inl hy
+        · exact Or.inr (ih.mpr ⟨x, hx, hy⟩)
+
+def allSlotOptions4 (n : Nat) : List (Option Nat) :=
+  none :: (List.range n).map some
+
+theorem mem_allSlotOptions4_iff (n : Nat) (s : Option Nat) :
+    s ∈ allSlotOptions4 n ↔ slotOk4 n s := by
+  unfold allSlotOptions4
+  cases s with
+  | none =>
+      simp [slotOk4]
+  | some x =>
+      simp [slotOk4, List.mem_map, List.mem_range]
+
+def allSlotLists4 (n : Nat) : Nat → List (List (Option Nat))
+  | 0 => [[]]
+  | k + 1 =>
+      (allSlotOptions4 n).foldr (fun s acc =>
+        (allSlotLists4 n k).map (fun rest => s :: rest) ++ acc) []
+
+theorem mem_allSlotLists4_iff (n k : Nat) (slots : List (Option Nat)) :
+    slots ∈ allSlotLists4 n k ↔
+      slots.length = k ∧ ∀ s ∈ slots, slotOk4 n s := by
+  induction k generalizing slots with
+  | zero =>
+      cases slots with
+      | nil =>
+          simp [allSlotLists4]
+      | cons s rest =>
+          simp [allSlotLists4]
+  | succ k ih =>
+      unfold allSlotLists4
+      rw [mem_foldr_append_iff]
+      constructor
+      · rintro ⟨s, hs, hmem⟩
+        rcases List.mem_map.mp hmem with ⟨rest, hrest, rfl⟩
+        rcases (ih rest).mp hrest with ⟨hlen, hall⟩
+        have hsok : slotOk4 n s := (mem_allSlotOptions4_iff n s).mp hs
+        refine ⟨by simp [hlen], ?_⟩
+        intro x hx
+        rcases List.mem_cons.mp hx with rfl | hx'
+        · exact hsok
+        · exact hall x hx'
+      · rintro ⟨hlen, hall⟩
+        cases slots with
+        | nil => cases hlen
+        | cons s rest =>
+            have hlen' : rest.length = k := by simpa using hlen
+            have hs : s ∈ allSlotOptions4 n :=
+              (mem_allSlotOptions4_iff n s).mpr (hall s (List.Mem.head _))
+            have hrest : rest ∈ allSlotLists4 n k :=
+              (ih rest).mpr ⟨hlen', fun x hx => hall x (List.Mem.tail _ hx)⟩
+            exact ⟨s, hs, List.mem_map.mpr ⟨rest, hrest, rfl⟩⟩
+
+def allWfCtxs4 (r : Regime4) : List Ctx4 :=
+  (List.range r.forms.length).foldr (fun f acc =>
+    (((allSlotLists4 r.data (r.forms.getD f 0)).filter (fun slots => decide (none ∈ slots))).map
+      (fun slots => (⟨f, slots⟩ : Ctx4))) ++ acc) []
+
+theorem mem_allWfCtxs4_iff (r : Regime4) (c : Ctx4) :
+    c ∈ allWfCtxs4 r ↔ wfCtx4 r c := by
+  rcases c with ⟨f, slots⟩
+  unfold allWfCtxs4 wfCtx4
+  rw [mem_foldr_append_iff]
+  constructor
+  · rintro ⟨f', hf', hmem⟩
+    rcases List.mem_map.mp hmem with ⟨slots', hfilt, hceq⟩
+    rcases Ctx4.mk.inj hceq with ⟨rfl, rfl⟩
+    rcases List.mem_filter.mp hfilt with ⟨hsl, hnone⟩
+    rcases (mem_allSlotLists4_iff r.data (r.forms.getD f' 0) slots').mp hsl with ⟨hlen, hall⟩
+    exact ⟨List.mem_range.mp hf', hlen, of_decide_eq_true hnone, hall⟩
+  · rintro ⟨hf, hlen, hnone, hall⟩
+    refine ⟨f, List.mem_range.mpr hf, ?_⟩
+    apply List.mem_map.mpr
+    refine ⟨slots, List.mem_filter.mpr ⟨?_, decide_eq_true hnone⟩, rfl⟩
+    exact (mem_allSlotLists4_iff r.data (r.forms.getD f 0) slots).mpr ⟨hlen, hall⟩
+
+theorem list_all_eq_true_iff4 {α : Type} (xs : List α) (p : α → Bool) :
+    xs.all p = true ↔ ∀ x ∈ xs, p x = true := by
+  induction xs with
+  | nil =>
+      simp only [List.all]
+      constructor
+      · intro _ x hx; cases hx
+      · intro _; trivial
+  | cons a tail ih =>
+      simp only [List.all, Bool.and_eq_true, List.mem_cons]
+      constructor
+      · rintro ⟨hpa, htail⟩ x (rfl | hx)
+        · exact hpa
+        · exact ih.mp htail x hx
+      · intro hall
+        exact ⟨hall a (Or.inl rfl), ih.mpr (fun x hx => hall x (Or.inr hx))⟩
+
+theorem list_all_eq_false_iff4 {α : Type} (xs : List α) (p : α → Bool) :
+    xs.all p = false ↔ ∃ x ∈ xs, p x = false := by
+  induction xs with
+  | nil =>
+      simp only [List.all]
+      constructor
+      · intro h; cases h
+      · rintro ⟨_, hx, _⟩; cases hx
+  | cons a tail ih =>
+      simp only [List.all, List.mem_cons]
+      cases hpa : p a with
+      | false =>
+          simp only [Bool.false_and]
+          exact ⟨fun _ => ⟨a, Or.inl rfl, hpa⟩, fun _ => trivial⟩
+      | true =>
+          simp only [Bool.true_and]
+          constructor
+          · intro htail
+            rcases ih.mp htail with ⟨x, hx, hpx⟩
+            exact ⟨x, Or.inr hx, hpx⟩
+          · rintro ⟨x, rfl | hx, hpx⟩
+            · rw [hpa] at hpx; cases hpx
+            · exact ih.mpr ⟨x, hx, hpx⟩
+
+theorem derivable4Bool_beq_eq_true_iff (r : Regime4) (i1 i2 : Inst4) :
+    (derivable4Bool r i1 == derivable4Bool r i2) = true ↔
+      (derivable4 r i1 ↔ derivable4 r i2) := by
+  unfold derivable4Bool
+  by_cases h1 : derivable4 r i1 <;> by_cases h2 : derivable4 r i2 <;>
+    simp [h1, h2]
+
+theorem derivable4Bool_beq_eq_false_iff (r : Regime4) (i1 i2 : Inst4) :
+    (derivable4Bool r i1 == derivable4Bool r i2) = false ↔
+      ¬ (derivable4 r i1 ↔ derivable4 r i2) := by
+  cases hbeq : (derivable4Bool r i1 == derivable4Bool r i2) with
+  | false =>
+      constructor
+      · intro _ hiff
+        have htrue := (derivable4Bool_beq_eq_true_iff r i1 i2).mpr hiff
+        rw [hbeq] at htrue
+        cases htrue
+      · intro _; rfl
+  | true =>
+      have hiff := (derivable4Bool_beq_eq_true_iff r i1 i2).mp hbeq
+      constructor
+      · intro h; cases h
+      · intro hne; exact False.elim (hne hiff)
+
+def collapsed4Bool (r : Regime4) (d d' : Nat) : Bool :=
+  (allWfCtxs4 r).all (fun c => derivable4Bool r (plug4 c d) == derivable4Bool r (plug4 c d'))
+
+theorem collapsed4_iff_collapsed4Bool (r : Regime4) (d d' : Nat) :
+    collapsed4 r d d' ↔ collapsed4Bool r d d' = true := by
+  unfold collapsed4 collapsed4Bool
+  rw [list_all_eq_true_iff4]
+  constructor
+  · intro h c hc
+    exact (derivable4Bool_beq_eq_true_iff r (plug4 c d) (plug4 c d')).mpr
+      (h c ((mem_allWfCtxs4_iff r c).mp hc))
+  · intro h c hwf
+    exact (derivable4Bool_beq_eq_true_iff r (plug4 c d) (plug4 c d')).mp
+      (h c ((mem_allWfCtxs4_iff r c).mpr hwf))
+
+theorem separable4_iff_collapsed4Bool_false (r : Regime4) (d d' : Nat) :
+    separable4 r d d' ↔ collapsed4Bool r d d' = false := by
+  unfold separable4 collapsed4Bool
+  rw [list_all_eq_false_iff4]
+  constructor
+  · rintro ⟨c, hwf, hne⟩
+    exact ⟨c, (mem_allWfCtxs4_iff r c).mpr hwf,
+      (derivable4Bool_beq_eq_false_iff r (plug4 c d) (plug4 c d')).mpr hne⟩
+  · rintro ⟨c, hc, hfalse⟩
+    exact ⟨c, (mem_allWfCtxs4_iff r c).mp hc,
+      (derivable4Bool_beq_eq_false_iff r (plug4 c d) (plug4 c d')).mp hfalse⟩
+
+instance (r : Regime4) (d d' : Nat) : Decidable (collapsed4 r d d') :=
+  decidable_of_iff (collapsed4Bool r d d' = true) (collapsed4_iff_collapsed4Bool r d d').symm
+
+instance (r : Regime4) (d d' : Nat) : Decidable (separable4 r d d') :=
+  decidable_of_iff (collapsed4Bool r d d' = false) (separable4_iff_collapsed4Bool_false r d d').symm
+
+def hasEarlierEquiv4 (eqv : Nat → Nat → Bool) (x : Nat) : Nat → Bool
+  | 0 => false
+  | y + 1 => eqv y x || hasEarlierEquiv4 eqv x y
+
+theorem hasEarlierEquiv4_iff (eqv : Nat → Nat → Bool) (x bound : Nat) :
+    hasEarlierEquiv4 eqv x bound = true ↔ ∃ y < bound, eqv y x = true := by
+  induction bound with
+  | zero =>
+      simp only [hasEarlierEquiv4]
+      constructor
+      · intro h; cases h
+      · rintro ⟨y, hy, _⟩; omega
+  | succ y ih =>
+      simp only [hasEarlierEquiv4, Bool.or_eq_true]
+      constructor
+      · rintro (hyx | hprev)
+        · exact ⟨y, Nat.lt_succ_self y, hyx⟩
+        · rcases ih.mp hprev with ⟨z, hz, hzx⟩
+          exact ⟨z, Nat.lt_trans hz (Nat.lt_succ_self y), hzx⟩
+      · rintro ⟨z, hz, hzx⟩
+        rcases Nat.lt_or_eq_of_le (Nat.le_of_lt_succ hz) with hlt | rfl
+        · exact Or.inr (ih.mpr ⟨z, hlt, hzx⟩)
+        · exact Or.inl hzx
+
+theorem hasEarlierEquiv4_eq_false_iff (eqv : Nat → Nat → Bool) (x bound : Nat) :
+    hasEarlierEquiv4 eqv x bound = false ↔ ∀ y < bound, eqv y x = false := by
+  cases h : hasEarlierEquiv4 eqv x bound with
+  | false =>
+      constructor
+      · intro _ y hy
+        cases hyx : eqv y x with
+        | false => rfl
+        | true =>
+            have htrue := (hasEarlierEquiv4_iff eqv x bound).mpr ⟨y, hy, hyx⟩
+            rw [h] at htrue
+            cases htrue
+      · intro _; rfl
+  | true =>
+      rcases (hasEarlierEquiv4_iff eqv x bound).mp h with ⟨y, hy, hyx⟩
+      constructor
+      · intro hfalse; cases hfalse
+      · intro hall
+        have hfalse := hall y hy
+        rw [hyx] at hfalse
+        cases hfalse
+
+def isRep4 (eqv : Nat → Nat → Bool) (x : Nat) : Bool :=
+  !hasEarlierEquiv4 eqv x x
+
+theorem isRep4_iff (eqv : Nat → Nat → Bool) (x : Nat) :
+    isRep4 eqv x = true ↔ ∀ y < x, eqv y x = false := by
+  unfold isRep4
+  rw [Bool.not_eq_true']
+  exact hasEarlierEquiv4_eq_false_iff eqv x x
+
+theorem isRep4_eq_false_iff (eqv : Nat → Nat → Bool) (x : Nat) :
+    isRep4 eqv x = false ↔ ∃ y < x, eqv y x = true := by
+  unfold isRep4
+  rw [Bool.not_eq_false']
+  exact hasEarlierEquiv4_iff eqv x x
+
+def boolToNat4 : Bool → Nat
+  | false => 0
+  | true  => 1
+
+def classCount4 (eqv : Nat → Nat → Bool) : Nat → Nat
+  | 0 => 0
+  | k + 1 => classCount4 eqv k + boolToNat4 (isRep4 eqv k)
+
+theorem classCount4_le (eqv : Nat → Nat → Bool) (n : Nat) :
+    classCount4 eqv n ≤ n := by
+  induction n with
+  | zero => exact Nat.le_refl 0
+  | succ k ih =>
+      unfold classCount4
+      cases isRep4 eqv k <;> simp [boolToNat4] <;> omega
+
+theorem classCount4_pos_of_pos (eqv : Nat → Nat → Bool) {n : Nat} (hn : 1 ≤ n) :
+    1 ≤ classCount4 eqv n := by
+  induction n with
+  | zero => omega
+  | succ k ih =>
+      cases k with
+      | zero =>
+          change 1 ≤ 0 + 1
+          exact Nat.le_refl 1
+      | succ k' =>
+          have ih' := ih (by omega)
+          unfold classCount4
+          omega
+
+theorem classCount4_mono_of_imp (p q : Nat → Nat → Bool) (n : Nat)
+    (himp : ∀ x < n, isRep4 p x = true → isRep4 q x = true) :
+    classCount4 p n ≤ classCount4 q n := by
+  induction n with
+  | zero => exact Nat.le_refl 0
+  | succ k ih =>
+      have hsub : classCount4 p k ≤ classCount4 q k :=
+        ih (fun x hx => himp x (Nat.lt_trans hx (Nat.lt_succ_self k)))
+      have hk := himp k (Nat.lt_succ_self k)
+      unfold classCount4
+      cases hp : isRep4 p k with
+      | false =>
+          cases hq : isRep4 q k <;> simp [boolToNat4] <;> omega
+      | true =>
+          have hq : isRep4 q k = true := hk hp
+          rw [hq]
+          simp [boolToNat4]
+          omega
+
+theorem classCount4_strict_mono_of_witness (p q : Nat → Nat → Bool) (n : Nat)
+    (himp : ∀ x < n, isRep4 p x = true → isRep4 q x = true)
+    (hwit : ∃ w < n, isRep4 p w = false ∧ isRep4 q w = true) :
+    classCount4 p n + 1 ≤ classCount4 q n := by
+  induction n with
+  | zero =>
+      rcases hwit with ⟨w, hw, _⟩
+      omega
+  | succ k ih =>
+      rcases hwit with ⟨w, hw, hpw, hqw⟩
+      rcases Nat.lt_or_eq_of_le (Nat.le_of_lt_succ hw) with hlt | heq
+      · have ih' := ih (fun x hx => himp x (Nat.lt_trans hx (Nat.lt_succ_self k)))
+          ⟨w, hlt, hpw, hqw⟩
+        have hk := himp k (Nat.lt_succ_self k)
+        unfold classCount4
+        cases hp : isRep4 p k with
+        | false =>
+            cases hq : isRep4 q k <;> simp [boolToNat4] <;> omega
+        | true =>
+            have hq : isRep4 q k = true := hk hp
+            rw [hq]
+            simp [boolToNat4]
+            omega
+      · subst w
+        have hmono := classCount4_mono_of_imp p q k
+          (fun x hx => himp x (Nat.lt_trans hx (Nat.lt_succ_self k)))
+        unfold classCount4
+        rw [hpw, hqw]
+        simp [boolToNat4]
+        omega
+
+structure BoolEquivOn4 (n : Nat) (eqv : Nat → Nat → Bool) : Prop where
+  refl  : ∀ x < n, eqv x x = true
+  symm  : ∀ x < n, ∀ y < n, eqv x y = true → eqv y x = true
+  trans : ∀ x < n, ∀ y < n, ∀ z < n, eqv x y = true → eqv y z = true → eqv x z = true
+
+theorem collapsed4Bool_boolEquivOn4 (r : Regime4) :
+    BoolEquivOn4 r.data (collapsed4Bool r) where
+  refl := fun x _ =>
+    (collapsed4_iff_collapsed4Bool r x x).mp ((collapsed4_equivalence r).refl x)
+  symm := fun x _ y _ h =>
+    (collapsed4_iff_collapsed4Bool r y x).mp
+      ((collapsed4_equivalence r).symm ((collapsed4_iff_collapsed4Bool r x y).mpr h))
+  trans := fun x _ y _ z _ h1 h2 =>
+    (collapsed4_iff_collapsed4Bool r x z).mp
+      ((collapsed4_equivalence r).trans
+        ((collapsed4_iff_collapsed4Bool r x y).mpr h1)
+        ((collapsed4_iff_collapsed4Bool r y z).mpr h2))
+
+theorem exists_rep_of_equiv4_aux {n : Nat} {eqv : Nat → Nat → Bool}
+    (heqv : BoolEquivOn4 n eqv) :
+    ∀ bound a : Nat, a < bound → a < n → ∃ r ≤ a, eqv r a = true ∧ isRep4 eqv r = true
+  | 0, _, hlt, _ => by omega
+  | bound + 1, a, hlt, han => by
+      cases hrep : isRep4 eqv a with
+      | true =>
+          exact ⟨a, Nat.le_refl a, heqv.refl a han, hrep⟩
+      | false =>
+          rcases (isRep4_eq_false_iff eqv a).mp hrep with ⟨y, hya, heqv_ya⟩
+          have hy_bound : y < bound := by omega
+          have hy_n : y < n := by omega
+          rcases exists_rep_of_equiv4_aux heqv bound y hy_bound hy_n with ⟨r, hry, heqv_ry, hrep_r⟩
+          have hr_n : r < n := by omega
+          exact ⟨r, by omega, heqv.trans r hr_n y hy_n a han heqv_ry heqv_ya, hrep_r⟩
+
+theorem exists_rep_of_equiv4 {n : Nat} {eqv : Nat → Nat → Bool}
+    (heqv : BoolEquivOn4 n eqv) {a : Nat} (ha : a < n) :
+    ∃ r ≤ a, eqv r a = true ∧ isRep4 eqv r = true :=
+  exists_rep_of_equiv4_aux heqv (a + 1) a (Nat.lt_succ_self a) ha
+
+structure StrictRefinementOn4 (n : Nat) (eqv eqv' : Nat → Nat → Bool) : Prop where
+  equiv_old : BoolEquivOn4 n eqv
+  equiv_new : BoolEquivOn4 n eqv'
+  refines   : ∀ x < n, ∀ y < n, eqv' x y = true → eqv x y = true
+  new_sep   : ∃ a < n, ∃ b < n, eqv a b = true ∧ eqv' a b = false
+
+theorem isRep4_imp_of_refines {n : Nat} {eqv eqv' : Nat → Nat → Bool}
+    (href : ∀ x < n, ∀ y < n, eqv' x y = true → eqv x y = true) :
+    ∀ x < n, isRep4 eqv x = true → isRep4 eqv' x = true := by
+  intro x hx hrep
+  rw [isRep4_iff] at hrep ⊢
+  intro y hyx
+  have hy : y < n := by omega
+  have hold : eqv y x = false := hrep y hyx
+  cases hnew : eqv' y x with
+  | false => rfl
+  | true =>
+      have := href y hy x hx hnew
+      rw [hold] at this
+      cases this
+
+theorem exists_new_rep_of_strictRefinementOn4 {n : Nat} {eqv eqv' : Nat → Nat → Bool}
+    (h : StrictRefinementOn4 n eqv eqv') :
+    ∃ w < n, isRep4 eqv w = false ∧ isRep4 eqv' w = true := by
+  rcases h.new_sep with ⟨a, ha, b, hb, heqv_ab, hneqv'_ab⟩
+  rcases exists_rep_of_equiv4 h.equiv_new ha with ⟨ra, hra_le, heqv'_ra, hrep'_ra⟩
+  rcases exists_rep_of_equiv4 h.equiv_new hb with ⟨rb, hrb_le, heqv'_rb, hrep'_rb⟩
+  have hra_n : ra < n := by omega
+  have hrb_n : rb < n := by omega
+  have heqv_ra_a : eqv ra a = true := h.refines ra hra_n a ha heqv'_ra
+  have heqv_rb_b : eqv rb b = true := h.refines rb hrb_n b hb heqv'_rb
+  have heqv_ra_b : eqv ra b = true :=
+    h.equiv_old.trans ra hra_n a ha b hb heqv_ra_a heqv_ab
+  have heqv_b_rb : eqv b rb = true :=
+    h.equiv_old.symm rb hrb_n b hb heqv_rb_b
+  have heqv_ra_rb : eqv ra rb = true :=
+    h.equiv_old.trans ra hra_n b hb rb hrb_n heqv_ra_b heqv_b_rb
+  have heqv_rb_ra : eqv rb ra = true :=
+    h.equiv_old.symm ra hra_n rb hrb_n heqv_ra_rb
+  have hne : ra ≠ rb := by
+    intro heq
+    subst heq
+    have ha_ra : eqv' a ra = true := h.equiv_new.symm ra hra_n a ha heqv'_ra
+    have hab' : eqv' a b = true := h.equiv_new.trans a ha ra hra_n b hb ha_ra heqv'_rb
+    rw [hneqv'_ab] at hab'
+    cases hab'
+  rcases Nat.lt_or_gt_of_ne hne with hlt | hgt
+  · refine ⟨rb, hrb_n, ?_, hrep'_rb⟩
+    exact (isRep4_eq_false_iff eqv rb).mpr ⟨ra, hlt, heqv_ra_rb⟩
+  · refine ⟨ra, hra_n, ?_, hrep'_ra⟩
+    exact (isRep4_eq_false_iff eqv ra).mpr ⟨rb, hgt, heqv_rb_ra⟩
+
+theorem strict_refinement_classCount4_inc {n : Nat} {eqv eqv' : Nat → Nat → Bool}
+    (h : StrictRefinementOn4 n eqv eqv') :
+    classCount4 eqv n + 1 ≤ classCount4 eqv' n ∧ classCount4 eqv' n ≤ n :=
+  ⟨classCount4_strict_mono_of_witness eqv eqv' n
+     (isRep4_imp_of_refines h.refines)
+     (exists_new_rep_of_strictRefinementOn4 h),
+   classCount4_le eqv' n⟩
+
+def regimeClassCount4 (r : Regime4) : Nat :=
+  classCount4 (collapsed4Bool r) r.data
+
+theorem regimeClassCount4_le (r : Regime4) :
+    regimeClassCount4 r ≤ r.data :=
+  classCount4_le (collapsed4Bool r) r.data
+
+theorem regimeClassCount4_pos (r : Regime4) (hdata : 1 ≤ r.data) :
+    1 ≤ regimeClassCount4 r :=
+  classCount4_pos_of_pos (collapsed4Bool r) hdata
+
+structure StrictRegimeTransition4 (r s : Regime4) : Prop where
+  same_data     : s.data = r.data
+  preserves_sep : ∀ x < r.data, ∀ y < r.data, separable4 r x y → separable4 s x y
+  new_sep       : ∃ a < r.data, ∃ b < r.data, collapsed4 r a b ∧ separable4 s a b
+
+theorem strictRegimeTransition4_to_strictRefinementOn4 {r s : Regime4}
+    (h : StrictRegimeTransition4 r s) :
+    StrictRefinementOn4 r.data (collapsed4Bool r) (collapsed4Bool s) where
+  equiv_old := collapsed4Bool_boolEquivOn4 r
+  equiv_new := h.same_data ▸ collapsed4Bool_boolEquivOn4 s
+  refines := by
+    intro x hx y hy hs_col
+    cases hr_col : collapsed4Bool r x y with
+    | true => rfl
+    | false =>
+        have hsep_r : separable4 r x y :=
+          (separable4_iff_collapsed4Bool_false r x y).mpr hr_col
+        have hsep_s : separable4 s x y := h.preserves_sep x hx y hy hsep_r
+        have hs_false : collapsed4Bool s x y = false :=
+          (separable4_iff_collapsed4Bool_false s x y).mp hsep_s
+        rw [hs_false] at hs_col
+        cases hs_col
+  new_sep := by
+    rcases h.new_sep with ⟨a, ha, b, hb, hcol_r, hsep_s⟩
+    exact ⟨a, ha, b, hb,
+      (collapsed4_iff_collapsed4Bool r a b).mp hcol_r,
+      (separable4_iff_collapsed4Bool_false s a b).mp hsep_s⟩
+
+theorem regime4_strict_class_count_growth {r s : Regime4}
+    (h : StrictRegimeTransition4 r s) :
+    regimeClassCount4 r + 1 ≤ regimeClassCount4 s ∧
+    regimeClassCount4 s ≤ s.data := by
+  unfold regimeClassCount4
+  rw [h.same_data]
+  exact strict_refinement_classCount4_inc (strictRegimeTransition4_to_strictRefinementOn4 h)
+
+def freshUnaryDelta4 (r : Regime4) (target : Nat) : List Item4 :=
+  [.newForm 1, .newInst r.forms.length [target]]
+
+def stepFreshUnary4 (r : Regime4) (target : Nat) : Regime4 :=
+  ⟨r.data, r.forms ++ [1], insertNew4 r.insts (r.forms.length, [target]), r.reqs⟩
+
+theorem getD_append_last4 (forms : List Nat) (k : Nat) :
+    (forms ++ [k]).getD forms.length 0 = k := by
+  induction forms with
+  | nil => rfl
+  | cons _ tail ih => exact ih
+
+theorem mem_insertNew4_iff {α : Type} [DecidableEq α] (l : List α) (a x : α) :
+    x ∈ insertNew4 l a ↔ x ∈ l ∨ x = a := by
+  unfold insertNew4
+  by_cases ha : a ∈ l
+  · rw [if_pos ha]
+    constructor
+    · intro hx; exact Or.inl hx
+    · rintro (hx | rfl)
+      · exact hx
+      · exact ha
+  · rw [if_neg ha, List.mem_append, List.mem_singleton]
+
+theorem applyDelta4_freshUnaryDelta4 (r : Regime4) {target : Nat} (ht : target < r.data) :
+    applyDelta4 r (freshUnaryDelta4 r target) = some (stepFreshUnary4 r target) := by
+  unfold freshUnaryDelta4
+  rw [applyDelta4_pair]
+  have h1 : applyItem4 r (.newForm 1) = some ⟨r.data, r.forms ++ [1], r.insts, r.reqs⟩ := rfl
+  rw [h1]
+  simp only [Option.bind, applyItem4]
+  have hcond :
+      r.forms.length < (r.forms ++ [1]).length ∧
+      ([target] : List Nat).length = (r.forms ++ [1]).getD r.forms.length 0 ∧
+      (∀ x ∈ ([target] : List Nat), x < r.data) := by
+    refine ⟨?_, ?_, ?_⟩
+    · simp [List.length_append]
+    · rw [getD_append_last4 r.forms 1]
+      rfl
+    · intro x hx
+      rcases List.mem_singleton.mp hx with rfl
+      exact ht
+  rw [if_pos hcond]
+  rfl
+
+theorem stepFreshUnary4_strict_transition (r : Regime4)
+    (hwf : ∀ p ∈ r.insts, p.1 < r.forms.length)
+    {target other : Nat} (ht : target < r.data) (ho : other < r.data)
+    (hcol : collapsed4 r target other) (hne : target ≠ other) :
+    StrictRegimeTransition4 r (stepFreshUnary4 r target) where
+  same_data := rfl
+  preserves_sep := by
+    intro x _ y _ ⟨c, hwfc, hnec⟩
+    refine ⟨c, ?_, ?_⟩
+    · refine ⟨?_, ?_, hwfc.2.2.1, hwfc.2.2.2⟩
+      · show c.form < (r.forms ++ [1]).length
+        have := hwfc.1
+        simp [List.length_append]
+        omega
+      · show c.slots.length = (r.forms ++ [1]).getD c.form 0
+        rw [getD_append_left4 r.forms 1 c.form hwfc.1]
+        exact hwfc.2.1
+    · have hder_eq : ∀ d, derivable4 (stepFreshUnary4 r target) (plug4 c d) ↔
+          derivable4 r (plug4 c d) := by
+        intro d
+        unfold derivable4 stepFreshUnary4
+        rw [mem_insertNew4_iff]
+        constructor
+        · rintro (hmem | heq)
+          · exact hmem
+          · have hform : c.form = r.forms.length := congrArg Prod.fst heq
+            have hlt := hwfc.1
+            omega
+        · intro hmem
+          exact Or.inl hmem
+      intro hiff
+      exact hnec ((hder_eq x).symm.trans (hiff.trans (hder_eq y)))
+  new_sep := by
+    refine ⟨target, ht, other, ho, hcol, ?_⟩
+    refine ⟨⟨r.forms.length, [none]⟩, ?_, ?_⟩
+    · refine ⟨?_, ?_, List.Mem.head _, ?_⟩
+      · show r.forms.length < (r.forms ++ [1]).length
+        simp [List.length_append]
+      · show ([none] : List (Option Nat)).length = (r.forms ++ [1]).getD r.forms.length 0
+        rw [getD_append_last4 r.forms 1]
+        rfl
+      · intro s hs
+        rcases List.mem_singleton.mp hs with rfl
+        trivial
+    · intro hiff
+      have h_target : derivable4 (stepFreshUnary4 r target) (plug4 ⟨r.forms.length, [none]⟩ target) := by
+        unfold derivable4 stepFreshUnary4 plug4
+        exact (mem_insertNew4_iff r.insts (r.forms.length, [target]) (r.forms.length, [target])).mpr
+          (Or.inr rfl)
+      have h_other := hiff.mp h_target
+      unfold derivable4 stepFreshUnary4 plug4 at h_other
+      rcases (mem_insertNew4_iff r.insts (r.forms.length, [target]) (r.forms.length, [other])).mp h_other with
+        hmem | heq
+      · have hlt := hwf (r.forms.length, [other]) hmem
+        change r.forms.length < r.forms.length at hlt
+        omega
+      · have harg : ([other] : List Nat) = [target] := congrArg Prod.snd heq
+        cases harg
+        exact hne rfl
+
+theorem stepFreshUnary4_class_count_growth (r : Regime4)
+    (hwf : ∀ p ∈ r.insts, p.1 < r.forms.length)
+    {target other : Nat} (ht : target < r.data) (ho : other < r.data)
+    (hcol : collapsed4 r target other) (hne : target ≠ other) :
+    regimeClassCount4 r + 1 ≤ regimeClassCount4 (stepFreshUnary4 r target) ∧
+    regimeClassCount4 (stepFreshUnary4 r target) ≤ r.data :=
+  regime4_strict_class_count_growth
+    (stepFreshUnary4_strict_transition r hwf ht ho hcol hne)
+
+inductive RegimeRefinementRun4 : Regime4 → Nat → Prop where
+  | nil (r : Regime4) : RegimeRefinementRun4 r 0
+  | step {r s : Regime4} {m : Nat}
+      (htrans : StrictRegimeTransition4 r s)
+      (hrest : RegimeRefinementRun4 s m) :
+      RegimeRefinementRun4 r (m + 1)
+
+theorem regimeRefinementRun4_to_quotRefRun {r : Regime4} {m : Nat}
+    (hrun : RegimeRefinementRun4 r m) :
+    QuotRefRun r.data (regimeClassCount4 r) m := by
+  induction hrun with
+  | nil r =>
+      exact QuotRefRun.nil (regimeClassCount4 r) (regimeClassCount4_le r)
+  | step htrans _ ih =>
+      have hgrowth := (regime4_strict_class_count_growth htrans).1
+      rw [← htrans.same_data]
+      exact QuotRefRun.step hgrowth ih
+
+theorem regimeRefinementRun4_round_bound {r : Regime4} {m : Nat}
+    (hdata : 1 ≤ r.data) (hrun : RegimeRefinementRun4 r m) :
+    m ≤ r.data - 1 :=
+  quotient_refinement_from_one
+    (regimeClassCount4_pos r hdata)
+    (regimeRefinementRun4_to_quotRefRun hrun)
+
+theorem rt09_class_count_comparison :
+    regimeClassCount4 R3_round1 = 2 ∧
+    regimeClassCount4 R3_round2_recollapse = 2 ∧
+    regimeClassCount4 R3_round2_fresh = 3 := by
+  decide
+
 end OmegaCodex.MinimalSeparation
+
